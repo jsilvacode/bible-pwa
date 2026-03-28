@@ -21,6 +21,10 @@
   --text-secondary: #9A9890;
   --text-verse-num: #4A4840;
   --accent: #C49A6C;
+  --highlight-yellow: #5C5328;
+  --highlight-green: #254330;
+  --highlight-blue: #1F3E58;
+  --highlight-pink: #5B2F47;
   --border: #2E2E28;
 }
 
@@ -32,5 +36,9 @@
   --text-secondary: #6B5740;
   --text-verse-num: #B09070;
   --accent: #8B4513;
+  --highlight-yellow: #F4E39A;
+  --highlight-green: #CFE4BF;
+  --highlight-blue: #C9DFF2;
+  --highlight-pink: #F0CFD8;
   --border: #D4C4A0;
 }
