@@ -106,3 +106,50 @@
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
 }
+
+.authRequired {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.loginBtn {
+  margin-top: 15px;
+  padding: 12px 24px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.loginBtn:hover {
+  opacity: 0.9;
+}
+
+.egwResult {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.egwQuote {
+  background-color: var(--bg-page);
+  padding: 15px;
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+}
+
+.egwQuote p {
+  margin: 0 0 10px 0;
+  font-style: italic;
+  font-size: 15px;
+}
+
+.egwQuote small {
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-weight: 600;
+}

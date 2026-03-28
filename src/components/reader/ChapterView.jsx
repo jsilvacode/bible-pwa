@@ -147,6 +147,7 @@ export default function ChapterView() {
 
       {showCommentary && (
         <CommentaryPopup 
+          verseData={{ book: Number(book), chapter: Number(chapter) }}
           verse={showCommentary}
           onClose={() => setShowCommentary(null)}
         />

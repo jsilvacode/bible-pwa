@@ -42,3 +42,24 @@
   color: var(--accent);
   font-size: 14px;
 }
+
+.egwSection {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--border);
+}
+
+.egwText {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: var(--line-height-reading);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.egwRef {
+  text-align: right;
+  font-family: var(--font-ui);
+  color: var(--text-secondary);
+  font-size: 12px;
+}

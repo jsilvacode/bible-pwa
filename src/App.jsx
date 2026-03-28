@@ -7,6 +7,7 @@ import SearchView from './components/search/SearchView';
 import BookmarksView from './components/bookmarks/BookmarksView';
 import SettingsView from './components/settings/SettingsView';
 import ChapterView from './components/reader/ChapterView';
+import AuthCallback from './components/auth/AuthCallback';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="search" element={<SearchView />} />
           <Route path="bookmarks" element={<BookmarksView />} />
           <Route path="settings" element={<SettingsView />} />
+          <Route path="callback" element={<AuthCallback />} />
         </Route>
       </Routes>
     </BrowserRouter>
