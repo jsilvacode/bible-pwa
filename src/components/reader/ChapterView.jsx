@@ -4,8 +4,10 @@ import { useBible } from '../../hooks/useBible';
 import { useSettings } from '../../hooks/useSettings';
 import VerseBlock from './VerseBlock';
 import VerseMenu from './VerseMenu';
+import CommentaryPopup from './CommentaryPopup';
 import classes from './ChapterView.module.css';
 import { fetchBooksManifest } from '../../services/bibleLoader';
+import { useHighlights } from '../../hooks/useHighlights';
 
 export default function ChapterView() {
   const { book, chapter, verse } = useParams();
@@ -15,7 +17,10 @@ export default function ChapterView() {
   
   const [selectedVerse, setSelectedVerse] = useState(verse ? Number(verse) : null);
   const [menuVerse, setMenuVerse] = useState(null);
+  const [showCommentary, setShowCommentary] = useState(null);
   const [books, setBooks] = useState([]);
+  
+  const { highlights, setHighlight } = useHighlights(settings.version, book, chapter);
   
   const touchStartX = useRef(null);
 
@@ -107,8 +112,8 @@ export default function ChapterView() {
             verse={v.verse}
             text={v.text}
             isSelected={selectedVerse === v.verse}
-            isHighlighted={false} 
-            highlightColor={null}
+            isHighlighted={!!highlights[v.verse]} 
+            highlightColor={highlights[v.verse]}
             onShortTap={handleShortTap}
             onLongTap={handleLongTap}
           />
@@ -118,7 +123,32 @@ export default function ChapterView() {
       {menuVerse && (
         <VerseMenu 
           verse={menuVerse} 
+          payload={{
+            id: `${settings.version}-${book}-${chapter}-${menuVerse}`,
+            version: settings.version,
+            book: Number(book),
+            chapter: Number(chapter),
+            verse: menuVerse,
+            text: currentChapterData.verses.find(v => v.verse === menuVerse)?.text,
+            onHighlight: (color) => {
+              setHighlight({
+                id: `${settings.version}-${book}-${chapter}-${menuVerse}`,
+                version: settings.version,
+                book: Number(book),
+                chapter: Number(chapter),
+                verse: menuVerse
+              }, color);
+            }
+          }}
+          onShowCommentary={setShowCommentary}
           onClose={() => setMenuVerse(null)} 
+        />
+      )}
+
+      {showCommentary && (
+        <CommentaryPopup 
+          verse={showCommentary}
+          onClose={() => setShowCommentary(null)}
         />
       )}
     </div>

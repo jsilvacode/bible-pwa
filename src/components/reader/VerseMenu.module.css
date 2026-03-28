@@ -16,7 +16,7 @@
   background-color: var(--bg-surface);
   border-radius: 12px;
   width: 80%;
-  max-width: 300px;
+  max-width: 320px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   animation: popIn 0.2s;
@@ -41,7 +41,7 @@
   flex-direction: column;
 }
 
-.actions button {
+.actions > button {
   padding: 15px;
   background: none;
   border: none;
@@ -49,18 +49,44 @@
   text-align: left;
   font-size: 16px;
   color: var(--text-primary);
+  font-family: var(--font-ui);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.actions button:last-child {
+.actions > button:last-child {
   border-bottom: none;
 }
 
-.actions button:hover {
+.actions > button:hover {
   background-color: var(--bg-verse-hover);
+}
+
+.colorActions {
+  display: flex;
+  padding: 15px;
+  gap: 10px;
+  border-bottom: 1px solid var(--border);
+  justify-content: center;
+}
+
+.colorBtn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: transform 0.2s;
+}
+
+.colorBtn:hover {
+  transform: scale(1.1);
 }
 
 @keyframes fadeIn {
