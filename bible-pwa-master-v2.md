@@ -394,8 +394,8 @@ La aplicación ya está registrada en EGW Writings. Las credenciales están list
 
 **Variables de entorno — ya configuradas en Netlify y en `.env` local:**
 ```
-VITE_EGW_CLIENT_ID=hF64hF5JxYijFqZ8eHsWf3VkvN9EiJ4S
-VITE_EGW_CLIENT_SECRET=[variable secreta en Netlify, también en .env local]
+VITE_EGW_CLIENT_ID=[ID de cliente configurado en Netlify]
+VITE_EGW_CLIENT_SECRET=[Secret de cliente configurado en Netlify]
 VITE_EGW_REDIRECT_URI=https://santa-biblia.netlify.app/callback
 ```
 
