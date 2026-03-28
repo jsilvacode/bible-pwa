@@ -1,0 +1,10 @@
+:root {
+  --font-body: 'Lora', Georgia, serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-size-sm: 15px;
+  --font-size-md: 18px;
+  --font-size-lg: 21px;
+  --font-size-xl: 25px;
+  --line-height-reading: 1.85;
+  --max-width-reader: 680px;
+}

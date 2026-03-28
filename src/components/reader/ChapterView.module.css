@@ -1,0 +1,55 @@
+.readerContainer {
+  padding: 20px;
+  max-width: var(--max-width-reader);
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .readerContainer {
+    padding: 40px;
+  }
+}
+
+.bookTitle {
+  font-family: var(--font-ui);
+  text-align: center;
+  font-size: 24px;
+  color: var(--text-primary);
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.prose {
+  text-align: justify;
+  line-height: var(--line-height-reading);
+}
+
+.verseBlock {
+  display: inline;
+  border-left: 3px solid transparent;
+  padding-left: 4px;
+  margin-left: -7px; 
+  border-radius: 2px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.verseBlock.selected {
+  border-left-color: var(--accent);
+  background-color: var(--bg-verse-hover);
+}
+
+.verseNum {
+  color: var(--text-verse-num);
+  font-size: 70%;
+  font-family: var(--font-ui);
+  margin-right: 4px;
+  font-weight: 600;
+}
+
+.loader, .error {
+  text-align: center;
+  padding: 50px;
+  font-family: var(--font-ui);
+  color: var(--text-secondary);
+}

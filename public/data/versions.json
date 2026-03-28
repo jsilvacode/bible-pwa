@@ -1,0 +1,24 @@
+[
+  {
+    "id": "rvr60",
+    "name": "Reina-Valera 1960",
+    "short": "RVR60",
+    "lang": "es",
+    "available": true
+  },
+  {
+    "id": "kjv",
+    "name": "King James Version",
+    "short": "KJV",
+    "lang": "en",
+    "available": true
+  },
+  {
+    "id": "peshita",
+    "name": "Peshitá",
+    "short": "PES",
+    "lang": "es",
+    "available": false,
+    "comingSoon": true
+  }
+]

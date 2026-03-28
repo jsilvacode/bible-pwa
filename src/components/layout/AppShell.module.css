@@ -1,0 +1,14 @@
+.appShell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+.mainContent {
+  flex: 1;
+  padding-top: calc(56px + env(safe-area-inset-top));
+  padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
