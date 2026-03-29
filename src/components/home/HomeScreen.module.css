@@ -108,7 +108,12 @@
   color: var(--text-secondary);
   font-family: var(--font-ui);
   font-size: clamp(0.75rem, calc(0.82rem * var(--ui-scale)), 0.92rem);
-  margin: 0 0 8px;
+  margin: 0 16px 10px;
+  text-align: center;
+  padding: 9px 12px;
+  border: 1px dashed color-mix(in srgb, var(--border) 80%, transparent);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--bg-page) 70%, transparent);
 }
 
 .status {
@@ -116,6 +121,7 @@
   font-family: var(--font-ui);
   font-size: clamp(0.8rem, calc(0.88rem * var(--ui-scale)), 0.96rem);
   margin: 4px 0 10px;
+  text-align: center;
 }
 
 .recentSection {
