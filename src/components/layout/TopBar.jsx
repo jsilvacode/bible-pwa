@@ -12,8 +12,10 @@ export default function TopBar() {
         <button 
           className={classes.menuIcon} 
           onClick={() => setIsDrawerOpen(true)}
+          aria-label="Abrir índice de libros"
         >
-          ☰
+          <span className={classes.menuIconGlyph}>☰</span>
+          <span className={classes.menuLabel}>Índice de Libros</span>
         </button>
         <h1 className={classes.title}>Santa Biblia</h1>
         <VersionSelector />

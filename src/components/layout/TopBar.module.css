@@ -29,8 +29,40 @@
 .menuIcon {
   background: none;
   border: none;
-  font-size: clamp(1.2rem, calc(1.35rem * var(--ui-scale)), 1.7rem);
   color: var(--text-primary);
   cursor: pointer;
   padding: calc(5px * var(--ui-scale));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuIconGlyph {
+  font-size: clamp(1.2rem, calc(1.35rem * var(--ui-scale)), 1.7rem);
+  line-height: 1;
+}
+
+.menuLabel {
+  display: none;
+  font-family: var(--font-ui);
+  font-size: clamp(0.9rem, calc(0.95rem * var(--ui-scale)), 1.05rem);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (min-width: 900px), ((min-width: 768px) and (orientation: landscape)) {
+  .menuIcon {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bg-surface) 70%, transparent);
+    padding: calc(8px * var(--ui-scale)) calc(12px * var(--ui-scale));
+  }
+
+  .menuIconGlyph {
+    display: none;
+  }
+
+  .menuLabel {
+    display: inline;
+  }
 }
