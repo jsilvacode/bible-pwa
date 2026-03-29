@@ -4,7 +4,6 @@ import classes from './BottomNav.module.css';
 
 export default function BottomNav() {
   const [installPrompt, setInstallPrompt] = useState(null);
-  const [installHint, setInstallHint] = useState('');
   const [showInstallPopup, setShowInstallPopup] = useState(false);
   const [isInstalled, setIsInstalled] = useState(() =>
     window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true
@@ -18,7 +17,6 @@ export default function BottomNav() {
       event.preventDefault();
       setInstallPrompt(event);
       window.__bibleInstallPrompt = event;
-      setInstallHint('');
       setShowInstallPopup(true);
     };
 
@@ -26,7 +24,6 @@ export default function BottomNav() {
       setInstallPrompt(null);
       window.__bibleInstallPrompt = null;
       setIsInstalled(true);
-      setInstallHint('Aplicación instalada');
       setShowInstallPopup(false);
     };
 
@@ -39,19 +36,16 @@ export default function BottomNav() {
   }, []);
 
   const handleInstall = async () => {
-    if (isInstalled) {
-      setInstallHint('La aplicación ya está instalada');
-      return;
-    }
+    if (isInstalled) return;
 
     if (!installPrompt) {
-      setInstallHint('Usa el menú del navegador para instalar');
+      setShowInstallPopup(false);
       return;
     }
 
     const deferred = installPrompt || window.__bibleInstallPrompt;
     if (!deferred) {
-      setInstallHint('Usa el menú del navegador para instalar');
+      setShowInstallPopup(false);
       return;
     }
 
@@ -80,15 +74,6 @@ export default function BottomNav() {
         <NavLink className={({isActive}) => isActive ? classes.active : ''} to="/">Inicio</NavLink>
         <NavLink className={({isActive}) => isActive ? classes.active : ''} to="/bookmarks">Marcadores</NavLink>
         <NavLink className={({isActive}) => isActive ? classes.active : ''} to="/settings">Ajustes</NavLink>
-        <button
-          className={classes.installBtn}
-          onClick={handleInstall}
-          type="button"
-          disabled={isInstalled}
-        >
-          {isInstalled ? 'Instalada' : 'Instalar'}
-        </button>
-        {installHint && <span className={classes.installHint}>{installHint}</span>}
       </nav>
     </>
   );
