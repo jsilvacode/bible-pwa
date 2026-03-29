@@ -50,6 +50,23 @@
   white-space: nowrap;
 }
 
+.menuLabelMobile {
+  display: inline;
+  font-family: var(--font-ui);
+  font-size: clamp(0.85rem, calc(0.9rem * var(--ui-scale)), 0.98rem);
+  font-weight: 700;
+  margin-left: calc(5px * var(--ui-scale));
+  white-space: nowrap;
+}
+
+.menuLabelDesktop {
+  display: none;
+  font-family: var(--font-ui);
+  font-size: clamp(0.9rem, calc(0.95rem * var(--ui-scale)), 1.05rem);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 @media (min-width: 900px), ((min-width: 768px) and (orientation: landscape)) {
   .menuIcon {
     border: 1px solid var(--border);
@@ -62,7 +79,11 @@
     display: none;
   }
 
-  .menuLabel {
+  .menuLabelMobile {
+    display: none;
+  }
+
+  .menuLabelDesktop {
     display: inline;
   }
 }

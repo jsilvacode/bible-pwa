@@ -15,7 +15,8 @@ export default function TopBar() {
           aria-label="Abrir índice de libros"
         >
           <span className={classes.menuIconGlyph}>☰</span>
-          <span className={classes.menuLabel}>Índice de Libros</span>
+          <span className={classes.menuLabelMobile}>Libros</span>
+          <span className={classes.menuLabelDesktop}>Índice de Libros</span>
         </button>
         <h1 className={classes.title}>Santa Biblia</h1>
         <VersionSelector />

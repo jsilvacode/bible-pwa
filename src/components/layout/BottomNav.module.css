@@ -16,9 +16,10 @@
 }
 
 .bottomNav a {
-  color: var(--text-secondary);
-  font-size: clamp(0.72rem, calc(0.76rem * var(--ui-scale)), 0.95rem);
+  color: color-mix(in srgb, var(--text-primary) 90%, black 10%);
+  font-size: clamp(0.8rem, calc(0.86rem * var(--ui-scale)), 1.02rem);
   font-family: var(--font-ui);
+  font-weight: 600;
   text-decoration: none;
   display: flex;
   flex-direction: column;
@@ -30,9 +31,10 @@
 .installBtn {
   border: none;
   background: none;
-  color: var(--text-secondary);
-  font-size: clamp(0.72rem, calc(0.76rem * var(--ui-scale)), 0.95rem);
+  color: color-mix(in srgb, var(--text-primary) 90%, black 10%);
+  font-size: clamp(0.8rem, calc(0.86rem * var(--ui-scale)), 1.02rem);
   font-family: var(--font-ui);
+  font-weight: 600;
   cursor: pointer;
   flex: 1;
 }
@@ -44,7 +46,7 @@
 .installBtn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
-  color: var(--text-secondary);
+  color: color-mix(in srgb, var(--text-primary) 80%, black 20%);
 }
 
 .installHint {
