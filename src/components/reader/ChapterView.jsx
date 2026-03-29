@@ -4,7 +4,6 @@ import { useBible } from '../../hooks/useBible';
 import { useRecentReads, useSettings } from '../../hooks/useSettings';
 import VerseBlock from './VerseBlock';
 import VerseMenu from './VerseMenu';
-import CommentaryPopup from './CommentaryPopup';
 import classes from './ChapterView.module.css';
 import { fetchBooksManifest } from '../../services/bibleLoader';
 import { useHighlights } from '../../hooks/useHighlights';
@@ -18,7 +17,6 @@ export default function ChapterView() {
   
   const [selectedVerse, setSelectedVerse] = useState(verse ? Number(verse) : null);
   const [menuVerse, setMenuVerse] = useState(null);
-  const [showCommentary, setShowCommentary] = useState(null);
   const [books, setBooks] = useState([]);
   
   const { highlights, setHighlight } = useHighlights(settings.version, book, chapter);
@@ -148,17 +146,7 @@ export default function ChapterView() {
               }, color);
             }
           }}
-          onShowCommentary={setShowCommentary}
           onClose={() => setMenuVerse(null)} 
-        />
-      )}
-
-      {showCommentary && (
-        <CommentaryPopup 
-          verseData={{ book: Number(book), chapter: Number(chapter) }}
-          verse={showCommentary}
-          verseText={currentChapterData.verses.find(v => v.verse === showCommentary)?.text || ''}
-          onClose={() => setShowCommentary(null)}
         />
       )}
     </div>

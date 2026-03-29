@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './VerseMenu.module.css';
 import { useBookmarks } from '../../hooks/useBookmarks';
 
-export default function VerseMenu({ verse, payload, onClose, onShowCommentary }) {
+export default function VerseMenu({ verse, payload, onClose }) {
   const { isBookmarked, toggleBookmark } = useBookmarks();
   const bookmarked = isBookmarked(payload?.id);
 
@@ -63,9 +63,6 @@ export default function VerseMenu({ verse, payload, onClose, onShowCommentary })
           <h3>Versículo {verse}</h3>
         </div>
         <div className={classes.actions}>
-          <button onClick={() => { onShowCommentary(verse); onClose(); }}>
-            📑 Comentario
-          </button>
           <button onClick={handleBookmark}>
             🔖 {bookmarked ? 'Quitar Marcador' : 'Añadir Marcador'}
           </button>
