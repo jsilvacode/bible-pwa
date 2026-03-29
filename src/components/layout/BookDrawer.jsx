@@ -58,7 +58,7 @@ export default function BookDrawer({ isOpen, onClose }) {
     <div className={classes.drawerOverlay} onClick={onClose}>
       <div className={classes.drawer} onClick={e => e.stopPropagation()}>
         <div className={classes.header}>
-          <h2>Índice</h2>
+          <h2>Índice de Libros</h2>
           <button className={classes.closeBtn} onClick={onClose}>✕</button>
         </div>
         <div className={classes.scrollArea}>

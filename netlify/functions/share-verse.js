@@ -19,7 +19,7 @@ export const handler = async (event) => {
   const canonicalUrl = `https://santa-biblia.netlify.app${targetPath}`;
   const title = `${bookName} ${chapter}:${verse}`;
   const description = verseText || 'Lectural biblica para el estudio devocional';
-  const image = 'https://santa-biblia.netlify.app/og-card.png';
+  const image = 'https://santa-biblia.netlify.app/og-card.png?v=3';
 
   const html = `<!doctype html>
 <html lang="es">

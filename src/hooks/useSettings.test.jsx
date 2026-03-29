@@ -25,7 +25,7 @@ describe('useRecentReads', () => {
     expect(result.current.recent[0].chapter).toBe(1);
   });
 
-  it('keeps only the latest 10 entries', () => {
+  it('keeps only the latest 5 entries', () => {
     const { result } = renderHook(() => useRecentReads(), { wrapper });
 
     act(() => {
@@ -34,11 +34,11 @@ describe('useRecentReads', () => {
       }
     });
 
-    expect(result.current.recent).toHaveLength(10);
+    expect(result.current.recent).toHaveLength(5);
     expect(result.current.recent[0].book).toBe(12);
-    expect(result.current.recent[9].book).toBe(3);
+    expect(result.current.recent[4].book).toBe(8);
 
     const persisted = JSON.parse(localStorage.getItem(RECENT_KEY));
-    expect(persisted).toHaveLength(10);
+    expect(persisted).toHaveLength(5);
   });
 });

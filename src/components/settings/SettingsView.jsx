@@ -31,8 +31,8 @@ export default function SettingsView() {
       </div>
       
       <div className={classes.info}>
-        <p>Santa Biblia PWA v1.0</p>
-        <p>Guardado Local Activo</p>
+        <p>Santa Biblia RVR60 v1.x</p>
+        <p>Copyright - Desarrollado por Julio Silva.</p>
       </div>
     </div>
   );

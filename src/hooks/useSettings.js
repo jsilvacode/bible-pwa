@@ -52,7 +52,7 @@ export function SettingsProvider({ children }) {
     setRecent(prev => {
       const newEntry = { book, chapter, ts: Date.now() };
       const filtered = prev.filter(r => !(r.book === book && r.chapter === chapter));
-      const updated = [newEntry, ...filtered].slice(0, 10);
+      const updated = [newEntry, ...filtered].slice(0, 5);
       localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
       return updated;
     });
