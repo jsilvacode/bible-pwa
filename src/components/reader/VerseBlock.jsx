@@ -2,7 +2,16 @@ import React, { useRef } from 'react';
 import classes from './ChapterView.module.css';
 import { normalizeDisplayedText } from '../../utils/textNormalizer';
 
-export default function VerseBlock({ verse, text, isSelected, isHighlighted, highlightColor, onShortTap, onLongTap }) {
+export default function VerseBlock({
+  verse,
+  text,
+  isSelected,
+  isHighlighted,
+  highlightColor,
+  onShortTap,
+  onLongTap,
+  onOpenMenu,
+}) {
   const timerRef = useRef(null);
   const touchStartRef = useRef(0);
   const didTouchRef = useRef(false);
@@ -43,6 +52,18 @@ export default function VerseBlock({ verse, text, isSelected, isHighlighted, hig
     onShortTap(verse);
   };
 
+  const handleDoubleClick = () => {
+    if (onOpenMenu) {
+      onOpenMenu(verse);
+    }
+  };
+
+  const handleContextMenu = (e) => {
+    if (!onOpenMenu) return;
+    e.preventDefault();
+    onOpenMenu(verse);
+  };
+
   return (
     <span 
       className={`${classes.verseBlock} ${isSelected ? classes.selected : ''}`}
@@ -51,6 +72,9 @@ export default function VerseBlock({ verse, text, isSelected, isHighlighted, hig
       onTouchEnd={handleTouchEnd}
       onTouchMove={handleTouchMove}
       onClick={handleClick}
+      onDoubleClick={handleDoubleClick}
+      onContextMenu={handleContextMenu}
+      title="Doble clic o clic derecho para acciones"
       id={`verse-${verse}`}
     >
       <sup className={classes.verseNum}>{verse}</sup>
