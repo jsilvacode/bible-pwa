@@ -181,7 +181,8 @@ export default function ChapterView() {
           disabled={!canGoPrev}
           aria-label="Capítulo anterior"
         >
-          ← Anterior
+          <span className={classes.chapterNavArrow}>←</span>
+          <span className={classes.chapterNavText}>Anterior</span>
         </button>
         <div className={classes.bookTitle}>{data.name} {chapter}</div>
         <button
@@ -190,7 +191,8 @@ export default function ChapterView() {
           disabled={!canGoNext}
           aria-label="Capítulo siguiente"
         >
-          Siguiente →
+          <span className={classes.chapterNavText}>Siguiente</span>
+          <span className={classes.chapterNavArrow}>→</span>
         </button>
       </div>
 

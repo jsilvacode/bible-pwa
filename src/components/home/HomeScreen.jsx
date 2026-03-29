@@ -166,12 +166,24 @@ export default function HomeScreen() {
             className={classes.searchInput}
             aria-label="Buscar palabra o cita bíblica"
           />
-          <button type="submit" className={classes.searchBtn} disabled={loading}>
-            {loading ? 'Buscando...' : 'Buscar'}
+          <button
+            type="submit"
+            className={classes.searchBtn}
+            disabled={loading}
+            aria-label={loading ? 'Buscando' : 'Buscar'}
+            title={loading ? 'Buscando' : 'Buscar'}
+          >
+            {loading ? '⏳' : '🔍'}
           </button>
           {(query.trim() || results.length > 0 || searchFeedback) && (
-            <button type="button" className={classes.clearBtn} onClick={handleClear}>
-              🧹 Limpiar
+            <button
+              type="button"
+              className={classes.clearBtn}
+              onClick={handleClear}
+              aria-label="Limpiar búsqueda"
+              title="Limpiar búsqueda"
+            >
+              🧹
             </button>
           )}
         </form>
