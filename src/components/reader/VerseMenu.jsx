@@ -1,11 +1,9 @@
 import React from 'react';
 import classes from './VerseMenu.module.css';
 import { useBookmarks } from '../../hooks/useBookmarks';
-import { useNotes } from '../../hooks/useNotes';
 
 export default function VerseMenu({ verse, payload, onClose }) {
   const { isBookmarked, toggleBookmark } = useBookmarks();
-  const { note, saveNote, deleteNote } = useNotes(payload?.id);
   const bookmarked = isBookmarked(payload?.id);
 
   const handleBookmark = () => {
@@ -58,40 +56,6 @@ export default function VerseMenu({ verse, payload, onClose }) {
     onClose();
   };
 
-  const handleNote = async () => {
-    if (!payload) return;
-
-    const existing = note?.content || '';
-    const message = existing
-      ? 'Edita tu nota. Déjala vacía para eliminarla.'
-      : 'Escribe tu nota para este versículo.';
-    const input = window.prompt(message, existing);
-    if (input === null) {
-      return;
-    }
-
-    const content = input.trim();
-    try {
-      if (!content) {
-        await deleteNote(payload.id);
-      } else {
-        await saveNote({
-          id: payload.id,
-          version: payload.version,
-          book: payload.book,
-          chapter: payload.chapter,
-          verse: payload.verse,
-          verseText: payload.text,
-          content,
-        });
-      }
-      onClose();
-    } catch (e) {
-      console.error('Error al guardar nota', e);
-      alert('No se pudo guardar la nota.');
-    }
-  };
-
   return (
     <div className={classes.overlay} onClick={onClose}>
       <div className={classes.menu} onClick={e => e.stopPropagation()}>
@@ -111,9 +75,6 @@ export default function VerseMenu({ verse, payload, onClose }) {
              <button aria-label="Rosa" className={classes.colorBtn} style={{ background: 'var(--highlight-pink)' }} onClick={() => handleHighlight('pink')}></button>
           </div>
           
-          <button onClick={handleNote}>
-            ✏️ {note?.content ? 'Editar Nota' : 'Escribir Nota'}
-          </button>
           <button onClick={handleShare}>
             📤 Compartir
           </button>
