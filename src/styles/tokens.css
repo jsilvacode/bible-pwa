@@ -8,4 +8,13 @@
   --ui-scale: 1;
   --line-height-reading: 1.85;
   --max-width-reader: 680px;
+  --control-height: 44px;
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-soft: 0 8px 18px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.07);
+  --shadow-card-hover: 0 14px 30px rgba(0, 0, 0, 0.1);
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
 }

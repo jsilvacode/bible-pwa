@@ -47,7 +47,7 @@
   background-color: var(--bg-surface);
   color: var(--text-primary);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   padding: 0;
   width: 38px;
   height: 38px;
@@ -80,14 +80,14 @@
   padding: 10px 12px;
   background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
   position: sticky;
   top: calc(56px + env(safe-area-inset-top) + 8px);
   z-index: 40;
-  box-shadow: 0 8px 16px color-mix(in srgb, var(--bg-page) 65%, transparent);
+  box-shadow: var(--shadow-soft);
 }
 
 .desktopVerseLabel {
@@ -102,7 +102,7 @@
   border: 1px solid var(--border);
   background: var(--bg-page);
   color: var(--text-primary);
-  border-radius: 999px;
+  border-radius: var(--radius-lg);
   padding: 6px 10px;
   font-family: var(--font-ui);
   font-size: 0.84rem;
@@ -125,7 +125,7 @@
   margin: -8px 0 18px;
   padding: 10px 12px;
   border: 1px dashed var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   color: var(--text-secondary);
   font-family: var(--font-ui);
   font-size: 0.85rem;
@@ -144,12 +144,12 @@
   border: 1px solid var(--border);
   background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
   color: var(--text-primary);
-  border-radius: 999px;
+  border-radius: var(--radius-lg);
   padding: 8px 14px;
   font-family: var(--font-ui);
   font-size: 0.88rem;
   cursor: pointer;
-  box-shadow: 0 8px 16px color-mix(in srgb, var(--bg-page) 65%, transparent);
+  box-shadow: var(--shadow-soft);
 }
 
 .compactToolsBtn:hover {

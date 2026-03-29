@@ -21,16 +21,17 @@
   flex: 1;
   padding: 12px 15px;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background-color: var(--bg-surface);
   color: var(--text-primary);
   font-size: clamp(0.95rem, calc(1rem * var(--ui-scale)), 1.1rem);
   transition: border-color 0.2s, box-shadow 0.2s;
+  min-height: var(--control-height);
 }
 
 .input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
+  box-shadow: var(--focus-ring);
   outline: none;
 }
 
@@ -39,10 +40,11 @@
   background: linear-gradient(130deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #c3a277));
   color: #FFF;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 30%, transparent);
+  box-shadow: var(--shadow-soft);
+  min-height: var(--control-height);
 }
 
 .button:disabled {
@@ -66,17 +68,17 @@
 .resultItem {
   background-color: var(--bg-surface);
   padding: 15px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
   cursor: pointer;
   transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-card);
 }
 
 .resultItem:hover {
   background-color: var(--bg-verse-hover);
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.09);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .ref {

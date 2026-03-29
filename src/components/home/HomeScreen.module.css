@@ -7,10 +7,10 @@
 .searchSection {
   background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 16px;
   margin-bottom: 18px;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-card);
 }
 
 .title {
@@ -31,7 +31,7 @@
 .searchInput {
   min-width: 0;
   padding: 12px 14px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
   background: var(--bg-page);
   color: var(--text-primary);
@@ -41,12 +41,12 @@
 .searchInput:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  box-shadow: var(--focus-ring);
 }
 
 .searchBtn {
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   width: 44px;
   min-width: 44px;
   height: 44px;
@@ -66,7 +66,7 @@
 
 .clearBtn {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   width: 44px;
   min-width: 44px;
   height: 44px;
@@ -110,7 +110,7 @@
 
 .resultItem {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: var(--bg-page);
   text-align: left;
   padding: 11px 12px;
@@ -153,14 +153,14 @@
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
   padding: 15px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   text-align: left;
   font-family: var(--font-ui);
   color: var(--text-primary);
   font-size: clamp(0.9rem, calc(0.95rem * var(--ui-scale)), 1.1rem);
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-soft);
 }
 
 .recentBtn:hover {

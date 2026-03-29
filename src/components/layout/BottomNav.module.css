@@ -48,9 +48,9 @@
   width: min(420px, 100%);
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 18px;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .installPopup h4 {
@@ -75,7 +75,7 @@
 .installPopupActions button {
   flex: 1;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--bg-page);
   color: var(--text-primary);
   font-family: var(--font-ui);
