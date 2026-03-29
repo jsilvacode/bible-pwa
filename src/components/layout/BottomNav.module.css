@@ -17,7 +17,7 @@
 
 .bottomNav a {
   color: color-mix(in srgb, var(--text-primary) 90%, black 10%);
-  font-size: clamp(0.8rem, calc(0.86rem * var(--ui-scale)), 1.02rem);
+  font-size: clamp(0.92rem, calc(0.98rem * var(--ui-scale)), 1.14rem);
   font-family: var(--font-ui);
   font-weight: 600;
   text-decoration: none;
@@ -32,7 +32,7 @@
   border: none;
   background: none;
   color: color-mix(in srgb, var(--text-primary) 90%, black 10%);
-  font-size: clamp(0.8rem, calc(0.86rem * var(--ui-scale)), 1.02rem);
+  font-size: clamp(0.92rem, calc(0.98rem * var(--ui-scale)), 1.14rem);
   font-family: var(--font-ui);
   font-weight: 600;
   cursor: pointer;
@@ -61,4 +61,61 @@
 .bottomNav a.active {
   color: var(--accent);
   font-weight: 600;
+}
+
+.installOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 260;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.installPopup {
+  width: min(420px, 100%);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+.installPopup h4 {
+  margin: 0 0 6px;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+  font-size: 1.05rem;
+}
+
+.installPopup p {
+  margin: 0 0 14px;
+  font-family: var(--font-ui);
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.installPopupActions {
+  display: flex;
+  gap: 10px;
+}
+
+.installPopupActions button {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.installPopupActions button:first-child {
+  background: linear-gradient(130deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #c3a277));
+  color: #fff;
+  border: none;
 }

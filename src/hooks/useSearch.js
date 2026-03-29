@@ -1,6 +1,32 @@
 import { useRef, useState } from 'react';
 import { fetchBooksManifest, loadBibleBook } from '../services/bibleLoader';
 
+function normalizeSearchText(value = '') {
+  return String(value)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
+function escapeRegex(value = '') {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function matchesWholeTerms(verseText, query) {
+  const normalizedVerse = normalizeSearchText(verseText);
+  const terms = normalizeSearchText(query)
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (terms.length === 0) return false;
+
+  return terms.every((term) => {
+    const pattern = new RegExp(`(^|[^a-z0-9])${escapeRegex(term)}([^a-z0-9]|$)`, 'i');
+    return pattern.test(normalizedVerse);
+  });
+}
+
 export function useSearch(version) {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,7 +46,6 @@ export function useSearch(version) {
     
     try {
       const books = await fetchBooksManifest();
-      const q = trimmed.toLowerCase();
       let matches = [];
 
       // Búsqueda lineal en todos los libros
@@ -31,7 +56,7 @@ export function useSearch(version) {
           const bookData = await loadBibleBook(version, book.id);
           bookData.chapters.forEach(c => {
             c.verses.forEach(v => {
-              if (v.text.toLowerCase().includes(q)) {
+              if (matchesWholeTerms(v.text, trimmed)) {
                 matches.push({
                   book: book.id,
                   bookName: bookData.name,

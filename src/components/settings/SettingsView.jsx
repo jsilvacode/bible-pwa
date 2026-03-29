@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSettings } from '../../hooks/useSettings';
 import classes from './SettingsView.module.css';
 
 export default function SettingsView() {
   const { settings, updateSettings } = useSettings();
+  const [installMessage, setInstallMessage] = useState('');
+  const isInstalled =
+    window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+  const handleInstall = async () => {
+    if (isInstalled) {
+      setInstallMessage('La aplicación ya está instalada.');
+      return;
+    }
+
+    const deferred = window.__bibleInstallPrompt;
+    if (!deferred) {
+      setInstallMessage('Tu navegador no mostró el aviso automático. Usa el menú del navegador para instalar.');
+      return;
+    }
+
+    try {
+      deferred.prompt();
+      await deferred.userChoice;
+      window.__bibleInstallPrompt = null;
+      setInstallMessage('Solicitud de instalación enviada.');
+    } catch (e) {
+      console.error('Error al instalar desde ajustes', e);
+      setInstallMessage('No fue posible iniciar la instalación en este momento.');
+    }
+  };
 
   return (
     <div className={classes.container}>
@@ -20,13 +46,26 @@ export default function SettingsView() {
         </div>
 
         <div className={classes.group}>
-          <label>Tamaño de Fuente (App + Lectura)</label>
+          <label>Tamaño de Fuente (Solo Lectura)</label>
           <select value={settings.fontSize} onChange={e => updateSettings({ fontSize: e.target.value })}>
             <option value="sm">Pequeña</option>
             <option value="md">Mediana</option>
             <option value="lg">Grande</option>
             <option value="xl">Extra Grande</option>
           </select>
+        </div>
+
+        <div className={classes.group}>
+          <label>Instalación</label>
+          <button
+            type="button"
+            className={classes.installAction}
+            onClick={handleInstall}
+            disabled={isInstalled}
+          >
+            {isInstalled ? 'Aplicación instalada' : 'Instalar app'}
+          </button>
+          {installMessage && <p className={classes.installMessage}>{installMessage}</p>}
         </div>
       </div>
       

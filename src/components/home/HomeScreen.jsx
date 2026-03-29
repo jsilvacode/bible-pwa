@@ -5,7 +5,7 @@ import { useSearch } from '../../hooks/useSearch';
 import { useSettings } from '../../hooks/useSettings';
 import { useNavigate } from 'react-router-dom';
 import classes from './HomeScreen.module.css';
-import { fetchBooksManifest } from '../../services/bibleLoader';
+import { fetchBooksManifest, loadBibleBook } from '../../services/bibleLoader';
 import { normalizeDisplayedText } from '../../utils/textNormalizer';
 
 function normalizeBookKey(value = '') {
@@ -49,7 +49,15 @@ function createBookAliases(books) {
 }
 
 function parseReference(query, aliasMap, booksById) {
-  const cleaned = normalizeBookKey(query).replace(/([a-z])([0-9])/g, '$1 $2');
+  const cleaned = String(query)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/([a-z])([0-9])/g, '$1 $2')
+    .replace(/\s*:\s*/g, ':')
+    .replace(/[^a-z0-9:\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
   const match = cleaned.match(/^(.+?)\s+(\d+)(?:\s*:\s*(\d+))?$/);
   if (!match) return null;
 
@@ -106,6 +114,23 @@ export default function HomeScreen() {
 
     const reference = parseReference(trimmed, bookAliasMap, booksById);
     if (reference) {
+      try {
+        const bookData = await loadBibleBook(settings.version, reference.bookId);
+        const chapterData = bookData.chapters.find(c => c.chapter === reference.chapter);
+        if (!chapterData) {
+          setSearchFeedback('No existe ese capítulo en el libro indicado.');
+          return;
+        }
+        if (reference.verse && !chapterData.verses.some(v => v.verse === reference.verse)) {
+          setSearchFeedback('No existe ese versículo en el capítulo indicado.');
+          return;
+        }
+      } catch (err) {
+        console.error('Error validando cita', err);
+        setSearchFeedback('No se pudo validar la cita. Intenta nuevamente.');
+        return;
+      }
+
       const target = reference.verse
         ? `/read/${reference.bookId}/${reference.chapter}/${reference.verse}`
         : `/read/${reference.bookId}/${reference.chapter}`;
@@ -120,6 +145,12 @@ export default function HomeScreen() {
 
     setSearchFeedback('');
     await search(trimmed);
+  };
+
+  const handleClear = async () => {
+    setQuery('');
+    setSearchFeedback('');
+    await search('');
   };
 
   return (
@@ -138,6 +169,11 @@ export default function HomeScreen() {
           <button type="submit" className={classes.searchBtn} disabled={loading}>
             {loading ? 'Buscando...' : 'Buscar'}
           </button>
+          {(query.trim() || results.length > 0 || searchFeedback) && (
+            <button type="button" className={classes.clearBtn} onClick={handleClear}>
+              🧹 Limpiar
+            </button>
+          )}
         </form>
         <p className={classes.helper}>
           Puedes buscar por palabra o por cita: Juan 3:16, Salmos 23, 1 Juan 2:1.

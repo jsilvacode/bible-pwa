@@ -8,7 +8,7 @@
 }
 
 [data-font-size="sm"] {
-  --ui-scale: 0.92;
+  --ui-scale: 1;
 }
 
 [data-font-size="md"] {
@@ -16,11 +16,11 @@
 }
 
 [data-font-size="lg"] {
-  --ui-scale: 1.08;
+  --ui-scale: 1;
 }
 
 [data-font-size="xl"] {
-  --ui-scale: 1.16;
+  --ui-scale: 1;
 }
 
 html, body, #root {
