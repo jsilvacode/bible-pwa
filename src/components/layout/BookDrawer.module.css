@@ -50,12 +50,29 @@
   padding: 10px 0;
 }
 
-.sectionTitle {
+.sectionToggle {
+  width: 100%;
+  border: none;
+  background: color-mix(in srgb, var(--bg-verse-hover) 65%, transparent);
   padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.sectionTitle {
   font-size: 14px;
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+}
+
+.sectionChevron {
+  color: var(--text-secondary);
+  font-size: 14px;
 }
 
 .bookItem {

@@ -27,11 +27,41 @@ function getInitialSettings() {
 function getInitialRecent() {
   try {
     const saved = localStorage.getItem(RECENT_KEY);
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      return normalizeRecent(JSON.parse(saved));
+    }
   } catch (e) {
     console.error('Error reading recent reads', e);
   }
   return [];
+}
+
+function normalizeRecent(list) {
+  if (!Array.isArray(list)) return [];
+
+  const seen = new Set();
+  const sorted = [...list].sort((a, b) => (b?.ts || 0) - (a?.ts || 0));
+  const normalized = [];
+
+  for (const item of sorted) {
+    const book = Number(item?.book);
+    const chapter = Number(item?.chapter);
+    if (!book || !chapter) continue;
+
+    const key = `${book}-${chapter}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    normalized.push({
+      book,
+      chapter,
+      ts: Number(item?.ts) || Date.now(),
+    });
+
+    if (normalized.length >= 5) break;
+  }
+
+  return normalized;
 }
 
 export function SettingsProvider({ children }) {
@@ -44,6 +74,10 @@ export function SettingsProvider({ children }) {
     document.documentElement.setAttribute('data-font-size', settings.fontSize);
   }, [settings]);
 
+  useEffect(() => {
+    localStorage.setItem(RECENT_KEY, JSON.stringify(normalizeRecent(recent)));
+  }, [recent]);
+
   const updateSettings = useCallback((updates) => {
     setSettings(prev => ({ ...prev, ...updates }));
   }, []);
@@ -52,9 +86,7 @@ export function SettingsProvider({ children }) {
     setRecent(prev => {
       const newEntry = { book, chapter, ts: Date.now() };
       const filtered = prev.filter(r => !(r.book === book && r.chapter === chapter));
-      const updated = [newEntry, ...filtered].slice(0, 5);
-      localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
-      return updated;
+      return normalizeRecent([newEntry, ...filtered]);
     });
   }, []);
 

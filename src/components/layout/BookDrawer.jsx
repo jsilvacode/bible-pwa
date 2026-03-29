@@ -6,6 +6,8 @@ import classes from './BookDrawer.module.css';
 export default function BookDrawer({ isOpen, onClose }) {
   const [books, setBooks] = useState([]);
   const [expandedBook, setExpandedBook] = useState(null);
+  const [isOtOpen, setIsOtOpen] = useState(true);
+  const [isNtOpen, setIsNtOpen] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -62,10 +64,25 @@ export default function BookDrawer({ isOpen, onClose }) {
           <button className={classes.closeBtn} onClick={onClose}>✕</button>
         </div>
         <div className={classes.scrollArea}>
-          <h3 className={classes.sectionTitle}>Antiguo Testamento</h3>
-          {renderBookList(otBooks)}
-          <h3 className={classes.sectionTitle}>Nuevo Testamento</h3>
-          {renderBookList(ntBooks)}
+          <button
+            className={classes.sectionToggle}
+            onClick={() => setIsOtOpen(prev => !prev)}
+            type="button"
+          >
+            <span className={classes.sectionTitle}>Antiguo Testamento</span>
+            <span className={classes.sectionChevron}>{isOtOpen ? '▾' : '▸'}</span>
+          </button>
+          {isOtOpen && renderBookList(otBooks)}
+
+          <button
+            className={classes.sectionToggle}
+            onClick={() => setIsNtOpen(prev => !prev)}
+            type="button"
+          >
+            <span className={classes.sectionTitle}>Nuevo Testamento</span>
+            <span className={classes.sectionChevron}>{isNtOpen ? '▾' : '▸'}</span>
+          </button>
+          {isNtOpen && renderBookList(ntBooks)}
         </div>
       </div>
     </div>
