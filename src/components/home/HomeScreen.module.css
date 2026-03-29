@@ -81,6 +81,11 @@
   background: var(--bg-verse-hover);
 }
 
+.clearBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .helper {
   color: var(--text-secondary);
   font-family: var(--font-ui);

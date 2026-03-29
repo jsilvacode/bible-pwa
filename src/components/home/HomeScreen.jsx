@@ -175,17 +175,16 @@ export default function HomeScreen() {
           >
             {loading ? '⏳' : '🔍'}
           </button>
-          {(query.trim() || results.length > 0 || searchFeedback) && (
-            <button
-              type="button"
-              className={classes.clearBtn}
-              onClick={handleClear}
-              aria-label="Limpiar búsqueda"
-              title="Limpiar búsqueda"
-            >
-              🧹
-            </button>
-          )}
+          <button
+            type="button"
+            className={classes.clearBtn}
+            onClick={handleClear}
+            aria-label="Limpiar búsqueda"
+            title="Limpiar búsqueda"
+            disabled={!query.trim() && results.length === 0 && !searchFeedback}
+          >
+            🧹
+          </button>
         </form>
         <p className={classes.helper}>
           Puedes buscar por palabra o por cita: Juan 3:16, Salmos 23, 1 Juan 2:1.
