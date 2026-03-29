@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './VerseMenu.module.css';
 import { useBookmarks } from '../../hooks/useBookmarks';
 

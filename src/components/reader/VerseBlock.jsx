@@ -4,6 +4,7 @@ import classes from './ChapterView.module.css';
 export default function VerseBlock({ verse, text, isSelected, isHighlighted, highlightColor, onShortTap, onLongTap }) {
   const timerRef = useRef(null);
   const touchStartRef = useRef(0);
+  const didTouchRef = useRef(false);
 
   const handleTouchStart = () => {
     touchStartRef.current = Date.now();
@@ -13,13 +14,14 @@ export default function VerseBlock({ verse, text, isSelected, isHighlighted, hig
     }, 500);
   };
 
-  const handleTouchEnd = (e) => {
+  const handleTouchEnd = () => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
       // Era un tap corto
       const duration = Date.now() - touchStartRef.current;
       if (duration < 500) {
+        didTouchRef.current = true;
         onShortTap(verse);
       }
     }
@@ -32,6 +34,14 @@ export default function VerseBlock({ verse, text, isSelected, isHighlighted, hig
     }
   };
 
+  const handleClick = () => {
+    if (didTouchRef.current) {
+      didTouchRef.current = false;
+      return;
+    }
+    onShortTap(verse);
+  };
+
   return (
     <span 
       className={`${classes.verseBlock} ${isSelected ? classes.selected : ''}`}
@@ -39,7 +49,7 @@ export default function VerseBlock({ verse, text, isSelected, isHighlighted, hig
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onTouchMove={handleTouchMove}
-      onClick={() => onShortTap(verse)} 
+      onClick={handleClick}
       id={`verse-${verse}`}
     >
       <sup className={classes.verseNum}>{verse}</sup>

@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { fetchBooksManifest, loadBibleBook } from '../services/bibleLoader';
 
 export function useSearch(version) {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const requestIdRef = useRef(0);
 
   const search = async (query) => {
+    const requestId = ++requestIdRef.current;
+
     if (query.trim().length < 3) {
       setResults([]);
       return;
@@ -20,6 +23,8 @@ export function useSearch(version) {
 
       // Búsqueda lineal en todos los libros
       for (const book of books) {
+        if (requestId !== requestIdRef.current) break;
+
         try {
           const bookData = await loadBibleBook(version, book.id);
           bookData.chapters.forEach(c => {
@@ -40,11 +45,15 @@ export function useSearch(version) {
           console.error(`Error searching in book ${book.id}`, e);
         }
       }
-      setResults(matches);
+      if (requestId === requestIdRef.current) {
+        setResults(matches);
+      }
     } catch(e) {
       console.error(e);
     }
-    setLoading(false);
+    if (requestId === requestIdRef.current) {
+      setLoading(false);
+    }
   };
 
   return { search, results, loading };

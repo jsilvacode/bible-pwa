@@ -8,27 +8,29 @@ export function useBible(version, bookId) {
 
   useEffect(() => {
     if (!version || !bookId) {
-      setLoading(false);
       return;
     }
     
     let mounted = true;
-    setLoading(true);
-    setError(null);
-    
-    loadBibleBook(version, bookId)
-      .then(bookData => {
+    const load = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const bookData = await loadBibleBook(version, bookId);
         if (mounted) {
           setData(bookData);
           setLoading(false);
         }
-      })
-      .catch(err => {
+      } catch (err) {
         if (mounted) {
           setError(err);
           setLoading(false);
         }
-      });
+      }
+    };
+
+    load();
       
     return () => { mounted = false; };
   }, [version, bookId]);

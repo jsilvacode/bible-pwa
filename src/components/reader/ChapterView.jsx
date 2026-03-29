@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useBible } from '../../hooks/useBible';
-import { useSettings } from '../../hooks/useSettings';
+import { useRecentReads, useSettings } from '../../hooks/useSettings';
 import VerseBlock from './VerseBlock';
 import VerseMenu from './VerseMenu';
 import CommentaryPopup from './CommentaryPopup';
@@ -12,7 +12,8 @@ import { useHighlights } from '../../hooks/useHighlights';
 export default function ChapterView() {
   const { book, chapter, verse } = useParams();
   const navigate = useNavigate();
-  const { settings, updateSettings } = useSettings();
+  const { settings } = useSettings();
+  const { addRecent } = useRecentReads();
   const { data, loading, error } = useBible(settings.version, book);
   
   const [selectedVerse, setSelectedVerse] = useState(verse ? Number(verse) : null);
@@ -39,6 +40,12 @@ export default function ChapterView() {
       }, 100);
     }
   }, [verse, loading, data, chapter]);
+
+  useEffect(() => {
+    if (!loading && data && book && chapter) {
+      addRecent(Number(book), Number(chapter));
+    }
+  }, [book, chapter, loading, data, addRecent]);
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
