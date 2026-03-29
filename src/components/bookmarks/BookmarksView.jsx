@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useBookmarks } from '../../hooks/useBookmarks';
 import { useNavigate } from 'react-router-dom';
 import classes from './BookmarksView.module.css';
+import { fetchBooksManifest } from '../../services/bibleLoader';
 
 export default function BookmarksView() {
   const { bookmarks, removeBookmark } = useBookmarks();
   const navigate = useNavigate();
+  const [bookNames, setBookNames] = useState({});
+
+  useEffect(() => {
+    fetchBooksManifest()
+      .then((books) => {
+        const map = {};
+        books.forEach((b) => {
+          map[b.id] = b.name;
+        });
+        setBookNames(map);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className={classes.container}>
@@ -24,7 +38,7 @@ export default function BookmarksView() {
                 onClick={() => navigate(`/read/${b.book}/${b.chapter}/${b.verse}`)}
               >
                 <div className={classes.refTag}>{b.version.toUpperCase()}</div> 
-                Libro {b.book}, Cap {b.chapter}:{b.verse}
+                {bookNames[b.book] || `Libro ${b.book}`}, Cap {b.chapter}:{b.verse}
               </div>
               <button 
                 className={classes.deleteBtn} 

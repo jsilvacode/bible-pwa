@@ -24,21 +24,29 @@ export default function VerseMenu({ verse, payload, onClose, onShowCommentary })
     if (!payload) return;
 
     const reference = `${payload.bookName || `Libro ${payload.book}`} ${payload.chapter}:${payload.verse}`;
-    const url = `${window.location.origin}/read/${payload.book}/${payload.chapter}/${payload.verse}`;
-    const text = `${reference}\n\n${payload.text || ''}\n\n${url}`;
+    const cleanVerseText = String(payload.text || '').replace(/\s+/g, ' ').trim();
+    const shareUrlObj = new URL(`${window.location.origin}/share/${payload.book}/${payload.chapter}/${payload.verse}`);
+    shareUrlObj.searchParams.set('bookName', payload.bookName || `Libro ${payload.book}`);
+    shareUrlObj.searchParams.set('text', cleanVerseText.slice(0, 200));
+    const shareUrl = shareUrlObj.toString();
+    const text = `${reference}\n\n${cleanVerseText}`;
 
     try {
       if (navigator.share) {
         await navigator.share({
           title: reference,
           text,
-          url,
+          url: shareUrl,
         });
       } else if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(text);
+        await navigator.clipboard.writeText(`${text}\n\n${shareUrl}`);
         alert('Versículo copiado. Puedes pegarlo en WhatsApp, correo o donde quieras.');
       } else {
-        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(`${text}\n\n${shareUrl}`)}`,
+          '_blank',
+          'noopener,noreferrer'
+        );
       }
     } catch (e) {
       console.error('Error al compartir', e);

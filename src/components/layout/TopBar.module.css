@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   height: calc(56px * var(--ui-scale));
-  background-color: var(--bg-surface);
+  background-color: color-mix(in srgb, var(--bg-surface) 88%, transparent);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -12,7 +12,8 @@
   padding: 0 calc(15px * var(--ui-scale));
   z-index: 100;
   padding-top: env(safe-area-inset-top);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 .title {

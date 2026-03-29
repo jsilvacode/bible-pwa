@@ -392,12 +392,9 @@ La aplicación ya está registrada en EGW Writings. Las credenciales están list
 **API base:** https://a.egwwritings.org  
 **Redirect URI registrado:** https://santa-biblia.netlify.app/callback  
 
-**Variables de entorno — ya configuradas en Netlify y en `.env` local:**
-```
-VITE_EGW_CLIENT_ID=[ID de cliente configurado en Netlify]
-VITE_EGW_CLIENT_SECRET=[Secret de cliente configurado en Netlify]
-VITE_EGW_REDIRECT_URI=https://santa-biblia.netlify.app/callback
-```
+**Configuración de API EGW:** Las credenciales (ID, Secret, URI) se gestionan exclusivamente a través de variables de entorno en el panel de Netlify por razones de seguridad (Secrets Scanning). No deben incluirse en este repositorio.
+
+**⚠️ SEGURIDAD CRÍTICA:** El `CLIENT_SECRET` nunca debe ir al bundle del frontend. Se usa exclusivamente en las Netlify Functions (`netlify/functions/`).
 
 **⚠️ SEGURIDAD CRÍTICA:** El `CLIENT_SECRET` nunca debe ir al bundle del frontend.
 Implementar una **Netlify Function** como proxy:

@@ -3,6 +3,8 @@ export function normalizeDisplayedText(text) {
 
   return text
     .normalize('NFC')
+    .replace(/á/g, 'a')
+    .replace(/Á/g, 'A')
     .replace(/\bpf\b/gi, 'por')
     .replace(/([A-Za-zÁÉÍÓÚáéíóúÑñ]+)tek\b/g, '$1ch')
     .replace(/\s{2,}/g, ' ')

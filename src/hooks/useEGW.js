@@ -4,7 +4,6 @@ import { egwCacheStore } from '../services/db';
 
 const STORAGE_TOKEN_KEY = 'egw_access_token';
 const OAUTH_STATE_KEY = 'egw_oauth_state';
-const API_BASE = 'https://a.egwwritings.org';
 const FALLBACK_TOKEN_TTL_SECONDS = 60 * 60;
 
 function readStoredToken() {
@@ -108,10 +107,10 @@ export function useEGW() {
   };
 
   const fetchWithCache = useCallback(async (endpoint, ignoreCache = false) => {
-    const url = `${API_BASE}${endpoint}`;
+    const cacheKey = `egw:${endpoint}`;
     
     if (!ignoreCache) {
-      const cached = await get(url, egwCacheStore);
+      const cached = await get(cacheKey, egwCacheStore);
       if (cached && cached.expiresAt > Date.now()) {
         return cached.data;
       }
@@ -119,8 +118,13 @@ export function useEGW() {
 
     if (!token) throw new Error('NO_TOKEN');
 
-    const res = await fetch(url, {
-      headers: { 'Authorization': `Bearer ${token}` }
+    const res = await fetch('/.netlify/functions/egw-search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        endpoint,
+        token,
+      })
     });
 
     if (res.status === 401) {
@@ -129,10 +133,13 @@ export function useEGW() {
       throw new Error('NO_TOKEN');
     }
 
-    const data = await res.json();
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(data?.error || `EGW_SEARCH_${res.status}`);
+    }
     
     // Save to cache (TTL = 7 días)
-    await set(url, { data, expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000 }, egwCacheStore);
+    await set(cacheKey, { data, expiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000 }, egwCacheStore);
     
     return data;
   }, [token]);

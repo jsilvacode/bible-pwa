@@ -97,6 +97,14 @@
   margin-top: 40px;
 }
 
+.helperText {
+  margin-top: 12px;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

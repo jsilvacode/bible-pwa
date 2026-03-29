@@ -3,6 +3,11 @@
   publish = "dist"
 
 [[redirects]]
+  from = "/share/:book/:chapter/:verse"
+  to = "/.netlify/functions/share-verse?book=:book&chapter=:chapter&verse=:verse"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

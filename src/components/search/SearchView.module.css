@@ -8,6 +8,7 @@
   font-family: var(--font-ui);
   color: var(--text-primary);
   margin-bottom: 20px;
+  font-size: clamp(1.2rem, calc(1.25rem * var(--ui-scale)), 1.7rem);
 }
 
 .searchForm {
@@ -20,26 +21,28 @@
   flex: 1;
   padding: 12px 15px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: var(--bg-surface);
   color: var(--text-primary);
-  font-size: 16px;
-  transition: border-color 0.2s;
+  font-size: clamp(0.95rem, calc(1rem * var(--ui-scale)), 1.1rem);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .input:focus {
   border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
   outline: none;
 }
 
 .button {
   padding: 12px 20px;
-  background-color: var(--accent);
+  background: linear-gradient(130deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #c3a277));
   color: #FFF;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .button:disabled {
@@ -63,14 +66,17 @@
 .resultItem {
   background-color: var(--bg-surface);
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
 }
 
 .resultItem:hover {
   background-color: var(--bg-verse-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.09);
 }
 
 .ref {

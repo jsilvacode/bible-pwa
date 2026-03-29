@@ -1,7 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useEGW } from '../../hooks/useEGW';
 import { fetchBooksManifest } from '../../services/bibleLoader';
 import classes from './CommentaryPopup.module.css';
+
+const THEME_LIBRARY = [
+  {
+    id: 'fe',
+    title: 'Fe y confianza',
+    keywords: ['fe', 'confiar', 'esperar', 'promesa', 'firme', 'creer'],
+    note: 'EGW enfatiza que la fe práctica se fortalece cuando descansamos en las promesas de Dios aun en la incertidumbre.',
+  },
+  {
+    id: 'amor',
+    title: 'Amor y gracia',
+    keywords: ['amor', 'gracia', 'misericordia', 'perdon', 'compasion', 'bondad'],
+    note: 'La gracia transforma la relación con Dios y con otros; el amor cristiano se expresa en actos concretos.',
+  },
+  {
+    id: 'oracion',
+    title: 'Oración y comunión',
+    keywords: ['orar', 'oracion', 'pedid', 'buscar', 'espiritu', 'comunion'],
+    note: 'La oración perseverante prepara el corazón para discernir la voluntad divina y recibir dirección.',
+  },
+  {
+    id: 'obediencia',
+    title: 'Obediencia y carácter',
+    keywords: ['obedecer', 'mandamiento', 'justicia', 'santidad', 'camino', 'verdad'],
+    note: 'La obediencia, según EGW, no es legalismo sino fruto del amor a Cristo y formación de carácter.',
+  },
+  {
+    id: 'esperanza',
+    title: 'Esperanza y consuelo',
+    keywords: ['esperanza', 'consuelo', 'paz', 'gozo', 'animo', 'fortaleza'],
+    note: 'En pruebas, los escritos de EGW suelen apuntar a la esperanza en Cristo como ancla del alma.',
+  },
+];
+
+function stripAccents(text) {
+  return text
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
 
 function cleanHtml(text) {
   if (typeof text !== 'string') return '';
@@ -24,12 +64,42 @@ function normalizeResults(response) {
     .slice(0, 5);
 }
 
+function getTopicMatches(verseText = '', reference = '') {
+  const haystack = stripAccents(`${reference} ${verseText}`);
+  const matches = THEME_LIBRARY
+    .map(theme => {
+      const score = theme.keywords.reduce((acc, keyword) => {
+        const token = stripAccents(keyword);
+        return haystack.includes(token) ? acc + 1 : acc;
+      }, 0);
+      return { ...theme, score };
+    })
+    .filter(theme => theme.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
+
+  if (matches.length > 0) return matches;
+  return [
+    {
+      id: 'general',
+      title: 'Reflexión espiritual',
+      note: 'Este versículo puede estudiarse buscando contexto, promesas y aplicación práctica en la vida diaria.',
+      score: 0,
+    },
+  ];
+}
+
 export default function CommentaryPopup({ verseData, verse, verseText, onClose }) {
-  const [activeTab, setActiveTab] = useState('egw');
+  const [activeTab, setActiveTab] = useState('temas');
   const { token, login, fetchWithCache } = useEGW();
   const [egwData, setEgwData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const topics = useMemo(() => {
+    const reference = `${verseData.book}:${verseData.chapter}:${verse}`;
+    return getTopicMatches(verseText, reference);
+  }, [verseData.book, verseData.chapter, verse, verseText]);
 
   useEffect(() => {
     if (activeTab === 'egw' && token) {
@@ -65,30 +135,51 @@ export default function CommentaryPopup({ verseData, verse, verseText, onClose }
     <div className={classes.overlay} onClick={onClose}>
       <div className={classes.popup} onClick={e => e.stopPropagation()}>
         <div className={classes.header}>
-          <h3>Comentario para versículo {verse}</h3>
+              <h3>Comentario para versículo {verse}</h3>
           <button className={classes.closeBtn} onClick={onClose}>✕</button>
         </div>
         
         <div className={classes.tabs}>
           <button 
+            className={`${classes.tabBtn} ${activeTab === 'temas' ? classes.active : ''}`} 
+            onClick={() => setActiveTab('temas')}
+          >
+            Temas
+          </button>
+          <button 
             className={`${classes.tabBtn} ${activeTab === 'egw' ? classes.active : ''}`} 
             onClick={() => setActiveTab('egw')}
           >
-            EGW
+            EGW (cuenta)
           </button>
         </div>
 
         <div className={classes.content}>
-          {activeTab === 'egw' ? (
+          {activeTab === 'temas' ? (
+            <div className={classes.egwResult}>
+              {topics.map((topic) => (
+                <div key={topic.id} className={classes.egwQuote}>
+                  <p>{topic.note}</p>
+                  <small>— Tema sugerido: {topic.title}</small>
+                </div>
+              ))}
+              <p className={classes.helperText}>
+                Estas coincidencias son orientativas. Para citas textuales, usa la pestaña EGW con tu cuenta conectada.
+              </p>
+            </div>
+          ) : (
             !token ? (
               <div className={classes.authRequired}>
-                <p>Para ver los comentarios de EGW Writings debes conectar tu cuenta.</p>
+                <p>Para ver resultados directos de EGW Writings debes conectar tu cuenta.</p>
                 <button className={classes.loginBtn} onClick={login}>Conectar EGW</button>
               </div>
             ) : loading ? (
               <p>Buscando en los escritos...</p>
             ) : error ? (
-              <p>Error: {error === 'NO_TOKEN' ? 'Sesión expirada' : error}</p>
+              <div className={classes.authRequired}>
+                <p>Error: {error === 'NO_TOKEN' ? 'Sesión expirada' : 'No fue posible consultar EGW en este momento.'}</p>
+                <p className={classes.helperText}>Puedes seguir usando la pestaña "Temas" sin conexión a EGW.</p>
+              </div>
             ) : egwData.length > 0 ? (
               <div className={classes.egwResult}>
                 {egwData.map((r) => (
@@ -98,11 +189,9 @@ export default function CommentaryPopup({ verseData, verse, verseText, onClose }
                   </div>
                 ))}
               </div>
-            ) : null
-          ) : (
-            <p className={classes.placeholder}>
-              Comentarios disponibles próximamente.
-            </p>
+            ) : (
+              <p className={classes.placeholder}>No se encontraron resultados directos para este versículo.</p>
+            )
           )}
         </div>
       </div>

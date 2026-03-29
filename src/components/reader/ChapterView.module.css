@@ -47,10 +47,10 @@
 
 .verseNum {
   color: var(--text-verse-num);
-  font-size: 70%;
+  font-size: 75%;
   font-family: var(--font-ui);
   margin-right: 4px;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .loader, .error {
