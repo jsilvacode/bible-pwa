@@ -41,6 +41,12 @@
   color: var(--accent);
 }
 
+.installBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text-secondary);
+}
+
 .installHint {
   width: 100%;
   text-align: center;

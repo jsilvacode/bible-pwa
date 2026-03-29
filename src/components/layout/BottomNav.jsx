@@ -5,9 +5,15 @@ import classes from './BottomNav.module.css';
 export default function BottomNav() {
   const [installPrompt, setInstallPrompt] = useState(null);
   const [installHint, setInstallHint] = useState('');
+  const [isInstalled, setIsInstalled] = useState(() =>
+    window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true
+  );
 
   useEffect(() => {
+    const standaloneMode = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
     const handleBeforeInstallPrompt = (event) => {
+      if (standaloneMode) return;
       event.preventDefault();
       setInstallPrompt(event);
       setInstallHint('');
@@ -15,6 +21,7 @@ export default function BottomNav() {
 
     const handleInstalled = () => {
       setInstallPrompt(null);
+      setIsInstalled(true);
       setInstallHint('Aplicación instalada');
     };
 
@@ -27,6 +34,11 @@ export default function BottomNav() {
   }, []);
 
   const handleInstall = async () => {
+    if (isInstalled) {
+      setInstallHint('La aplicación ya está instalada');
+      return;
+    }
+
     if (!installPrompt) {
       setInstallHint('Usa el menú del navegador para instalar');
       return;
@@ -43,7 +55,14 @@ export default function BottomNav() {
       <NavLink className={({isActive}) => isActive ? classes.active : ''} to="/search">Buscar</NavLink>
       <NavLink className={({isActive}) => isActive ? classes.active : ''} to="/bookmarks">Marcadores</NavLink>
       <NavLink className={({isActive}) => isActive ? classes.active : ''} to="/settings">Ajustes</NavLink>
-      <button className={classes.installBtn} onClick={handleInstall} type="button">Instalar</button>
+      <button
+        className={classes.installBtn}
+        onClick={handleInstall}
+        type="button"
+        disabled={isInstalled}
+      >
+        {isInstalled ? 'Instalada' : 'Instalar'}
+      </button>
       {installHint && <span className={classes.installHint}>{installHint}</span>}
     </nav>
   );
