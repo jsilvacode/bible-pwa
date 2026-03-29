@@ -134,6 +134,7 @@ export default function ChapterView() {
             id: `${settings.version}-${book}-${chapter}-${menuVerse}`,
             version: settings.version,
             book: Number(book),
+            bookName: data.name,
             chapter: Number(chapter),
             verse: menuVerse,
             text: currentChapterData.verses.find(v => v.verse === menuVerse)?.text,
@@ -156,6 +157,7 @@ export default function ChapterView() {
         <CommentaryPopup 
           verseData={{ book: Number(book), chapter: Number(chapter) }}
           verse={showCommentary}
+          verseText={currentChapterData.verses.find(v => v.verse === showCommentary)?.text || ''}
           onClose={() => setShowCommentary(null)}
         />
       )}

@@ -3,20 +3,21 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 56px;
+  height: calc(56px * var(--ui-scale));
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 15px;
+  padding: 0 calc(15px * var(--ui-scale));
   z-index: 100;
   padding-top: env(safe-area-inset-top);
+  backdrop-filter: blur(8px);
 }
 
 .title {
   font-family: var(--font-ui);
-  font-size: 18px;
+  font-size: clamp(1rem, calc(1rem * var(--ui-scale)), 1.35rem);
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
@@ -27,8 +28,8 @@
 .menuIcon {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: clamp(1.2rem, calc(1.35rem * var(--ui-scale)), 1.7rem);
   color: var(--text-primary);
   cursor: pointer;
-  padding: 5px;
+  padding: calc(5px * var(--ui-scale));
 }

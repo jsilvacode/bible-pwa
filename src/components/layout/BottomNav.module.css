@@ -3,24 +3,51 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: calc(60px * var(--ui-scale));
   background-color: var(--bg-surface);
   border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 2px;
   z-index: 100;
   padding-bottom: env(safe-area-inset-bottom);
 }
 
 .bottomNav a {
   color: var(--text-secondary);
-  font-size: 12px;
+  font-size: clamp(0.72rem, calc(0.76rem * var(--ui-scale)), 0.95rem);
   font-family: var(--font-ui);
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
+  text-align: center;
+}
+
+.installBtn {
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  font-size: clamp(0.72rem, calc(0.76rem * var(--ui-scale)), 0.95rem);
+  font-family: var(--font-ui);
+  cursor: pointer;
+  flex: 1;
+}
+
+.installBtn:hover {
+  color: var(--accent);
+}
+
+.installHint {
+  width: 100%;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  line-height: 1;
+  padding-bottom: 2px;
 }
 
 .bottomNav a.active {

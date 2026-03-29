@@ -7,14 +7,14 @@
 .title {
   font-family: var(--font-ui);
   color: var(--text-primary);
-  font-size: 18px;
+  font-size: clamp(1rem, calc(1.1rem * var(--ui-scale)), 1.35rem);
   margin-bottom: 15px;
 }
 
 .empty {
   color: var(--text-secondary);
   font-family: var(--font-ui);
-  font-size: 14px;
+  font-size: clamp(0.82rem, calc(0.9rem * var(--ui-scale)), 1rem);
 }
 
 .recentList {
@@ -31,9 +31,10 @@
   text-align: left;
   font-family: var(--font-ui);
   color: var(--text-primary);
-  font-size: 15px;
+  font-size: clamp(0.9rem, calc(0.95rem * var(--ui-scale)), 1.1rem);
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
 }
 
 .recentBtn:hover {

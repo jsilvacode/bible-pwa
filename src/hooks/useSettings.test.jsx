@@ -1,16 +1,18 @@
 import { act, renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { useRecentReads } from './useSettings';
+import { SettingsProvider, useRecentReads } from './useSettings';
 
 const RECENT_KEY = 'bible_recent';
 
 describe('useRecentReads', () => {
+  const wrapper = ({ children }) => <SettingsProvider>{children}</SettingsProvider>;
+
   beforeEach(() => {
     localStorage.clear();
   });
 
   it('deduplicates entries and moves the latest open to the top', () => {
-    const { result } = renderHook(() => useRecentReads());
+    const { result } = renderHook(() => useRecentReads(), { wrapper });
 
     act(() => {
       result.current.addRecent(1, 1);
@@ -24,7 +26,7 @@ describe('useRecentReads', () => {
   });
 
   it('keeps only the latest 10 entries', () => {
-    const { result } = renderHook(() => useRecentReads());
+    const { result } = renderHook(() => useRecentReads(), { wrapper });
 
     act(() => {
       for (let i = 1; i <= 12; i += 1) {

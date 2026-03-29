@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import classes from './ChapterView.module.css';
+import { normalizeDisplayedText } from '../../utils/textNormalizer';
 
 export default function VerseBlock({ verse, text, isSelected, isHighlighted, highlightColor, onShortTap, onLongTap }) {
   const timerRef = useRef(null);
@@ -53,7 +54,7 @@ export default function VerseBlock({ verse, text, isSelected, isHighlighted, hig
       id={`verse-${verse}`}
     >
       <sup className={classes.verseNum}>{verse}</sup>
-      {text}{' '}
+      {normalizeDisplayedText(text)}{' '}
     </span>
   );
 }

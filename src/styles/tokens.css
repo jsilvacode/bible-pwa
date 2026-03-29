@@ -5,6 +5,7 @@
   --font-size-md: 18px;
   --font-size-lg: 21px;
   --font-size-xl: 25px;
+  --ui-scale: 1;
   --line-height-reading: 1.85;
   --max-width-reader: 680px;
 }

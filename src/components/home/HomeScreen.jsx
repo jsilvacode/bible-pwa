@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DailyVerse from '../daily/DailyVerse';
 import { useRecentReads } from '../../hooks/useSettings';
 import { useNavigate } from 'react-router-dom';
 import classes from './HomeScreen.module.css';
+import { fetchBooksManifest } from '../../services/bibleLoader';
 
 export default function HomeScreen() {
   const { recent } = useRecentReads();
   const navigate = useNavigate();
+  const [bookNames, setBookNames] = useState({});
+
+  useEffect(() => {
+    fetchBooksManifest()
+      .then((books) => {
+        const map = {};
+        books.forEach((b) => { map[b.id] = b.name; });
+        setBookNames(map);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className={classes.container}>
@@ -24,7 +36,7 @@ export default function HomeScreen() {
                 className={classes.recentBtn}
                 onClick={() => navigate(`/read/${r.book}/${r.chapter}`)}
               >
-                📖 Libro {r.book}, Cap {r.chapter}
+                📖 {bookNames[r.book] || `Libro ${r.book}`}, Cap {r.chapter}
               </button>
             ))}
           </div>

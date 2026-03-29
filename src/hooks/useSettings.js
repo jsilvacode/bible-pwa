@@ -24,19 +24,44 @@ function getInitialSettings() {
   return defaultSettings;
 }
 
+function getInitialRecent() {
+  try {
+    const saved = localStorage.getItem(RECENT_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch (e) {
+    console.error('Error reading recent reads', e);
+  }
+  return [];
+}
+
 export function SettingsProvider({ children }) {
   const [settings, setSettings] = useState(getInitialSettings);
+  const [recent, setRecent] = useState(getInitialRecent);
 
   useEffect(() => {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
     document.documentElement.setAttribute('data-theme', settings.theme);
+    document.documentElement.setAttribute('data-font-size', settings.fontSize);
   }, [settings]);
 
   const updateSettings = useCallback((updates) => {
     setSettings(prev => ({ ...prev, ...updates }));
   }, []);
 
-  const value = useMemo(() => ({ settings, updateSettings }), [settings, updateSettings]);
+  const addRecent = useCallback((book, chapter) => {
+    setRecent(prev => {
+      const newEntry = { book, chapter, ts: Date.now() };
+      const filtered = prev.filter(r => !(r.book === book && r.chapter === chapter));
+      const updated = [newEntry, ...filtered].slice(0, 10);
+      localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
+      return updated;
+    });
+  }, []);
+
+  const value = useMemo(
+    () => ({ settings, updateSettings, recent, addRecent }),
+    [settings, updateSettings, recent, addRecent]
+  );
   return createElement(SettingsContext.Provider, { value }, children);
 }
 
@@ -49,25 +74,9 @@ export function useSettings() {
 }
 
 export function useRecentReads() {
-  const [recent, setRecent] = useState(() => {
-    try {
-      const saved = localStorage.getItem(RECENT_KEY);
-      if (saved) return JSON.parse(saved);
-    } catch (e) {
-      console.error('Error reading recent reads', e);
-    }
-    return [];
-  });
-
-  const addRecent = useCallback((book, chapter) => {
-    setRecent(prev => {
-      const newEntry = { book, chapter, ts: Date.now() };
-      const filtered = prev.filter(r => !(r.book === book && r.chapter === chapter));
-      const updated = [newEntry, ...filtered].slice(0, 10);
-      localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
-      return updated;
-    });
-  }, []);
-
-  return { recent, addRecent };
+  const context = useContext(SettingsContext);
+  if (!context) {
+    throw new Error('useRecentReads must be used within a SettingsProvider');
+  }
+  return { recent: context.recent, addRecent: context.addRecent };
 }

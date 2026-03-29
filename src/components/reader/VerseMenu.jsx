@@ -20,6 +20,34 @@ export default function VerseMenu({ verse, payload, onClose, onShowCommentary })
     onClose();
   };
 
+  const handleShare = async () => {
+    if (!payload) return;
+
+    const reference = `${payload.bookName || `Libro ${payload.book}`} ${payload.chapter}:${payload.verse}`;
+    const url = `${window.location.origin}/read/${payload.book}/${payload.chapter}/${payload.verse}`;
+    const text = `${reference}\n\n${payload.text || ''}\n\n${url}`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: reference,
+          text,
+          url,
+        });
+      } else if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        alert('Versículo copiado. Puedes pegarlo en WhatsApp, correo o donde quieras.');
+      } else {
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+      }
+    } catch (e) {
+      console.error('Error al compartir', e);
+      alert('No fue posible compartir este versículo.');
+    }
+
+    onClose();
+  };
+
   return (
     <div className={classes.overlay} onClick={onClose}>
       <div className={classes.menu} onClick={e => e.stopPropagation()}>
@@ -45,7 +73,7 @@ export default function VerseMenu({ verse, payload, onClose, onShowCommentary })
           <button onClick={() => { alert('Nota próximamente (v1.1)'); onClose(); }}>
             ✏️ Escribir Nota
           </button>
-          <button onClick={() => { alert('¡Copiado al portapapeles! (Simulación)'); onClose(); }}>
+          <button onClick={handleShare}>
             📤 Compartir
           </button>
         </div>

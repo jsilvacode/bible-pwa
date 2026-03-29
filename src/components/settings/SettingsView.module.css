@@ -8,6 +8,7 @@
   font-family: var(--font-ui);
   color: var(--text-primary);
   margin-bottom: 20px;
+  font-size: clamp(1.2rem, calc(1.25rem * var(--ui-scale)), 1.7rem);
 }
 
 .card {
@@ -18,6 +19,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
 .group {
@@ -28,7 +30,7 @@
 
 .group label {
   font-family: var(--font-ui);
-  font-size: 14px;
+  font-size: clamp(0.75rem, calc(0.82rem * var(--ui-scale)), 0.95rem);
   color: var(--text-secondary);
   font-weight: 600;
   text-transform: uppercase;
@@ -41,7 +43,7 @@
   border-radius: 8px;
   background-color: var(--bg-page);
   color: var(--text-primary);
-  font-size: 16px;
+  font-size: clamp(0.95rem, calc(1rem * var(--ui-scale)), 1.1rem);
   cursor: pointer;
   outline: none;
 }

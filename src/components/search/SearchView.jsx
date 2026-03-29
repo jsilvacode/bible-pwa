@@ -3,6 +3,7 @@ import { useSearch } from '../../hooks/useSearch';
 import { useSettings } from '../../hooks/useSettings';
 import { useNavigate } from 'react-router-dom';
 import classes from './SearchView.module.css';
+import { normalizeDisplayedText } from '../../utils/textNormalizer';
 
 export default function SearchView() {
   const { settings } = useSettings();
@@ -26,7 +27,7 @@ export default function SearchView() {
           placeholder="Escribe al menos 3 letras..."
           className={classes.input}
         />
-        <button type="submit" disabled={loading || query.length < 3} className={classes.button}>
+        <button type="submit" disabled={loading || query.trim().length < 3} className={classes.button}>
           {loading ? 'Buscando...' : 'Buscar'}
         </button>
       </form>
@@ -51,7 +52,7 @@ export default function SearchView() {
                 {r.bookName} {r.chapter}:{r.verse}
               </div>
               <div className={classes.snippet}>
-                {r.text}
+                {normalizeDisplayedText(r.text)}
               </div>
             </div>
           ))}

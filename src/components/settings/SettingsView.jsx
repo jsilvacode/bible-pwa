@@ -20,12 +20,12 @@ export default function SettingsView() {
         </div>
 
         <div className={classes.group}>
-          <label>Tamaño de Fuente de Lectura</label>
+          <label>Tamaño de Fuente (App + Lectura)</label>
           <select value={settings.fontSize} onChange={e => updateSettings({ fontSize: e.target.value })}>
-            <option value="sm">Pequeña (15px)</option>
-            <option value="md">Mediana (18px)</option>
-            <option value="lg">Grande (21px)</option>
-            <option value="xl">Extra Grande (25px)</option>
+            <option value="sm">Pequeña</option>
+            <option value="md">Mediana</option>
+            <option value="lg">Grande</option>
+            <option value="xl">Extra Grande</option>
           </select>
         </div>
       </div>

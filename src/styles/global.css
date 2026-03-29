@@ -7,18 +7,38 @@
   padding: 0;
 }
 
+[data-font-size="sm"] {
+  --ui-scale: 0.92;
+}
+
+[data-font-size="md"] {
+  --ui-scale: 1;
+}
+
+[data-font-size="lg"] {
+  --ui-scale: 1.08;
+}
+
+[data-font-size="xl"] {
+  --ui-scale: 1.16;
+}
+
 html, body, #root {
   height: 100%;
 }
 
 body {
   font-family: var(--font-body);
+  font-size: clamp(14px, calc(16px * var(--ui-scale)), 20px);
   background-color: var(--bg-page);
+  background-image:
+    radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0%, transparent 45%),
+    linear-gradient(to bottom, color-mix(in srgb, var(--bg-page) 92%, white), var(--bg-page));
   color: var(--text-primary);
   line-height: var(--line-height-reading);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, font-size 0.2s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {

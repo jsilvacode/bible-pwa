@@ -8,9 +8,11 @@ export function useSearch(version) {
 
   const search = async (query) => {
     const requestId = ++requestIdRef.current;
+    const trimmed = query.trim();
 
-    if (query.trim().length < 3) {
+    if (trimmed.length < 3) {
       setResults([]);
+      setLoading(false);
       return;
     }
     setLoading(true);
@@ -18,7 +20,7 @@ export function useSearch(version) {
     
     try {
       const books = await fetchBooksManifest();
-      const q = query.toLowerCase();
+      const q = trimmed.toLowerCase();
       let matches = [];
 
       // Búsqueda lineal en todos los libros

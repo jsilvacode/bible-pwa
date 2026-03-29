@@ -11,4 +11,6 @@
   padding-bottom: calc(60px + env(safe-area-inset-bottom));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-page) 88%, white) 0%, var(--bg-page) 120px);
 }
