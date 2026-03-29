@@ -156,7 +156,9 @@ export default function HomeScreen() {
   return (
     <div className={classes.container}>
       <section className={classes.searchSection}>
-        <h3 className={classes.title}>Buscar en la Biblia</h3>
+        <div className={classes.sectionHeader}>
+          <h3 className={classes.sectionTitle}>🔎 Buscar en la Biblia</h3>
+        </div>
         <form onSubmit={handleSearch} className={classes.searchForm}>
           <input
             type="text"
@@ -216,22 +218,26 @@ export default function HomeScreen() {
       <DailyVerse />
       
       <div className={classes.recentSection}>
-        <h3 className={classes.title}>Lecturas Recientes</h3>
-        {recent.length === 0 ? (
-          <p className={classes.empty}>No tienes lecturas recientes.</p>
-        ) : (
-          <div className={classes.recentList}>
-            {recent.map((r, i) => (
-              <button 
-                key={i} 
-                className={classes.recentBtn}
-                onClick={() => navigate(`/read/${r.book}/${r.chapter}`)}
-              >
-                📖 {bookNames[r.book] || `Libro ${r.book}`}, Cap {r.chapter}
-              </button>
-            ))}
-          </div>
-        )}
+        <div className={classes.sectionHeader}>
+          <h3 className={classes.sectionTitle}>🕘 Lecturas Recientes</h3>
+        </div>
+        <div className={classes.recentBody}>
+          {recent.length === 0 ? (
+            <p className={classes.empty}>No tienes lecturas recientes.</p>
+          ) : (
+            <div className={classes.recentList}>
+              {recent.map((r, i) => (
+                <button 
+                  key={i} 
+                  className={classes.recentBtn}
+                  onClick={() => navigate(`/read/${r.book}/${r.chapter}`)}
+                >
+                  📖 {bookNames[r.book] || `Libro ${r.book}`}, Cap {r.chapter}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

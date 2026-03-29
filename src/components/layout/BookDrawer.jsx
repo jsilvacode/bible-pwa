@@ -6,8 +6,8 @@ import classes from './BookDrawer.module.css';
 export default function BookDrawer({ isOpen, onClose }) {
   const [books, setBooks] = useState([]);
   const [expandedBook, setExpandedBook] = useState(null);
-  const [isOtOpen, setIsOtOpen] = useState(true);
-  const [isNtOpen, setIsNtOpen] = useState(true);
+  const [isOtOpen, setIsOtOpen] = useState(false);
+  const [isNtOpen, setIsNtOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {

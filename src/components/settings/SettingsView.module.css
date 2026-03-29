@@ -25,19 +25,27 @@
 .group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0;
+  background: color-mix(in srgb, var(--bg-page) 75%, var(--bg-surface));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .group label {
   font-family: var(--font-ui);
-  font-size: clamp(0.75rem, calc(0.82rem * var(--ui-scale)), 0.95rem);
-  color: var(--text-secondary);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: clamp(0.82rem, calc(0.88rem * var(--ui-scale)), 1rem);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  background:
+    linear-gradient(115deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #d7c3a0));
+  padding: 10px 12px;
 }
 
 .group select {
+  width: calc(100% - 24px);
+  margin: 12px;
   padding: 12px 15px;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -55,6 +63,8 @@
 }
 
 .installAction {
+  width: calc(100% - 24px);
+  margin: 12px 12px 8px;
   padding: 12px 15px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
@@ -78,7 +88,7 @@
 }
 
 .installMessage {
-  margin: 4px 0 0;
+  margin: 0 12px 12px;
   color: var(--text-secondary);
   font-family: var(--font-ui);
   font-size: 0.85rem;
