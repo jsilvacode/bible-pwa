@@ -228,6 +228,16 @@ export default function ChapterView() {
           <button onClick={() => handleShareVerse(selectedPayload)}>📤 Compartir</button>
         </div>
       )}
+      {selectedPayload && (
+        <div className={classes.compactToolsWrap}>
+          <button
+            className={classes.compactToolsBtn}
+            onClick={() => setMenuVerse(selectedPayload.verse)}
+          >
+            Herramientas del versículo
+          </button>
+        </div>
+      )}
       {!selectedPayload && (
         <div className={classes.desktopHint}>
           Selecciona un versículo para usar Marcador, Resaltar o Compartir.
