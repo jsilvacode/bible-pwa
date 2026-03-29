@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icons.svg'],
       manifest: {
-        name: 'Santa Biblia PWA',
-        short_name: 'Biblia PWA',
-        description: 'Una aplicación moderna, rápida y offline para la lectura de la Santa Biblia.',
+        name: 'Santa Biblia RVR60',
+        short_name: 'Santa Biblia RVR60',
+        description: 'Lectural biblica para el estudio devocional',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
