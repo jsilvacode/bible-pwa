@@ -5,6 +5,9 @@ import classes from './BottomNav.module.css';
 export default function BottomNav() {
   const [installPrompt, setInstallPrompt] = useState(null);
   const [installHint, setInstallHint] = useState('');
+  const [isDesktopView, setIsDesktopView] = useState(() =>
+    window.matchMedia('(min-width: 1024px)').matches
+  );
   const [isInstalled, setIsInstalled] = useState(() =>
     window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true
   );
@@ -25,17 +28,29 @@ export default function BottomNav() {
       setInstallHint('Aplicación instalada');
     };
 
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+    const handleViewportChange = (event) => {
+      setIsDesktopView(event.matches);
+    };
+
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     window.addEventListener('appinstalled', handleInstalled);
+    mediaQuery.addEventListener('change', handleViewportChange);
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
       window.removeEventListener('appinstalled', handleInstalled);
+      mediaQuery.removeEventListener('change', handleViewportChange);
     };
   }, []);
 
   const handleInstall = async () => {
     if (isInstalled) {
       setInstallHint('La aplicación ya está instalada');
+      return;
+    }
+
+    if (isDesktopView) {
+      setInstallHint('Usa el menú del navegador para instalar');
       return;
     }
 

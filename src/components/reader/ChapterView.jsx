@@ -226,7 +226,6 @@ export default function ChapterView() {
           />
           <button onClick={() => selectedPayload.onHighlight(null)}>Limpiar color</button>
           <button onClick={() => handleShareVerse(selectedPayload)}>📤 Compartir</button>
-          <button onClick={() => setMenuVerse(selectedPayload.verse)}>Más opciones</button>
         </div>
       )}
       {!selectedPayload && (
