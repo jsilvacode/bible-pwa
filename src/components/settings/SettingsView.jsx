@@ -5,6 +5,8 @@ import classes from './SettingsView.module.css';
 export default function SettingsView() {
   const { settings, updateSettings } = useSettings();
   const [installMessage, setInstallMessage] = useState('');
+  const mercadoPagoUrl = 'https://link.mercadopago.cl/jsilvacoder';
+  const paypalUrl = 'https://paypal.me/jsilvacode';
   const isInstalled =
     window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
@@ -72,6 +74,30 @@ export default function SettingsView() {
       <div className={classes.info}>
         <p>Santa Biblia RVR60 v1.x</p>
         <p>Copyright - Desarrollado por Julio Silva.</p>
+      </div>
+
+      <div className={classes.donationBox}>
+        <p className={classes.donationText}>
+          Si quieres apoyar este proyecto, su mantención y desarrollo de mejoras puedes hacer una donación en el siguiente enlace.
+        </p>
+        <div className={classes.donationActions}>
+          <a
+            className={classes.donationBtn}
+            href={mercadoPagoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Donar con Mercado Pago
+          </a>
+          <a
+            className={classes.donationBtn}
+            href={paypalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Donar con PayPal
+          </a>
+        </div>
       </div>
     </div>
   );

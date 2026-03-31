@@ -101,3 +101,40 @@
   font-family: var(--font-ui);
   font-size: 13px;
 }
+
+.donationBox {
+  margin-top: 16px;
+  background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: var(--shadow-soft);
+}
+
+.donationText {
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.donationBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--control-height);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: linear-gradient(130deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #c3a277));
+  color: #fff;
+  font-family: var(--font-ui);
+  font-weight: 700;
+}
+
+.donationActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
