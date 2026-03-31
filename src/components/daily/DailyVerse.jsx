@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './DailyVerse.module.css';
+import { useSettings } from '../../hooks/useSettings';
 
 const DAILY_VERSES = [
   { 
@@ -40,13 +41,15 @@ const DAILY_VERSES = [
 ];
 
 export default function DailyVerse() {
+  const { settings } = useSettings();
   const now = new Date();
   const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
   const idx = seed % DAILY_VERSES.length;
   const verse = DAILY_VERSES[idx];
+  const themeCardClass = settings.theme === 'light' ? 'card-light' : 'card-dark';
 
   return (
-    <div className={classes.card}>
+    <div className={`${classes.card} card ${themeCardClass}`}>
       <div className={classes.header}>
         <h3>🌞 Versículo del Día</h3>
       </div>

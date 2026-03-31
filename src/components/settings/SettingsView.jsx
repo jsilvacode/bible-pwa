@@ -9,6 +9,18 @@ export default function SettingsView() {
   const paypalUrl = 'https://paypal.me/jsilvacode';
   const isInstalled =
     window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const themeTabs = [
+    { id: 'dust', label: 'Dust', theme: 'light' },
+    { id: 'terra', label: 'Terra', theme: 'light' },
+    { id: 'crimson', label: 'Crimson', theme: 'dark' },
+    { id: 'noir', label: 'Noir', theme: 'graphite' },
+  ];
+  const selectedTone = settings.tone || (settings.theme === 'dark'
+    ? 'crimson'
+    : settings.theme === 'graphite'
+      ? 'noir'
+      : 'dust');
+  const themeCardClass = settings.theme === 'light' ? 'card-light' : 'card-dark';
 
   const handleInstall = async () => {
     if (isInstalled) {
@@ -37,14 +49,21 @@ export default function SettingsView() {
     <div className={classes.container}>
       <h2 className={classes.title}>Ajustes</h2>
       
-      <div className={classes.card}>
+      <div className={`${classes.card} card ${themeCardClass}`}>
         <div className={classes.group}>
           <label>Tema de la Aplicación</label>
-          <select value={settings.theme} onChange={e => updateSettings({ theme: e.target.value })}>
-            <option value="light">☀️ Claro</option>
-            <option value="dark">🌙 Oscuro</option>
-            <option value="sepia">📜 Sepia</option>
-          </select>
+          <div className="themeTabs">
+            {themeTabs.map(tab => (
+              <button
+                key={tab.id}
+                type="button"
+                className={`themeTab ${selectedTone === tab.id ? 'active' : ''}`}
+                onClick={() => updateSettings({ theme: tab.theme, tone: tab.id })}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className={classes.group}>
@@ -76,7 +95,7 @@ export default function SettingsView() {
         <p>Copyright - Desarrollado por Julio Silva.</p>
       </div>
 
-      <div className={classes.donationBox}>
+      <div className={`${classes.donationBox} card ${themeCardClass}`}>
         <p className={classes.donationText}>
           Si quieres apoyar este proyecto, su mantención y desarrollo de mejoras puedes hacer una donación en el siguiente enlace.
         </p>

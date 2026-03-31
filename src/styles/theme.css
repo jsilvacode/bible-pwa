@@ -1,0 +1,71 @@
+:root {
+  --dust: #E9E6E3;
+  --rose-ash: #D8CFCA;
+
+  --terra: #B86E61;
+  --crimson: #962A2A;
+  --burgundy: #5A1A1A;
+  --noir: #2B1B1B;
+  --abyss: #140404;
+
+  --text-light: #2B1B1B;
+  --text-dark: #F5EDED;
+  --surface-strong: #f3f0ed;
+  --surface-soft: #ede7e3;
+
+  --bg-page: var(--dust);
+  --bg-surface: var(--surface-strong);
+  --bg-verse-hover: var(--rose-ash);
+  --text-primary: var(--text-light);
+  --text-secondary: #5c4545;
+  --text-verse-num: var(--burgundy);
+  --accent: var(--crimson);
+  --border: #c8b8b1;
+  --text-inverse: #ffffff;
+  --card-bg-light: var(--dust);
+  --card-bg-dark: linear-gradient(160deg, var(--noir) 0%, var(--abyss) 100%);
+  --overlay-weak: color-mix(in srgb, var(--abyss) 35%, transparent);
+  --overlay-strong: color-mix(in srgb, var(--abyss) 45%, transparent);
+  --shadow-soft: 0 8px 18px color-mix(in srgb, var(--abyss) 12%, transparent);
+  --shadow-card: 0 10px 24px color-mix(in srgb, var(--abyss) 16%, transparent);
+  --shadow-card-hover: 0 14px 30px color-mix(in srgb, var(--abyss) 22%, transparent);
+  --highlight-red: rgba(150, 42, 42, 0.25);
+  --highlight-gold: rgba(184, 134, 61, 0.25);
+  --highlight-blue: rgba(70, 90, 140, 0.25);
+  --highlight-green: rgba(60, 120, 90, 0.25);
+}
+
+[data-theme="light"] {
+  --bg-page: var(--dust);
+  --bg-surface: var(--surface-strong);
+  --bg-verse-hover: var(--rose-ash);
+  --text-primary: var(--text-light);
+  --text-secondary: #5c4545;
+  --text-verse-num: var(--burgundy);
+  --accent: var(--crimson);
+  --border: #c8b8b1;
+}
+
+[data-theme="dark"] {
+  --bg-page: var(--abyss);
+  --bg-surface: color-mix(in srgb, var(--abyss) 88%, var(--noir));
+  --bg-verse-hover: var(--noir);
+  --text-primary: var(--text-dark);
+  --text-secondary: #d8aaa0;
+  --text-verse-num: var(--terra);
+  --accent: var(--terra);
+  --border: var(--burgundy);
+}
+
+[data-theme="graphite"],
+[data-theme="grafito"],
+[data-theme="sepia"] {
+  --bg-page: color-mix(in srgb, var(--noir) 90%, var(--dust));
+  --bg-surface: color-mix(in srgb, var(--noir) 82%, var(--dust));
+  --bg-verse-hover: color-mix(in srgb, var(--noir) 72%, var(--dust));
+  --text-primary: var(--text-dark);
+  --text-secondary: #c7aaa0;
+  --text-verse-num: #d4b3a8;
+  --accent: var(--terra);
+  --border: #5a4a46;
+}

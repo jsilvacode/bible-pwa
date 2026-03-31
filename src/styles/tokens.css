@@ -1,6 +1,7 @@
 :root {
-  --font-body: 'Lora', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
   --font-ui: 'Inter', system-ui, sans-serif;
+  --font-reading: 'Literata', Georgia, serif;
   --font-size-sm: 15px;
   --font-size-md: 18px;
   --font-size-lg: 21px;
@@ -13,8 +14,5 @@
   --radius-sm: 10px;
   --radius-md: 12px;
   --radius-lg: 16px;
-  --shadow-soft: 0 8px 18px rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.07);
-  --shadow-card-hover: 0 14px 30px rgba(0, 0, 0, 0.1);
   --focus-ring: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
 }

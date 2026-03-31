@@ -1,5 +1,5 @@
 @import './tokens.css';
-@import './themes.css';
+@import './theme.css';
 
 * {
   box-sizing: border-box;
@@ -27,29 +27,119 @@ html, body, #root {
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-body);
   font-size: clamp(14px, calc(16px * var(--ui-scale)), 20px);
   background-color: var(--bg-page);
   background-image:
-    radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--accent) 8%, transparent) 0%, transparent 45%),
-    linear-gradient(to bottom, color-mix(in srgb, var(--bg-page) 92%, white), var(--bg-page));
+    radial-gradient(circle at top, color-mix(in srgb, var(--bg-page) 82%, var(--text-inverse)) 0%, var(--bg-page) 62%),
+    radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--accent) 9%, transparent) 0%, transparent 42%);
   color: var(--text-primary);
-  line-height: var(--line-height-reading);
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease, font-size 0.2s ease;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in srgb, var(--text-primary) 8%, transparent) 3px 4px),
+    repeating-linear-gradient(90deg, transparent 0 5px, color-mix(in srgb, var(--text-primary) 6%, transparent) 5px 6px);
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-ui);
+  letter-spacing: -0.02em;
 }
 
 button, input, select {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
 }
 
 a {
   color: var(--accent);
   text-decoration: none;
+}
+
+::selection {
+  background: rgba(150, 42, 42, 0.3);
+}
+
+.card {
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.card-dark {
+  background: var(--card-bg-dark);
+  color: var(--text-dark);
+  border-color: color-mix(in srgb, var(--text-inverse) 6%, transparent);
+}
+
+.card-light {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--card-bg-light) 88%, var(--text-inverse)) 0%, var(--card-bg-light) 100%);
+  color: var(--text-light);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--crimson) 15%, transparent);
+  color: var(--terra);
+  font-weight: 700;
+}
+
+.themeTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.themeTab {
+  min-height: var(--control-height);
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.themeTab.active {
+  background: var(--terra);
+  color: var(--text-inverse);
+  border-color: transparent;
+}
+
+.readingText {
+  font-family: var(--font-reading);
+  font-size: 1.15rem;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
 }

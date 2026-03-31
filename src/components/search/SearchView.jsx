@@ -10,6 +10,7 @@ export default function SearchView() {
   const { search, results, loading } = useSearch(settings.version);
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
+  const themeCardClass = settings.theme === 'light' ? 'card-light' : 'card-dark';
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -45,7 +46,7 @@ export default function SearchView() {
           {results.map(r => (
             <div 
               key={r.id} 
-              className={classes.resultItem}
+              className={`${classes.resultItem} card ${themeCardClass}`}
               onClick={() => navigate(`/read/${r.book}/${r.chapter}/${r.verse}`)}
             >
               <div className={classes.ref}>

@@ -37,8 +37,8 @@
 
 .button {
   padding: 12px 20px;
-  background: linear-gradient(130deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #c3a277));
-  color: #FFF;
+  background: linear-gradient(130deg, var(--accent), var(--terra));
+  color: var(--text-inverse);
   border: none;
   border-radius: var(--radius-md);
   font-weight: 600;
@@ -66,19 +66,13 @@
 }
 
 .resultItem {
-  background-color: var(--bg-surface);
   padding: 15px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: var(--shadow-card);
+  transition: background-color 0.2s;
 }
 
 .resultItem:hover {
   background-color: var(--bg-verse-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-card-hover);
 }
 
 .ref {

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useBookmarks } from '../../hooks/useBookmarks';
+import { useSettings } from '../../hooks/useSettings';
 import { useNavigate } from 'react-router-dom';
 import classes from './BookmarksView.module.css';
 import { fetchBooksManifest } from '../../services/bibleLoader';
 
 export default function BookmarksView() {
   const { bookmarks, removeBookmark } = useBookmarks();
+  const { settings } = useSettings();
   const navigate = useNavigate();
   const [bookNames, setBookNames] = useState({});
+  const themeCardClass = settings.theme === 'light' ? 'card-light' : 'card-dark';
 
   useEffect(() => {
     fetchBooksManifest()
@@ -32,12 +35,12 @@ export default function BookmarksView() {
       ) : (
         <div className={classes.list}>
           {bookmarks.map(b => (
-            <div key={b.id} className={classes.item}>
+            <div key={b.id} className={`${classes.item} card ${themeCardClass}`}>
               <div 
                 className={classes.reference}
                 onClick={() => navigate(`/read/${b.book}/${b.chapter}/${b.verse}`)}
               >
-                <div className={classes.refTag}>{b.version.toUpperCase()}</div> 
+                <div className={`${classes.refTag} badge`}>{b.version.toUpperCase()}</div> 
                 {bookNames[b.book] || `Libro ${b.book}`}, Cap {b.chapter}:{b.verse}
               </div>
               <button 

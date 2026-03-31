@@ -1,27 +1,17 @@
 .card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
   overflow: hidden;
   margin-bottom: 25px;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-card-hover);
 }
 
 .header {
   background:
-    linear-gradient(115deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #d7c3a0));
+    linear-gradient(115deg, var(--accent), var(--terra));
   padding: 12px 20px;
 }
 
 .header h3 {
   margin: 0;
-  color: #FFF;
+  color: var(--text-inverse);
   font-family: var(--font-ui);
   font-size: 16px;
   font-weight: 600;

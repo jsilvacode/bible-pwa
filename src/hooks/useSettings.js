@@ -3,9 +3,27 @@ import { createContext, createElement, useCallback, useContext, useEffect, useMe
 const SETTINGS_KEY = 'bible_settings';
 const RECENT_KEY = 'bible_recent';
 
+/** @typedef {"light" | "dark" | "graphite"} Theme */
+
+const themeConfig = {
+  light: {
+    background: 'var(--dust)',
+    text: 'var(--text-light)',
+  },
+  dark: {
+    background: 'var(--abyss)',
+    text: 'var(--text-dark)',
+  },
+  graphite: {
+    background: 'var(--noir)',
+    text: 'var(--text-dark)',
+  },
+};
+
 const defaultSettings = {
   version: 'rvr60',
   theme: 'light',
+  tone: 'dust',
   fontSize: 'md',
   lastRead: { book: 1, chapter: 1 }
 };
@@ -22,6 +40,11 @@ function getInitialSettings() {
     console.error('Error reading settings', e);
   }
   return defaultSettings;
+}
+
+function normalizeTheme(theme) {
+  if (theme === 'sepia' || theme === 'grafito') return 'graphite';
+  return themeConfig[theme] ? theme : 'light';
 }
 
 function getInitialRecent() {
@@ -65,12 +88,16 @@ function normalizeRecent(list) {
 }
 
 export function SettingsProvider({ children }) {
-  const [settings, setSettings] = useState(getInitialSettings);
+  const [settings, setSettings] = useState(() => {
+    const initial = getInitialSettings();
+    return { ...initial, theme: normalizeTheme(initial.theme) };
+  });
   const [recent, setRecent] = useState(getInitialRecent);
 
   useEffect(() => {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
-    document.documentElement.setAttribute('data-theme', settings.theme);
+    const resolvedTheme = normalizeTheme(settings.theme);
+    document.documentElement.setAttribute('data-theme', resolvedTheme);
     document.documentElement.setAttribute('data-font-size', settings.fontSize);
   }, [settings]);
 
@@ -79,7 +106,13 @@ export function SettingsProvider({ children }) {
   }, [recent]);
 
   const updateSettings = useCallback((updates) => {
-    setSettings(prev => ({ ...prev, ...updates }));
+    setSettings(prev => {
+      const next = { ...prev, ...updates };
+      if (Object.prototype.hasOwnProperty.call(updates, 'theme')) {
+        next.theme = normalizeTheme(updates.theme);
+      }
+      return next;
+    });
   }, []);
 
   const addRecent = useCallback((book, chapter) => {

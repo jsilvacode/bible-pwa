@@ -12,5 +12,5 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--bg-page) 88%, white) 0%, var(--bg-page) 120px);
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-page) 88%, var(--text-inverse)) 0%, var(--bg-page) 120px);
 }

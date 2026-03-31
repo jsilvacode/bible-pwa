@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5);
+  background-color: var(--overlay-strong);
   z-index: 400;
   display: flex;
   justify-content: center;
@@ -24,9 +24,11 @@
   max-width: 600px;
   max-height: 70vh;
   border-radius: 16px 16px 0 0;
+  border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-card-hover);
 }
 
 @media (min-width: 768px) {
@@ -124,7 +126,7 @@
   margin-top: 15px;
   padding: 12px 24px;
   background-color: var(--accent);
-  color: white;
+  color: var(--text-inverse);
   border: none;
   border-radius: 8px;
   font-family: var(--font-ui);
@@ -147,7 +149,7 @@
   background-color: var(--bg-page);
   padding: 15px;
   border-left: 4px solid var(--accent);
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
 }
 
 .egwQuote p {

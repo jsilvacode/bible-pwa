@@ -68,11 +68,11 @@ export default function VerseMenu({ verse, payload, onClose }) {
           </button>
           
           <div className={classes.colorActions}>
-             <button aria-label="Limpiar Color" className={classes.colorBtn} style={{ background: 'transparent', border: '1px solid var(--border)' }} onClick={() => handleHighlight(null)}>✕</button>
-             <button aria-label="Amarillo" className={classes.colorBtn} style={{ background: 'var(--highlight-yellow)' }} onClick={() => handleHighlight('yellow')}></button>
-             <button aria-label="Verde" className={classes.colorBtn} style={{ background: 'var(--highlight-green)' }} onClick={() => handleHighlight('green')}></button>
-             <button aria-label="Azul" className={classes.colorBtn} style={{ background: 'var(--highlight-blue)' }} onClick={() => handleHighlight('blue')}></button>
-             <button aria-label="Rosa" className={classes.colorBtn} style={{ background: 'var(--highlight-pink)' }} onClick={() => handleHighlight('pink')}></button>
+             <button aria-label="Limpiar color" className={classes.colorBtn} style={{ background: 'transparent', border: '1px solid var(--border)' }} onClick={() => handleHighlight(null)}>✕</button>
+             <button aria-label="Promesa o palabra de Dios" title="Promesa o palabra de Dios" className={classes.colorBtn} style={{ background: 'var(--highlight-red)' }} onClick={() => handleHighlight('red')}>🔴</button>
+             <button aria-label="Sabiduria" title="Sabiduria" className={classes.colorBtn} style={{ background: 'var(--highlight-gold)' }} onClick={() => handleHighlight('gold')}>🟡</button>
+             <button aria-label="Ensenanza" title="Ensenanza" className={classes.colorBtn} style={{ background: 'var(--highlight-blue)' }} onClick={() => handleHighlight('blue')}>🔵</button>
+             <button aria-label="Aplicacion personal" title="Aplicacion personal" className={classes.colorBtn} style={{ background: 'var(--highlight-green)' }} onClick={() => handleHighlight('green')}>🟢</button>
           </div>
           
           <button onClick={handleShare}>

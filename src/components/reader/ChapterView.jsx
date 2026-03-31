@@ -5,6 +5,7 @@ import { useRecentReads, useSettings } from '../../hooks/useSettings';
 import { useBookmarks } from '../../hooks/useBookmarks';
 import VerseBlock from './VerseBlock';
 import VerseMenu from './VerseMenu';
+import ReadingMode from './ReadingMode';
 import classes from './ChapterView.module.css';
 import { fetchBooksManifest } from '../../services/bibleLoader';
 import { useHighlights } from '../../hooks/useHighlights';
@@ -203,28 +204,32 @@ export default function ChapterView() {
             🔖 {selectedIsBookmarked ? 'Quitar Marcador' : 'Añadir Marcador'}
           </button>
           <button
-            aria-label="Resaltar en amarillo"
+            aria-label="Promesa o palabra de Dios"
             className={classes.desktopColorBtn}
-            style={{ background: 'var(--highlight-yellow)' }}
-            onClick={() => selectedPayload.onHighlight('yellow')}
+            style={{ background: 'var(--highlight-red)' }}
+            title="Promesa o palabra de Dios"
+            onClick={() => selectedPayload.onHighlight('red')}
           />
           <button
-            aria-label="Resaltar en verde"
+            aria-label="Sabiduria"
             className={classes.desktopColorBtn}
-            style={{ background: 'var(--highlight-green)' }}
-            onClick={() => selectedPayload.onHighlight('green')}
+            style={{ background: 'var(--highlight-gold)' }}
+            title="Sabiduria"
+            onClick={() => selectedPayload.onHighlight('gold')}
           />
           <button
-            aria-label="Resaltar en azul"
+            aria-label="Ensenanza"
             className={classes.desktopColorBtn}
             style={{ background: 'var(--highlight-blue)' }}
+            title="Ensenanza"
             onClick={() => selectedPayload.onHighlight('blue')}
           />
           <button
-            aria-label="Resaltar en rosa"
+            aria-label="Aplicacion personal"
             className={classes.desktopColorBtn}
-            style={{ background: 'var(--highlight-pink)' }}
-            onClick={() => selectedPayload.onHighlight('pink')}
+            style={{ background: 'var(--highlight-green)' }}
+            title="Aplicacion personal"
+            onClick={() => selectedPayload.onHighlight('green')}
           />
           <button onClick={() => selectedPayload.onHighlight(null)}>Limpiar color</button>
           <button onClick={() => handleShareVerse(selectedPayload)}>📤 Compartir</button>
@@ -246,7 +251,7 @@ export default function ChapterView() {
         </div>
       )}
 
-      <div className={classes.prose}>
+      <ReadingMode>
         {currentChapterData.verses.map(v => (
           <VerseBlock
             key={v.verse}
@@ -260,7 +265,7 @@ export default function ChapterView() {
             onOpenMenu={handleLongTap}
           />
         ))}
-      </div>
+      </ReadingMode>
       
       {menuVerse && (
         <VerseMenu 

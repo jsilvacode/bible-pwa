@@ -6,6 +6,14 @@ function getSessionKey(version, book, chapter) {
   return `session_highlights_${version}_${book}_${chapter}`;
 }
 
+function normalizeHighlightColor(color) {
+  if (color === 'yellow') return 'gold';
+  if (color === 'pink') return 'red';
+  if (color === 'blue') return 'blue';
+  if (color === 'green') return 'green';
+  return color;
+}
+
 export function useHighlights(version, book, chapter) {
   const [highlights, setHighlights] = useState({});
 
@@ -17,7 +25,10 @@ export function useHighlights(version, book, chapter) {
     try {
       const raw = sessionStorage.getItem(sessionKey);
       if (raw) {
-        Object.assign(fallbackMap, JSON.parse(raw));
+        const parsed = JSON.parse(raw);
+        Object.entries(parsed).forEach(([verse, color]) => {
+          fallbackMap[verse] = normalizeHighlightColor(color);
+        });
       }
     } catch (e) {
       console.error('Error reading highlights from sessionStorage', e);
@@ -34,7 +45,7 @@ export function useHighlights(version, book, chapter) {
       );
 
       const map = { ...fallbackMap };
-      chapterHighlights.forEach(h => { map[h.verse] = h.color; });
+      chapterHighlights.forEach(h => { map[h.verse] = normalizeHighlightColor(h.color); });
       setHighlights(map);
       sessionStorage.setItem(sessionKey, JSON.stringify(map));
     }).catch((e) => {
@@ -59,9 +70,10 @@ export function useHighlights(version, book, chapter) {
         console.error('Error deleting highlight from IndexedDB', e);
       }
     } else {
-      const data = { ...payload, color, createdAt: Date.now() };
+      const normalizedColor = normalizeHighlightColor(color);
+      const data = { ...payload, color: normalizedColor, createdAt: Date.now() };
       setHighlights(prev => {
-        const next = { ...prev, [payload.verse]: color };
+        const next = { ...prev, [payload.verse]: normalizedColor };
         sessionStorage.setItem(sessionKey, JSON.stringify(next));
         return next;
       });

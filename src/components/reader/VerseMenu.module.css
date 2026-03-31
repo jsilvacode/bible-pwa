@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.4);
+  background-color: var(--overlay-weak);
   z-index: 300;
   display: flex;
   justify-content: center;
@@ -14,12 +14,13 @@
 
 .menu {
   background-color: var(--bg-surface);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   width: 80%;
   max-width: 320px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: var(--shadow-card-hover);
   animation: popIn 0.2s;
+  border: 1px solid var(--border);
 }
 
 .header {
@@ -76,12 +77,14 @@
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid color-mix(in srgb, var(--border) 65%, transparent);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1;
   transition: transform 0.2s;
 }
 

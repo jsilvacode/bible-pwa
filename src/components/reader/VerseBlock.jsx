@@ -66,8 +66,7 @@ export default function VerseBlock({
 
   return (
     <span 
-      className={`${classes.verseBlock} ${isSelected ? classes.selected : ''}`}
-      style={isHighlighted && highlightColor ? { backgroundColor: `var(--highlight-${highlightColor})` } : {}}
+      className={`${classes.verseBlock} ${isSelected ? classes.selected : ''} ${isHighlighted && highlightColor ? classes[`highlight${highlightColor.charAt(0).toUpperCase()}${highlightColor.slice(1)}`] : ''}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onTouchMove={handleTouchMove}

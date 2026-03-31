@@ -31,12 +31,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--bg-surface);
   padding: 15px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
   transition: border-color 0.2s, box-shadow 0.2s;
-  box-shadow: var(--shadow-soft);
 }
 
 .item:hover {

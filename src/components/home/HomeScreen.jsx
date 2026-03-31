@@ -87,6 +87,7 @@ export default function HomeScreen() {
   const [booksById, setBooksById] = useState({});
   const [bookAliasMap, setBookAliasMap] = useState(() => new Map());
   const [searchFeedback, setSearchFeedback] = useState('');
+  const themeCardClass = settings.theme === 'light' ? 'card-light' : 'card-dark';
 
   useEffect(() => {
     fetchBooksManifest()
@@ -155,7 +156,7 @@ export default function HomeScreen() {
 
   return (
     <div className={classes.container}>
-      <section className={classes.searchSection}>
+      <section className={`${classes.searchSection} card ${themeCardClass}`}>
         <div className={classes.sectionHeader}>
           <h3 className={classes.sectionTitle}>🔎 Buscar en la Biblia</h3>
         </div>
@@ -217,7 +218,7 @@ export default function HomeScreen() {
 
       <DailyVerse />
       
-      <div className={classes.recentSection}>
+      <div className={`${classes.recentSection} card ${themeCardClass}`}>
         <div className={classes.sectionHeader}>
           <h3 className={classes.sectionTitle}>🕘 Lecturas Recientes</h3>
         </div>

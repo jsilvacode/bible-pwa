@@ -16,7 +16,7 @@
 }
 
 .bottomNav a {
-  color: color-mix(in srgb, var(--text-primary) 90%, black 10%);
+  color: color-mix(in srgb, var(--text-primary) 90%, var(--abyss) 10%);
   font-size: clamp(0.92rem, calc(0.98rem * var(--ui-scale)), 1.14rem);
   font-family: var(--font-ui);
   font-weight: 600;
@@ -36,7 +36,7 @@
 .installOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: var(--overlay-strong);
   z-index: 260;
   display: flex;
   align-items: center;
@@ -85,7 +85,7 @@
 }
 
 .installPopupActions button:first-child {
-  background: linear-gradient(130deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #c3a277));
-  color: #fff;
+  background: linear-gradient(130deg, var(--accent), var(--terra));
+  color: var(--text-inverse);
   border: none;
 }
