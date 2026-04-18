@@ -11,7 +11,6 @@ export default function SettingsView() {
     window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
   const themeTabs = [
     { id: 'dust', label: 'Dust', theme: 'light' },
-    { id: 'terra', label: 'Terra', theme: 'light' },
     { id: 'crimson', label: 'Crimson', theme: 'dark' },
     { id: 'noir', label: 'Noir', theme: 'graphite' },
   ];
@@ -52,18 +51,21 @@ export default function SettingsView() {
       <div className={`${classes.card} card ${themeCardClass}`}>
         <div className={classes.group}>
           <label>Tema de la Aplicación</label>
-          <div className="themeTabs">
+          <select 
+            value={selectedTone} 
+            onChange={e => {
+              const tab = themeTabs.find(t => t.id === e.target.value);
+              if (tab) {
+                updateSettings({ theme: tab.theme, tone: tab.id });
+              }
+            }}
+          >
             {themeTabs.map(tab => (
-              <button
-                key={tab.id}
-                type="button"
-                className={`themeTab ${selectedTone === tab.id ? 'active' : ''}`}
-                onClick={() => updateSettings({ theme: tab.theme, tone: tab.id })}
-              >
+              <option key={tab.id} value={tab.id}>
                 {tab.label}
-              </button>
+              </option>
             ))}
-          </div>
+          </select>
         </div>
 
         <div className={classes.group}>

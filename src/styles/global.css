@@ -114,28 +114,7 @@ a {
   font-weight: 700;
 }
 
-.themeTabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
 
-.themeTab {
-  min-height: var(--control-height);
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--bg-page);
-  color: var(--text-primary);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.themeTab.active {
-  background: var(--terra);
-  color: var(--text-inverse);
-  border-color: transparent;
-}
 
 .readingText {
   font-family: var(--font-reading);
