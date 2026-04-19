@@ -55,6 +55,7 @@ export default function ChapterView() {
         return () => clearTimeout(timer);
       } else {
         window.scrollTo(0, 0);
+      }
     }
   }, [bookId_, chapterNum_, loading, bibleBook, bibleChapter, targetVerse, addRecent]);
 
