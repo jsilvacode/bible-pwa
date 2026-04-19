@@ -132,3 +132,12 @@
   transform: translateY(-2px);
   box-shadow: var(--shadow-soft);
 }
+
+.targetBlink {
+  animation: blinkTarget 1s ease-in-out 3;
+}
+
+@keyframes blinkTarget {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: color-mix(in srgb, var(--accent) 25%, transparent); }
+}

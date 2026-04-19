@@ -119,6 +119,7 @@ export default function ChapterView() {
                   isSelected={menuVerse === v.verse}
                   isHighlighted={!!highlights[v.verse]}
                   highlightColor={highlights[v.verse]}
+                  isTarget={Number(targetVerse) === v.verse}
                   onShortTap={handleOpenMenu}
                   onLongTap={handleOpenMenu}
                   onOpenMenu={handleOpenMenu}

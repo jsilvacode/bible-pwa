@@ -11,6 +11,7 @@ export default function VerseBlock({
   onShortTap,
   onLongTap,
   onOpenMenu,
+  isTarget,
 }) {
   const timerRef = useRef(null);
   const touchStartRef = useRef(0);
@@ -66,7 +67,7 @@ export default function VerseBlock({
 
   return (
     <span 
-      className={`${classes.verseBlock} ${isSelected ? classes.selected : ''} ${isHighlighted && highlightColor ? classes[`highlight${highlightColor.charAt(0).toUpperCase()}${highlightColor.slice(1)}`] : ''}`}
+      className={`${classes.verseBlock} ${isSelected ? classes.selected : ''} ${isTarget ? classes.targetBlink : ''} ${isHighlighted && highlightColor ? classes[`highlight${highlightColor.charAt(0).toUpperCase()}${highlightColor.slice(1)}`] : ''}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onTouchMove={handleTouchMove}
