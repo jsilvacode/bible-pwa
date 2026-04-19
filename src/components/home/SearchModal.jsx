@@ -83,6 +83,7 @@ export default function SearchModal({ isOpen, onClose }) {
   const [booksById, setBooksById] = useState({});
   const [bookAliasMap, setBookAliasMap] = useState(() => new Map());
   const [searchFeedback, setSearchFeedback] = useState('');
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
     fetchBooksManifest()
@@ -142,7 +143,15 @@ export default function SearchModal({ isOpen, onClose }) {
     }
 
     setSearchFeedback('');
+    setHasSearched(true);
     await search(trimmed);
+  };
+
+  const handleReset = () => {
+    setQuery('');
+    setSearchFeedback('');
+    setHasSearched(false);
+    search(''); 
   };
 
   if (!isOpen) return null;
@@ -150,6 +159,7 @@ export default function SearchModal({ isOpen, onClose }) {
   return (
     <div className={classes.overlay} onClick={onClose}>
       <div className={classes.modal} onClick={e => e.stopPropagation()}>
+        <button className={classes.closeIcon} onClick={onClose} aria-label="Cerrar">✕</button>
         <header className={classes.header}>
           <h2 className={classes.title}>Buscar por palabra o cita</h2>
           
@@ -170,11 +180,7 @@ export default function SearchModal({ isOpen, onClose }) {
             <button 
               type="button" 
               className={classes.resetBtn} 
-              onClick={() => {
-                setQuery('');
-                setSearchFeedback('');
-                search(''); // Optional: clear results in hook if possible
-              }}
+              onClick={handleReset}
             >
               Limpiar
             </button>
@@ -204,7 +210,7 @@ export default function SearchModal({ isOpen, onClose }) {
             ))}
           </div>
 
-          {!loading && results.length === 0 && query.length >= 3 && !searchFeedback && (
+          {!loading && results.length === 0 && hasSearched && !searchFeedback && (
             <div className={classes.empty}>No se encontraron resultados para "{query}"</div>
           )}
         </div>
