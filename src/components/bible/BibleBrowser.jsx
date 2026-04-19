@@ -25,8 +25,8 @@ const CATEGORY_LABELS = {
 export default function BibleBrowser() {
   const [books, setBooks] = useState([]);
   const [expandedBook, setExpandedBook] = useState(null);
-  const [isOtExpanded, setIsOtExpanded] = useState(true);
-  const [isNtExpanded, setIsNtExpanded] = useState(true);
+  const [isOtExpanded, setIsOtExpanded] = useState(false);
+  const [isNtExpanded, setIsNtExpanded] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
