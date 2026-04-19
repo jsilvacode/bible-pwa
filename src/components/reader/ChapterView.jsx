@@ -19,7 +19,6 @@ export default function ChapterView() {
   // useBible(version, bookId) → { data, loading, error }
   // data has: { name, chapters: [{chapter, verses: [{verse, text}]}] }
   const { data, loading, error } = useBible(settings.version, bookId);
-  const { isBookmarked, toggleBookmark } = useBookmarks();
 
   // useHighlights(version, book, chapter) → { highlights: {verseNum: color}, setHighlight }
   const { highlights, setHighlight } = useHighlights(settings.version, bookId, chapterNum);
@@ -56,9 +55,8 @@ export default function ChapterView() {
         return () => clearTimeout(timer);
       } else {
         window.scrollTo(0, 0);
-      }
     }
-  }, [bookId, chapterNum, loading, bibleBook, bibleChapter, targetVerse, addRecent]);
+  }, [bookId_, chapterNum_, loading, bibleBook, bibleChapter, targetVerse, addRecent]);
 
   useEffect(() => {
     const handleScroll = () => {

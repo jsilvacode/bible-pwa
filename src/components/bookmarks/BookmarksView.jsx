@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useBookmarks } from '../../hooks/useBookmarks';
-import { useSettings } from '../../hooks/useSettings';
 import { useNavigate } from 'react-router-dom';
 import classes from './BookmarksView.module.css';
 import { fetchBooksManifest } from '../../services/bibleLoader';
 
 export default function BookmarksView() {
   const { bookmarks, removeBookmark } = useBookmarks();
-  const { settings } = useSettings();
   const navigate = useNavigate();
   const [bookNames, setBookNames] = useState({});
 

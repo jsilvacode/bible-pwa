@@ -10,9 +10,8 @@ export default function TopBar() {
   const isHome = location.pathname === '/';
 
   useEffect(() => {
-    window.__openBookDrawer = (categoryId) => {
+    window.__openBookDrawer = () => {
       setIsDrawerOpen(true);
-      // We'll pass categoryId to BookDrawer if needed
     };
     return () => delete window.__openBookDrawer;
   }, []);

@@ -42,7 +42,6 @@ const DAILY_VERSES = [
 ];
 
 export default function DailyVerse({ variant = 'hero' }) {
-  const { settings } = useSettings();
   const now = new Date();
   const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
   const idx = seed % DAILY_VERSES.length;

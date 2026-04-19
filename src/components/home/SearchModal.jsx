@@ -123,7 +123,7 @@ export default function SearchModal({ isOpen, onClose }) {
           setSearchFeedback('No existe ese capítulo.');
           return;
         }
-      } catch (err) {
+      } catch {
         setSearchFeedback('Error validando cita.');
         return;
       }

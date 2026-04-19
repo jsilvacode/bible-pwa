@@ -30,7 +30,7 @@ export default function SettingsView() {
       await deferred.userChoice;
       window.__bibleInstallPrompt = null;
       setInstallMessage('Solicitud enviada.');
-    } catch (e) {
+    } catch {
       setInstallMessage('Error al iniciar instalación.');
     }
   };
