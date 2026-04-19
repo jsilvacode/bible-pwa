@@ -161,7 +161,10 @@ export default function SearchModal({ isOpen, onClose }) {
       <div className={classes.modal} onClick={e => e.stopPropagation()}>
         <button className={classes.closeIcon} onClick={onClose} aria-label="Cerrar">✕</button>
         <header className={classes.header}>
-          <h2 className={classes.title}>Buscar por palabra o cita</h2>
+          <div className={classes.headerText}>
+            <h2 className={classes.title}>Buscar</h2>
+            <p className={classes.subtitle}>Encuentra palabras o citas bíblicas</p>
+          </div>
           
           <form onSubmit={handleSearch} className={classes.form}>
             <input
