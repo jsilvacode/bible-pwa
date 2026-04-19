@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React from 'react';
 import classes from './DailyVerse.module.css';
-import { useSettings } from '../../hooks/useSettings';
 
 const DAILY_VERSES = [
   { 

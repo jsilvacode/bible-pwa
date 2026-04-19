@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useBible } from '../../hooks/useBible';
-import { useBookmarks } from '../../hooks/useBookmarks';
 import { useHighlights } from '../../hooks/useHighlights';
 import { useSettings } from '../../hooks/useSettings';
 import VerseBlock from './VerseBlock';
