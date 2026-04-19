@@ -1,6 +1,6 @@
 :root {
-  --dust: #E9E6E3;
-  --rose-ash: #D8CFCA;
+  --dust: #FAF9F6;
+  --rose-ash: #F3F0EB;
 
   --terra: #B86E61;
   --crimson: #962A2A;
@@ -10,17 +10,17 @@
 
   --text-light: #2B1B1B;
   --text-dark: #F5EDED;
-  --surface-strong: #f3f0ed;
-  --surface-soft: #ede7e3;
+  --surface-strong: #FFFFFF;
+  --surface-soft: #F9F8F5;
 
   --bg-page: var(--dust);
   --bg-surface: var(--surface-strong);
   --bg-verse-hover: var(--rose-ash);
   --text-primary: var(--text-light);
-  --text-secondary: #5c4545;
+  --text-secondary: #6B5C57;
   --text-verse-num: var(--burgundy);
   --accent: var(--crimson);
-  --border: #c8b8b1;
+  --border: #E8E3DF;
   --text-inverse: #ffffff;
   --card-bg-light: var(--dust);
   --card-bg-dark: linear-gradient(160deg, var(--noir) 0%, var(--abyss) 100%);
@@ -33,6 +33,19 @@
   --highlight-gold: rgba(184, 134, 61, 0.25);
   --highlight-blue: rgba(70, 90, 140, 0.25);
   --highlight-green: rgba(60, 120, 90, 0.25);
+
+  /* New UI Redesign Tokens */
+  --glass-bg: color-mix(in srgb, var(--bg-surface) 78%, transparent);
+  /* Hero gradient: pastel cream */
+  --hero-gradient: linear-gradient(135deg, #F9F3EA 0%, #E8DCC2 100%);
+  --hero-text: var(--text-light);
+  
+  --cat-pentateuch: #E3F2FD;
+  --cat-historical: #F3E5F5;
+  --cat-wisdom: #FFF3E0;
+  --cat-prophets: #E8F5E9;
+  --cat-gospels: #FFFDE7;
+  --cat-epistles: #FBE9E7;
 }
 
 [data-theme="light"] {
@@ -44,22 +57,19 @@
   --text-verse-num: var(--burgundy);
   --accent: var(--crimson);
   --border: #c8b8b1;
+  /* Dust theme: warm pastel for hero */
+  --hero-gradient: linear-gradient(135deg, #F9F3EA 0%, #E8DCC2 100%);
+  --hero-text: var(--text-light);
+  
+  --cat-pentateuch: #E3F2FD;
+  --cat-historical: #F3E5F5;
+  --cat-wisdom: #FFF3E0;
+  --cat-prophets: #E8F5E9;
+  --cat-gospels: #FFFDE7;
+  --cat-epistles: #FBE9E7;
 }
 
 [data-theme="dark"] {
-  --bg-page: var(--abyss);
-  --bg-surface: color-mix(in srgb, var(--abyss) 88%, var(--noir));
-  --bg-verse-hover: var(--noir);
-  --text-primary: var(--text-dark);
-  --text-secondary: #d8aaa0;
-  --text-verse-num: var(--terra);
-  --accent: var(--terra);
-  --border: var(--burgundy);
-}
-
-[data-theme="graphite"],
-[data-theme="grafito"],
-[data-theme="sepia"] {
   --bg-page: color-mix(in srgb, var(--noir) 90%, var(--dust));
   --bg-surface: color-mix(in srgb, var(--noir) 82%, var(--dust));
   --bg-verse-hover: color-mix(in srgb, var(--noir) 72%, var(--dust));
@@ -68,4 +78,14 @@
   --text-verse-num: #d4b3a8;
   --accent: var(--terra);
   --border: #5a4a46;
+  /* Noir theme: warm amber/sienna tones — cohesive with sepia/terra palette */
+  --hero-gradient: linear-gradient(135deg, #4a3018 0%, #2a1a08 100%);
+  --hero-text: #f5eded;
+
+  --cat-pentateuch: #213A46;
+  --cat-historical: #3A2146;
+  --cat-wisdom: #463A21;
+  --cat-prophets: #214630;
+  --cat-gospels: #464621;
+  --cat-epistles: #462121;
 }

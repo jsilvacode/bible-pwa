@@ -57,32 +57,43 @@ export default function BookDrawer({ isOpen, onClose }) {
   );
 
   return (
-    <div className={classes.drawerOverlay} onClick={onClose}>
+    <div className={`${classes.drawerOverlay} ${isOpen ? classes.open : ''}`} onClick={onClose}>
       <div className={classes.drawer} onClick={e => e.stopPropagation()}>
-        <div className={classes.header}>
-          <h2>Índice de Libros</h2>
-          <button className={classes.closeBtn} onClick={onClose}>✕</button>
-        </div>
-        <div className={classes.scrollArea}>
-          <button
-            className={classes.sectionToggle}
-            onClick={() => setIsOtOpen(prev => !prev)}
-            type="button"
-          >
-            <span className={classes.sectionTitle}>Antiguo Testamento</span>
-            <span className={classes.sectionChevron}>{isOtOpen ? '▾' : '▸'}</span>
-          </button>
-          {isOtOpen && renderBookList(otBooks)}
+        <header className={classes.header}>
+          <div className={classes.headerContent}>
+            <h2>Índice</h2>
+            <button className={classes.closeBtn} onClick={onClose}>✕</button>
+          </div>
+        </header>
 
-          <button
-            className={classes.sectionToggle}
-            onClick={() => setIsNtOpen(prev => !prev)}
-            type="button"
-          >
-            <span className={classes.sectionTitle}>Nuevo Testamento</span>
-            <span className={classes.sectionChevron}>{isNtOpen ? '▾' : '▸'}</span>
-          </button>
-          {isNtOpen && renderBookList(ntBooks)}
+        <div className={classes.scrollArea}>
+          <section className={classes.section}>
+            <button
+              className={classes.sectionToggle}
+              onClick={() => setIsOtOpen(prev => !prev)}
+              type="button"
+            >
+              <h3 className={classes.sectionTitle}>Antiguo Testamento</h3>
+              <span className={classes.sectionChevron}>{isOtOpen ? '▾' : '▸'}</span>
+            </button>
+            <div className={classes.bookGrid}>
+              {isOtOpen && renderBookList(otBooks)}
+            </div>
+          </section>
+
+          <section className={classes.section}>
+            <button
+              className={classes.sectionToggle}
+              onClick={() => setIsNtOpen(prev => !prev)}
+              type="button"
+            >
+              <h3 className={classes.sectionTitle}>Nuevo Testamento</h3>
+              <span className={classes.sectionChevron}>{isNtOpen ? '▾' : '▸'}</span>
+            </button>
+            <div className={classes.bookGrid}>
+              {isNtOpen && renderBookList(ntBooks)}
+            </div>
+          </section>
         </div>
       </div>
     </div>

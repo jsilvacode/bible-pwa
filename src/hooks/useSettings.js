@@ -2,6 +2,7 @@ import { createContext, createElement, useCallback, useContext, useEffect, useMe
 
 const SETTINGS_KEY = 'bible_settings';
 const RECENT_KEY = 'bible_recent';
+const LOG_KEY = 'bible_reading_log';
 
 /** @typedef {"light" | "dark" | "graphite"} Theme */
 
@@ -11,10 +12,6 @@ const themeConfig = {
     text: 'var(--text-light)',
   },
   dark: {
-    background: 'var(--abyss)',
-    text: 'var(--text-dark)',
-  },
-  graphite: {
     background: 'var(--noir)',
     text: 'var(--text-dark)',
   },
@@ -23,7 +20,7 @@ const themeConfig = {
 const defaultSettings = {
   version: 'rvr60',
   theme: 'light',
-  tone: 'dust',
+  tone: 'light',
   fontSize: 'md',
   lastRead: { book: 1, chapter: 1 }
 };
@@ -43,7 +40,7 @@ function getInitialSettings() {
 }
 
 function normalizeTheme(theme) {
-  if (theme === 'sepia' || theme === 'grafito') return 'graphite';
+  if (theme === 'sepia' || theme === 'grafito' || theme === 'graphite' || theme === 'noir') return 'dark';
   return themeConfig[theme] ? theme : 'light';
 }
 
@@ -55,6 +52,16 @@ function getInitialRecent() {
     }
   } catch (e) {
     console.error('Error reading recent reads', e);
+  }
+  return [];
+}
+
+function getInitialLog() {
+  try {
+    const saved = localStorage.getItem(LOG_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch (e) {
+    console.error('Error reading log', e);
   }
   return [];
 }
@@ -93,6 +100,7 @@ export function SettingsProvider({ children }) {
     return { ...initial, theme: normalizeTheme(initial.theme) };
   });
   const [recent, setRecent] = useState(getInitialRecent);
+  const [log, setLog] = useState(getInitialLog);
 
   useEffect(() => {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
@@ -105,6 +113,10 @@ export function SettingsProvider({ children }) {
     localStorage.setItem(RECENT_KEY, JSON.stringify(normalizeRecent(recent)));
   }, [recent]);
 
+  useEffect(() => {
+    localStorage.setItem(LOG_KEY, JSON.stringify(log.slice(-30)));
+  }, [log]);
+
   const updateSettings = useCallback((updates) => {
     setSettings(prev => {
       const next = { ...prev, ...updates };
@@ -116,16 +128,43 @@ export function SettingsProvider({ children }) {
   }, []);
 
   const addRecent = useCallback((book, chapter) => {
+    const now = Date.now();
+    const date = new Date(now).toISOString().split('T')[0];
+    
     setRecent(prev => {
-      const newEntry = { book, chapter, ts: Date.now() };
+      const newEntry = { book, chapter, ts: now };
       const filtered = prev.filter(r => !(r.book === book && r.chapter === chapter));
       return normalizeRecent([newEntry, ...filtered]);
     });
+
+    setLog(prev => {
+      const existing = prev.find(l => l.date === date);
+      if (existing) {
+        return prev.map(l => l.date === date ? { ...l, count: l.count + 1 } : l);
+      }
+      return [...prev, { date, count: 1 }];
+    });
   }, []);
 
+  const weeklyStreak = useMemo(() => {
+    const days = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const ds = d.toISOString().split('T')[0];
+      const entry = log.find(l => l.date === ds);
+      days.push({
+        date: ds,
+        dayName: d.toLocaleDateString('es', { weekday: 'short' }).charAt(0).toUpperCase(),
+        count: entry ? entry.count : 0
+      });
+    }
+    return days;
+  }, [log]);
+
   const value = useMemo(
-    () => ({ settings, updateSettings, recent, addRecent }),
-    [settings, updateSettings, recent, addRecent]
+    () => ({ settings, updateSettings, recent, addRecent, log, weeklyStreak }),
+    [settings, updateSettings, recent, addRecent, log, weeklyStreak]
   );
   return createElement(SettingsContext.Provider, { value }, children);
 }

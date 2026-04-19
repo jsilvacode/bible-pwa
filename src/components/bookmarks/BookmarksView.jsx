@@ -10,15 +10,12 @@ export default function BookmarksView() {
   const { settings } = useSettings();
   const navigate = useNavigate();
   const [bookNames, setBookNames] = useState({});
-  const themeCardClass = settings.theme === 'light' ? 'card-light' : 'card-dark';
 
   useEffect(() => {
     fetchBooksManifest()
       .then((books) => {
         const map = {};
-        books.forEach((b) => {
-          map[b.id] = b.name;
-        });
+        books.forEach((b) => { map[b.id] = b.name; });
         setBookNames(map);
       })
       .catch(console.error);
@@ -26,22 +23,37 @@ export default function BookmarksView() {
 
   return (
     <div className={classes.container}>
-      <h2 className={classes.title}>Tus Marcadores</h2>
+      <header className={classes.header}>
+        <h2 className={classes.title}>Favoritos</h2>
+        <p className={classes.subtitle}>{bookmarks.length} versículos guardados</p>
+      </header>
       
       {bookmarks.length === 0 ? (
         <div className={classes.empty}>
-          <p>Aún no tienes marcadores guardados.</p>
+          <div className={classes.emptyIcon}>🔖</div>
+          <h3>Sin favoritos aún</h3>
+          <p>Toca un versículo mientras lees para guardarlo en esta sección.</p>
+          <button className={classes.goBible} onClick={() => navigate('/bible')}>Ir a la Biblia</button>
         </div>
       ) : (
         <div className={classes.list}>
           {bookmarks.map(b => (
-            <div key={b.id} className={`${classes.item} card ${themeCardClass}`}>
+            <div key={b.id} className={classes.item}>
               <div 
-                className={classes.reference}
+                className={classes.content}
                 onClick={() => navigate(`/read/${b.book}/${b.chapter}/${b.verse}`)}
               >
-                <div className={`${classes.refTag} badge`}>{b.version.toUpperCase()}</div> 
-                {bookNames[b.book] || `Libro ${b.book}`}, Cap {b.chapter}:{b.verse}
+                <div className={classes.itemHeader}>
+                  <span className={classes.ref}>
+                    {bookNames[b.book] || `Libro ${b.book}`} {b.chapter}:{b.verse}
+                  </span>
+                  <span className={classes.version}>{b.version.toUpperCase()}</span>
+                </div>
+                {b.text ? (
+                  <p className={classes.preview}>"{b.text}"</p>
+                ) : (
+                  <p className={classes.preview}>Toca para leer el versículo...</p>
+                )}
               </div>
               <button 
                 className={classes.deleteBtn} 
@@ -49,8 +61,9 @@ export default function BookmarksView() {
                   e.stopPropagation();
                   removeBookmark(b.id);
                 }}
+                aria-label="Eliminar"
               >
-                🗑️
+                ✕
               </button>
             </div>
           ))}

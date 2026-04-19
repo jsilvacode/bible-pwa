@@ -1,0 +1,70 @@
+.container {
+  margin-top: 24px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.title {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+.chart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 120px;
+  gap: 12px;
+}
+
+.barWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar {
+  width: 100%;
+  background: var(--accent);
+  border-radius: 6px 6px 4px 4px;
+  min-height: 4px;
+  transition: height 0.6s var(--transition-smooth);
+  position: relative;
+  opacity: 0.8;
+  animation: barGrow 0.8s var(--transition-smooth) both;
+}
+
+.bar:hover {
+  opacity: 1;
+  transform: scaleX(1.1);
+}
+
+.count {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.dayLabel {
+  margin-top: 12px;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+@keyframes barGrow {
+  from { height: 0; opacity: 0; }
+}

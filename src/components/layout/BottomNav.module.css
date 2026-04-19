@@ -3,34 +3,67 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: calc(60px * var(--ui-scale));
-  background-color: var(--bg-surface);
+  height: calc(64px + env(safe-area-inset-bottom));
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
   border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-wrap: wrap;
-  row-gap: 2px;
   z-index: 100;
   padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
 }
 
 .bottomNav a {
-  color: color-mix(in srgb, var(--text-primary) 90%, var(--abyss) 10%);
-  font-size: clamp(0.92rem, calc(0.98rem * var(--ui-scale)), 1.14rem);
-  font-family: var(--font-ui);
-  font-weight: 600;
+  color: var(--text-secondary);
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   flex: 1;
-  text-align: center;
+  height: 100%;
+  gap: 4px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  transition: transform 0.2s var(--transition-smooth);
+}
+
+.label {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .bottomNav a.active {
   color: var(--accent);
-  font-weight: 600;
+}
+
+.bottomNav a.active .icon {
+  transform: translateY(-2px) scale(1.1);
+  stroke-width: 3;
+}
+
+.bottomNav a.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 0 0 3px 3px;
 }
 
 .installOverlay {
@@ -42,50 +75,58 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  backdrop-filter: blur(4px);
 }
 
 .installPopup {
   width: min(420px, 100%);
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 18px;
+  border-radius: var(--radius-2xl);
+  padding: 24px;
   box-shadow: var(--shadow-card-hover);
+  animation: fadeSlideUp 0.4s var(--transition-smooth);
 }
 
 .installPopup h4 {
-  margin: 0 0 6px;
-  font-family: var(--font-ui);
+  margin: 0 0 8px;
+  font-family: var(--font-display);
   color: var(--text-primary);
-  font-size: 1.05rem;
+  font-size: 1.2rem;
 }
 
 .installPopup p {
-  margin: 0 0 14px;
+  margin: 0 0 20px;
   font-family: var(--font-ui);
   color: var(--text-secondary);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .installPopupActions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .installPopupActions button {
   flex: 1;
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg);
   background: var(--bg-page);
   color: var(--text-primary);
   font-family: var(--font-ui);
-  font-weight: 600;
-  padding: 10px 12px;
+  font-weight: 700;
+  padding: 12px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .installPopupActions button:first-child {
-  background: linear-gradient(130deg, var(--accent), var(--terra));
-  color: var(--text-inverse);
+  background: var(--accent);
+  color: white;
   border: none;
+}
+
+.installPopupActions button:first-child:hover {
+  filter: brightness(1.1);
 }

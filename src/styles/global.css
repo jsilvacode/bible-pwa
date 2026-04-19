@@ -8,7 +8,7 @@
 }
 
 [data-font-size="sm"] {
-  --ui-scale: 1;
+  --ui-scale: 0.85;
 }
 
 [data-font-size="md"] {
@@ -16,11 +16,11 @@
 }
 
 [data-font-size="lg"] {
-  --ui-scale: 1;
+  --ui-scale: 1.15;
 }
 
 [data-font-size="xl"] {
-  --ui-scale: 1;
+  --ui-scale: 1.35;
 }
 
 html, body, #root {
@@ -51,7 +51,7 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.02;
   background-image:
     repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in srgb, var(--text-primary) 8%, transparent) 3px 4px),
     repeating-linear-gradient(90deg, transparent 0 5px, color-mix(in srgb, var(--text-primary) 6%, transparent) 5px 6px);
@@ -81,10 +81,58 @@ a {
   background: rgba(150, 42, 42, 0.3);
 }
 
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--border);
+}
+
+.skeleton {
+  background: color-mix(in srgb, var(--bg-surface) 90%, var(--text-primary));
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0,
+    color-mix(in srgb, var(--bg-surface) 80%, white) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .card {
   border-radius: var(--radius-lg);
   padding: 20px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s var(--transition-smooth), box-shadow 0.25s var(--transition-smooth), border-color 0.25s var(--transition-smooth);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-card);
 }
@@ -113,8 +161,6 @@ a {
   color: var(--terra);
   font-weight: 700;
 }
-
-
 
 .readingText {
   font-family: var(--font-reading);

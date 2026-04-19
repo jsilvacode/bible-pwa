@@ -58,26 +58,37 @@ export default function VerseMenu({ verse, payload, onClose }) {
 
   return (
     <div className={classes.overlay} onClick={onClose}>
-      <div className={classes.menu} onClick={e => e.stopPropagation()}>
-        <div className={classes.header}>
+      <div className={classes.sheet} onClick={e => e.stopPropagation()}>
+        <div className={classes.handle} />
+        
+        <header className={classes.header}>
           <h3>Versículo {verse}</h3>
-        </div>
+          <button className={classes.closeBtn} onClick={onClose}>✕</button>
+        </header>
+
         <div className={classes.actions}>
-          <button onClick={handleBookmark}>
-            🔖 {bookmarked ? 'Quitar Marcador' : 'Añadir Marcador'}
+          <button className={classes.mainAction} onClick={handleBookmark}>
+            <span className={classes.actionIcon}>{bookmarked ? '🔖' : '📑'}</span>
+            <span className={classes.actionLabel}>{bookmarked ? 'Quitar Marcador' : 'Añadir Marcador'}</span>
           </button>
           
-          <div className={classes.colorActions}>
-             <button aria-label="Limpiar color" className={classes.colorBtn} style={{ background: 'transparent', border: '1px solid var(--border)' }} onClick={() => handleHighlight(null)}>✕</button>
-             <button aria-label="Promesa o palabra de Dios" title="Promesa o palabra de Dios" className={classes.colorBtn} style={{ background: 'var(--highlight-red)' }} onClick={() => handleHighlight('red')}>🔴</button>
-             <button aria-label="Sabiduria" title="Sabiduria" className={classes.colorBtn} style={{ background: 'var(--highlight-gold)' }} onClick={() => handleHighlight('gold')}>🟡</button>
-             <button aria-label="Ensenanza" title="Ensenanza" className={classes.colorBtn} style={{ background: 'var(--highlight-blue)' }} onClick={() => handleHighlight('blue')}>🔵</button>
-             <button aria-label="Aplicacion personal" title="Aplicacion personal" className={classes.colorBtn} style={{ background: 'var(--highlight-green)' }} onClick={() => handleHighlight('green')}>🟢</button>
+          <button className={classes.mainAction} onClick={handleShare}>
+            <span className={classes.actionIcon}>📤</span>
+            <span className={classes.actionLabel}>Compartir versículo</span>
+          </button>
+
+          <div className={classes.divider} />
+
+          <div className={classes.colorSection}>
+            <span className={classes.sectionLabel}>Resaltar con color</span>
+            <div className={classes.colorGrid}>
+               <button aria-label="Limpiar color" className={classes.colorBtn} style={{ background: 'transparent', border: '1px solid var(--border)' }} onClick={() => handleHighlight(null)}>✕</button>
+               <button aria-label="Promesa" title="Promesa" className={classes.colorBtn} style={{ background: 'var(--highlight-red)' }} onClick={() => handleHighlight('red')} />
+               <button aria-label="Sabiduria" title="Sabiduria" className={classes.colorBtn} style={{ background: 'var(--highlight-gold)' }} onClick={() => handleHighlight('gold')} />
+               <button aria-label="Ensenanza" title="Ensenanza" className={classes.colorBtn} style={{ background: 'var(--highlight-blue)' }} onClick={() => handleHighlight('blue')} />
+               <button aria-label="Aplicacion" title="Aplicacion" className={classes.colorBtn} style={{ background: 'var(--highlight-green)' }} onClick={() => handleHighlight('green')} />
+            </div>
           </div>
-          
-          <button onClick={handleShare}>
-            📤 Compartir
-          </button>
         </div>
       </div>
     </div>

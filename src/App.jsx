@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AppShell from './components/layout/AppShell';
 
 import HomeScreen from './components/home/HomeScreen';
+import BibleBrowser from './components/bible/BibleBrowser';
 import SearchView from './components/search/SearchView';
 import BookmarksView from './components/bookmarks/BookmarksView';
 import SettingsView from './components/settings/SettingsView';
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AppShell />}>
             <Route index element={<HomeScreen />} />
+            <Route path="bible" element={<BibleBrowser />} />
             <Route path="read/:book/:chapter/:verse?" element={<ChapterView />} />
             <Route path="search" element={<SearchView />} />
             <Route path="bookmarks" element={<BookmarksView />} />

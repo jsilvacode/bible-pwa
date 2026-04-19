@@ -1,62 +1,146 @@
-.card {
+.container {
+  border-radius: var(--radius-2xl);
   overflow: hidden;
-  margin-bottom: 25px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s var(--transition-smooth), box-shadow 0.3s var(--transition-smooth);
+  margin-bottom: 24px;
+  animation: fadeSlideUp 0.6s var(--transition-smooth);
 }
 
-.header {
-  background:
-    linear-gradient(115deg, var(--accent), var(--terra));
-  padding: 12px 20px;
+.hero {
+  padding: 32px 24px;
+  margin-bottom: 32px;
+  background: rgba(0, 0, 0, 0.15); /* Very subtle transparent tint */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Barely visible glint */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-.header h3 {
-  margin: 0;
-  color: var(--text-inverse);
+.hero .tag {
+  color: rgba(255, 255, 255, 0.85) !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.hero .reference, 
+.hero .verseText,
+.hero .egwAuthor {
+  color: white !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero .egwContent {
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.hero .actions {
+  justify-content: center;
+}
+
+.hero .readBtn {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px color-mix(in srgb, var(--abyss) 45%, transparent);
+}
+
+.tag {
   font-family: var(--font-ui);
-  font-size: 16px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.body {
-  padding: 20px;
-}
-
-.text {
-  font-size: clamp(1rem, calc(1.06rem * var(--ui-scale)), 1.25rem);
-  color: var(--text-primary);
-  line-height: var(--line-height-reading);
-  font-style: italic;
-  margin-bottom: 15px;
-}
-
-.ref {
-  text-align: right;
-  font-family: var(--font-ui);
-  font-weight: 600;
-  color: var(--accent);
-  font-size: 14px;
-}
-
-.egwSection {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px dashed var(--border);
-}
-
-.egwText {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: var(--line-height-reading);
-  font-style: italic;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  display: block;
   margin-bottom: 8px;
 }
 
-.egwRef {
-  text-align: right;
+.reference {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin: 0 0 20px;
+  line-height: 1.1;
+}
+
+.verseText {
+  font-family: var(--font-reading);
+  font-size: 1.35rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  font-style: italic;
+  opacity: 0.95;
+}
+
+.egwQuote {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: 24px;
+  padding-top: 20px;
+}
+
+.egwContent {
   font-family: var(--font-ui);
-  color: var(--text-secondary);
-  font-size: 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.egwAuthor {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.actionBtn, .readBtn {
+  border-radius: 99px;
+  padding: 10px 20px;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.actionBtn {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.actionBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.readBtn {
+  background: var(--hero-text);
+  color: var(--abyss);
+}
+
+.readBtn:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+.compact {
+  /* Style for reader version if needed */
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  padding: 16px;
+  border: 1px solid var(--border);
 }

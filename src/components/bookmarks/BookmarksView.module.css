@@ -1,75 +1,132 @@
 .container {
-  padding: 20px;
+  padding: 32px 20px 60px;
   max-width: var(--max-width-reader);
   margin: 0 auto;
 }
 
+.header {
+  margin-bottom: 32px;
+}
+
 .title {
-  font-family: var(--font-ui);
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 4px;
   color: var(--text-primary);
-  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-family: var(--font-ui);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
 }
 
 .empty {
-  color: var(--text-secondary);
-  font-family: var(--font-ui);
   text-align: center;
-  padding: 40px 20px;
-  background-color: var(--bg-surface);
-  border-radius: var(--radius-md);
+  padding: 80px 20px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-2xl);
   border: 1px dashed var(--border);
-  box-shadow: var(--shadow-soft);
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.empty p {
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+.goBible {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 99px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
 }
 
 .item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  gap: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all 0.2s ease;
 }
 
 .item:hover {
   border-color: var(--accent);
-  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
 }
 
-.reference {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-ui);
-  font-size: 15px;
-  color: var(--text-primary);
-  font-weight: 500;
-  cursor: pointer;
+.content {
   flex: 1;
+  padding: 20px;
+  cursor: pointer;
 }
 
-.refTag {
-  background-color: var(--bg-verse-hover);
-  padding: 4px 8px;
-  border-radius: var(--radius-xs);
-  font-size: 12px;
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ref {
+  font-family: var(--font-ui);
+  font-weight: 800;
   color: var(--accent);
-  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.version {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.preview {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  font-style: italic;
 }
 
 .deleteBtn {
   background: none;
   border: none;
-  font-size: 18px;
+  padding: 20px;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
   cursor: pointer;
-  padding: 5px;
-  transition: transform 0.2s;
+  transition: color 0.2s ease;
 }
 
 .deleteBtn:hover {
-  transform: scale(1.1);
+  color: var(--crimson);
 }

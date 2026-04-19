@@ -1,89 +1,67 @@
 .topBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: calc(56px * var(--ui-scale));
-  background-color: color-mix(in srgb, var(--bg-surface) 88%, transparent);
-  border-bottom: 1px solid var(--border);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 calc(15px * var(--ui-scale));
-  z-index: 100;
-  padding-top: env(safe-area-inset-top);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow-soft);
+  align-items: center;
+  padding: 8px 16px;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-bottom: 1px solid var(--border);
 }
 
-.title {
-  font-family: var(--font-ui);
-  font-size: clamp(1rem, calc(1rem * var(--ui-scale)), 1.35rem);
-  font-weight: 600;
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoIcon {
+  font-size: 1.4rem;
+}
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
   color: var(--text-primary);
-  margin: 0;
-  flex: 1;
-  text-align: center;
+  font-weight: 700;
 }
 
 .menuIcon {
-  background: none;
-  border: none;
-  color: var(--text-primary);
-  cursor: pointer;
-  padding: calc(5px * var(--ui-scale));
-  display: inline-flex;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.menuIcon:hover {
+  border-color: var(--accent);
+  background: var(--bg-verse-hover);
 }
 
 .menuIconGlyph {
-  font-size: clamp(1.2rem, calc(1.35rem * var(--ui-scale)), 1.7rem);
-  line-height: 1;
-}
-
-.menuLabel {
-  display: none;
-  font-family: var(--font-ui);
-  font-size: clamp(0.9rem, calc(0.95rem * var(--ui-scale)), 1.05rem);
-  font-weight: 600;
-  white-space: nowrap;
+  font-size: 1.2rem;
+  color: var(--accent);
 }
 
 .menuLabelMobile {
-  display: inline;
   font-family: var(--font-ui);
-  font-size: clamp(0.85rem, calc(0.9rem * var(--ui-scale)), 0.98rem);
   font-weight: 700;
-  margin-left: calc(5px * var(--ui-scale));
-  white-space: nowrap;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.menuLabelDesktop {
-  display: none;
-  font-family: var(--font-ui);
-  font-size: clamp(0.9rem, calc(0.95rem * var(--ui-scale)), 1.05rem);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-@media (min-width: 900px), ((min-width: 768px) and (orientation: landscape)) {
-  .menuIcon {
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--bg-surface) 70%, transparent);
-    padding: calc(8px * var(--ui-scale)) calc(12px * var(--ui-scale));
-  }
-
-  .menuIconGlyph {
-    display: none;
-  }
-
-  .menuLabelMobile {
-    display: none;
-  }
-
-  .menuLabelDesktop {
-    display: inline;
-  }
+.actions {
+  display: flex;
+  align-items: center;
 }

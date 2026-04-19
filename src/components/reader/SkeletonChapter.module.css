@@ -1,0 +1,29 @@
+.container {
+  padding: 40px 20px;
+  max-width: var(--max-width-reader);
+  margin: 0 auto;
+}
+
+.title {
+  height: 48px;
+  width: 60%;
+  margin: 0 auto 40px;
+  border-radius: var(--radius-md);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lineGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.line {
+  height: 1.2rem;
+  border-radius: 4px;
+}

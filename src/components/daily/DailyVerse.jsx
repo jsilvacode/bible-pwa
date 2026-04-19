@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React from 'react';
 import classes from './DailyVerse.module.css';
 import { useSettings } from '../../hooks/useSettings';
@@ -40,33 +41,62 @@ const DAILY_VERSES = [
   }
 ];
 
-export default function DailyVerse() {
+export default function DailyVerse({ variant = 'hero' }) {
   const { settings } = useSettings();
   const now = new Date();
   const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
   const idx = seed % DAILY_VERSES.length;
   const verse = DAILY_VERSES[idx];
-  const themeCardClass = settings.theme === 'light' ? 'card-light' : 'card-dark';
+  const navigate = useNavigate();
+
+  const handleShare = async (e) => {
+    e.stopPropagation();
+    const reference = verse.ref;
+    const text = `"${verse.text}" — ${reference}`;
+    const url = `${window.location.origin}/read/${verse.book}/${verse.chapter}/${verse.verse}`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: 'Versículo del Día', text, url });
+      } else {
+        await navigator.clipboard.writeText(`${text}\n${url}`);
+        alert('Copiado al portapapeles');
+      }
+    } catch (err) {
+      console.error('Error sharing', err);
+    }
+  };
+
+  const isHero = variant === 'hero';
 
   return (
-    <div className={`${classes.card} card ${themeCardClass}`}>
-      <div className={classes.header}>
-        <h3>🌞 Versículo del Día</h3>
-      </div>
-      <div className={classes.body}>
-        <p className={classes.text}>"{verse.text}"</p>
-        <div className={classes.ref}>— {verse.ref}</div>
+    <div 
+      className={`${classes.container} ${isHero ? classes.hero : classes.compact}`}
+      onClick={() => navigate(`/read/${verse.book}/${verse.chapter}`)}
+    >
+      <div className={classes.content}>
+        <div className={classes.header}>
+          <span className={classes.tag}>VERSÍCULO DEL DÍA</span>
+          <h2 className={classes.reference}>{verse.ref}</h2>
+        </div>
         
-        {verse.egwQuote && (
-          <div className={classes.egwSection}>
-            <p className={classes.egwText}>"{verse.egwQuote}"</p>
-            <div className={classes.egwRef}>
-              — {verse.egwSource?.book && verse.egwSource?.page
-                ? `EGW, ${verse.egwSource.book}, p. ${verse.egwSource.page}`
-                : 'EGW, Comentario Devocional'}
-            </div>
+        <p className={classes.verseText}>"{verse.text}"</p>
+        
+        {isHero && verse.egwQuote && (
+          <div className={classes.egwQuote}>
+            <p className={classes.egwContent}>{verse.egwQuote}</p>
+            <span className={classes.egwAuthor}>— Elena G. de White</span>
           </div>
         )}
+
+        <div className={classes.actions}>
+          <button className={classes.actionBtn} onClick={handleShare}>
+            Compartir
+          </button>
+          <button className={classes.readBtn}>
+            Leer capítulo completo
+          </button>
+        </div>
       </div>
     </div>
   );
