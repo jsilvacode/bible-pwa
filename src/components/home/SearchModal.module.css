@@ -31,13 +31,22 @@
 }
 
 .header {
-  padding: 16px;
+  padding: 24px 20px;
   display: flex;
-  gap: 12px;
-  align-items: center;
+  flex-direction: column;
+  gap: 20px;
   border-bottom: 1px solid var(--border);
   background: var(--bg-surface);
   border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+
+.title {
+  font-family: var(--font-ui);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  text-align: center;
 }
 
 .form {
@@ -74,15 +83,44 @@
   cursor: pointer;
 }
 
-.close {
-  background: none;
-  border: none;
-  color: var(--accent);
+.actionRow {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.searchBtn, .resetBtn {
+  flex: 1;
+  max-width: 140px;
+  padding: 10px 20px;
+  border-radius: var(--radius-lg);
   font-family: var(--font-ui);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  padding: 8px;
+  transition: all 0.2s ease;
+}
+
+.searchBtn {
+  background: var(--accent);
+  color: white;
+  border: none;
+}
+
+.searchBtn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.resetBtn {
+  background: var(--bg-page);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.resetBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .content {

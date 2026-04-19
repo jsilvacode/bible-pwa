@@ -151,18 +151,34 @@ export default function SearchModal({ isOpen, onClose }) {
     <div className={classes.overlay} onClick={onClose}>
       <div className={classes.modal} onClick={e => e.stopPropagation()}>
         <header className={classes.header}>
+          <h2 className={classes.title}>Buscar por palabra o cita</h2>
+          
           <form onSubmit={handleSearch} className={classes.form}>
             <input
               id="search-modal-input"
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Buscar por palabra o cita..."
+              placeholder='"mar", "juan 3", "job 1:2"'
               className={classes.input}
             />
             {query && <button type="button" className={classes.clear} onClick={() => setQuery('')}>✕</button>}
           </form>
-          <button className={classes.close} onClick={onClose}>Cancelar</button>
+
+          <div className={classes.actionRow}>
+            <button type="submit" onClick={handleSearch} className={classes.searchBtn}>Buscar</button>
+            <button 
+              type="button" 
+              className={classes.resetBtn} 
+              onClick={() => {
+                setQuery('');
+                setSearchFeedback('');
+                search(''); // Optional: clear results in hook if possible
+              }}
+            >
+              Limpiar
+            </button>
+          </div>
         </header>
 
         <div className={classes.content}>
