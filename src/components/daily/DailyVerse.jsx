@@ -68,17 +68,16 @@ export default function DailyVerse({ variant = 'hero' }) {
   const isHero = variant === 'hero';
 
   return (
-    <div 
-      className={`${classes.container} ${isHero ? classes.hero : classes.compact}`}
-      onClick={() => navigate(`/read/${verse.book}/${verse.chapter}`)}
-    >
+    <div className={`${classes.container} ${isHero ? classes.hero : classes.compact}`}>
       <div className={classes.content}>
-        <div className={classes.header}>
-          <span className={classes.tag}>VERSÍCULO DEL DÍA</span>
-          <h2 className={classes.reference}>{verse.ref}</h2>
+        <div className={classes.clickableArea} onClick={() => navigate(`/read/${verse.book}/${verse.chapter}/${verse.verse}`)}>
+          <div className={classes.header}>
+            <span className={classes.tag}>VERSÍCULO DEL DÍA</span>
+            <h2 className={classes.reference}>{verse.ref}</h2>
+          </div>
+          
+          <p className={classes.verseText}>"{verse.text}"</p>
         </div>
-        
-        <p className={classes.verseText}>"{verse.text}"</p>
         
         {isHero && verse.egwQuote && (
           <div className={classes.egwQuote}>
@@ -91,7 +90,7 @@ export default function DailyVerse({ variant = 'hero' }) {
           <button className={classes.actionBtn} onClick={handleShare}>
             Compartir
           </button>
-          <button className={classes.readBtn}>
+          <button className={classes.readBtn} onClick={() => navigate(`/read/${verse.book}/${verse.chapter}`)}>
             Leer capítulo completo
           </button>
         </div>

@@ -2,7 +2,6 @@
   border-radius: var(--radius-2xl);
   overflow: hidden;
   position: relative;
-  cursor: pointer;
   transition: transform 0.3s var(--transition-smooth), box-shadow 0.3s var(--transition-smooth);
   margin-bottom: 24px;
   animation: fadeSlideUp 0.6s var(--transition-smooth);
@@ -135,6 +134,15 @@
 .readBtn:hover {
   opacity: 0.9;
   transform: scale(1.02);
+}
+
+.clickableArea {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.clickableArea:hover {
+  opacity: 0.85;
 }
 
 .compact {
