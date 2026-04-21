@@ -3,6 +3,18 @@
   flex-direction: column;
   min-height: 100vh;
   min-height: -webkit-fill-available;
+  max-width: var(--app-max-width);
+  margin: 0 auto;
+  position: relative;
+  background: var(--bg-page);
+}
+
+@media (min-width: 769px) {
+  .appShell {
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .mainContent {

@@ -7,7 +7,10 @@
 .progressBar {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--app-max-width);
   height: 3px;
   background: var(--accent);
   z-index: 201;
