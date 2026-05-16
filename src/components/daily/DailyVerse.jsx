@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useSettings } from '../../hooks/useSettings';
 import { loadBibleBook } from '../../services/bibleLoader';
 import { loadCbaVerse } from '../../services/cbaLoader';
-import { getBookName } from '../../constants/bibleMetadata';
+import { shareVerse } from '../../utils/shareVerse';
 import classes from './DailyVerse.module.css';
 
 const DAILY_VERSES = [
@@ -20,19 +20,14 @@ export default function DailyVerse({ variant = 'hero' }) {
   const { settings } = useSettings();
   const [verseText, setVerseText] = useState('');
   const [cbaQuote, setCbaQuote] = useState('');
+  const [reference, setReference] = useState('');
   const navigate = useNavigate();
 
   const dailyRef = useMemo(() => {
     const now = new Date();
     const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
     const idx = seed % DAILY_VERSES.length;
-    const entry = DAILY_VERSES[idx];
-    const bookName = getBookName(entry.book);
-    return {
-      ...entry,
-      bookName,
-      ref: `${bookName} ${entry.chapter}:${entry.verse}`,
-    };
+    return DAILY_VERSES[idx];
   }, []);
 
   useEffect(() => {
@@ -49,6 +44,9 @@ export default function DailyVerse({ variant = 'hero' }) {
 
         const chapter = bookData?.chapters?.find((c) => c.chapter === dailyRef.chapter);
         const verse = chapter?.verses?.find((v) => v.verse === dailyRef.verse);
+        if (bookData?.name) {
+          setReference(`${bookData.name} ${dailyRef.chapter}:${dailyRef.verse}`);
+        }
         if (verse?.text) {
           setVerseText(verse.text);
         }
@@ -68,15 +66,13 @@ export default function DailyVerse({ variant = 'hero' }) {
 
   const handleShare = async (e) => {
     e.stopPropagation();
-    const reference = dailyRef.ref;
-    const text = verseText ? `"${verseText}" — ${reference}` : reference;
+    const refLabel = reference || `Libro ${dailyRef.book} ${dailyRef.chapter}:${dailyRef.verse}`;
+    const text = verseText ? `"${verseText}" — ${refLabel}` : refLabel;
     const url = `${window.location.origin}/read/${dailyRef.book}/${dailyRef.chapter}/${dailyRef.verse}`;
 
     try {
-      if (navigator.share) {
-        await navigator.share({ title: 'Versículo del Día', text, url });
-      } else {
-        await navigator.clipboard.writeText(`${text}\n${url}`);
+      const result = await shareVerse({ title: 'Versículo del Día', text, url });
+      if (result === 'copied') {
         alert('Copiado al portapapeles');
       }
     } catch (err) {
@@ -100,7 +96,9 @@ export default function DailyVerse({ variant = 'hero' }) {
         >
           <div className={classes.header}>
             <span className={classes.tag}>VERSÍCULO DEL DÍA</span>
-            <h2 className={classes.reference}>{dailyRef.ref}</h2>
+            <h2 className={classes.reference}>
+              {reference || `Libro ${dailyRef.book} ${dailyRef.chapter}:${dailyRef.verse}`}
+            </h2>
           </div>
 
           <p className={classes.verseText}>

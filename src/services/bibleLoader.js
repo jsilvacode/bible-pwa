@@ -96,3 +96,12 @@ export async function warmupBibleData(target = {}) {
 
   await Promise.all(tasks);
 }
+
+export function getBookName(bookId) {
+  const book = booksCache?.find((b) => b.id === Number(bookId));
+  return book?.name ?? `Libro ${bookId}`;
+}
+
+export function getTotalBooks() {
+  return booksCache?.length ?? 66;
+}

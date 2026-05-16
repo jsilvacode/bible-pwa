@@ -6,7 +6,7 @@ const SETTINGS_KEY = 'bible_settings';
 const RECENT_KEY = 'bible_recent';
 const LOG_KEY = 'bible_reading_log';
 
-/** @typedef {"light" | "dark" | "graphite"} Theme */
+/** @typedef {"light" | "dark"} Theme */
 
 const themeConfig = {
   light: {
@@ -22,7 +22,6 @@ const themeConfig = {
 const defaultSettings = {
   version: DEFAULT_VERSION,
   theme: 'light',
-  tone: 'light',
   fontSize: 'md',
   lastRead: { book: 1, chapter: 1 }
 };
@@ -44,6 +43,8 @@ function getInitialSettings() {
 }
 
 function normalizeTheme(theme) {
+  if (theme === 'sepia' || theme === 'graphite') return 'light';
+  if (theme === 'grafito') return 'dark';
   return themeConfig[theme] ? theme : 'light';
 }
 

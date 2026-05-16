@@ -2,25 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import classes from './BibleBrowser.module.css';
 import { fetchBooksManifest } from '../../services/bibleLoader';
-
-// Category ranges by book id (matching ids 1-66 in books-meta)
-const CATEGORY_RANGES = {
-  pentateuch: { min: 1, max: 5 },
-  historical: { min: 6, max: 17 },
-  wisdom: { min: 18, max: 22 },
-  prophets: { min: 23, max: 39 },
-  gospels: { min: 40, max: 44 },
-  epistles: { min: 45, max: 66 },
-};
-
-const CATEGORY_LABELS = {
-  pentateuch: 'Pentateuco',
-  historical: 'Libros Históricos',
-  wisdom: 'Salmos y Sabiduría',
-  prophets: 'Profetas',
-  gospels: 'Evangelios y Hechos',
-  epistles: 'Epístolas y Apocalipsis',
-};
+import { CATEGORY_LABELS, CATEGORY_RANGES } from '../../constants/bibleCategories';
 
 export default function BibleBrowser() {
   const [books, setBooks] = useState([]);

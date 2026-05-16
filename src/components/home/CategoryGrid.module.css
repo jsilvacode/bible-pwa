@@ -34,8 +34,7 @@
   z-index: 0;
 }
 
-[data-theme="dark"] .card::before,
-[data-theme="graphite"] .card::before {
+[data-theme="dark"] .card::before {
   opacity: 0.25;
   mix-blend-mode: overlay;
 }
@@ -86,13 +85,11 @@
   margin-top: 2px;
 }
 
-[data-theme="dark"] .name,
-[data-theme="graphite"] .name {
+[data-theme="dark"] .name {
   color: white;
 }
 
-[data-theme="dark"] .count,
-[data-theme="graphite"] .count {
+[data-theme="dark"] .count {
   color: rgba(255, 255, 255, 0.6);
 }
 

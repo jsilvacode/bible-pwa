@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './VerseMenu.module.css';
 import { useBookmarks } from '../../hooks/useBookmarks';
+import { shareVerse } from '../../utils/shareVerse';
 
 export default function VerseMenu({ verse, payload, onClose }) {
   const { isBookmarked, toggleBookmark } = useBookmarks();
+  const [shareMessage, setShareMessage] = useState('');
   const bookmarked = isBookmarked(payload?.id);
 
   const handleBookmark = () => {
@@ -29,28 +31,14 @@ export default function VerseMenu({ verse, payload, onClose }) {
     const text = `${reference}\n\n${cleanVerseText}`;
 
     try {
-      if (navigator.share) {
-        await navigator.share({
-          title: reference,
-          text,
-          url: shareUrl,
-        });
-      } else if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(`${text}\n\n${shareUrl}`);
-        alert('Versículo copiado. Puedes pegarlo en WhatsApp, correo o donde quieras.');
-      } else {
-        window.open(
-          `https://wa.me/?text=${encodeURIComponent(`${text}\n\n${shareUrl}`)}`,
-          '_blank',
-          'noopener,noreferrer'
-        );
+      const result = await shareVerse({ title: reference, text, url: shareUrl });
+      if (result === 'copied') {
+        setShareMessage('Versículo copiado al portapapeles.');
       }
     } catch (e) {
       console.error('Error al compartir', e);
-      alert('No fue posible compartir este versículo.');
+      setShareMessage('No fue posible compartir este versículo.');
     }
-
-    onClose();
   };
 
   return (
@@ -60,8 +48,10 @@ export default function VerseMenu({ verse, payload, onClose }) {
         
         <header className={classes.header}>
           <h3>Versículo {verse}</h3>
-          <button className={classes.closeBtn} onClick={onClose}>✕</button>
+          <button type="button" className={classes.closeBtn} onClick={onClose}>✕</button>
         </header>
+
+        {shareMessage && <p className={classes.shareStatus}>{shareMessage}</p>}
 
         <div className={classes.actions}>
           <button className={classes.mainAction} onClick={() => { payload?.onOpenCba?.(); onClose(); }}>

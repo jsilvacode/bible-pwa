@@ -11,7 +11,7 @@ export default defineConfig({
       manifest: {
         name: 'La Biblia',
         short_name: 'La Biblia',
-        description: 'Lectural biblica para el estudio devocional',
+        description: 'Lectura bíblica para el estudio devocional',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',

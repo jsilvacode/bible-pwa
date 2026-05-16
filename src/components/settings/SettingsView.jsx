@@ -1,38 +1,23 @@
 import React, { useState } from 'react';
 import { useSettings } from '../../hooks/useSettings';
+import { useInstallPrompt } from '../../hooks/useInstallPrompt';
 import classes from './SettingsView.module.css';
 
 export default function SettingsView() {
   const { settings, updateSettings } = useSettings();
+  const { isInstalled, promptInstall } = useInstallPrompt();
   const [installMessage, setInstallMessage] = useState('');
   const mercadoPagoUrl = 'https://link.mercadopago.cl/jsilvacoder';
   const paypalUrl = 'https://paypal.me/jsilvacode';
-  const isInstalled =
-    window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-    
+
   const themeTabs = [
-    { id: 'light', label: 'Modo Claro', theme: 'light', color: '#FAF9F6', textColor: '#2B1B1B' },
-    { id: 'dark', label: 'Modo Oscuro', theme: 'dark', color: '#2B1B1B', textColor: '#F5EDED' },
+    { id: 'light', label: 'Modo Claro', theme: 'light', color: '#FAF9F6' },
+    { id: 'dark', label: 'Modo Oscuro', theme: 'dark', color: '#2B1B1B' },
   ];
 
   const handleInstall = async () => {
-    if (isInstalled) {
-      setInstallMessage('La aplicación ya está instalada.');
-      return;
-    }
-    const deferred = window.__bibleInstallPrompt;
-    if (!deferred) {
-      setInstallMessage('Usa el menú del navegador para instalar.');
-      return;
-    }
-    try {
-      deferred.prompt();
-      await deferred.userChoice;
-      window.__bibleInstallPrompt = null;
-      setInstallMessage('Solicitud enviada.');
-    } catch {
-      setInstallMessage('Error al iniciar instalación.');
-    }
+    const result = await promptInstall();
+    setInstallMessage(result.message);
   };
 
   return (
@@ -41,18 +26,19 @@ export default function SettingsView() {
         <h2 className={classes.title}>Ajustes</h2>
         <p className={classes.subtitle}>Personaliza tu experiencia de lectura</p>
       </header>
-      
+
       <section className={classes.section}>
         <h3 className={classes.sectionLabel}>Apariencia</h3>
         <div className={classes.card}>
           <div className={classes.group}>
             <label>Tema visual</label>
             <div className={classes.themeGrid}>
-              {themeTabs.map(tab => (
-                <button 
+              {themeTabs.map((tab) => (
+                <button
                   key={tab.id}
+                  type="button"
                   className={`${classes.themeOption} ${settings.theme === tab.theme ? classes.active : ''}`}
-                  onClick={() => updateSettings({ theme: tab.theme, tone: tab.id })}
+                  onClick={() => updateSettings({ theme: tab.theme })}
                 >
                   <div className={classes.themePreview} style={{ background: tab.color }} />
                   <span>{tab.label}</span>
@@ -64,9 +50,10 @@ export default function SettingsView() {
           <div className={classes.group}>
             <label>Tamaño de lectura</label>
             <div className={classes.fontGrid}>
-              {['sm', 'md', 'lg', 'xl'].map(size => (
+              {['sm', 'md', 'lg', 'xl'].map((size) => (
                 <button
                   key={size}
+                  type="button"
                   className={`${classes.fontOption} ${settings.fontSize === size ? classes.active : ''}`}
                   onClick={() => updateSettings({ fontSize: size })}
                 >
@@ -99,14 +86,21 @@ export default function SettingsView() {
       <section className={classes.section}>
         <h3 className={classes.sectionLabel}>Apoya el proyecto</h3>
         <div className={classes.donationCard}>
-          <p>Este proyecto es gratuito y sin anuncios. Tu donación ayuda a mantener los servidores y el desarrollo.</p>
+          <p>
+            Este proyecto es gratuito y sin anuncios. Tu donación ayuda a mantener los
+            servidores y el desarrollo.
+          </p>
           <div className={classes.donationActions}>
-            <a href={mercadoPagoUrl} target="_blank" rel="noopener noreferrer" className={classes.mpBtn}>Mercado Pago</a>
-            <a href={paypalUrl} target="_blank" rel="noopener noreferrer" className={classes.ppBtn}>PayPal</a>
+            <a href={mercadoPagoUrl} target="_blank" rel="noopener noreferrer" className={classes.mpBtn}>
+              Mercado Pago
+            </a>
+            <a href={paypalUrl} target="_blank" rel="noopener noreferrer" className={classes.ppBtn}>
+              PayPal
+            </a>
           </div>
         </div>
       </section>
-      
+
       <footer className={classes.footer}>
         <p>La Biblia v2.0</p>
         <p>Desarrollado con ❤️ por Julio Silva</p>

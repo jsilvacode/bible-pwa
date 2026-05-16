@@ -38,12 +38,3 @@ export async function loadCbaVerse(bookId, chapter, verse, options = {}) {
   const chapterData = await loadCbaChapter(bookId, chapter, options);
   return chapterData[String(verse)] ?? null;
 }
-
-/**
- * @param {{ bookId: number, chapter: number }} target
- */
-export function prefetchCbaChapter(target) {
-  return loadCbaChapter(target.bookId, target.chapter).catch(() => {
-    /* best-effort */
-  });
-}

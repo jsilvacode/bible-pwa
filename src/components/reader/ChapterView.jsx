@@ -9,13 +9,13 @@ import CbaModal from './CbaModal';
 import SkeletonChapter from './SkeletonChapter';
 import ReaderFAB from './ReaderFAB';
 import classes from './ChapterView.module.css';
-import { getBookName, TOTAL_BOOKS } from '../../constants/bibleMetadata';
+import { getBookName, getTotalBooks, loadBibleBook } from '../../services/bibleLoader';
 
 export default function ChapterView() {
   const { book: bookId, chapter: chapterNum, verse: targetVerse } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const { settings, addRecent } = useSettings();
+  const { settings, addRecent, updateSettings } = useSettings();
 
   const { data, loading, error } = useBible(settings.version, bookId);
   const { highlights, setHighlight } = useHighlights(settings.version, bookId, chapterNum);
@@ -34,6 +34,7 @@ export default function ChapterView() {
   useEffect(() => {
     if (!loading && bibleBook && bibleChapter) {
       addRecent(bookId_, chapterNum_);
+      updateSettings({ lastRead: { book: bookId_, chapter: chapterNum_ } });
       
       const params = new URLSearchParams(location.search);
       if (params.get('showCba') === 'true' && targetVerse) {
@@ -51,7 +52,7 @@ export default function ChapterView() {
         window.scrollTo(0, 0);
       }
     }
-  }, [bookId_, chapterNum_, loading, bibleBook, bibleChapter, targetVerse, addRecent, location.search]);
+  }, [bookId_, chapterNum_, loading, bibleBook, bibleChapter, targetVerse, addRecent, updateSettings, location.search]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,19 +66,28 @@ export default function ChapterView() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handlePrevChapter = () => {
+  const handlePrevChapter = async () => {
     if (chapterNum_ > 1) {
       navigate(`/read/${bookId}/${chapterNum_ - 1}`);
-    } else if (bookId_ > 1) {
+      return;
+    }
+    if (bookId_ <= 1) return;
+
+    try {
+      const prevBook = await loadBibleBook(settings.version, bookId_ - 1);
+      const lastChapter = prevBook?.chapters?.length || 1;
+      navigate(`/read/${bookId_ - 1}/${lastChapter}`);
+    } catch {
       navigate(`/read/${bookId_ - 1}/1`);
     }
   };
 
   const handleNextChapter = () => {
     const totalChapters = bibleBook?.chapters?.length || 0;
+    const totalBooks = getTotalBooks();
     if (chapterNum_ < totalChapters) {
       navigate(`/read/${bookId}/${chapterNum_ + 1}`);
-    } else if (bookId_ < TOTAL_BOOKS) {
+    } else if (bookId_ < totalBooks) {
       navigate(`/read/${bookId_ + 1}/1`);
     }
   };
@@ -85,7 +95,7 @@ export default function ChapterView() {
   const handleOpenMenu = (verseNum) => setMenuVerse(verseNum);
   const handleCloseMenu = () => setMenuVerse(null);
 
-  const bookName = getBookName(bookId_);
+  const bookName = bibleBook?.name || getBookName(bookId_);
 
   if (error) return <div className={classes.error}>Error cargando el capítulo.</div>;
 
@@ -139,7 +149,7 @@ export default function ChapterView() {
               </button>
               <button
                 onClick={handleNextChapter}
-                disabled={bookId_ === 66 && chapterNum_ === (bibleBook?.chapters?.length || 0)}
+                disabled={bookId_ === getTotalBooks() && chapterNum_ === (bibleBook?.chapters?.length || 0)}
                 className={classes.navBtn}
               >
                 Siguiente

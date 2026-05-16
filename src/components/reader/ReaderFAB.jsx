@@ -34,14 +34,14 @@ export default function ReaderFAB() {
               <button 
                 className={`${classes.themeBtn} ${settings.theme === 'light' ? classes.active : ''}`}
                 style={{ background: '#FAF9F6' }}
-                onClick={() => updateSettings({ theme: 'light', tone: 'light' })}
+                onClick={() => updateSettings({ theme: 'light' })}
                 title="Modo Claro"
                 aria-label="Claro"
               />
               <button 
                 className={`${classes.themeBtn} ${settings.theme === 'dark' ? classes.active : ''}`}
                 style={{ background: '#2B1B1B' }}
-                onClick={() => updateSettings({ theme: 'dark', tone: 'dark' })}
+                onClick={() => updateSettings({ theme: 'dark' })}
                 title="Modo Oscuro"
                 aria-label="Oscuro"
               />
