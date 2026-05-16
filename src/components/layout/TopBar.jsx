@@ -10,7 +10,7 @@ export default function TopBar() {
     <header className={`${classes.topBar} glass`}>
       <div className={classes.logo} onClick={() => navigate('/')}>
         <span className={classes.logoIcon}>📖</span>
-        <span className={classes.logoText}>Santa Biblia</span>
+        <span className={classes.logoText}>La Biblia</span>
       </div>
       <div className={classes.actions}>
         <VersionSelector />

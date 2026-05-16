@@ -9,8 +9,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icons.svg'],
       manifest: {
-        name: 'Santa Biblia RVR60',
-        short_name: 'Santa Biblia RVR60',
+        name: 'La Biblia',
+        short_name: 'La Biblia',
         description: 'Lectural biblica para el estudio devocional',
         theme_color: '#ffffff',
         background_color: '#ffffff',
