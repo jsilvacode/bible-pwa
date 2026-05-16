@@ -18,7 +18,7 @@ const themeConfig = {
 };
 
 const defaultSettings = {
-  version: 'rvr60',
+  version: 'rva2015',
   theme: 'light',
   tone: 'light',
   fontSize: 'md',
@@ -40,7 +40,6 @@ function getInitialSettings() {
 }
 
 function normalizeTheme(theme) {
-  if (theme === 'sepia' || theme === 'grafito' || theme === 'graphite' || theme === 'noir') return 'dark';
   return themeConfig[theme] ? theme : 'light';
 }
 

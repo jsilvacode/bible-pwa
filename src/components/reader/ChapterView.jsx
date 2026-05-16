@@ -1,35 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useBible } from '../../hooks/useBible';
 import { useHighlights } from '../../hooks/useHighlights';
 import { useSettings } from '../../hooks/useSettings';
 import VerseBlock from './VerseBlock';
 import VerseMenu from './VerseMenu';
+import CbaModal from './CbaModal';
 import SkeletonChapter from './SkeletonChapter';
 import ReaderFAB from './ReaderFAB';
 import classes from './ChapterView.module.css';
 import { fetchBooksManifest } from '../../services/bibleLoader';
+import { getBookName, TOTAL_BOOKS } from '../../constants/bibleMetadata';
 
 export default function ChapterView() {
   const { book: bookId, chapter: chapterNum, verse: targetVerse } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { settings, addRecent } = useSettings();
 
-  // useBible(version, bookId) → { data, loading, error }
-  // data has: { name, chapters: [{chapter, verses: [{verse, text}]}] }
   const { data, loading, error } = useBible(settings.version, bookId);
-
-  // useHighlights(version, book, chapter) → { highlights: {verseNum: color}, setHighlight }
   const { highlights, setHighlight } = useHighlights(settings.version, bookId, chapterNum);
 
   const [menuVerse, setMenuVerse] = useState(null);
+  const [cbaVerse, setCbaVerse] = useState(null);
+  const [showCba, setShowCba] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [bookNames, setBookNames] = useState({});
 
   const bookId_ = Number(bookId);
   const chapterNum_ = Number(chapterNum);
 
-  // Derive chapter data from the loaded book
   const bibleBook = data;
   const bibleChapter = data?.chapters?.find(c => c.chapter === chapterNum_);
 
@@ -46,6 +46,13 @@ export default function ChapterView() {
   useEffect(() => {
     if (!loading && bibleBook && bibleChapter) {
       addRecent(bookId_, chapterNum_);
+      
+      const params = new URLSearchParams(location.search);
+      if (params.get('showCba') === 'true' && targetVerse) {
+        setCbaVerse(Number(targetVerse));
+        setShowCba(true);
+      }
+
       if (targetVerse) {
         const timer = setTimeout(() => {
           const el = document.getElementById(`verse-${targetVerse}`);
@@ -82,7 +89,7 @@ export default function ChapterView() {
     const totalChapters = bibleBook?.chapters?.length || 0;
     if (chapterNum_ < totalChapters) {
       navigate(`/read/${bookId}/${chapterNum_ + 1}`);
-    } else if (bookId_ < 66) {
+    } else if (bookId_ < TOTAL_BOOKS) {
       navigate(`/read/${bookId_ + 1}/1`);
     }
   };
@@ -90,7 +97,7 @@ export default function ChapterView() {
   const handleOpenMenu = (verseNum) => setMenuVerse(verseNum);
   const handleCloseMenu = () => setMenuVerse(null);
 
-  const bookName = bookNames[bookId_] || bibleBook?.name || `Libro ${bookId}`;
+  const bookName = getBookName(bookId_);
 
   if (error) return <div className={classes.error}>Error cargando el capítulo.</div>;
 
@@ -112,21 +119,23 @@ export default function ChapterView() {
           <main className={classes.readerMain}>
             <div className={classes.content}>
               {bibleChapter?.verses.map((v) => (
-                <VerseBlock
-                  key={v.verse}
-                  verse={v.verse}
-                  text={v.text}
-                  isSelected={menuVerse === v.verse}
-                  isHighlighted={!!highlights[v.verse]}
-                  highlightColor={highlights[v.verse]}
-                  isTarget={Number(targetVerse) === v.verse}
-                  onShortTap={handleOpenMenu}
-                  onLongTap={handleOpenMenu}
-                  onOpenMenu={handleOpenMenu}
-                />
+                <React.Fragment key={v.verse}>
+                  {v.heading && <h3 className={classes.verseHeading}>{v.heading}</h3>}
+                  <VerseBlock
+                    verse={v.verse}
+                    text={v.text}
+                    isSelected={menuVerse === v.verse}
+                    isHighlighted={!!highlights[v.verse]}
+                    highlightColor={highlights[v.verse]}
+                    isTarget={Number(targetVerse) === v.verse}
+                    onShortTap={handleOpenMenu}
+                    onLongTap={handleOpenMenu}
+                    onOpenMenu={handleOpenMenu}
+                  />
+                </React.Fragment>
               ))}
               {!bibleChapter && (
-                <p style={{ padding: '40px 20px', color: 'var(--text-secondary)', textAlign: 'center' }}>
+                <p className={classes.notFound}>
                   Capítulo {chapterNum_} no encontrado en este libro.
                 </p>
               )}
@@ -163,7 +172,10 @@ export default function ChapterView() {
                 text: bibleChapter?.verses.find(v => v.verse === menuVerse)?.text || '',
                 bookName,
                 version: settings.version,
-                // VerseMenu calls payload.onHighlight(color) → we delegate to useHighlights
+                onOpenCba: () => {
+                  setCbaVerse(menuVerse);
+                  setShowCba(true);
+                },
                 onHighlight: (color) => setHighlight(
                   {
                     id: `${settings.version}-${bookId_}-${chapterNum_}-${menuVerse}`,
@@ -178,6 +190,15 @@ export default function ChapterView() {
               onClose={handleCloseMenu}
             />
           )}
+
+          <CbaModal
+            isOpen={showCba}
+            onClose={() => setShowCba(false)}
+            bookId={bookId_}
+            chapter={chapterNum_}
+            verse={cbaVerse}
+            bookName={bookName}
+          />
         </>
       )}
     </div>

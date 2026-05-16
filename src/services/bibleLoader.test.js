@@ -39,7 +39,7 @@ describe('bibleLoader', () => {
       if (url === '/data/books.json') {
         return makeJsonResponse([{ id: 1, file: '01_genesis' }]);
       }
-      if (url === '/data/rvr60/01_genesis.json') {
+      if (url === '/data/rvc/01_genesis.json') {
         return makeJsonResponse({
           name: 'Génesis',
           chapters: [{ chapter: 1, verses: [{ verse: 1, text: 'En el principio' }] }],
@@ -49,12 +49,12 @@ describe('bibleLoader', () => {
     });
     vi.stubGlobal('fetch', fetchMock);
 
-    const first = await loadBibleBookFn('rvr60', 1);
-    const second = await loadBibleBookFn('rvr60', 1);
+    const first = await loadBibleBookFn('rvc', 1);
+    const second = await loadBibleBookFn('rvc', 1);
 
     expect(first).toEqual(second);
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(fetchMock).toHaveBeenNthCalledWith(1, '/data/books.json');
-    expect(fetchMock).toHaveBeenNthCalledWith(2, '/data/rvr60/01_genesis.json');
+    expect(fetchMock).toHaveBeenNthCalledWith(2, '/data/rvc/01_genesis.json');
   });
 });

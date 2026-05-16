@@ -62,10 +62,22 @@
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: block;
+  text-align: justify;
   animation: fadeSlideUp 0.5s var(--transition-smooth);
+}
+
+.verseHeading {
+  font-family: var(--font-display);
+  font-size: calc(1.15rem * var(--ui-scale));
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 32px 0 16px 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: block;
+  width: 100%;
 }
 
 .verseBlock {
@@ -73,11 +85,13 @@
   font-size: calc(1.35rem * var(--ui-scale));
   line-height: 1.8;
   color: var(--text-primary);
-  padding: 10px 16px;
-  border-radius: var(--radius-md);
-  transition: background-color 0.2s ease, border-color 0.2s ease, font-size 0.2s ease;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s ease, font-size 0.2s ease;
   cursor: pointer;
-  display: block;
+  display: inline;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   user-select: none; /* Evita la selección de texto nativa */
   -webkit-user-select: none;
   -webkit-touch-callout: none; /* Desactiva el menú contextual de iOS/Android */
@@ -89,8 +103,6 @@
 
 .verseBlock.selected {
   background-color: color-mix(in srgb, var(--accent) 15%, transparent);
-  border-left: 4px solid var(--accent);
-  padding-left: 12px;
 }
 
 .verseNum {
@@ -141,6 +153,13 @@
 
 .targetBlink {
   animation: blinkTarget 1s ease-in-out 3;
+}
+
+.notFound {
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  text-align: center;
+  font-family: var(--font-ui);
 }
 
 @keyframes blinkTarget {

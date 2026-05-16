@@ -1,0 +1,3876 @@
+{
+  "version": "rva2015",
+  "book": 20,
+  "name": "Proverbios",
+  "chapters": [
+    {
+      "chapter": 1,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Los proverbios de Salomón hijo de David, rey de Israel:",
+          "heading": "Tema y propósito del libro"
+        },
+        {
+          "verse": 2,
+          "text": "para conocer sabiduría y disciplina; para comprender los dichos de inteligencia;"
+        },
+        {
+          "verse": 3,
+          "text": "para adquirir disciplina y enseñanza, justicia, derecho y equidad;"
+        },
+        {
+          "verse": 4,
+          "text": "para dar sagacidad a los ingenuos y a los jóvenes conocimiento y prudencia."
+        },
+        {
+          "verse": 5,
+          "text": "El sabio oirá y aumentará su saber, y el entendido adquirirá habilidades."
+        },
+        {
+          "verse": 6,
+          "text": "Comprenderá los proverbios y los dichos profundos, las palabras de los sabios y sus enigmas."
+        },
+        {
+          "verse": 7,
+          "text": "El temor del SEÑOR es el principio del conocimiento; los insensatos desprecian la sabiduría y la disciplina."
+        },
+        {
+          "verse": 8,
+          "text": "Escucha, hijo mío, la disciplina de tu padre y no abandones la instrucción de tu madre;",
+          "heading": "Advertencia contra la codicia"
+        },
+        {
+          "verse": 9,
+          "text": "porque diadema de gracia serán a tu cabeza y collares a tu cuello."
+        },
+        {
+          "verse": 10,
+          "text": "Hijo mío, si los pecadores te quisieran persuadir, no lo consientas."
+        },
+        {
+          "verse": 11,
+          "text": "Si te dicen: “Ven con nosotros; estemos al acecho para derramar sangre y embosquemos sin motivo a los inocentes;"
+        },
+        {
+          "verse": 12,
+          "text": "los tragaremos vivos como el Seol, enteros como los que descienden a la fosa;"
+        },
+        {
+          "verse": 13,
+          "text": "hallaremos riquezas de toda clase; llenaremos nuestras casas de ganancias;"
+        },
+        {
+          "verse": 14,
+          "text": "echa tu suerte con nosotros; tengamos todos una sola bolsa…”."
+        },
+        {
+          "verse": 15,
+          "text": "Hijo mío, no andes en el camino de ellos; aparta tu pie de sus senderos,"
+        },
+        {
+          "verse": 16,
+          "text": "porque sus pies corren al mal y se apresuran a derramar sangre."
+        },
+        {
+          "verse": 17,
+          "text": "Ciertamente en vano se tiende la red ante los ojos de toda ave."
+        },
+        {
+          "verse": 18,
+          "text": "Pero ellos ponen acechanzas a su propia sangre; a sus propias vidas ponen trampa."
+        },
+        {
+          "verse": 19,
+          "text": "Tales son las sendas de todo el que es dado a la codicia, la cual quita la vida a los que la poseen."
+        },
+        {
+          "verse": 20,
+          "text": "La sabiduría llama en las calles; da su voz en las plazas.",
+          "heading": "Resultados de rechazar la sabiduría"
+        },
+        {
+          "verse": 21,
+          "text": "Proclama sobre las murallas  , en las entradas de las puertas de la ciudad pronuncia sus dichos:"
+        },
+        {
+          "verse": 22,
+          "text": "“¿Hasta cuándo, oh ingenuos, amarán la ingenuidad? ¿Hasta cuándo los burladores desearán el burlarse y los necios aborrecerán el conocimiento?"
+        },
+        {
+          "verse": 23,
+          "text": "¡Vuélvanse ante mi reprensión! ¡He aquí, yo les manifestaré mi espíritu y les haré saber mis palabras!"
+        },
+        {
+          "verse": 24,
+          "text": "“Pero, por cuanto llamé y se resistieron; extendí mis manos y no hubo quien escuchara"
+        },
+        {
+          "verse": 25,
+          "text": "(más bien, desecharon todo consejo mío y no quisieron mi reprensión),"
+        },
+        {
+          "verse": 26,
+          "text": "yo también me reiré en su calamidad. Me burlaré cuando les llegue lo que temen,"
+        },
+        {
+          "verse": 27,
+          "text": "cuando llegue como destrucción lo que temen, cuando su calamidad llegue como un torbellino y vengan sobre ustedes tribulación y angustia."
+        },
+        {
+          "verse": 28,
+          "text": "“Entonces me llamarán y no responderé; me buscarán con diligencia y no me hallarán,"
+        },
+        {
+          "verse": 29,
+          "text": "por cuanto aborrecieron el conocimiento y no escogieron el temor del SEÑOR."
+        },
+        {
+          "verse": 30,
+          "text": "No quisieron mi consejo y menospreciaron toda reprensión mía."
+        },
+        {
+          "verse": 31,
+          "text": "Entonces comerán del fruto de su camino y se saciarán de sus propios consejos."
+        },
+        {
+          "verse": 32,
+          "text": "Porque su descarrío matará a los ingenuos y su dejadez echará a perder a los necios."
+        },
+        {
+          "verse": 33,
+          "text": "Pero el que me escuche habitará confiadamente y estará tranquilo, sin temor del mal”."
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Hijo mío, si aceptas mis palabras y atesoras mis mandamientos dentro de ti,",
+          "heading": "Resultados de aceptar la sabiduría"
+        },
+        {
+          "verse": 2,
+          "text": "si prestas oído a la sabiduría e inclinas tu corazón al entendimiento,"
+        },
+        {
+          "verse": 3,
+          "text": "si invocas a la inteligencia y al entendimiento llamas a gritos,"
+        },
+        {
+          "verse": 4,
+          "text": "si como a la plata la buscas y la rebuscas como a tesoros escondidos,"
+        },
+        {
+          "verse": 5,
+          "text": "entonces entenderás el temor del SEÑOR y hallarás el conocimiento de Dios."
+        },
+        {
+          "verse": 6,
+          "text": "Porque el SEÑOR da la sabiduría, y de su boca provienen el conocimiento y el entendimiento."
+        },
+        {
+          "verse": 7,
+          "text": "Él atesora eficiente sabiduría para los rectos; es el escudo de los que caminan en integridad."
+        },
+        {
+          "verse": 8,
+          "text": "Preserva las sendas del juicio y guarda el camino de sus piadosos."
+        },
+        {
+          "verse": 9,
+          "text": "Entonces entenderás la justicia, el derecho y la equidad: todo buen camino."
+        },
+        {
+          "verse": 10,
+          "text": "Cuando la sabiduría entre en tu corazón y el conocimiento sea agradable a tu alma,"
+        },
+        {
+          "verse": 11,
+          "text": "te guardará la sana iniciativa y te preservará el entendimiento."
+        },
+        {
+          "verse": 12,
+          "text": "Te librará del mal camino, de los hombres que hablan perversidades,"
+        },
+        {
+          "verse": 13,
+          "text": "que abandonan las sendas derechas para andar en caminos tenebrosos,"
+        },
+        {
+          "verse": 14,
+          "text": "que se alegran haciendo el mal y que se gozan en las perversidades del mal,"
+        },
+        {
+          "verse": 15,
+          "text": "cuyos senderos son torcidos y perversos sus caminos."
+        },
+        {
+          "verse": 16,
+          "text": "Te librará de la mujer ajena, de la extraña que halaga con sus palabras,"
+        },
+        {
+          "verse": 17,
+          "text": "que abandona al compañero de su juventud y se olvida del pacto de su Dios  ."
+        },
+        {
+          "verse": 18,
+          "text": "Ciertamente su casa se hunde hacia la muerte y sus sendas hacia los muertos."
+        },
+        {
+          "verse": 19,
+          "text": "Todos los que con ella tengan relaciones no volverán ni lograrán alcanzar los senderos de la vida."
+        },
+        {
+          "verse": 20,
+          "text": "Hará que andes por el camino de los buenos y guardes las sendas de los justos."
+        },
+        {
+          "verse": 21,
+          "text": "Porque los rectos habitarán la tierra y los íntegros permanecerán en ella."
+        },
+        {
+          "verse": 22,
+          "text": "Pero los impíos serán exterminados de la tierra y los traicioneros serán desarraigados de ella."
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Hijo mío, no te olvides de mi instrucción y guarde tu corazón mis mandamientos;"
+        },
+        {
+          "verse": 2,
+          "text": "porque abundancia de días y años de vida y bienestar te aumentarán."
+        },
+        {
+          "verse": 3,
+          "text": "No se aparten de ti la misericordia y la verdad; átalas a tu cuello. Escríbelas en las tablas de tu corazón,"
+        },
+        {
+          "verse": 4,
+          "text": "y hallarás gracia y buena opinión ante los ojos de Dios y de los hombres."
+        },
+        {
+          "verse": 5,
+          "text": "Confía en el SEÑOR con todo tu corazón y no te apoyes en tu propia inteligencia."
+        },
+        {
+          "verse": 6,
+          "text": "Reconócelo en todos tus caminos y él enderezará tus sendas."
+        },
+        {
+          "verse": 7,
+          "text": "No seas sabio en tu propia opinión: Teme al SEÑOR y apártate del mal,"
+        },
+        {
+          "verse": 8,
+          "text": "porque será medicina para tu carne y refrigerio para tus huesos."
+        },
+        {
+          "verse": 9,
+          "text": "Honra al SEÑOR con tus riquezas y con las primicias de todos tus frutos."
+        },
+        {
+          "verse": 10,
+          "text": "Así tus graneros estarán llenos con abundancia, y tus lagares rebosarán de vino nuevo."
+        },
+        {
+          "verse": 11,
+          "text": "No deseches, hijo mío, la disciplina del SEÑOR ni te resientas por su reprensión;"
+        },
+        {
+          "verse": 12,
+          "text": "porque el SEÑOR disciplina al que ama, como el padre al hijo a quien quiere."
+        },
+        {
+          "verse": 13,
+          "text": "Bienaventurado el hombre que halla sabiduría y el que obtiene entendimiento;"
+        },
+        {
+          "verse": 14,
+          "text": "porque su provecho es mayor que el de la plata, y su resultado es mejor que el oro fino."
+        },
+        {
+          "verse": 15,
+          "text": "Es más valiosa que las perlas; nada de lo que desees podrá compararse con ella."
+        },
+        {
+          "verse": 16,
+          "text": "Abundancia de días hay en su mano derecha; y en su izquierda, riquezas y honra."
+        },
+        {
+          "verse": 17,
+          "text": "Sus caminos son caminos agradables y en todas sus sendas hay paz."
+        },
+        {
+          "verse": 18,
+          "text": "Es árbol de vida a los que de ella echan mano; bienaventurados los que la retienen."
+        },
+        {
+          "verse": 19,
+          "text": "El SEÑOR fundó la tierra con sabiduría; afirmó los cielos con entendimiento."
+        },
+        {
+          "verse": 20,
+          "text": "Con su conocimiento fueron divididos los océanos, y los cielos destilan rocío."
+        },
+        {
+          "verse": 21,
+          "text": "Hijo mío, no se aparten estas cosas de tus ojos; guarda la iniciativa y la prudencia,",
+          "heading": "Cómo alcanzar la bendición de Dios"
+        },
+        {
+          "verse": 22,
+          "text": "y serán vida para tu alma y gracia para tu cuello."
+        },
+        {
+          "verse": 23,
+          "text": "Entonces andarás confiadamente por tu camino y tu pie no tropezará."
+        },
+        {
+          "verse": 24,
+          "text": "Cuando te acuestes no tendrás temor; más bien, te acostarás y tu sueño será dulce."
+        },
+        {
+          "verse": 25,
+          "text": "No tendrás temor del espanto repentino ni de la ruina de los impíos, cuando llegue,"
+        },
+        {
+          "verse": 26,
+          "text": "porque el SEÑOR será tu confianza y él guardará tu pie de caer en la trampa."
+        },
+        {
+          "verse": 27,
+          "text": "No niegues un bien a quien es debido, teniendo poder para hacerlo."
+        },
+        {
+          "verse": 28,
+          "text": "No digas a tu prójimo: “Anda y vuelve; mañana te lo daré”, cuando tienes contigo qué darle."
+        },
+        {
+          "verse": 29,
+          "text": "No trames mal contra tu prójimo, estando él confiado en ti."
+        },
+        {
+          "verse": 30,
+          "text": "No pleitees con alguno sin razón, si es que no te ha hecho agravio."
+        },
+        {
+          "verse": 31,
+          "text": "No envidies al hombre violento ni escojas ninguno de sus caminos;"
+        },
+        {
+          "verse": 32,
+          "text": "porque el SEÑOR abomina al perverso, pero su íntima comunión es con los rectos."
+        },
+        {
+          "verse": 33,
+          "text": "La maldición del SEÑOR está en la casa del impío, pero él bendice la morada de los justos."
+        },
+        {
+          "verse": 34,
+          "text": "Ciertamente él se burlará de los que se burlan, pero a los humildes concederá gracia."
+        },
+        {
+          "verse": 35,
+          "text": "Los sabios poseerán honra, pero los necios cargarán con la afrenta."
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Oigan, hijos, la enseñanza de un padre; estén atentos para adquirir entendimiento.",
+          "heading": "Consejos de un padre"
+        },
+        {
+          "verse": 2,
+          "text": "No abandonen mi instrucción, porque yo les doy buena enseñanza."
+        },
+        {
+          "verse": 3,
+          "text": "Pues yo también fui hijo de mi padre, tierno y singular delante de mi madre."
+        },
+        {
+          "verse": 4,
+          "text": "Y él me enseñaba y me decía: “Retenga tu corazón mis palabras; guarda mis mandamientos y vivirás”."
+        },
+        {
+          "verse": 5,
+          "text": "¡Adquiere sabiduría! ¡Adquiere entendimiento! No te olvides ni te apartes de los dichos de mi boca."
+        },
+        {
+          "verse": 6,
+          "text": "No la abandones y ella te guardará; ámala y te preservará."
+        },
+        {
+          "verse": 7,
+          "text": "¡Sabiduría ante todo! ¡Adquiere sabiduría! Y antes que toda posesión, adquiere entendimiento."
+        },
+        {
+          "verse": 8,
+          "text": "Apréciala y ella te levantará; y cuando la hayas abrazado, te honrará."
+        },
+        {
+          "verse": 9,
+          "text": "Diadema de gracia dará a tu cabeza; corona de hermosura te otorgará."
+        },
+        {
+          "verse": 10,
+          "text": "Escucha, hijo mío, y recibe mis dichos y se te multiplicarán años de vida."
+        },
+        {
+          "verse": 11,
+          "text": "En el camino de la sabiduría te he instruido y por sendas de rectitud te he hecho andar."
+        },
+        {
+          "verse": 12,
+          "text": "Cuando camines, tus pasos no hallarán impedimento; y si corres, no tropezarás."
+        },
+        {
+          "verse": 13,
+          "text": "Aférrate a la disciplina y no la sueltes; consérvala, porque ella es tu vida."
+        },
+        {
+          "verse": 14,
+          "text": "No entres en el sendero de los impíos ni pongas tu pie en el camino de los malos."
+        },
+        {
+          "verse": 15,
+          "text": "Evítalo; no pases por él. Apártate de él; pasa de largo."
+        },
+        {
+          "verse": 16,
+          "text": "Porque ellos no duermen si no han hecho mal; pierden el sueño si no han hecho caer a alguno."
+        },
+        {
+          "verse": 17,
+          "text": "Pues comen pan de impiedad y beben vino de violencia."
+        },
+        {
+          "verse": 18,
+          "text": "Pero la senda de los justos es como la luz de la aurora que va en aumento hasta que es pleno día."
+        },
+        {
+          "verse": 19,
+          "text": "El camino de los impíos es como la oscuridad; no saben en qué tropiezan."
+        },
+        {
+          "verse": 20,
+          "text": "Hijo mío, pon atención a mis palabras; inclina tu oído a mis dichos."
+        },
+        {
+          "verse": 21,
+          "text": "No se aparten de tus ojos; guárdalos en medio de tu corazón."
+        },
+        {
+          "verse": 22,
+          "text": "Porque ellos son vida a los que los hallan y medicina para todo su cuerpo."
+        },
+        {
+          "verse": 23,
+          "text": "Sobre toda cosa guardada, guarda tu corazón; porque de él emana la vida."
+        },
+        {
+          "verse": 24,
+          "text": "Aparta de ti la perversidad de la boca y aleja de ti la falsedad de los labios."
+        },
+        {
+          "verse": 25,
+          "text": "Miren tus ojos lo que es recto y diríjase tu vista a lo que está frente a ti."
+        },
+        {
+          "verse": 26,
+          "text": "Considera la senda de tus pies y todos tus caminos sean correctos."
+        },
+        {
+          "verse": 27,
+          "text": "No te apartes ni a la izquierda ni a la derecha; aparta tu pie del mal."
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Hijo mío, pon atención a mi sabiduría, y a mi entendimiento inclina tu oído;"
+        },
+        {
+          "verse": 2,
+          "text": "para que guardes la sana iniciativa, y tus labios conserven el conocimiento."
+        },
+        {
+          "verse": 3,
+          "text": "Los labios de la mujer extraña gotean miel y su paladar es más suave que el aceite;",
+          "heading": "Amonestación contra el adulterio"
+        },
+        {
+          "verse": 4,
+          "text": "pero su fin es amargo como el ajenjo, agudo como una espada de dos filos."
+        },
+        {
+          "verse": 5,
+          "text": "Sus pies descienden a la muerte; sus pasos se precipitan al Seol."
+        },
+        {
+          "verse": 6,
+          "text": "No considera el camino de la vida; sus sendas son inestables y ella no se da cuenta."
+        },
+        {
+          "verse": 7,
+          "text": "Ahora pues, hijos, óiganme y no se aparten de los dichos de mi boca."
+        },
+        {
+          "verse": 8,
+          "text": "Aleja de ella tu camino y no te acerques a la puerta de su casa,"
+        },
+        {
+          "verse": 9,
+          "text": "no sea que des a otros tu honor y tus años a alguien que es cruel;"
+        },
+        {
+          "verse": 10,
+          "text": "no sea que los extraños se sacien con tus fuerzas, y los frutos de tu trabajo vayan a dar a la casa de un desconocido."
+        },
+        {
+          "verse": 11,
+          "text": "Entonces gemirás al final de tu vida, cuando tu cuerpo y tu carne se hayan consumido."
+        },
+        {
+          "verse": 12,
+          "text": "Y dirás: “¡Cómo aborrecí la disciplina y mi corazón menospreció la reprensión!"
+        },
+        {
+          "verse": 13,
+          "text": "No escuché la voz de mis maestros, y a los que me enseñaban no incliné mi oído."
+        },
+        {
+          "verse": 14,
+          "text": "Casi en todo mal he estado, en medio de la sociedad y de la congregación”."
+        },
+        {
+          "verse": 15,
+          "text": "Bebe el agua de tu propia cisterna y de los raudales de tu propio pozo.",
+          "heading": "El legítimo placer conyugal"
+        },
+        {
+          "verse": 16,
+          "text": "¿Se han de derramar afuera tus manantiales, tus corrientes de aguas por las calles?"
+        },
+        {
+          "verse": 17,
+          "text": "¡Que sean para ti solo y no para los extraños contigo!"
+        },
+        {
+          "verse": 18,
+          "text": "Sea bendito tu manantial y alégrate con la mujer de tu juventud,"
+        },
+        {
+          "verse": 19,
+          "text": "como una preciosa cierva o una graciosa gacela. Sus pechos te satisfagan en todo tiempo y en su amor recréate siempre."
+        },
+        {
+          "verse": 20,
+          "text": "¿Por qué, hijo mío, andarás apasionado por una mujer ajena y abrazarás el seno de una extraña?"
+        },
+        {
+          "verse": 21,
+          "text": "Los caminos del hombre están ante los ojos del SEÑOR, y él considera todas sus sendas."
+        },
+        {
+          "verse": 22,
+          "text": "Sus propias maldades apresarán al impío y será atrapado en las cuerdas de su propio pecado."
+        },
+        {
+          "verse": 23,
+          "text": "Él morirá por falta de disciplina, y a causa de su gran insensatez se echará a perder."
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Hijo mío, si diste fianza por tu prójimo y estrechaste la mano con un extraño,",
+          "heading": "Consejos sobre la fianza imprudente"
+        },
+        {
+          "verse": 2,
+          "text": "te has enredado con tus palabras y has quedado atrapado con los dichos de tu boca."
+        },
+        {
+          "verse": 3,
+          "text": "Ahora pues, haz esto, hijo mío, para quedar libre ya que has caído en las manos de tu prójimo: Anda, humíllate, importuna a tu prójimo;"
+        },
+        {
+          "verse": 4,
+          "text": "no des sueño a tus ojos ni dejes dormitar tus párpados."
+        },
+        {
+          "verse": 5,
+          "text": "Escapa como el venado de mano del cazador, como ave de mano del que tiende la red."
+        },
+        {
+          "verse": 6,
+          "text": "Ve a la hormiga, oh perezoso; observa sus caminos y sé sabio.",
+          "heading": "Amonestación contra la pereza"
+        },
+        {
+          "verse": 7,
+          "text": "Ella no tiene jefe ni comisario ni gobernador;"
+        },
+        {
+          "verse": 8,
+          "text": "pero prepara su comida en el verano, y guarda su sustento en el tiempo de la siega."
+        },
+        {
+          "verse": 9,
+          "text": "Perezoso: ¿Hasta cuándo has de estar acostado? ¿Cuándo te levantarás de tu sueño?"
+        },
+        {
+          "verse": 10,
+          "text": "Un poco de dormir, un poco de dormitar y un poco de cruzar las manos para reposar."
+        },
+        {
+          "verse": 11,
+          "text": "Así vendrá tu pobreza como un vagabundo, y tu escasez como un hombre armado."
+        },
+        {
+          "verse": 12,
+          "text": "El hombre depravado, el hombre inicuo, anda en la perversidad de boca,",
+          "heading": "Características del hombre inicuo"
+        },
+        {
+          "verse": 13,
+          "text": "guiña los ojos, hace señas con sus pies e indica con sus dedos."
+        },
+        {
+          "verse": 14,
+          "text": "Perversidades hay en su corazón; en todo tiempo anda pensando el mal, provocando discordia."
+        },
+        {
+          "verse": 15,
+          "text": "Por eso, su calamidad vendrá de repente; súbitamente será quebrantado, y no habrá remedio."
+        },
+        {
+          "verse": 16,
+          "text": "Seis cosas aborrece el SEÑOR, y aun siete abomina su alma:"
+        },
+        {
+          "verse": 17,
+          "text": "Los ojos altivos, la lengua mentirosa, las manos que derraman sangre inocente,"
+        },
+        {
+          "verse": 18,
+          "text": "el corazón que maquina pensamientos inicuos, los pies que se apresuran a correr al mal,"
+        },
+        {
+          "verse": 19,
+          "text": "el testigo falso que respira calumnias y el que provoca discordia entre los hermanos."
+        },
+        {
+          "verse": 20,
+          "text": "Guarda, hijo mío, el mandamiento de tu padre y no abandones la instrucción de tu madre.",
+          "heading": "Acerca de las mujeres disolutas"
+        },
+        {
+          "verse": 21,
+          "text": "Átalos siempre a tu corazón y enlázalos en tu cuello."
+        },
+        {
+          "verse": 22,
+          "text": "Te guiarán cuando camines; te guardarán cuando te acuestes y hablarán contigo cuando te despiertes."
+        },
+        {
+          "verse": 23,
+          "text": "Porque el mandamiento es antorcha y la instrucción es luz. Y las reprensiones de la disciplina son camino de vida."
+        },
+        {
+          "verse": 24,
+          "text": "Te guardarán de la mala mujer, de la suavidad de lengua de la extraña."
+        },
+        {
+          "verse": 25,
+          "text": "En tu corazón no codicies su hermosura ni te prenda ella con sus ojos;"
+        },
+        {
+          "verse": 26,
+          "text": "porque por una prostituta el hombre es reducido a un bocado de pan, y la mujer ajena caza una vida valiosa."
+        },
+        {
+          "verse": 27,
+          "text": "¿Tomará el hombre fuego en su seno sin que se quemen sus vestidos?"
+        },
+        {
+          "verse": 28,
+          "text": "¿Andará el hombre sobre las brasas sin que se le quemen los pies?"
+        },
+        {
+          "verse": 29,
+          "text": "Así sucede con el que se enreda con la mujer de su prójimo; no quedará impune ninguno que la toque."
+        },
+        {
+          "verse": 30,
+          "text": "¿Acaso no desprecian al ladrón, aunque robe para saciar su apetito cuando tiene hambre,"
+        },
+        {
+          "verse": 31,
+          "text": "y si es sorprendido pagará siete veces y entregará todo lo que posee en su casa?"
+        },
+        {
+          "verse": 32,
+          "text": "Así también el que comete adulterio con una mujer es falto de entendimiento; el que hace tal cosa se destruye a sí mismo."
+        },
+        {
+          "verse": 33,
+          "text": "Heridas e ignominia encontrará y su afrenta no será borrada;"
+        },
+        {
+          "verse": 34,
+          "text": "porque los celos del hombre son su furor, y él no perdonará en el día de la venganza."
+        },
+        {
+          "verse": 35,
+          "text": "No aceptará ninguna restitución; ni consentirá, aunque sea grande tu soborno."
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Hijo mío, guarda mis palabras y atesora mis mandamientos dentro de ti."
+        },
+        {
+          "verse": 2,
+          "text": "Guarda mis mandamientos y vivirás; guarda mi enseñanza como a la niña de tus ojos."
+        },
+        {
+          "verse": 3,
+          "text": "Átalos a tus dedos; escríbelos en la tabla de tu corazón."
+        },
+        {
+          "verse": 4,
+          "text": "Di a la sabiduría: “Tú eres mi hermana”, y a la inteligencia llama: “Mi pariente”."
+        },
+        {
+          "verse": 5,
+          "text": "Te guardará de la mujer ajena, de la extraña que halaga con sus palabras."
+        },
+        {
+          "verse": 6,
+          "text": "Mirando yo por la ventana de mi casa, por entre mi celosía,",
+          "heading": "Las artimañas de la mujer adúltera"
+        },
+        {
+          "verse": 7,
+          "text": "vi entre los ingenuos y observé entre los jóvenes a uno falto de entendimiento."
+        },
+        {
+          "verse": 8,
+          "text": "Él pasaba por la plaza, cerca de la esquina, y caminaba en dirección a la casa de ella."
+        },
+        {
+          "verse": 9,
+          "text": "Era al anochecer; ya oscurecía. Sucedió en medio de la noche y en la oscuridad."
+        },
+        {
+          "verse": 10,
+          "text": "Y he aquí que una mujer le salió al encuentro con vestido de prostituta y astuta de corazón."
+        },
+        {
+          "verse": 11,
+          "text": "Ella es alborotadora y obstinada; sus pies no pueden estar en casa."
+        },
+        {
+          "verse": 12,
+          "text": "Unas veces está afuera; otras veces por las plazas, acechando por todas las esquinas."
+        },
+        {
+          "verse": 13,
+          "text": "Se prendió de él, lo besó y descaradamente le dijo:"
+        },
+        {
+          "verse": 14,
+          "text": "“Sacrificios de paz había prometido, y hoy he pagado mis votos."
+        },
+        {
+          "verse": 15,
+          "text": "Por eso he salido a tu encuentro, a buscarte, y te he encontrado."
+        },
+        {
+          "verse": 16,
+          "text": "He preparado mi cama con colchas; la he tendido con lino de Egipto."
+        },
+        {
+          "verse": 17,
+          "text": "He perfumado mi cama con mirra, áloe y canela."
+        },
+        {
+          "verse": 18,
+          "text": "Ven, saciémonos de caricias hasta la mañana; deleitémonos en amores."
+        },
+        {
+          "verse": 19,
+          "text": "Porque mi marido no está en casa; partió para un largo viaje."
+        },
+        {
+          "verse": 20,
+          "text": "Llevó consigo una bolsa de dinero; el día de la luna llena volverá a su casa”."
+        },
+        {
+          "verse": 21,
+          "text": "Lo rindió con su mucha persuasión; lo sedujo con la suavidad de sus labios."
+        },
+        {
+          "verse": 22,
+          "text": "En seguida se va tras ella, como va el buey al matadero, como un cordero al que lo ata; va como un venado,"
+        },
+        {
+          "verse": 23,
+          "text": "hasta que una flecha le atraviesa el hígado; como el ave que se apresura a la red y no sabe que le costará la vida  ."
+        },
+        {
+          "verse": 24,
+          "text": "Ahora pues, hijos, óiganme; presten atención a los dichos de mi boca."
+        },
+        {
+          "verse": 25,
+          "text": "No se aparte tu corazón tras sus caminos, ni te descarríes por sus sendas."
+        },
+        {
+          "verse": 26,
+          "text": "Porque a muchos ha hecho caer muertos; los que ella ha matado son innumerables."
+        },
+        {
+          "verse": 27,
+          "text": "Su casa está en los caminos del Seol que descienden a las cámaras de la muerte."
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "¿Acaso no llama la sabiduría y alza su voz el entendimiento?",
+          "heading": "La excelencia de la sabiduría"
+        },
+        {
+          "verse": 2,
+          "text": "Sobre los lugares prominentes junto al camino, en las encrucijadas de las rutas se pone de pie."
+        },
+        {
+          "verse": 3,
+          "text": "Junto a las puertas, ante la ciudad  , en el acceso a las entradas da voces:"
+        },
+        {
+          "verse": 4,
+          "text": "“¡Oh hombres, a ustedes llamo! Mi voz se dirige a los hijos del hombre."
+        },
+        {
+          "verse": 5,
+          "text": "Entiendan, ingenuos, la sagacidad; y ustedes, necios, dispongan  el corazón."
+        },
+        {
+          "verse": 6,
+          "text": "Escuchen, porque hablaré cosas excelentes y abriré mis labios para decir cosas rectas."
+        },
+        {
+          "verse": 7,
+          "text": "Porque mi boca hablará la verdad y mis labios abominan la impiedad."
+        },
+        {
+          "verse": 8,
+          "text": "Justas son todas las palabras de mi boca; no hay en ellas cosa torcida ni perversa."
+        },
+        {
+          "verse": 9,
+          "text": "Todas ellas son correctas al que entiende, y rectas a los que han hallado el conocimiento."
+        },
+        {
+          "verse": 10,
+          "text": "Reciban mi corrección antes que la plata, y el conocimiento antes que el oro escogido."
+        },
+        {
+          "verse": 11,
+          "text": "Porque la sabiduría es mejor que las perlas; nada de lo que desees podrá compararse con ella."
+        },
+        {
+          "verse": 12,
+          "text": "“Yo, la sabiduría, habito con la sagacidad, y me hallo con el conocimiento de la discreción."
+        },
+        {
+          "verse": 13,
+          "text": "El temor del SEÑOR es aborrecer el mal. Aborrezco la soberbia, la arrogancia, el mal camino y la boca perversa."
+        },
+        {
+          "verse": 14,
+          "text": "Míos  son el consejo y la eficiente sabiduría; mía  es la inteligencia, y mía la valentía."
+        },
+        {
+          "verse": 15,
+          "text": "Por mí reinan los reyes, y los magistrados administran justicia."
+        },
+        {
+          "verse": 16,
+          "text": "Por mí gobiernan los gobernantes, y los nobles juzgan  la tierra  ."
+        },
+        {
+          "verse": 17,
+          "text": "Yo amo a los que me  aman, y me hallan los que con diligencia me buscan."
+        },
+        {
+          "verse": 18,
+          "text": "Conmigo están las riquezas y la honra, los bienes duraderos y la justicia."
+        },
+        {
+          "verse": 19,
+          "text": "Mejor es mi fruto que el oro, que el oro fino; mis resultados son mejores que la plata escogida."
+        },
+        {
+          "verse": 20,
+          "text": "Camino por la senda de la justicia, por los senderos del derecho;"
+        },
+        {
+          "verse": 21,
+          "text": "para hacer que los que me aman hereden un patrimonio, y para que yo colme sus tesoros."
+        },
+        {
+          "verse": 22,
+          "text": "“El SEÑOR me creó como su obra maestra, antes que sus hechos más antiguos."
+        },
+        {
+          "verse": 23,
+          "text": "Desde la eternidad tuve el principado, desde el principio, antes que la tierra."
+        },
+        {
+          "verse": 24,
+          "text": "Nací antes que existieran los océanos, antes que existiesen los manantiales cargados  de agua."
+        },
+        {
+          "verse": 25,
+          "text": "Nací antes que los montes fuesen asentados, antes que las colinas."
+        },
+        {
+          "verse": 26,
+          "text": "No había hecho aún la tierra ni los campos ni la totalidad del polvo del mundo."
+        },
+        {
+          "verse": 27,
+          "text": "Cuando formó los cielos allí estaba yo; cuando trazó el horizonte sobre la faz del océano,"
+        },
+        {
+          "verse": 28,
+          "text": "cuando afirmó las nubes arriba, cuando reforzó las fuentes del océano,"
+        },
+        {
+          "verse": 29,
+          "text": "cuando dio al mar sus límites y a las aguas ordenó que no traspasasen su mandato. Cuando establecía los cimientos de la tierra,"
+        },
+        {
+          "verse": 30,
+          "text": "con él estaba yo, como un artífice maestro. Yo era su delicia todos los días y me regocijaba en su presencia en todo tiempo."
+        },
+        {
+          "verse": 31,
+          "text": "Yo me recreo en su tierra habitada, y tengo mi delicia con los hijos del hombre."
+        },
+        {
+          "verse": 32,
+          "text": "“Ahora pues, hijos, óiganme: Bienaventurados los que guardan mis caminos."
+        },
+        {
+          "verse": 33,
+          "text": "Escuchen la corrección y sean sabios; no la menosprecien."
+        },
+        {
+          "verse": 34,
+          "text": "Bienaventurado el hombre que me escucha velando ante mis entradas cada día, guardando los postes de mis puertas."
+        },
+        {
+          "verse": 35,
+          "text": "Porque el que me halla, halla la vida y obtiene el favor del SEÑOR."
+        },
+        {
+          "verse": 36,
+          "text": "Pero el que me pierde se hace daño a sí mismo; todos los que me aborrecen aman la muerte”."
+        }
+      ]
+    },
+    {
+      "chapter": 9,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "La sabiduría edifica su casa, labra sus siete columnas,",
+          "heading": "El llamado de la sabiduría"
+        },
+        {
+          "verse": 2,
+          "text": "mata sus animales, mezcla su vino y pone su mesa."
+        },
+        {
+          "verse": 3,
+          "text": "Envía a sus criadas y llama desde lo más alto de la ciudad:"
+        },
+        {
+          "verse": 4,
+          "text": "“¡Si alguno es ingenuo, que venga acá!”. Y a los faltos de entendimiento dice:"
+        },
+        {
+          "verse": 5,
+          "text": "“Vengan, coman mi pan y beban mi vino que yo he mezclado."
+        },
+        {
+          "verse": 6,
+          "text": "Dejen la ingenuidad y vivan; pongan sus pies en el camino de la inteligencia”."
+        },
+        {
+          "verse": 7,
+          "text": "El que corrige al burlador se acarrea vergüenza, y el que reprende al impío se acarrea afrenta."
+        },
+        {
+          "verse": 8,
+          "text": "No reprendas al burlador porque te aborrecerá; corrige al sabio y te amará."
+        },
+        {
+          "verse": 9,
+          "text": "Da al sabio, y será más sabio; enseña al justo y aumentará su saber."
+        },
+        {
+          "verse": 10,
+          "text": "El principio de la sabiduría es el temor del SEÑOR, y el conocimiento del Santísimo es la inteligencia."
+        },
+        {
+          "verse": 11,
+          "text": "Porque por mí se aumentarán tus días, y años de vida te serán añadidos."
+        },
+        {
+          "verse": 12,
+          "text": "Si eres sabio, para ti lo serás; pero si eres burlador, sufrirás tú solo."
+        },
+        {
+          "verse": 13,
+          "text": "La mujer necia es alborotadora; es libertina y no conoce la vergüenza  .",
+          "heading": "El llamado de la necedad"
+        },
+        {
+          "verse": 14,
+          "text": "Ella se sienta en una silla a la puerta de su casa, en lo alto de la ciudad,"
+        },
+        {
+          "verse": 15,
+          "text": "para llamar a los que pasan por el camino, a los que van directo por sus sendas:"
+        },
+        {
+          "verse": 16,
+          "text": "“¡Si alguno es ingenuo, que venga acá!”. Y a los faltos de entendimiento dice:"
+        },
+        {
+          "verse": 17,
+          "text": "“Las aguas hurtadas son dulces y el pan comido en oculto es delicioso”."
+        },
+        {
+          "verse": 18,
+          "text": "No saben ellos que allí están los muertos, que sus invitados están en lo profundo del Seol."
+        }
+      ]
+    },
+    {
+      "chapter": 10,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Proverbios de Salomón: El hijo sabio alegra a su padre, pero el hijo necio es tristeza de su madre.",
+          "heading": "Proverbios de Salomón"
+        },
+        {
+          "verse": 2,
+          "text": "Los tesoros de impiedad no son de provecho, pero la justicia libra de la muerte."
+        },
+        {
+          "verse": 3,
+          "text": "El SEÑOR no deja padecer hambre al justo, pero impide que se sacie el apetito de los impíos."
+        },
+        {
+          "verse": 4,
+          "text": "La mano negligente empobrece, pero la mano de los diligentes enriquece."
+        },
+        {
+          "verse": 5,
+          "text": "El que recoge en el verano es un hijo sensato; pero el que duerme en el tiempo de la siega es un hijo que avergüenza."
+        },
+        {
+          "verse": 6,
+          "text": "Bendiciones vendrán sobre la cabeza del justo, pero la boca de los impíos encubre la violencia."
+        },
+        {
+          "verse": 7,
+          "text": "La memoria del justo será bendita, pero el nombre de los impíos se pudrirá."
+        },
+        {
+          "verse": 8,
+          "text": "El sabio de corazón aceptará los mandamientos, pero el de labios insensatos será arruinado."
+        },
+        {
+          "verse": 9,
+          "text": "El que camina en integridad anda confiado, pero el que pervierte sus caminos será descubierto."
+        },
+        {
+          "verse": 10,
+          "text": "El que guiña el ojo causa tristeza, pero el que abiertamente reprende hace la paz  ."
+        },
+        {
+          "verse": 11,
+          "text": "Fuente de vida es la boca del justo, pero la boca de los impíos encubre la violencia."
+        },
+        {
+          "verse": 12,
+          "text": "El odio despierta contiendas, pero el amor cubre todas las faltas."
+        },
+        {
+          "verse": 13,
+          "text": "En los labios del entendido se halla sabiduría, pero la vara es para las espaldas del falto de entendimiento."
+        },
+        {
+          "verse": 14,
+          "text": "Los sabios atesoran el conocimiento, pero la boca del insensato es calamidad cercana."
+        },
+        {
+          "verse": 15,
+          "text": "Las riquezas del rico son su ciudad fortificada, y la calamidad de los necesitados es su pobreza."
+        },
+        {
+          "verse": 16,
+          "text": "La obra del justo es para vida, pero el logro del impío es para pecado."
+        },
+        {
+          "verse": 17,
+          "text": "El que guarda la disciplina está en el camino de la vida, pero el que descuida la reprensión hace errar."
+        },
+        {
+          "verse": 18,
+          "text": "El que aplaca el odio es de labios justos  , pero el que suscita la calumnia es necio."
+        },
+        {
+          "verse": 19,
+          "text": "En las muchas palabras no falta pecado, pero el que refrena sus labios es prudente."
+        },
+        {
+          "verse": 20,
+          "text": "Plata escogida es la lengua del justo, pero el corazón de los impíos no vale nada."
+        },
+        {
+          "verse": 21,
+          "text": "Los labios del justo apacientan a muchos, pero los insensatos mueren por falta de entendimiento."
+        },
+        {
+          "verse": 22,
+          "text": "La bendición del SEÑOR es la que enriquece y no añade tristeza con ella."
+        },
+        {
+          "verse": 23,
+          "text": "El hacer perversidades es un deporte para el necio, pero para el hombre de entendimiento lo es la sabiduría."
+        },
+        {
+          "verse": 24,
+          "text": "Lo que el impío teme eso le vendrá; pero a los justos les será dado lo que desean."
+        },
+        {
+          "verse": 25,
+          "text": "Como cuando pasa la tempestad, así el impío no permanece; pero el justo tiene fundamentos eternos."
+        },
+        {
+          "verse": 26,
+          "text": "Como es el vinagre a los dientes y el humo a los ojos, así es el perezoso a los que lo envían."
+        },
+        {
+          "verse": 27,
+          "text": "El temor del SEÑOR aumentará los días, pero los años de los impíos serán acortados."
+        },
+        {
+          "verse": 28,
+          "text": "La expectativa de los justos es alegría, pero la esperanza de los impíos perecerá."
+        },
+        {
+          "verse": 29,
+          "text": "El SEÑOR es la fortaleza del íntegro de camino, pero es espanto para los que obran maldad."
+        },
+        {
+          "verse": 30,
+          "text": "El justo no será removido jamás, pero los impíos no habitarán la tierra."
+        },
+        {
+          "verse": 31,
+          "text": "La boca del justo producirá sabiduría, pero la lengua perversa será cortada."
+        },
+        {
+          "verse": 32,
+          "text": "Los labios del justo saben hablar  lo que agrada, pero la boca de los impíos habla perversidades."
+        }
+      ]
+    },
+    {
+      "chapter": 11,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "La balanza falsa es una abominación al SEÑOR, pero la pesa exacta le agrada."
+        },
+        {
+          "verse": 2,
+          "text": "Cuando viene la soberbia, viene también la deshonra; pero con los humildes está la sabiduría."
+        },
+        {
+          "verse": 3,
+          "text": "Su integridad guiará a los rectos, pero la perversidad arruinará a los traicioneros."
+        },
+        {
+          "verse": 4,
+          "text": "Las riquezas no aprovecharán en el día de la ira, pero la justicia librará de la muerte."
+        },
+        {
+          "verse": 5,
+          "text": "La justicia del íntegro enderezará su camino, pero el impío caerá por su impiedad."
+        },
+        {
+          "verse": 6,
+          "text": "Su justicia librará a los rectos, pero los traicioneros quedarán atrapados por su codicia."
+        },
+        {
+          "verse": 7,
+          "text": "Cuando muere el hombre impío, perece su esperanza y su expectativa de las riquezas perecerá."
+        },
+        {
+          "verse": 8,
+          "text": "El justo es librado de la desgracia, pero el impío llega al lugar que le corresponde."
+        },
+        {
+          "verse": 9,
+          "text": "El hipócrita con su boca daña a su prójimo, pero los justos son librados por el conocimiento."
+        },
+        {
+          "verse": 10,
+          "text": "La ciudad se regocija por el bien de los justos, y cuando perecen los impíos, hay grito de alegría."
+        },
+        {
+          "verse": 11,
+          "text": "Por la bendición de los rectos será enaltecida la ciudad, pero por la boca de los impíos será destruida."
+        },
+        {
+          "verse": 12,
+          "text": "El que carece de entendimiento desprecia a su prójimo, pero el hombre prudente calla."
+        },
+        {
+          "verse": 13,
+          "text": "El que anda con chismes revela el secreto, pero el de espíritu fiel cubre el asunto."
+        },
+        {
+          "verse": 14,
+          "text": "Cuando falta dirección, el pueblo caerá; pero en los muchos consejeros está la victoria."
+        },
+        {
+          "verse": 15,
+          "text": "Ciertamente será afligido el que sale fiador por el extraño, pero el que odia las fianzas vivirá confiado."
+        },
+        {
+          "verse": 16,
+          "text": "La mujer agraciada obtendrá honra y los audaces obtendrán riquezas."
+        },
+        {
+          "verse": 17,
+          "text": "El hombre misericordioso hace bien a su propia alma, pero el cruel se perjudica a sí mismo."
+        },
+        {
+          "verse": 18,
+          "text": "El impío logra salario falso, pero el que siembra justicia tendrá verdadera recompensa."
+        },
+        {
+          "verse": 19,
+          "text": "Como la justicia es para vida, así el que sigue el mal lo hace para su muerte."
+        },
+        {
+          "verse": 20,
+          "text": "Abominación le son al SEÑOR los perversos de corazón, pero los íntegros de camino le son agradables."
+        },
+        {
+          "verse": 21,
+          "text": "De ninguna manera quedará impune el malo, pero la descendencia de los justos escapará."
+        },
+        {
+          "verse": 22,
+          "text": "Zarcillo de oro en el hocico de un cerdo es la mujer hermosa que carece de discreción."
+        },
+        {
+          "verse": 23,
+          "text": "El deseo de los justos es solamente para el bien, pero la esperanza de los impíos es para ira."
+        },
+        {
+          "verse": 24,
+          "text": "Hay quienes reparten y les es añadido más; y hay quienes retienen indebidamente solo para acabar en escasez."
+        },
+        {
+          "verse": 25,
+          "text": "La persona generosa será prosperada y el que sacia a otros también será saciado."
+        },
+        {
+          "verse": 26,
+          "text": "Al que acapara el grano, el pueblolo maldecirá; pero la bendición caerá sobre lacabeza del que distribuye."
+        },
+        {
+          "verse": 27,
+          "text": "El que se esmera por el bien conseguirá favor; pero al que busca el mal, este le vendrá."
+        },
+        {
+          "verse": 28,
+          "text": "El que confía en sus riquezas caerá, pero los justos reverdecerán como follaje."
+        },
+        {
+          "verse": 29,
+          "text": "El que perturba su casa heredará viento y el insensato será esclavo del sabio de corazón."
+        },
+        {
+          "verse": 30,
+          "text": "El fruto del justo es árbol de vida y el que gana vidas es sabio  ."
+        },
+        {
+          "verse": 31,
+          "text": "Ciertamente el justo será recompensado en la tierra; ¡cuánto más el impío y el pecador!"
+        }
+      ]
+    },
+    {
+      "chapter": 12,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "El que ama la corrección ama el conocimiento, pero el que aborrece la reprensión se embrutece."
+        },
+        {
+          "verse": 2,
+          "text": "El bueno alcanzará el favor del SEÑOR, pero Dios condenará al hombre que urde males."
+        },
+        {
+          "verse": 3,
+          "text": "El hombre no se establecerá por medio de la impiedad, pero la raíz de los justos es inconmovible."
+        },
+        {
+          "verse": 4,
+          "text": "La mujer virtuosa es corona de su marido, pero la mala es como carcoma en sus huesos."
+        },
+        {
+          "verse": 5,
+          "text": "Los pensamientos de los justos son rectitud, pero las artimañas de los impíos son engaño."
+        },
+        {
+          "verse": 6,
+          "text": "Las palabras de los impíos son para acechar la sangre, pero la boca de los rectos les librará."
+        },
+        {
+          "verse": 7,
+          "text": "Al ser trastornados los impíos dejarán de ser; pero la casa de los justos permanecerá."
+        },
+        {
+          "verse": 8,
+          "text": "El hombre es alabado según su discernimiento, pero el perverso de corazón será menospreciado."
+        },
+        {
+          "verse": 9,
+          "text": "Mejor es el menospreciado que tiene quien le sirva que el vanaglorioso que carece de pan."
+        },
+        {
+          "verse": 10,
+          "text": "El justo se preocupa por la vida de sus animales, pero los sentimientos de los impíos son crueles."
+        },
+        {
+          "verse": 11,
+          "text": "El que cultiva su tierra se saciará de pan, pero el que persigue cosas vanas es falto de entendimiento."
+        },
+        {
+          "verse": 12,
+          "text": "El impío codicia la fortaleza de los malos, pero la raíz de los justos es estable."
+        },
+        {
+          "verse": 13,
+          "text": "En la transgresión de los labios hay una trampa fatal, pero el justo saldrá bien de la tribulación."
+        },
+        {
+          "verse": 14,
+          "text": "El hombre será saciado con el bien del fruto de su boca y también le vendrá la recompensa de sus manos."
+        },
+        {
+          "verse": 15,
+          "text": "En la opinión del insensato su camino es derecho, pero el que obedece el consejo es sabio."
+        },
+        {
+          "verse": 16,
+          "text": "El insensato al instante da a conocer su ira, pero el que disimula la afrenta es prudente."
+        },
+        {
+          "verse": 17,
+          "text": "El que habla verdad declara justicia, pero el testigo mentiroso hace engaño."
+        },
+        {
+          "verse": 18,
+          "text": "Hay quienes hablan como dando estocadas de espada, pero la lengua de los sabios es medicina."
+        },
+        {
+          "verse": 19,
+          "text": "El labio veraz permanecerá para siempre; pero la lengua mentirosa solo por un momento."
+        },
+        {
+          "verse": 20,
+          "text": "Engaño hay en el corazón de los que traman el mal, pero en el corazón de los que aconsejan paz hay alegría."
+        },
+        {
+          "verse": 21,
+          "text": "Ninguna adversidad le acontecerá al justo, pero los impíos estarán llenos de males."
+        },
+        {
+          "verse": 22,
+          "text": "Los labios mentirosos son abominación al SEÑOR, pero le agradan los que actúan con verdad."
+        },
+        {
+          "verse": 23,
+          "text": "El hombre sagaz encubre su conocimiento, pero el corazón de los necios proclama la insensatez."
+        },
+        {
+          "verse": 24,
+          "text": "La mano de los diligentes gobernará, pero la de los negligentes será tributaria."
+        },
+        {
+          "verse": 25,
+          "text": "La congoja abate el corazón del hombre, pero la buena palabra lo alegra."
+        },
+        {
+          "verse": 26,
+          "text": "El justo sirve de guía a su prójimo, pero la conducta de los impíos los hace errar."
+        },
+        {
+          "verse": 27,
+          "text": "El negligente no alcanza presa  , pero el hombre diligente obtendrá preciosa riqueza."
+        },
+        {
+          "verse": 28,
+          "text": "En el camino de la justicia está la vida y en su senda no hay muerte."
+        }
+      ]
+    },
+    {
+      "chapter": 13,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "El hijo sabio acepta la disciplina de su padre, pero el burlador no escucha la corrección."
+        },
+        {
+          "verse": 2,
+          "text": "Del fruto de su boca el hombre comerá el bien, pero el alma de los traicioneros hallará el mal."
+        },
+        {
+          "verse": 3,
+          "text": "El que guarda su boca guarda su vida, pero al que mucho abre sus labios le vendrá ruina."
+        },
+        {
+          "verse": 4,
+          "text": "El alma del perezoso desea y nada alcanza, pero el alma de los diligentes será prosperada."
+        },
+        {
+          "verse": 5,
+          "text": "El justo aborrece la palabra de mentira, pero el impío se hace odioso y trae deshonra."
+        },
+        {
+          "verse": 6,
+          "text": "La justicia guarda al íntegro de camino, pero la impiedad arruina al pecador."
+        },
+        {
+          "verse": 7,
+          "text": "Hay quienes pretenden ser ricos, pero no tienen nada; y hay quienes pretenden ser pobres, pero tienen muchas riquezas."
+        },
+        {
+          "verse": 8,
+          "text": "Las riquezas del hombre pueden ser el rescate de su vida, pero el pobre ni oye las amenazas."
+        },
+        {
+          "verse": 9,
+          "text": "La luz de los justos brilla con alegría, pero la lámpara de los impíos se apagará."
+        },
+        {
+          "verse": 10,
+          "text": "Ciertamente la soberbia producirá contienda, pero con los que admiten consejo está la sabiduría."
+        },
+        {
+          "verse": 11,
+          "text": "Las riquezas apresuradas  disminuirán, pero el que junta poco a poco irá en aumento."
+        },
+        {
+          "verse": 12,
+          "text": "La esperanza que se demora es tormento del corazón, pero el deseo cumplido es árbol de vida."
+        },
+        {
+          "verse": 13,
+          "text": "El que menosprecia la palabra se arruinará, pero el que teme el mandamiento será recompensado."
+        },
+        {
+          "verse": 14,
+          "text": "La instrucción del sabio es fuente de vida, para apartarse de las trampas de la muerte."
+        },
+        {
+          "verse": 15,
+          "text": "El buen entendimiento da gracia, pero el camino de los traicioneros es duro."
+        },
+        {
+          "verse": 16,
+          "text": "Todo hombre sagaz actúa con conocimiento, pero el necio despliega insensatez."
+        },
+        {
+          "verse": 17,
+          "text": "El mensajero impío caerá en el mal, pero el enviado fiel es como medicina."
+        },
+        {
+          "verse": 18,
+          "text": "Pobreza y vergüenza tendrá el que desprecia la disciplina, pero el que acepta la reprensión logrará honra."
+        },
+        {
+          "verse": 19,
+          "text": "El deseo cumplido endulza el alma, pero el apartarse del mal es abominación a los necios."
+        },
+        {
+          "verse": 20,
+          "text": "El que anda con los sabios se hará sabio, pero el que se junta con los necios sufrirá daño."
+        },
+        {
+          "verse": 21,
+          "text": "El mal perseguirá a los pecadores, pero el bien recompensará a los justos."
+        },
+        {
+          "verse": 22,
+          "text": "El bueno dejará herencia a los hijos de sus hijos, pero lo que posee el pecador está guardado para los justos."
+        },
+        {
+          "verse": 23,
+          "text": "En el campo arado de los pobres hay abundancia de comida, pero es arrasada cuando no hay derecho."
+        },
+        {
+          "verse": 24,
+          "text": "El que detiene el castigo aborrece a su hijo, pero el que lo ama se esmera en corregirlo."
+        },
+        {
+          "verse": 25,
+          "text": "El justo come hasta saciar su alma, pero el estómago de los impíos sufrirá necesidad."
+        }
+      ]
+    },
+    {
+      "chapter": 14,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "La mujer sabia edifica su casa, pero la insensata con sus propias manos la destruye."
+        },
+        {
+          "verse": 2,
+          "text": "El que camina en rectitud teme al SEÑOR, pero el de caminos perversos lo menosprecia."
+        },
+        {
+          "verse": 3,
+          "text": "En la boca del insensato hay una vara para su espalda  , pero a los sabios los protegen sus labios."
+        },
+        {
+          "verse": 4,
+          "text": "Donde no hay bueyes el granero está vacío, pero por la fuerza del buey hay producción."
+        },
+        {
+          "verse": 5,
+          "text": "El testigo veraz no miente, pero el testigo falso respira mentiras."
+        },
+        {
+          "verse": 6,
+          "text": "El burlador busca la sabiduría y no la halla, pero al entendido le es de fácil acceso."
+        },
+        {
+          "verse": 7,
+          "text": "Apártate del hombre necio porque en él no encontrarás los labios del saber."
+        },
+        {
+          "verse": 8,
+          "text": "La sabiduría del sagaz discierne su camino, pero la insensatez de los necios es un engaño."
+        },
+        {
+          "verse": 9,
+          "text": "Los insensatos se mofan de la culpabilidad, pero entre los rectos hay buena voluntad."
+        },
+        {
+          "verse": 10,
+          "text": "El corazón conoce la amargura de su alma, y el extraño no se entremeterá en su alegría."
+        },
+        {
+          "verse": 11,
+          "text": "La casa de los impíos será desolada, pero la morada de los rectos florecerá."
+        },
+        {
+          "verse": 12,
+          "text": "Hay un camino que al hombre le parece derecho, pero que al final es camino de muerte."
+        },
+        {
+          "verse": 13,
+          "text": "Aun en la risa tendrá dolor el corazón y el final de la alegría es tristeza."
+        },
+        {
+          "verse": 14,
+          "text": "El descarriado de corazón se hartará de sus caminos, pero el hombre de bien estará satisfecho con el suyo."
+        },
+        {
+          "verse": 15,
+          "text": "El ingenuo todo lo cree, pero el sagaz considera sus pasos."
+        },
+        {
+          "verse": 16,
+          "text": "El sabio teme y se aparta del mal, pero el necio es entrometido y confiado."
+        },
+        {
+          "verse": 17,
+          "text": "El que es irascible hará locuras y el hombre malicioso será aborrecido."
+        },
+        {
+          "verse": 18,
+          "text": "Los ingenuos heredarán insensatez, pero los sagaces se coronarán de conocimiento."
+        },
+        {
+          "verse": 19,
+          "text": "Los malos se postrarán ante los buenos, y los impíos ante las puertas del justo."
+        },
+        {
+          "verse": 20,
+          "text": "El pobre se hace odioso a su prójimo, pero muchos son los que aprecian al rico."
+        },
+        {
+          "verse": 21,
+          "text": "Peca el que desprecia a su prójimo, pero el que tiene misericordia de los pobres es bienaventurado."
+        },
+        {
+          "verse": 22,
+          "text": "¿No yerran los que planean lo malo? Pero hay misericordia y verdad para los que planean lo bueno."
+        },
+        {
+          "verse": 23,
+          "text": "En toda labor hay ganancia, pero la palabra solo de labios lleva a la pobreza."
+        },
+        {
+          "verse": 24,
+          "text": "La corona de los sabios es su discreción  , pero la diadema de los necios es la insensatez."
+        },
+        {
+          "verse": 25,
+          "text": "El testigo veraz libra la vida, pero el engañoso respira mentiras."
+        },
+        {
+          "verse": 26,
+          "text": "En el temor del SEÑOR está la confianza del hombre fuerte, y para sus hijos habrá un refugio."
+        },
+        {
+          "verse": 27,
+          "text": "El temor del SEÑOR es fuente de vida, para apartarse de las trampas de la muerte."
+        },
+        {
+          "verse": 28,
+          "text": "En el pueblo numeroso está la gloria del rey, y en la escasez de pueblo está el pánico del funcionario."
+        },
+        {
+          "verse": 29,
+          "text": "El que tarda en airarse tiene mucho entendimiento, pero el de espíritu apresurado hace resaltar la insensatez."
+        },
+        {
+          "verse": 30,
+          "text": "El corazón apacible vivifica el cuerpo, pero la envidia es carcoma en los huesos."
+        },
+        {
+          "verse": 31,
+          "text": "El que oprime al necesitado afrenta a su Hacedor, pero el que tiene misericordia del pobre lo honra."
+        },
+        {
+          "verse": 32,
+          "text": "Por su maldad será derribado el impío, pero el justo en su integridad halla refugio  ."
+        },
+        {
+          "verse": 33,
+          "text": "En el corazón del hombre entendido reposa la sabiduría, pero no  es conocida en medio de los necios."
+        },
+        {
+          "verse": 34,
+          "text": "La justicia engrandece a la nación, pero el pecado es afrenta para los pueblos."
+        },
+        {
+          "verse": 35,
+          "text": "El rey muestra su favor al siervo prudente, pero su ira está sobre el que le causa vergüenza."
+        }
+      ]
+    },
+    {
+      "chapter": 15,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "La suave respuesta quita la ira, pero la palabra áspera aumenta el furor."
+        },
+        {
+          "verse": 2,
+          "text": "La lengua de los sabios embellece el conocimiento, pero la boca de los necios expresa insensatez."
+        },
+        {
+          "verse": 3,
+          "text": "Los ojos del SEÑOR están en todo lugar, mirando a los malos y a los buenos."
+        },
+        {
+          "verse": 4,
+          "text": "La lengua apacible es árbol de vida, pero la perversidad en ella es quebrantamiento de espíritu."
+        },
+        {
+          "verse": 5,
+          "text": "El insensato menosprecia la disciplina de su padre, pero el que acepta la reprensión llega a ser sagaz."
+        },
+        {
+          "verse": 6,
+          "text": "En la casa del justo hay muchas provisiones, pero en la producción del impío hay desbarajuste."
+        },
+        {
+          "verse": 7,
+          "text": "Los labios de los sabios esparcen conocimiento; no así el corazón de los necios."
+        },
+        {
+          "verse": 8,
+          "text": "El sacrificio de los impíos es una abominación al SEÑOR, pero la oración de los rectos le agrada."
+        },
+        {
+          "verse": 9,
+          "text": "Abominación es al SEÑOR el camino del impío, pero él ama al que sigue la justicia."
+        },
+        {
+          "verse": 10,
+          "text": "La disciplina le parece mal al que abandona el camino, y el que aborrece la reprensión morirá."
+        },
+        {
+          "verse": 11,
+          "text": "El Seol y el Abadón están delante del SEÑOR; ¡cuánto más el corazón de los hombres!"
+        },
+        {
+          "verse": 12,
+          "text": "El burlador no ama al que lo corrige, ni acude a los sabios."
+        },
+        {
+          "verse": 13,
+          "text": "El corazón alegre hermosea la cara, pero por el dolor del corazón el espíritu se abate."
+        },
+        {
+          "verse": 14,
+          "text": "El corazón entendido busca el conocimiento, pero la boca de los necios se apacienta de la insensatez."
+        },
+        {
+          "verse": 15,
+          "text": "Todos los días del pobre son malos, pero el corazón contento tiene fiesta continua."
+        },
+        {
+          "verse": 16,
+          "text": "Es mejor lo poco con el temor del SEÑOR que un gran tesoro donde hay turbación."
+        },
+        {
+          "verse": 17,
+          "text": "Mejor es una comida de verduras donde hay amor que de buey engordado donde hay odio."
+        },
+        {
+          "verse": 18,
+          "text": "El hombre iracundo suscita contiendas, pero el que tarda en airarse calma la riña."
+        },
+        {
+          "verse": 19,
+          "text": "El camino del perezoso es como cerco de espinas, pero la senda de los rectos es llana."
+        },
+        {
+          "verse": 20,
+          "text": "El hijo sabio alegra al padre, pero el hombre necio menosprecia a su madre."
+        },
+        {
+          "verse": 21,
+          "text": "La insensatez le es alegría al falto de entendimiento, pero el hombre prudente endereza su andar."
+        },
+        {
+          "verse": 22,
+          "text": "Donde no hay consulta los planes se frustran, pero con multitud de consejeros se realizan."
+        },
+        {
+          "verse": 23,
+          "text": "El hombre se alegra con la respuesta de su boca; y la palabra dicha a tiempo, ¡cuán buena es!"
+        },
+        {
+          "verse": 24,
+          "text": "Al prudente, el camino de vida le conduce arriba para apartarse del Seol abajo."
+        },
+        {
+          "verse": 25,
+          "text": "El SEÑOR derribará la casa de los soberbios, pero afirmará los linderos de la viuda."
+        },
+        {
+          "verse": 26,
+          "text": "Los pensamientos del malo son una abominación al SEÑOR, pero las expresiones agradables son puras."
+        },
+        {
+          "verse": 27,
+          "text": "El que tiene ganancias injustas perturba su casa, pero el que aborrece el soborno vivirá."
+        },
+        {
+          "verse": 28,
+          "text": "El corazón del justo piensa para responder, pero la boca de los impíos expresa maldades."
+        },
+        {
+          "verse": 29,
+          "text": "Lejos está el SEÑOR de los impíos, pero escucha la oración de los justos."
+        },
+        {
+          "verse": 30,
+          "text": "La luz de los ojos alegra el corazón y una buena noticia nutre los huesos."
+        },
+        {
+          "verse": 31,
+          "text": "El oído que atiende a la reprensión de la vida vivirá entre los sabios."
+        },
+        {
+          "verse": 32,
+          "text": "El que tiene en poco la disciplina menosprecia su vida, pero el que acepta la reprensión adquiere entendimiento."
+        },
+        {
+          "verse": 33,
+          "text": "El temor del SEÑOR es la enseñanza de la sabiduría, y antes de la honra está la humildad."
+        }
+      ]
+    },
+    {
+      "chapter": 16,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Del hombre son los planes del corazón, pero del SEÑOR es la respuesta de la lengua."
+        },
+        {
+          "verse": 2,
+          "text": "Todo camino del hombre es limpio en su propia opinión, pero el SEÑOR es el que examina los espíritus."
+        },
+        {
+          "verse": 3,
+          "text": "Encomienda al SEÑOR tus obras, y tus pensamientos serán afirmados."
+        },
+        {
+          "verse": 4,
+          "text": "Todo lo ha hecho el SEÑOR para su propio propósito; y aun al impío para el día malo."
+        },
+        {
+          "verse": 5,
+          "text": "Abominación es al SEÑOR todo altivo de corazón; de ninguna manera quedará impune."
+        },
+        {
+          "verse": 6,
+          "text": "Con misericordia y verdad se expía la falta y con el temor del SEÑOR uno se aparta del mal."
+        },
+        {
+          "verse": 7,
+          "text": "Cuando los caminos del hombre le agradan al SEÑOR, aun a sus enemigos reconciliará con él."
+        },
+        {
+          "verse": 8,
+          "text": "Es mejor lo poco con justicia que gran abundancia sin derecho."
+        },
+        {
+          "verse": 9,
+          "text": "El corazón del hombre traza su camino, pero el SEÑOR dirige sus pasos."
+        },
+        {
+          "verse": 10,
+          "text": "Hay oráculo en los labios del rey; en el juicio no yerra su boca."
+        },
+        {
+          "verse": 11,
+          "text": "La balanza y los platillos justos son del SEÑOR; obra suya son todas las pesas de la bolsa."
+        },
+        {
+          "verse": 12,
+          "text": "Es abominación a los reyes hacer impiedad porque con justicia se afirma el trono."
+        },
+        {
+          "verse": 13,
+          "text": "Los reyes favorecen a los labios justos y aman al que habla lo recto."
+        },
+        {
+          "verse": 14,
+          "text": "La ira del rey es como mensajero de muerte, pero el hombre sabio la apaciguará."
+        },
+        {
+          "verse": 15,
+          "text": "En la alegría del rostro del rey está la vida; su favor es como nube de lluvia tardía."
+        },
+        {
+          "verse": 16,
+          "text": "Es mejor adquirir sabiduría que oro fino, y adquirir inteligencia vale más que la plata."
+        },
+        {
+          "verse": 17,
+          "text": "La vía de los rectos es apartarse del mal, y el que guarda su camino guarda su vida."
+        },
+        {
+          "verse": 18,
+          "text": "Antes de la quiebra está el orgullo; y antes de la caída la altivez de espíritu."
+        },
+        {
+          "verse": 19,
+          "text": "Mejor es humillar el espíritu con los humildes que repartir botín con los soberbios."
+        },
+        {
+          "verse": 20,
+          "text": "El que está atento a la palabra hallará el bien, y el que confía en el SEÑOR es bienaventurado."
+        },
+        {
+          "verse": 21,
+          "text": "El sabio de corazón será llamado entendido, y la dulzura de labios aumenta el saber."
+        },
+        {
+          "verse": 22,
+          "text": "Fuente de vida es el entendimiento al que lo posee, pero el castigo de los insensatos es la misma insensatez."
+        },
+        {
+          "verse": 23,
+          "text": "El corazón del sabio hace prudente su boca, y con sus labios aumenta el saber."
+        },
+        {
+          "verse": 24,
+          "text": "Panal de miel son los dichos agradables; son dulces al alma y saludables al cuerpo."
+        },
+        {
+          "verse": 25,
+          "text": "Hay un camino que al hombre le parece derecho, pero que al final es camino de muerte."
+        },
+        {
+          "verse": 26,
+          "text": "El apetito del trabajador es lo que le obliga a trabajar, porque su boca lo apremia."
+        },
+        {
+          "verse": 27,
+          "text": "El hombre indigno trama el mal, y en sus labios hay como fuego abrasador."
+        },
+        {
+          "verse": 28,
+          "text": "El hombre perverso provoca la contienda, y el chismoso aparta los mejores amigos."
+        },
+        {
+          "verse": 29,
+          "text": "El hombre violento persuade a su amigo y le hace andar por camino no bueno."
+        },
+        {
+          "verse": 30,
+          "text": "El que entrecierra sus ojos para planear perversidades, el que aprieta sus labios, consuma el mal."
+        },
+        {
+          "verse": 31,
+          "text": "Corona de honra son las canas; en el camino de la justicia se encuentra."
+        },
+        {
+          "verse": 32,
+          "text": "Es mejor el que tarda en airarse que el fuerte; y el que domina su espíritu que el que conquista una ciudad."
+        },
+        {
+          "verse": 33,
+          "text": "Las suertes se echan en el regazo, pero al SEÑOR pertenece toda su decisión."
+        }
+      ]
+    },
+    {
+      "chapter": 17,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Mejor es un bocado seco y con tranquilidad que una casa llena de banquetes con contiendas."
+        },
+        {
+          "verse": 2,
+          "text": "El siervo prudente se enseñoreará sobre el hijo que avergüenza, y junto con los hermanos compartirá la herencia."
+        },
+        {
+          "verse": 3,
+          "text": "El crisol prueba la plata, y la hornaza el oro; pero el que prueba los corazones es el SEÑOR."
+        },
+        {
+          "verse": 4,
+          "text": "El malhechor está atento al labio inicuo, y el mentiroso escucha a la lengua destructora."
+        },
+        {
+          "verse": 5,
+          "text": "El que se mofa del pobre afrenta a su Hacedor, y el que se alegra por su calamidad no quedará impune."
+        },
+        {
+          "verse": 6,
+          "text": "Corona de los ancianos son los hijos de los hijos, y la gloria de los hijos son sus padres."
+        },
+        {
+          "verse": 7,
+          "text": "No conviene al hombre vil la grandilocuencia. Cuánto menos al noble el labio mentiroso."
+        },
+        {
+          "verse": 8,
+          "text": "Piedra de encanto es el soborno a los ojos del que lo practica; dondequiera se dirija tiene éxito."
+        },
+        {
+          "verse": 9,
+          "text": "El que cubre la transgresión busca amistad, pero el que divulga el asunto aparta al amigo."
+        },
+        {
+          "verse": 10,
+          "text": "Más aprovecha una reprensión al hombre entendido, que cien azotes al necio."
+        },
+        {
+          "verse": 11,
+          "text": "El malo solo busca la rebelión; un mensajero cruel será enviado contra él."
+        },
+        {
+          "verse": 12,
+          "text": "Mejor es encontrarse con una osa despojada de sus crías que con un necio empeñado en su insensatez."
+        },
+        {
+          "verse": 13,
+          "text": "Al que da mal por bien, el mal no se apartará de su casa."
+        },
+        {
+          "verse": 14,
+          "text": "El que comienza la contienda es quien suelta las aguas; desiste, pues, antes que estalle el pleito."
+        },
+        {
+          "verse": 15,
+          "text": "El que justifica al impío y el que condena al justo, ambos son abominables al SEÑOR."
+        },
+        {
+          "verse": 16,
+          "text": "¿De qué sirve el dinero en la mano del necio para adquirir sabiduría, si no tiene entendimiento?"
+        },
+        {
+          "verse": 17,
+          "text": "En todo tiempo ama el amigo, y el hermano nace para el tiempo de angustia."
+        },
+        {
+          "verse": 18,
+          "text": "El hombre falto de entendimiento estrecha la mano, dando fianza en presencia de su amigo."
+        },
+        {
+          "verse": 19,
+          "text": "El que ama la transgresión ama las contiendas, y el que se enaltece busca la ruina."
+        },
+        {
+          "verse": 20,
+          "text": "El perverso de corazón nunca hallará el bien, y el de doble lengua caerá en el mal."
+        },
+        {
+          "verse": 21,
+          "text": "Quien engendra al necio lo hace para su tristeza, y el padre del insensato no se alegrará."
+        },
+        {
+          "verse": 22,
+          "text": "El corazón alegre mejora la salud, pero un espíritu abatido seca los huesos."
+        },
+        {
+          "verse": 23,
+          "text": "El impío toma soborno de su seno para pervertir las sendas del derecho."
+        },
+        {
+          "verse": 24,
+          "text": "La sabiduría se refleja en la cara del hombre entendido, pero los ojos del necio vagan hasta el extremo de la tierra."
+        },
+        {
+          "verse": 25,
+          "text": "El hijo necio causa enojo a su padre y amargura a la que le dio a luz."
+        },
+        {
+          "verse": 26,
+          "text": "Ciertamente no es bueno imponer una multa al justo ni golpear a los nobles a causa de su integridad."
+        },
+        {
+          "verse": 27,
+          "text": "El que tiene conocimiento refrena sus palabras, y el de espíritu sereno es hombre prudente."
+        },
+        {
+          "verse": 28,
+          "text": "Cuando calla, hasta el insensato es tenido por sabio; y el que cierra sus labios, por inteligente."
+        }
+      ]
+    },
+    {
+      "chapter": 18,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "El que se aparta busca su propio deseo, y estalla en disputa contra toda iniciativa."
+        },
+        {
+          "verse": 2,
+          "text": "El necio no toma placer en el entendimiento, sino solo en exponer lo que tiene en su corazón."
+        },
+        {
+          "verse": 3,
+          "text": "Cuando viene la impiedad, viene también el menosprecio; y con la deshonra viene la vergüenza."
+        },
+        {
+          "verse": 4,
+          "text": "Aguas profundas son las palabras de la boca del hombre, y arroyo que rebosa es la fuente de la sabiduría."
+        },
+        {
+          "verse": 5,
+          "text": "No es bueno mostrar preferencia por el impío, desviando al justo en el juicio."
+        },
+        {
+          "verse": 6,
+          "text": "Los labios del necio entran en contienda, y su boca clama por los golpes."
+        },
+        {
+          "verse": 7,
+          "text": "La boca del necio es su propia ruina; sus labios son la trampa de su vida."
+        },
+        {
+          "verse": 8,
+          "text": "Las palabras del chismoso parecen suaves, pero penetran hasta lo recóndito del ser."
+        },
+        {
+          "verse": 9,
+          "text": "El que es negligente en su trabajo es hermano del destructor."
+        },
+        {
+          "verse": 10,
+          "text": "Torre fortificada es el nombre del SEÑOR; el justo correrá a ella y estará a salvo."
+        },
+        {
+          "verse": 11,
+          "text": "Las riquezas del rico son su ciudad fortificada; son como un alto muro en su imaginación."
+        },
+        {
+          "verse": 12,
+          "text": "Antes del quebrantamiento se enaltece el corazón del hombre, y antes de la honra está la humildad."
+        },
+        {
+          "verse": 13,
+          "text": "El que responde antes de oír comete insensatez y deshonra."
+        },
+        {
+          "verse": 14,
+          "text": "El ánimo del hombre soportará su enfermedad pero, ¿quién soportará al espíritu abatido?"
+        },
+        {
+          "verse": 15,
+          "text": "El corazón del entendido adquiere conocimiento y el oído de los sabios busca el conocimiento."
+        },
+        {
+          "verse": 16,
+          "text": "El dar regalos le abre camino a un hombre, y le conduce a la presencia de los grandes."
+        },
+        {
+          "verse": 17,
+          "text": "El primero que aboga por su causa parece ser justo, pero viene su prójimo y lo pone a prueba."
+        },
+        {
+          "verse": 18,
+          "text": "El echar suertes pone fin a los pleitos y decide entre los poderosos."
+        },
+        {
+          "verse": 19,
+          "text": "El hermano ofendido resiste más que una ciudad fortificada; y las contiendas, más que los cerrojos de un castillo."
+        },
+        {
+          "verse": 20,
+          "text": "Del fruto de la boca del hombre se saciará su estómago; él se satisfará con el producto de sus labios."
+        },
+        {
+          "verse": 21,
+          "text": "La muerte y la vida están en el poder de la lengua, y los que gustan usarla comerán de su fruto."
+        },
+        {
+          "verse": 22,
+          "text": "El que halla esposa halla el bien y alcanza el favor del SEÑOR."
+        },
+        {
+          "verse": 23,
+          "text": "El pobre habla con ruegos, pero el rico responde con dureza."
+        },
+        {
+          "verse": 24,
+          "text": "Hay  amigos que uno tiene para su propio mal, pero hay un amigo que es más fiel que un hermano."
+        }
+      ]
+    },
+    {
+      "chapter": 19,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Mejor es el pobre que camina en su integridad que el de labios perversos y que es necio."
+        },
+        {
+          "verse": 2,
+          "text": "Tampoco es bueno hacer algo sin conocimiento, y peca el que se apresura con sus pies."
+        },
+        {
+          "verse": 3,
+          "text": "La insensatez del hombre pervierte su camino y enfurece su corazón contra el SEÑOR."
+        },
+        {
+          "verse": 4,
+          "text": "Las riquezas atraen muchos amigos, pero el pobre es abandonado por su prójimo."
+        },
+        {
+          "verse": 5,
+          "text": "El testigo falso no quedará impune, y el que respira mentiras no escapará."
+        },
+        {
+          "verse": 6,
+          "text": "Muchos imploran el favor del generoso; todos son amigos del hombre que da regalos."
+        },
+        {
+          "verse": 7,
+          "text": "Todos los hermanos del pobre le odian; cuánto más se alejarán de él sus amigos. Busca quienes le hablen, pero no los halla."
+        },
+        {
+          "verse": 8,
+          "text": "El que adquiere entendimiento ama su vida, y el que guarda la prudencia hallará el bien."
+        },
+        {
+          "verse": 9,
+          "text": "El testigo falso no quedará impune, y el que respira mentiras perecerá."
+        },
+        {
+          "verse": 10,
+          "text": "No conviene al necio la comodidad; cuánto menos al esclavo dominar a los gobernantes."
+        },
+        {
+          "verse": 11,
+          "text": "El discernimiento del hombre detiene su furor, y su honra es pasar por alto la ofensa."
+        },
+        {
+          "verse": 12,
+          "text": "Como rugido de león es la ira del rey, y su favor es como el rocío sobre la hierba."
+        },
+        {
+          "verse": 13,
+          "text": "El hijo necio es la ruina de su padre; y gotera continua son las contiendas de la mujer."
+        },
+        {
+          "verse": 14,
+          "text": "Una casa y riquezas son herencia de los padres, pero una mujer prudente lo es del SEÑOR."
+        },
+        {
+          "verse": 15,
+          "text": "La pereza hace caer en sueño profundo, y la persona negligente padecerá de hambre."
+        },
+        {
+          "verse": 16,
+          "text": "El que guarda el mandamiento guarda su alma, pero el que menosprecia sus caminos morirá."
+        },
+        {
+          "verse": 17,
+          "text": "El que da al pobre presta al SEÑOR, y él le dará su recompensa."
+        },
+        {
+          "verse": 18,
+          "text": "Corrige a tu hijo mientras haya esperanza, pero no se exceda tu alma para destruirlo."
+        },
+        {
+          "verse": 19,
+          "text": "El de gran  ira llevará el castigo; si lo libras, tendrás que hacerlo de nuevo."
+        },
+        {
+          "verse": 20,
+          "text": "Escucha el consejo y acepta la corrección para que seas sabio en tu porvenir."
+        },
+        {
+          "verse": 21,
+          "text": "Muchos planes hay en el corazón del hombre, pero solo el propósito del SEÑOR se cumplirá."
+        },
+        {
+          "verse": 22,
+          "text": "La ambición del hombre es su desgracia, y es mejor ser indigente que engañador."
+        },
+        {
+          "verse": 23,
+          "text": "El temor del SEÑOR es para vida; el hombre vivirá satisfecho con él y no será visitado por el mal."
+        },
+        {
+          "verse": 24,
+          "text": "El perezoso hunde su mano en el plato, pero ni aun a su boca la llevará."
+        },
+        {
+          "verse": 25,
+          "text": "Golpea al burlador, y el ingenuo se hará sagaz; amonesta al entendido, y captará conocimiento."
+        },
+        {
+          "verse": 26,
+          "text": "El que despoja a su padre y ahuyenta a su madre es hijo que avergüenza y deshonra."
+        },
+        {
+          "verse": 27,
+          "text": "Hijo mío, deja de atender la enseñanza que te hace divagar de las palabras del conocimiento."
+        },
+        {
+          "verse": 28,
+          "text": "El testigo perverso se burla del juicio, y la boca de los impíos expresa iniquidad."
+        },
+        {
+          "verse": 29,
+          "text": "Actos justicieros están preparados para los burladores, y azotes para la espalda de los necios."
+        }
+      ]
+    },
+    {
+      "chapter": 20,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "El vino hace burla; el licor alborota. Y cualquiera que se descarría no es sabio."
+        },
+        {
+          "verse": 2,
+          "text": "Como rugido de león es la indignación del rey; el que lo enfurece peca contra sí mismo."
+        },
+        {
+          "verse": 3,
+          "text": "Al hombre le es honroso apartarse de la contienda, pero todo insensato se envolverá en ella."
+        },
+        {
+          "verse": 4,
+          "text": "El perezoso no ara al comienzo de la estación; buscará en el tiempo de la siega y no hallará."
+        },
+        {
+          "verse": 5,
+          "text": "Como aguas profundas es el propósito en el corazón del hombre, pero el hombre de entendimiento logrará extraerlo."
+        },
+        {
+          "verse": 6,
+          "text": "Muchos hombres proclaman su propia bondad; pero un hombre fiel, ¿quién lo hallará?"
+        },
+        {
+          "verse": 7,
+          "text": "El justo camina en su integridad; bienaventurados serán sus hijos después de él."
+        },
+        {
+          "verse": 8,
+          "text": "El rey se sienta en el trono del juicio; con su mirada disipa todo mal."
+        },
+        {
+          "verse": 9,
+          "text": "¿Quién podrá decir: “Yo he limpiado mi corazón; limpio estoy de mi pecado”?"
+        },
+        {
+          "verse": 10,
+          "text": "Pesas falsas y medidas falsas  : Ambas cosas son una abominación al SEÑOR."
+        },
+        {
+          "verse": 11,
+          "text": "Aun el muchacho es conocido por sus hechos si su conducta es pura y recta."
+        },
+        {
+          "verse": 12,
+          "text": "El oído que oye y el ojo que ve, ambas cosas ha hecho el SEÑOR."
+        },
+        {
+          "verse": 13,
+          "text": "No ames el sueño para que no te empobrezcas; abre tus ojos y te saciarás de pan."
+        },
+        {
+          "verse": 14,
+          "text": "El que compra dice: “Malo es, malo es”; pero apartándose se jacta de lo comprado."
+        },
+        {
+          "verse": 15,
+          "text": "Existen el oro y una gran cantidad de perlas, pero los labios que saben son algo más precioso."
+        },
+        {
+          "verse": 16,
+          "text": "Quítale su ropa al que salió fiador del extraño, y tómale prenda al que se fía de la mujer ajena  ."
+        },
+        {
+          "verse": 17,
+          "text": "Sabroso es al hombre el pan mal adquirido; pero cuando haya llenado su boca se convertirá en cascajo."
+        },
+        {
+          "verse": 18,
+          "text": "Confirma los planes mediante el consejo y haz la guerra con estrategia."
+        },
+        {
+          "verse": 19,
+          "text": "El que anda con chismes revela el secreto; no te metas con el suelto de lengua."
+        },
+        {
+          "verse": 20,
+          "text": "Al que maldice a su padre o a su madre, su lámpara se le apagará en medio de las tinieblas."
+        },
+        {
+          "verse": 21,
+          "text": "Los bienes adquiridos apresuradamente al comienzo al fin de cuentas no serán bendecidos."
+        },
+        {
+          "verse": 22,
+          "text": "No digas: “Devolveré el mal”. Espera al SEÑOR y él te salvará."
+        },
+        {
+          "verse": 23,
+          "text": "Las pesas falsas  son una abominación al SEÑOR; y la balanza de engaño no es algo bueno."
+        },
+        {
+          "verse": 24,
+          "text": "Del SEÑOR son los pasos del hombre; ¿cómo podrá el hombre, por sí solo, entender su camino?"
+        },
+        {
+          "verse": 25,
+          "text": "Es una trampa para el hombre declarar a la ligera algo como consagrado, y reflexionar solo después de haber hecho los votos."
+        },
+        {
+          "verse": 26,
+          "text": "El rey sabio dispersa a los impíos, y sobre ellos hace rodar la rueda."
+        },
+        {
+          "verse": 27,
+          "text": "Lámpara del SEÑOR es el espíritu del hombre, la cual escudriña lo más recóndito del ser."
+        },
+        {
+          "verse": 28,
+          "text": "La misericordia y la verdad guardan al rey, y con justicia  sustenta su trono."
+        },
+        {
+          "verse": 29,
+          "text": "La gloria de los jóvenes es su fuerza; y el esplendor de los ancianos, sus canas."
+        },
+        {
+          "verse": 30,
+          "text": "Las marcas de los azotes purifican del mal, y los golpes purifican al corazón."
+        }
+      ]
+    },
+    {
+      "chapter": 21,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Como una corriente de agua es el corazón del rey en la mano del SEÑOR, quien lo conduce a todo lo que quiere."
+        },
+        {
+          "verse": 2,
+          "text": "Todo camino del hombre es recto ante sus ojos, pero el SEÑOR es el que examina los corazones."
+        },
+        {
+          "verse": 3,
+          "text": "Practicar la justicia y el derecho es más aceptable al SEÑOR que el sacrificio."
+        },
+        {
+          "verse": 4,
+          "text": "Pecado son la altivez de ojos y el orgullo del corazón, la lámpara de los impíos."
+        },
+        {
+          "verse": 5,
+          "text": "Los proyectos del diligente resultarán en abundancia, pero todo apresurado va a parar en la escasez."
+        },
+        {
+          "verse": 6,
+          "text": "Acumular tesoros mediante la lengua de engaño es vanidad fugaz de los que buscan la muerte."
+        },
+        {
+          "verse": 7,
+          "text": "La rapiña de los impíos los arrastrará por cuanto rehúsan hacer justicia."
+        },
+        {
+          "verse": 8,
+          "text": "El camino del hombre es torcido y extraño, pero la conducta del limpio es recta."
+        },
+        {
+          "verse": 9,
+          "text": "Mejor es vivir en un rincón de la azotea que compartir una casa con una mujer rencillosa."
+        },
+        {
+          "verse": 10,
+          "text": "El alma del impío desea el mal; su prójimo no halla gracia ante sus ojos."
+        },
+        {
+          "verse": 11,
+          "text": "Cuando el burlador es castigado el ingenuo se hace sabio; y cuando el sabio es instruido adquiere conocimiento."
+        },
+        {
+          "verse": 12,
+          "text": "El justo observa la casa del impío; cómo los impíos son arruinados por el mal."
+        },
+        {
+          "verse": 13,
+          "text": "El que cierra su oído al clamor del pobre también clamará, y no se le responderá."
+        },
+        {
+          "verse": 14,
+          "text": "El regalo en secreto calma la ira; y el obsequio a escondidas, el fuerte furor."
+        },
+        {
+          "verse": 15,
+          "text": "Le es alegría al justo practicar el derecho, pero a los que practican la iniquidad les es un terror."
+        },
+        {
+          "verse": 16,
+          "text": "El hombre que se desvía del camino del entendimiento irá a parar en la compañía de los muertos."
+        },
+        {
+          "verse": 17,
+          "text": "El que ama los placeres se empobrecerá; el que ama el vino y los perfumes no se enriquecerá."
+        },
+        {
+          "verse": 18,
+          "text": "El impío es el rescate por el justo; y el traicionero por los rectos."
+        },
+        {
+          "verse": 19,
+          "text": "Mejor es vivir en una tierra desierta que con una mujer rencillosa e iracunda."
+        },
+        {
+          "verse": 20,
+          "text": "Tesoro precioso y aceite hay en la morada del sabio, pero el hombre necio lo disipará."
+        },
+        {
+          "verse": 21,
+          "text": "El que sigue la justicia y la bondad hallará vida, justicia y honra."
+        },
+        {
+          "verse": 22,
+          "text": "El sabio conquista la ciudad de los poderosos y derriba la fuerza en que ella ha confiado."
+        },
+        {
+          "verse": 23,
+          "text": "El que guarda su boca y su lengua guarda su alma de angustias."
+        },
+        {
+          "verse": 24,
+          "text": "Escarnecedor es el nombre del arrogante y altivo, del que actúa con saña arrogante."
+        },
+        {
+          "verse": 25,
+          "text": "El deseo del perezoso lo mata, porque sus manos rehúsan trabajar."
+        },
+        {
+          "verse": 26,
+          "text": "Hay quien todo el día codicia y codicia, pero el justo da y no escatima."
+        },
+        {
+          "verse": 27,
+          "text": "El sacrificio que ofrecen los impíos es una abominación; cuánto más cuando lo ofrece con perversa intención."
+        },
+        {
+          "verse": 28,
+          "text": "El testigo mentiroso perecerá, pero el hombre que sabe escuchar siempre podrá hablar."
+        },
+        {
+          "verse": 29,
+          "text": "El hombre impío se muestra descarado, pero el recto pone en orden sus caminos."
+        },
+        {
+          "verse": 30,
+          "text": "No hay sabiduría ni entendimiento, ni consejo contra el SEÑOR."
+        },
+        {
+          "verse": 31,
+          "text": "El caballo es alistado para el día de la batalla, pero del SEÑOR proviene la victoria."
+        }
+      ]
+    },
+    {
+      "chapter": 22,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Más vale el buen nombre que las muchas riquezas; y el ser apreciado más que la plata y el oro."
+        },
+        {
+          "verse": 2,
+          "text": "El rico y el pobre tienen esto en común: A todos ellos los hizo el SEÑOR."
+        },
+        {
+          "verse": 3,
+          "text": "El prudente ve el mal y se esconde, pero los ingenuos pasan y reciben el daño."
+        },
+        {
+          "verse": 4,
+          "text": "Riquezas, honra y vida son la remuneración de la humildad y deltemor del SEÑOR."
+        },
+        {
+          "verse": 5,
+          "text": "Espinas y trampas hay en el camino del perverso; el que guarda su vida se alejará de ellos."
+        },
+        {
+          "verse": 6,
+          "text": "Instruye al niño en su camino  ; y aun cuando sea viejo no se apartaráde él."
+        },
+        {
+          "verse": 7,
+          "text": "El rico domina a los pobres, y el que toma prestado es esclavo del que presta."
+        },
+        {
+          "verse": 8,
+          "text": "El que siembra iniquidad segará maldad, y la vara de su ira será destruida."
+        },
+        {
+          "verse": 9,
+          "text": "El de ojos bondadosos será bendito, porque de su pan da al necesitado."
+        },
+        {
+          "verse": 10,
+          "text": "Echa fuera al burlador y se evitará la contienda; también cesarán el pleito y la afrenta."
+        },
+        {
+          "verse": 11,
+          "text": "El rey ama al de corazón puro, y el que tiene gracia de labios será su amigo."
+        },
+        {
+          "verse": 12,
+          "text": "Los ojos del SEÑOR custodian el conocimiento, pero él arruina las cosas de los traicioneros."
+        },
+        {
+          "verse": 13,
+          "text": "Dice el perezoso: “¡Afuera hay un león! ¡En medio de la calle seré descuartizado!”."
+        },
+        {
+          "verse": 14,
+          "text": "Fosa profunda es la boca de la mujer extraña; aquel contra quien el SEÑOR está airado caerá en ella."
+        },
+        {
+          "verse": 15,
+          "text": "La insensatez está ligada al corazón del joven, pero la vara de la disciplina la hará alejarse de él."
+        },
+        {
+          "verse": 16,
+          "text": "El que para enriquecerse explota al pobre o da al rico, ciertamente vendrá a pobreza."
+        },
+        {
+          "verse": 17,
+          "text": "Inclina tu oído y escucha las palabras de los sabios; dispón tu corazón a mi conocimiento.",
+          "heading": "Treinta dichos de los sabios"
+        },
+        {
+          "verse": 18,
+          "text": "Porque es cosa placentera que las guardes en tu corazón, y que a la vez se afirmen en tus labios."
+        },
+        {
+          "verse": 19,
+          "text": "Para que tu confianza esté en el SEÑOR te las hago saber hoy también a ti."
+        },
+        {
+          "verse": 20,
+          "text": "¿Acaso no he escrito para ti treinta dichos de consejos y conocimiento?"
+        },
+        {
+          "verse": 21,
+          "text": "Son para darte a conocer la certidumbre de las palabras de verdad, a fin de que puedas responder palabras de verdad a los que te envían."
+        },
+        {
+          "verse": 22,
+          "text": "No robes al pobre, porque es pobre; ni oprimas al afligido en las puertas de la ciudad.",
+          "heading": "—1—"
+        },
+        {
+          "verse": 23,
+          "text": "Porque el SEÑOR defenderá la causa de ellos y despojará al alma de quienes los despojan."
+        },
+        {
+          "verse": 24,
+          "text": "No hagas amistad con el iracundo ni tengas tratos con el violento,",
+          "heading": "—2—"
+        },
+        {
+          "verse": 25,
+          "text": "no sea que aprendas sus maneras y pongas una trampa para tu propia vida."
+        },
+        {
+          "verse": 26,
+          "text": "No estés entre los que se dan la mano  , entre los que dan fianza por deudas.",
+          "heading": "—3—"
+        },
+        {
+          "verse": 27,
+          "text": "Si no tienes con qué pagar, ¿por qué han de quitar tu cama de debajo de ti?"
+        },
+        {
+          "verse": 28,
+          "text": "No cambies de lugar el lindero antiguo que establecieron tus padres.",
+          "heading": "—4—"
+        },
+        {
+          "verse": 29,
+          "text": "¿Has visto un hombre diligente en su trabajo? En la presencia de los reyes estará. No estará en presencia de los de baja condición.",
+          "heading": "—5—"
+        }
+      ]
+    },
+    {
+      "chapter": 23,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Cuando te sientes a comer con un gobernante, considera bien lo que está delante de ti.",
+          "heading": "—6—"
+        },
+        {
+          "verse": 2,
+          "text": "Pon cuchillo a tu garganta, si tienes gran apetito."
+        },
+        {
+          "verse": 3,
+          "text": "No codicies sus manjares delicados, porque es pan de engaño."
+        },
+        {
+          "verse": 4,
+          "text": "No te afanes por hacerte rico; sé prudente y desiste.",
+          "heading": "—7—"
+        },
+        {
+          "verse": 5,
+          "text": "¿Has de hacer volar tus ojos tras las riquezas, siendo estas nada? Porque ciertamente se harán alas como de águilas y volarán al cielo."
+        },
+        {
+          "verse": 6,
+          "text": "No comas pan con el de malas intenciones ni codicies sus manjares delicados;",
+          "heading": "—8—"
+        },
+        {
+          "verse": 7,
+          "text": "porque cual es su pensamiento en su mente, tal es él: “Come y bebe”, te dirá; pero su corazón no está contigo."
+        },
+        {
+          "verse": 8,
+          "text": "Vomitarás tu parte que comiste y echarás a perder tus suaves palabras."
+        },
+        {
+          "verse": 9,
+          "text": "No hables a oídos del necio, porque despreciará la prudencia de tus palabras.",
+          "heading": "—9—"
+        },
+        {
+          "verse": 10,
+          "text": "No cambies de lugar el lindero antiguo ni entres en los campos de los huérfanos.",
+          "heading": "—10—"
+        },
+        {
+          "verse": 11,
+          "text": "Porque su Redentor es fuerte; él defenderá contra ti la causa de ellos."
+        },
+        {
+          "verse": 12,
+          "text": "Aplica tu corazón a la enseñanza y tus oídos a las palabras del conocimiento.",
+          "heading": "—11—"
+        },
+        {
+          "verse": 13,
+          "text": "No rehúses corregir al muchacho; si lo castigas con vara no morirá.",
+          "heading": "—12—"
+        },
+        {
+          "verse": 14,
+          "text": "Tú lo castigarás con vara y librarás su alma del Seol."
+        },
+        {
+          "verse": 15,
+          "text": "Hijo mío, si tu corazón es sabio también a mí se me alegrará el corazón.",
+          "heading": "—13—"
+        },
+        {
+          "verse": 16,
+          "text": "Mis entrañas se regocijarán, cuando tus labios hablen cosas rectas."
+        },
+        {
+          "verse": 17,
+          "text": "No tenga tu corazón envidia de los pecadores. Más bien, en todo tiempo permanece tú en el temor del SEÑOR.",
+          "heading": "—14—"
+        },
+        {
+          "verse": 18,
+          "text": "Porque ciertamente hay un porvenir, y tu esperanza no será frustrada."
+        },
+        {
+          "verse": 19,
+          "text": "Escucha tú, hijo mío, y sé sabio; endereza tu corazón en el camino.",
+          "heading": "—15—"
+        },
+        {
+          "verse": 20,
+          "text": "No estés con los bebedores de vino ni con los comilones de carne."
+        },
+        {
+          "verse": 21,
+          "text": "Porque el bebedor y el comilón empobrecerán, y el dormitar hará vestir harapos."
+        },
+        {
+          "verse": 22,
+          "text": "Escucha a tu padre que te engendró; y cuando tu madre envejezca no la menosprecies.",
+          "heading": "—16—"
+        },
+        {
+          "verse": 23,
+          "text": "Adquiere la verdad y no la vendas; adquiere sabiduría, disciplina e inteligencia."
+        },
+        {
+          "verse": 24,
+          "text": "Mucho se alegrará el padre del justo; el que engendró un hijo sabio se gozará con él."
+        },
+        {
+          "verse": 25,
+          "text": "Alégrense tu padre y tu madre y gócese la que te dio a luz."
+        },
+        {
+          "verse": 26,
+          "text": "Dame, hijo mío, tu corazón, y observen tus ojos mis caminos.",
+          "heading": "—17—"
+        },
+        {
+          "verse": 27,
+          "text": "Porque fosa profunda es la prostituta; pozo angosto es la mujer extraña."
+        },
+        {
+          "verse": 28,
+          "text": "También ella acecha como asaltante, y multiplica entre los hombres a los traicioneros."
+        },
+        {
+          "verse": 29,
+          "text": "¿Para quién será el ay? ¿Para quién será el dolor? ¿Para quién serán las rencillas? ¿Para quién los quejidos? ¿Para quién las heridas gratuitas? ¿Para quién lo enrojecido de los ojos?",
+          "heading": "—18—"
+        },
+        {
+          "verse": 30,
+          "text": "Para los que se detienen mucho sobre el vino; para los que se lo pasan probando el vino mezclado."
+        },
+        {
+          "verse": 31,
+          "text": "No mires el vino cuando rojea, cuando resplandece su color en la copa, cuando entra suavemente."
+        },
+        {
+          "verse": 32,
+          "text": "Al fin muerde como serpiente y envenena como víbora."
+        },
+        {
+          "verse": 33,
+          "text": "Tus ojos mirarán cosas extrañas y tu corazón hablará perversidades."
+        },
+        {
+          "verse": 34,
+          "text": "Serás como el que yace en medio del mar o como el que yace en la punta de un mástil."
+        },
+        {
+          "verse": 35,
+          "text": "Dirás: “Me golpearon, pero no me dolió; me azotaron, pero no lo sentí. Cuando me despierte, lo volveré a buscar”."
+        }
+      ]
+    },
+    {
+      "chapter": 24,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "No tengas envidia de los hombres malos ni desees estar con ellos;",
+          "heading": "—19—"
+        },
+        {
+          "verse": 2,
+          "text": "porque su corazón trama violencia, y sus labios hablan iniquidad."
+        },
+        {
+          "verse": 3,
+          "text": "Con sabiduría se edifica la casa y con prudencia se afirma.",
+          "heading": "—20—"
+        },
+        {
+          "verse": 4,
+          "text": "Con conocimiento se llenan los cuartos de todo bien preciado y agradable."
+        },
+        {
+          "verse": 5,
+          "text": "Más vale el sabio que el fuerte  ; y el hombre de conocimiento que el de vigor.",
+          "heading": "—21—"
+        },
+        {
+          "verse": 6,
+          "text": "Porque con estrategia harás la guerra, y en los muchos consejeros está la victoria."
+        },
+        {
+          "verse": 7,
+          "text": "Muy alta está la sabiduría para el insensato; en la puerta de la ciudad no abrirá su boca.",
+          "heading": "—22—"
+        },
+        {
+          "verse": 8,
+          "text": "Al que planea hacer el mal lo llamarán hombre de malas intenciones.",
+          "heading": "—23—"
+        },
+        {
+          "verse": 9,
+          "text": "La intención del insensato  es pecado, y el burlador es abominación a los hombres."
+        },
+        {
+          "verse": 10,
+          "text": "Si desmayas en el día de la dificultad, también tu fuerza se reducirá.",
+          "heading": "—24—"
+        },
+        {
+          "verse": 11,
+          "text": "Libra a los que son llevados a la muerte; no dejes de librar a los que van tambaleando a la matanza.",
+          "heading": "—25—"
+        },
+        {
+          "verse": 12,
+          "text": "Si dices: “En verdad no lo supimos”, ¿no lo entenderá el que examina los corazones? El que vigila tu alma él lo sabrá y recompensará al hombre según sus obras."
+        },
+        {
+          "verse": 13,
+          "text": "Come, hijo mío, de la miel, porque es buena; y del panal que es dulce a tu paladar.",
+          "heading": "—26—"
+        },
+        {
+          "verse": 14,
+          "text": "Así será el conocimiento de la sabiduría para tu alma. Si la hallas, habrá un porvenir, y tu esperanza no será frustrada."
+        },
+        {
+          "verse": 15,
+          "text": "Oh impío, no aceches la morada del justo ni destruyas su lugar de reposo;",
+          "heading": "—27—"
+        },
+        {
+          "verse": 16,
+          "text": "porque siete veces cae el justo y se vuelve a levantar, pero los impíos tropezarán en el mal."
+        },
+        {
+          "verse": 17,
+          "text": "No te alegres cuando caiga tu enemigo; y cuando tropiece no se regocije tu corazón,",
+          "heading": "—28—"
+        },
+        {
+          "verse": 18,
+          "text": "no sea que lo vea el SEÑOR y le desagrade, y aparte de él su enojo."
+        },
+        {
+          "verse": 19,
+          "text": "No te enfurezcas a causa de los malhechores ni tengas envidia de los impíos;",
+          "heading": "—29—"
+        },
+        {
+          "verse": 20,
+          "text": "porque no habrá un buen porvenir para el malo, y la lámpara de los impíos será apagada."
+        },
+        {
+          "verse": 21,
+          "text": "Hijo mío, teme al SEÑOR y al rey, y no te asocies con los inestables.",
+          "heading": "—30—"
+        },
+        {
+          "verse": 22,
+          "text": "Porque su calamidad surgirá de repente, y el castigo que procede de ambos, ¡quién lo puede saber!"
+        },
+        {
+          "verse": 23,
+          "text": "También los siguientes dichos pertenecen a los sabios: No es bueno hacer distinción de personas en el juicio.",
+          "heading": "Otros dichos de los sabios"
+        },
+        {
+          "verse": 24,
+          "text": "Al que dice al impío: “Eres justo”, los pueblos lo maldecirán; las naciones lo detestarán."
+        },
+        {
+          "verse": 25,
+          "text": "Pero los que lo reprenden serán apreciados, y sobre ellos vendrá la bendición del bien."
+        },
+        {
+          "verse": 26,
+          "text": "Besados serán los labios del que responde palabras correctas."
+        },
+        {
+          "verse": 27,
+          "text": "Ordena tus labores afuera; ocúpate en ellas en el campo. Y después edifícate una casa."
+        },
+        {
+          "verse": 28,
+          "text": "No testifiques sin causa contra tu prójimo ni le engañes con tus labios."
+        },
+        {
+          "verse": 29,
+          "text": "No digas: “Como me hizo, así le haré a él; recompensaré al hombre según su acción”."
+        },
+        {
+          "verse": 30,
+          "text": "Pasé junto al campo de un hombre perezoso y junto a la viña de un hombre falto de entendimiento."
+        },
+        {
+          "verse": 31,
+          "text": "Y he aquí que por todos lados habían crecido ortigas; los cardos habían cubierto el área, y su cerco de piedra estaba destruido."
+        },
+        {
+          "verse": 32,
+          "text": "Yo observé esto y lo medité en mi corazón; lo vi y saqué esta enseñanza:"
+        },
+        {
+          "verse": 33,
+          "text": "Un poco de dormir, un poco de dormitar y un poco de cruzar las manos para reposar."
+        },
+        {
+          "verse": 34,
+          "text": "Así vendrá tu pobreza como un vagabundo, y tu escasez como un hombre armado."
+        }
+      ]
+    },
+    {
+      "chapter": 25,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "También estos son proverbios de Salomón, los cuales copiaron los hombres de Ezequías, rey de Judá:",
+          "heading": "Otros proverbios de Salomón"
+        },
+        {
+          "verse": 2,
+          "text": "Es gloria de Dios ocultar una cosa, y es gloria del rey escudriñarla."
+        },
+        {
+          "verse": 3,
+          "text": "La altura de los cielos, la profundidad de la tierra y el corazón de los reyes son inescrutables."
+        },
+        {
+          "verse": 4,
+          "text": "Quita las escorias de la plata, y saldrá un objeto para el fundidor."
+        },
+        {
+          "verse": 5,
+          "text": "Quita al impío de la presencia del rey, y su trono se afirmará con justicia."
+        },
+        {
+          "verse": 6,
+          "text": "No te vanaglories delante del rey ni te entremetas en el lugar de los grandes;"
+        },
+        {
+          "verse": 7,
+          "text": "porque mejor es que se te diga: “Sube acá”, antes que seas humillado delante del noble. Cuando tus ojos hayan visto algo,"
+        },
+        {
+          "verse": 8,
+          "text": "no entres apresuradamente en pleito. Porque, ¿qué más harás al final cuando tu prójimo te haya avergonzado?"
+        },
+        {
+          "verse": 9,
+          "text": "Discute tu causa con tu prójimo y no des a conocer el secreto de otro."
+        },
+        {
+          "verse": 10,
+          "text": "No sea que te deshonre el que te oye, y tu infamia no pueda ser reparada."
+        },
+        {
+          "verse": 11,
+          "text": "Manzana de oro con adornos de plata es la palabra dicha oportunamente."
+        },
+        {
+          "verse": 12,
+          "text": "Como zarcillo de oro y joya de oro fino es el que reprende al sabio que tiene oído dócil."
+        },
+        {
+          "verse": 13,
+          "text": "Como el frescor de la nieve en tiempo de siega es el mensajero fiel a los que lo envían, pues da refrigerio al alma de su señor."
+        },
+        {
+          "verse": 14,
+          "text": "Como nubes y vientos sin lluvia, así es el hombre que se jacta de un regalo que al fin no da."
+        },
+        {
+          "verse": 15,
+          "text": "Con larga paciencia se persuade al jefe, y la lengua blanda quebranta los huesos."
+        },
+        {
+          "verse": 16,
+          "text": "¿Hallaste miel? Come solo lo suficiente, no sea que te hartes de ella y la vomites."
+        },
+        {
+          "verse": 17,
+          "text": "Detén tu pie de la casa de tu vecino, no sea que se harte de ti y te aborrezca."
+        },
+        {
+          "verse": 18,
+          "text": "Mazo, espada y flecha dentada es el hombre que da falso testimonio contra su prójimo."
+        },
+        {
+          "verse": 19,
+          "text": "Diente quebrado y pie que resbala es la confianza en el traicionero, en el día de angustia."
+        },
+        {
+          "verse": 20,
+          "text": "El que canta canciones al corazón afligido es como el que quita la ropa en tiempo de frío o el que echa vinagre sobre el jabón."
+        },
+        {
+          "verse": 21,
+          "text": "Si tu enemigo tiene hambre dale de comer pan; y si tiene sed dale de beber agua;"
+        },
+        {
+          "verse": 22,
+          "text": "pues así carbones encendidos tú amontonas sobre su cabeza, y el SEÑOR te recompensará."
+        },
+        {
+          "verse": 23,
+          "text": "El viento del norte trae la lluvia; y la lengua detractora el rostro airado."
+        },
+        {
+          "verse": 24,
+          "text": "Mejor es vivir en un rincón de la azotea que compartir una casa con una mujer rencillosa."
+        },
+        {
+          "verse": 25,
+          "text": "Como el agua fría al alma sedienta, así son las buenas nuevas de lejanas tierras."
+        },
+        {
+          "verse": 26,
+          "text": "Como manantial turbio y fuente corrompida es el justo que vacila ante el impío."
+        },
+        {
+          "verse": 27,
+          "text": "Comer mucha miel no es bueno ni es gloria buscar la propia gloria."
+        },
+        {
+          "verse": 28,
+          "text": "Como una ciudad cuya muralla ha sido derribada, es el hombre cuyo espíritu no tiene freno."
+        }
+      ]
+    },
+    {
+      "chapter": 26,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Como nieve en el verano y lluvia en la siega, así no le caen bien los honores al necio."
+        },
+        {
+          "verse": 2,
+          "text": "Como escapa el ave y vuela la golondrina, así la maldición sin causa no se realizará."
+        },
+        {
+          "verse": 3,
+          "text": "El látigo es para el caballo, el freno para el asno y la vara para la espalda de los necios."
+        },
+        {
+          "verse": 4,
+          "text": "Nunca respondas al necio según su insensatez, para que no seas tú también como él."
+        },
+        {
+          "verse": 5,
+          "text": "Responde al necio según su insensatez, para que no se estime sabio en su propia opinión."
+        },
+        {
+          "verse": 6,
+          "text": "Se corta los pies y bebe violencia el que envía recado por medio de un necio."
+        },
+        {
+          "verse": 7,
+          "text": "Como las piernas del cojo que cuelgan inútiles, es el proverbio en la boca de los necios."
+        },
+        {
+          "verse": 8,
+          "text": "Como atar una piedra a la honda, así es dar honor al necio."
+        },
+        {
+          "verse": 9,
+          "text": "Como espina que penetra en la mano del borracho, es el proverbio en la boca de los necios."
+        },
+        {
+          "verse": 10,
+          "text": "Como el arquero que hiere a todos, es el que contrata a necios y vagabundos."
+        },
+        {
+          "verse": 11,
+          "text": "Como perro que vuelve a su vómito así es el necio que repite su insensatez."
+        },
+        {
+          "verse": 12,
+          "text": "¿Has visto a un hombre sabio en su propia opinión? ¡Más esperanza hay del necio que de él!"
+        },
+        {
+          "verse": 13,
+          "text": "Dice el perezoso: “¡Hay un león en el camino! ¡Hay un león en medio de las calles!”."
+        },
+        {
+          "verse": 14,
+          "text": "Como las puertas giran sobre sus bisagras, así también el perezoso en su cama."
+        },
+        {
+          "verse": 15,
+          "text": "El perezoso hunde su mano en el plato y se cansa de volverla a su boca."
+        },
+        {
+          "verse": 16,
+          "text": "El perezoso es más sabio en su opinión que siete que responden con discreción."
+        },
+        {
+          "verse": 17,
+          "text": "El que se entremete en pleito ajeno es como el que agarra de las orejas a un perro que pasa."
+        },
+        {
+          "verse": 18,
+          "text": "Como el que enloquece y arroja dardos y flechas de muerte,"
+        },
+        {
+          "verse": 19,
+          "text": "así es el hombre que defrauda a su amigo y dice: “¿Acaso no estaba yo bromeando?”."
+        },
+        {
+          "verse": 20,
+          "text": "Sin leña se apaga el fuego; y donde no hay chismoso cesa la contienda."
+        },
+        {
+          "verse": 21,
+          "text": "El carbón es para las brasas, la leña para el fuego y el hombre rencilloso para provocar peleas."
+        },
+        {
+          "verse": 22,
+          "text": "Las palabras del chismoso parecen suaves, pero penetran hasta lo recóndito del ser."
+        },
+        {
+          "verse": 23,
+          "text": "Como escorias de plata arrojadas sobre un tiesto, son los labios enardecidos y el corazón vil."
+        },
+        {
+          "verse": 24,
+          "text": "El que aborrece disimula con sus labios, pero en su interior trama el fraude."
+        },
+        {
+          "verse": 25,
+          "text": "Cuando hable amigablemente no le creas; porque siete abominaciones hay en su corazón."
+        },
+        {
+          "verse": 26,
+          "text": "Aunque con engaño encubra su odio, su maldad será descubierta en la congregación."
+        },
+        {
+          "verse": 27,
+          "text": "El que cava fosa caerá en ella; y al que hace rodar una piedra esta le vendrá encima."
+        },
+        {
+          "verse": 28,
+          "text": "La lengua mentirosa atormenta a su víctima, y la boca lisonjera causa la ruina."
+        }
+      ]
+    },
+    {
+      "chapter": 27,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "No te jactes del día de mañana, porque no sabes qué dará de sí el día."
+        },
+        {
+          "verse": 2,
+          "text": "Que te alabe el extraño, y no tu propia boca; el ajeno y no tus propios labios."
+        },
+        {
+          "verse": 3,
+          "text": "Pesada es la piedra; también la arena pesa. Pero el enojo del insensato es más pesado que ambas."
+        },
+        {
+          "verse": 4,
+          "text": "Cruel es la ira e impetuoso el furor; pero, ¿quién podrá mantenerse en pie delante de los celos?"
+        },
+        {
+          "verse": 5,
+          "text": "Mejor es la reprensión manifiesta que el amor oculto."
+        },
+        {
+          "verse": 6,
+          "text": "Fieles son las heridas que causa el que ama, pero engañosos  son los besos del que aborrece."
+        },
+        {
+          "verse": 7,
+          "text": "La persona saciada desprecia el panal, pero para la hambrienta todo lo amargo es dulce."
+        },
+        {
+          "verse": 8,
+          "text": "Como el ave que vaga lejos de su nido, así es el hombre que vaga lejos de su lugar."
+        },
+        {
+          "verse": 9,
+          "text": "El aceite y el perfume alegran el corazón; y la dulzura de un amigo más que el consejo del alma  ."
+        },
+        {
+          "verse": 10,
+          "text": "No abandones a tu amigo ni al amigo de tu padre, y no vayas a la casa de tu hermano en el día de tu infortunio; pues es mejor el vecino cerca que el hermano lejos."
+        },
+        {
+          "verse": 11,
+          "text": "Sé sabio, hijo mío, y alegra mi corazón; así tendré qué responder al que me ultraja."
+        },
+        {
+          "verse": 12,
+          "text": "El prudente ve el mal y se esconde, pero los ingenuos pasan y reciben el daño."
+        },
+        {
+          "verse": 13,
+          "text": "Quítale su ropa al que salió fiador del extraño, y tómale prenda al que se fía de la mujer ajena."
+        },
+        {
+          "verse": 14,
+          "text": "Al que bendice a su prójimo en alta voz, madrugando de mañana, se le contará por maldición."
+        },
+        {
+          "verse": 15,
+          "text": "Gotera continua en un día de lluvia y mujer rencillosa son semejantes;"
+        },
+        {
+          "verse": 16,
+          "text": "sujetarla es sujetar al viento o al aceite en la mano derecha  ."
+        },
+        {
+          "verse": 17,
+          "text": "El hierro con hierro se afila y el hombre afina el semblante de su amigo."
+        },
+        {
+          "verse": 18,
+          "text": "El que cuida de su higuera comerá de su fruto, y el que atiende a su señor logrará honra."
+        },
+        {
+          "verse": 19,
+          "text": "Como el agua refleja la cara, así el corazón del hombre refleja al hombre."
+        },
+        {
+          "verse": 20,
+          "text": "El Seol y el Abadón nunca se sacian; así nunca se sacian los ojos del hombre."
+        },
+        {
+          "verse": 21,
+          "text": "El crisol prueba la plata, la hornaza el oro; y al hombre, la boca del que lo alaba."
+        },
+        {
+          "verse": 22,
+          "text": "Aunque machaques al insensato con el pisón de un mortero en medio del grano, no se apartará de su insensatez."
+        },
+        {
+          "verse": 23,
+          "text": "Considera atentamente el estado de tu ganado; presta atención a tus rebaños."
+        },
+        {
+          "verse": 24,
+          "text": "Porque las riquezas no duran para siempre ni se transmite una corona de generación en generación."
+        },
+        {
+          "verse": 25,
+          "text": "Saldrá la grama, aparecerá la hierba, y serán recogidas las plantas de las colinas."
+        },
+        {
+          "verse": 26,
+          "text": "Los corderos proveerán para tu vestido, y los machos cabríos para el precio del campo."
+        },
+        {
+          "verse": 27,
+          "text": "La abundancia de la leche de las cabras será para tu sustento y para el sustento de tu casa y de tus criadas."
+        }
+      ]
+    },
+    {
+      "chapter": 28,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Huye el impío sin que nadie lo persiga, pero los justos están confiados como un león."
+        },
+        {
+          "verse": 2,
+          "text": "Por la rebelión del país se multiplican sus gobernantes, pero por el hombre de entendimiento y de inteligencia permanecerá."
+        },
+        {
+          "verse": 3,
+          "text": "El hombre pobre  que oprime a los más débiles es como lluvia torrencial que deja sin pan."
+        },
+        {
+          "verse": 4,
+          "text": "Los que abandonan la ley alaban a los impíos, pero los que guardan la ley contenderán con ellos."
+        },
+        {
+          "verse": 5,
+          "text": "Los hombres malos no entienden el derecho, pero los que buscan al SEÑOR lo entienden todo."
+        },
+        {
+          "verse": 6,
+          "text": "Mejor es el pobre que camina en su integridad que el de caminos torcidos aunque sea rico."
+        },
+        {
+          "verse": 7,
+          "text": "El que guarda la ley es hijo inteligente, pero el que se junta con glotones avergüenza a su padre."
+        },
+        {
+          "verse": 8,
+          "text": "El que aumenta sus riquezas con usura e intereses acumula para el que se compadece de los pobres."
+        },
+        {
+          "verse": 9,
+          "text": "El que aparta su oído para no oír la ley, aun su oración es abominable."
+        },
+        {
+          "verse": 10,
+          "text": "El que hace errar a los rectos por el mal camino, él caerá en su propia fosa; pero los íntegros heredarán el bien."
+        },
+        {
+          "verse": 11,
+          "text": "El hombre rico es sabio en su propia opinión, pero el pobre que es inteligente lo escudriña."
+        },
+        {
+          "verse": 12,
+          "text": "Cuando triunfan los justos grande es la gloria; pero cuando se levantan los impíos se esconden los hombres."
+        },
+        {
+          "verse": 13,
+          "text": "El que encubre sus pecados no prosperará, pero el que los confiesa y los abandona alcanzará misericordia."
+        },
+        {
+          "verse": 14,
+          "text": "Bienaventurado el hombre que siempre teme, pero el que endurece su corazón caerá en el mal."
+        },
+        {
+          "verse": 15,
+          "text": "León rugiente y oso que embiste es el gobernante impío sobre el pueblo empobrecido."
+        },
+        {
+          "verse": 16,
+          "text": "El gobernante falto de entendimiento aumenta la extorsión, pero el que aborrece las ganancias deshonestas alargará sus días."
+        },
+        {
+          "verse": 17,
+          "text": "El hombre que carga con un delito de sangre huirá hasta la fosa y nadie lo detendrá."
+        },
+        {
+          "verse": 18,
+          "text": "El que camina en integridad será salvo, pero el de caminos torcidos caerá en una fosa  ."
+        },
+        {
+          "verse": 19,
+          "text": "El que cultiva su tierra se saciará de pan, pero el que persigue cosas vanas se saciará de pobreza."
+        },
+        {
+          "verse": 20,
+          "text": "El hombre fiel tendrá muchas bendiciones, pero el que se apresura a enriquecerse no quedará impune."
+        },
+        {
+          "verse": 21,
+          "text": "No es bueno hacer distinción de personas, pues un hombre puede delinquir hasta por un bocado de pan."
+        },
+        {
+          "verse": 22,
+          "text": "El hombre de malas intenciones se apresura a enriquecerse, y no sabe que le ha de venir escasez."
+        },
+        {
+          "verse": 23,
+          "text": "El que reprende al hombre hallará después mayor gracia que el que le lisonjea con la lengua."
+        },
+        {
+          "verse": 24,
+          "text": "El que roba a su padre y a su madre, y dice que no es maldad, es compañero del destructor."
+        },
+        {
+          "verse": 25,
+          "text": "El de ánimo altivo suscita contiendas, pero el que confía en el SEÑOR prosperará."
+        },
+        {
+          "verse": 26,
+          "text": "El que confía en su propio corazón es un necio, pero el que camina en sabiduría estará a salvo."
+        },
+        {
+          "verse": 27,
+          "text": "Al que da al pobre no le faltará, pero el que cierra ante él sus ojos tendrá muchas maldiciones."
+        },
+        {
+          "verse": 28,
+          "text": "Cuando se levantan los impíos se ocultan los hombres; pero cuando perecen los justos se engrandecen."
+        }
+      ]
+    },
+    {
+      "chapter": 29,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "El hombre que al ser reprendido endurece la cerviz, de repente será quebrantado, y para él no habrá remedio."
+        },
+        {
+          "verse": 2,
+          "text": "Cuando los justos aumentan el pueblo se alegra; pero cuando gobierna el impío el pueblo gime."
+        },
+        {
+          "verse": 3,
+          "text": "El hombre que ama la sabiduría alegra a su padre, pero el que se junta con prostitutas malgasta sus bienes."
+        },
+        {
+          "verse": 4,
+          "text": "El rey con la justicia da estabilidad al país, pero el que lo abruma con impuestos lo destruye."
+        },
+        {
+          "verse": 5,
+          "text": "El hombre que lisonjea a su prójimo le tiende red ante sus pasos."
+        },
+        {
+          "verse": 6,
+          "text": "El hombre malo cae en la trampa de su propia transgresión, pero el justo cantará y se alegrará."
+        },
+        {
+          "verse": 7,
+          "text": "El justo se preocupa por la causa de los más necesitados, pero el impío no entiende tal preocupación."
+        },
+        {
+          "verse": 8,
+          "text": "Los burladores agitan la ciudad, pero los sabios aplacan la ira."
+        },
+        {
+          "verse": 9,
+          "text": "Si el sabio pleitea con el necio, aunque se enoje o se ría no tendrá reposo."
+        },
+        {
+          "verse": 10,
+          "text": "Los hombres sanguinarios aborrecen al íntegro, pero los rectos buscan su bien."
+        },
+        {
+          "verse": 11,
+          "text": "El necio da rienda suelta a toda su ira, pero el sabio conteniéndose la apacigua."
+        },
+        {
+          "verse": 12,
+          "text": "Si el gobernante atiende a palabras mentirosas, todos sus servidores serán unos impíos."
+        },
+        {
+          "verse": 13,
+          "text": "El pobre y el opresor tienen esto en común: A ambos el SEÑOR les alumbra los ojos."
+        },
+        {
+          "verse": 14,
+          "text": "El rey que juzga a los pobres según la verdad afirma su trono para siempre."
+        },
+        {
+          "verse": 15,
+          "text": "La vara y la corrección dan sabiduría, pero el muchacho dejado por su cuenta avergüenza a su madre."
+        },
+        {
+          "verse": 16,
+          "text": "Cuando abundan los impíos abunda la transgresión; pero los justos verán la ruina de ellos."
+        },
+        {
+          "verse": 17,
+          "text": "Corrige a tu hijo y te dará reposo; él dará satisfacciones a tu alma."
+        },
+        {
+          "verse": 18,
+          "text": "Donde no hay visión el pueblo se desenfrena; pero el que guarda la ley es bienaventurado."
+        },
+        {
+          "verse": 19,
+          "text": "El siervo no se corrige solo con palabras porque entiende, pero no hace caso."
+        },
+        {
+          "verse": 20,
+          "text": "¿Has visto a un hombre apresurado en sus palabras? Más esperanza hay del necio que de él."
+        },
+        {
+          "verse": 21,
+          "text": "El que mima a su siervo desde la niñez, a la postre, este será su heredero."
+        },
+        {
+          "verse": 22,
+          "text": "El hombre iracundo suscita contiendas, y el furioso comete muchas transgresiones."
+        },
+        {
+          "verse": 23,
+          "text": "La soberbia del hombre lo abate, pero al humilde de espíritu le sustenta la honra."
+        },
+        {
+          "verse": 24,
+          "text": "El cómplice del ladrón aborrece su vida; aunque oiga las maldiciones no lo denunciará."
+        },
+        {
+          "verse": 25,
+          "text": "El temor al hombre pone trampas, pero el que confía en el SEÑOR estará a salvo."
+        },
+        {
+          "verse": 26,
+          "text": "Muchos buscan el favor del gobernante, pero del SEÑOR proviene el derecho de cada uno."
+        },
+        {
+          "verse": 27,
+          "text": "Abominación es a los justos el hombre inicuo, y el de caminos rectos es abominación al impío."
+        }
+      ]
+    },
+    {
+      "chapter": 30,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Las palabras de Agur hijo de Jaqué, de Masá: El hombre dice: “No hay Dios; no hay Dios”. ¿Y acaso podré yo saber?",
+          "heading": "Palabras de Agur"
+        },
+        {
+          "verse": 2,
+          "text": "Ciertamente yo soy el más ignorante de los hombres y no tengo entendimiento humano."
+        },
+        {
+          "verse": 3,
+          "text": "No he aprendido sabiduría para conocer al Santo."
+        },
+        {
+          "verse": 4,
+          "text": "¿Quién ha subido al cielo y ha descendido? ¿Quién reunió los vientos en sus puños? ¿Quién contuvo las aguas en un manto? ¿Quién levantó todos los extremos de la tierra? ¿Cuál es su nombre y el nombre de su hijo, si lo sabes?"
+        },
+        {
+          "verse": 5,
+          "text": "Probada es toda palabra de Dios; él es escudo a los que en él se refugian."
+        },
+        {
+          "verse": 6,
+          "text": "No añadas a sus palabras, no sea que te reprenda y seas hallado mentiroso."
+        },
+        {
+          "verse": 7,
+          "text": "Dos cosas te he pedido; no me las niegues antes que muera:"
+        },
+        {
+          "verse": 8,
+          "text": "Vanidad y palabra mentirosa aparta de mí, y no me des pobreza ni riqueza. Solo dame mi pan cotidiano;"
+        },
+        {
+          "verse": 9,
+          "text": "no sea que me sacie y te niegue o diga: “¿Quién es el SEÑOR?”. No sea que me empobrezca y robe, y profane el nombre de mi Dios."
+        },
+        {
+          "verse": 10,
+          "text": "No difames al siervo ante su señor; no sea que te maldiga, y seas hallado culpable."
+        },
+        {
+          "verse": 11,
+          "text": "Hay generación que maldice a su padre y no bendice a su madre."
+        },
+        {
+          "verse": 12,
+          "text": "Hay generación limpia en su propia opinión, a pesar de que no ha sido lavada de su inmundicia."
+        },
+        {
+          "verse": 13,
+          "text": "Hay generación cuyos ojos son altivos y cuya vista es altanera."
+        },
+        {
+          "verse": 14,
+          "text": "Hay generación cuyos dientes son espadas y cuyas mandíbulas son cuchillos, para devorar a los pobres de la tierra y a los necesitados de entre los hombres."
+        },
+        {
+          "verse": 15,
+          "text": "La sanguijuela tiene dos hijas: Dame y Dame.",
+          "heading": "Proverbios numéricos"
+        },
+        {
+          "verse": 16,
+          "text": "Tres cosas hay que nunca se sacian, y la cuarta nunca dice: “¡Basta!”. El Seol, la matriz estéril, la tierra que no se sacia de agua y el fuego que jamás dice: “¡Basta!”."
+        },
+        {
+          "verse": 17,
+          "text": "Al ojo que se burla de su padre y menosprecia el obedecer a su madre, sáquenlo los cuervos de la quebrada, y tráguenlo los polluelos del águila."
+        },
+        {
+          "verse": 18,
+          "text": "Tres cosas me son misteriosas, y tampoco comprendo la cuarta:"
+        },
+        {
+          "verse": 19,
+          "text": "el rastro del águila en el aire, el rastro de la serpiente sobre la peña, el rastro del barco en el corazón del mar y el rastro del hombre en la joven."
+        },
+        {
+          "verse": 20,
+          "text": "La mujer adúltera procede así: Come, limpia su boca y dice: “No he hecho ninguna iniquidad”."
+        },
+        {
+          "verse": 21,
+          "text": "Por tres cosas tiembla la tierra, y la cuarta no puede soportar:"
+        },
+        {
+          "verse": 22,
+          "text": "por el esclavo cuando llega a ser rey; por el vil, cuando se sacia de pan;"
+        },
+        {
+          "verse": 23,
+          "text": "por la mujer aborrecida cuando se casa; y por una criada que hereda a su señora."
+        },
+        {
+          "verse": 24,
+          "text": "Cuatro cosas son de las más pequeñas de la tierra, y las mismas son más sabias que los sabios:"
+        },
+        {
+          "verse": 25,
+          "text": "las hormigas, pueblo no fuerte, pero en el verano preparan su comida;"
+        },
+        {
+          "verse": 26,
+          "text": "los conejos, pueblo no poderoso, pero tienen su casa en la roca;"
+        },
+        {
+          "verse": 27,
+          "text": "las langostas, que no tienen rey, pero salen por cuadrillas;"
+        },
+        {
+          "verse": 28,
+          "text": "y la lagartija, que atrapas con las manos, pero está en los palacios del rey."
+        },
+        {
+          "verse": 29,
+          "text": "Hay tres cosas de paso gallardo; y la cuarta camina muy bien:"
+        },
+        {
+          "verse": 30,
+          "text": "el león, fuerte entre todos los animales, que no vuelve atrás por nada;"
+        },
+        {
+          "verse": 31,
+          "text": "el gallo erguido  , el macho cabrío; y el rey a quien nadie resiste  ."
+        },
+        {
+          "verse": 32,
+          "text": "Si neciamente te has enaltecido y has pensado el mal, pon tu mano sobre tu boca:"
+        },
+        {
+          "verse": 33,
+          "text": "Ciertamente el que bate la leche sacará mantequilla; el que con fuerza se suena la nariz sacará sangre, y el que provoca la ira causará contienda."
+        }
+      ]
+    },
+    {
+      "chapter": 31,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Palabras de Lemuel, rey de Masá, que le enseñara su madre:",
+          "heading": "Palabras de Lemuel"
+        },
+        {
+          "verse": 2,
+          "text": "¡Oh, hijo mío! ¡Oh, hijo de mi vientre! ¡Oh, hijo de mis votos!"
+        },
+        {
+          "verse": 3,
+          "text": "No des a las mujeres tu fuerza ni tus caminos a las que destruyen a los reyes."
+        },
+        {
+          "verse": 4,
+          "text": "No es cosa de reyes, oh Lemuel, no es cosa de reyes beber vino ni de los magistrados el licor."
+        },
+        {
+          "verse": 5,
+          "text": "No sea que bebiendo olviden lo que se ha decretado y perviertan el derecho de todos los afligidos."
+        },
+        {
+          "verse": 6,
+          "text": "Den licor al que va a perecer, y vino a los de ánimo amargado."
+        },
+        {
+          "verse": 7,
+          "text": "Beban y olvídense de su necesidad, y no se acuerden más de su miseria."
+        },
+        {
+          "verse": 8,
+          "text": "Abre tu boca por el mudo en el juicio de todos los desafortunados."
+        },
+        {
+          "verse": 9,
+          "text": "Abre tu boca, juzga con justicia y defiende al pobre y al necesitado."
+        },
+        {
+          "verse": 10,
+          "text": "Mujer virtuosa, ¿quién la hallará? Porque su valor sobrepasa a las perlas.",
+          "heading": "Elogio de la mujer virtuosa"
+        },
+        {
+          "verse": 11,
+          "text": "Confía en ella el corazón de su marido, y no carecerá de ganancias."
+        },
+        {
+          "verse": 12,
+          "text": "Le recompensará con bien y no con mal todos los días de su vida."
+        },
+        {
+          "verse": 13,
+          "text": "Busca lana y lino y con gusto teje con sus manos."
+        },
+        {
+          "verse": 14,
+          "text": "Es como un barco mercante que trae su pan de lejos."
+        },
+        {
+          "verse": 15,
+          "text": "Se levanta siendo aún de noche, y da de comer a su familia y su diaria ración a sus criadas."
+        },
+        {
+          "verse": 16,
+          "text": "Evalúa un campo y lo compra, y con sus propias manos planta una viña."
+        },
+        {
+          "verse": 17,
+          "text": "Ciñe su cintura con firmeza y esfuerza sus brazos."
+        },
+        {
+          "verse": 18,
+          "text": "Comprueba que le va bien en el negocio, y no se apaga su lámpara en la noche."
+        },
+        {
+          "verse": 19,
+          "text": "Su mano aplica a la rueca, y sus dedos toman el huso."
+        },
+        {
+          "verse": 20,
+          "text": "Sus manos extiende al pobre y tiende sus manos al necesitado."
+        },
+        {
+          "verse": 21,
+          "text": "No teme por su familia a causa de la nieve porque toda su familia está vestida de ropa doble  ."
+        },
+        {
+          "verse": 22,
+          "text": "Tapices hace para sí, y se viste de lino fino y púrpura."
+        },
+        {
+          "verse": 23,
+          "text": "Es conocido su marido en las puertas de la ciudad, cuando se sienta con los ancianos del país."
+        },
+        {
+          "verse": 24,
+          "text": "Telas hace y las vende; entrega cintas al mercader."
+        },
+        {
+          "verse": 25,
+          "text": "Fuerza y honor son su vestidura, y se ríe de lo porvenir."
+        },
+        {
+          "verse": 26,
+          "text": "Su boca abre con sabiduría, y la ley de la misericordia está en su lengua."
+        },
+        {
+          "verse": 27,
+          "text": "Considera la marcha de su casa y no come pan de ociosidad."
+        },
+        {
+          "verse": 28,
+          "text": "Se levantan sus hijos y le llaman: “Bienaventurada”. Y su marido también la alaba:"
+        },
+        {
+          "verse": 29,
+          "text": "“Muchas mujeres han hecho el bien, pero tú sobrepasas a todas”."
+        },
+        {
+          "verse": 30,
+          "text": "Engañosa es la gracia y vana es la hermosura; la mujer que teme al SEÑOR, ella será alabada."
+        },
+        {
+          "verse": 31,
+          "text": "¡Denle del fruto de sus manos, y en las puertas de la ciudad alábenla sus hechos!"
+        }
+      ]
+    }
+  ]
+}

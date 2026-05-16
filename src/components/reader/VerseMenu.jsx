@@ -67,6 +67,11 @@ export default function VerseMenu({ verse, payload, onClose }) {
         </header>
 
         <div className={classes.actions}>
+          <button className={classes.mainAction} onClick={() => { payload?.onOpenCba?.(); onClose(); }}>
+            <span className={classes.actionIcon}>📖</span>
+            <span className={classes.actionLabel}>Ver Comentario (CBA)</span>
+          </button>
+
           <button className={classes.mainAction} onClick={handleBookmark}>
             <span className={classes.actionIcon}>{bookmarked ? '🔖' : '📑'}</span>
             <span className={classes.actionLabel}>{bookmarked ? 'Quitar Marcador' : 'Añadir Marcador'}</span>

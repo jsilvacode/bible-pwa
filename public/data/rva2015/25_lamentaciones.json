@@ -1,0 +1,737 @@
+{
+  "version": "rva2015",
+  "book": 25,
+  "name": "Lamentaciones",
+  "chapters": [
+    {
+      "chapter": 1,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "¡Cómo está sentada solitaria la ciudad populosa! Se ha vuelto como viuda la grande entre las naciones. La señora de las provincias ha sido hecha tributaria.",
+          "heading": "א Álef"
+        },
+        {
+          "verse": 2,
+          "text": "Amargamente llora en la noche; sus lágrimas están en sus mejillas. No hay quien la consuele entre todos sus amantes. Todos sus amigos la traicionaron; se le volvieron enemigos.",
+          "heading": "ב Bet"
+        },
+        {
+          "verse": 3,
+          "text": "En cautiverio ha ido Judá, sujeta a la aflicción y a la dura servidumbre. Ella habita entre las naciones y no halla descanso. Todos sus perseguidores la alcanzaron en medio de las aflicciones.",
+          "heading": "ג Guímel"
+        },
+        {
+          "verse": 4,
+          "text": "Los caminos de Sion están de duelo por no haber quien vaya a las solemnidades. Todos sus porteros están atónitos y gimen sus sacerdotes. Sus vírgenes están afligidas y ella tiene amargura.",
+          "heading": "ד Dálet"
+        },
+        {
+          "verse": 5,
+          "text": "Han venido a ser cabeza sus adversarios; los que la aborrecen viven tranquilos, porque el SEÑOR la afligió por la multitud de sus rebeliones. Sus pequeños han ido en cautividad delante del adversario.",
+          "heading": "ה Hei"
+        },
+        {
+          "verse": 6,
+          "text": "Ha desaparecido de la hija de Sion todo su esplendor. Sus gobernantes han venido a ser como venados que no hallan pasto, y anduvieron sin fuerzas delante del perseguidor.",
+          "heading": "ו Vav"
+        },
+        {
+          "verse": 7,
+          "text": "Se acuerda Jerusalén de los días de su aflicción y desamparo, de todos sus preciosos tesoros que tenía desde tiempos antiguos. Cuando su pueblo cayó en manos del adversario, no hubo quien la auxiliara. La vieron sus adversarios y se rieron de su final.",
+          "heading": "ז Zayin"
+        },
+        {
+          "verse": 8,
+          "text": "Gran pecado ha cometido Jerusalén, por lo cual ha llegado a ser cosa inmunda. Todos los que la honraban la desprecian, porque han mirado su desnudez. Ella también suspira y se vuelve atrás.",
+          "heading": "ח Jet"
+        },
+        {
+          "verse": 9,
+          "text": "Su inmundicia está en sus faldas; no tuvo en cuenta su final. Asombrosamente fue traída abajo y no hay quien la consuele. “Mira, oh SEÑOR, mi aflicción, porque el enemigo se ha engrandecido”.",
+          "heading": "ט Tet"
+        },
+        {
+          "verse": 10,
+          "text": "Su mano extendió el adversario a todas sus cosas preciosas, cuando ella vio entrar en su santuario a las gentes, de quienes mandaste que no entraran en tu congregación.",
+          "heading": "י Yod"
+        },
+        {
+          "verse": 11,
+          "text": "Todo su pueblo busca el pan suspirando. Dieron todas sus cosas preciosas por la comida para recobrar la vida. “¡Mira, oh SEÑOR, y ve que he sido despreciada!",
+          "heading": "כ Kaf"
+        },
+        {
+          "verse": 12,
+          "text": "“¿No les importa a ustedes, todos los que pasan por el camino? Miren y vean si hay dolor como el dolor que me ha sobrevenido y con el cual el SEÑOR me ha angustiado en el día de su ardiente ira.",
+          "heading": "ל Lámed"
+        },
+        {
+          "verse": 13,
+          "text": "“Desde lo alto envió fuego y lo hizo penetrar a mis huesos. Ha extendido una red a mis pies y me hizo volver atrás. Me dejó desolada, dolorida todo el día.",
+          "heading": "מ Mem"
+        },
+        {
+          "verse": 14,
+          "text": "“Atado está el yugo de mis rebeliones; por su mano han sido amarradas. Subieron sobre mi cuello; el Señor ha hecho decaer mis fuerzas. Me ha entregado en manos contra las cuales no podré prevalecer.",
+          "heading": "נ Nun"
+        },
+        {
+          "verse": 15,
+          "text": "“Ha rechazado el Señor a todos mis valientes en medio de mí. Contra mí convocó una asamblea para quebrantar a mis jóvenes. El Señor ha pisado como en un lagar a la virgen hija de Judá.",
+          "heading": "ס Sámej"
+        },
+        {
+          "verse": 16,
+          "text": "“Por estas cosas lloro; mis ojos, mis ojos se desbordan en lágrimas; porque se ha alejado de mí el consolador que restaura mi alma. Mis hijos están desolados porque ha prevalecido el enemigo”.",
+          "heading": "ע Ayin"
+        },
+        {
+          "verse": 17,
+          "text": "Extiende Sion las manos y no hay quien la consuele. El SEÑOR ha dado mandamiento contra Jacob, que sus adversarios lo rodeen. Entre ellos Jerusalén ha sido hecha inmunda.",
+          "heading": "פ Pe"
+        },
+        {
+          "verse": 18,
+          "text": "“Justo es el SEÑOR, aunque yo me rebelé contra su palabra. Oigan, pues, todos los pueblos y vean mi dolor: Mis vírgenes y mis jóvenes han ido en cautividad.",
+          "heading": "צ Tsade"
+        },
+        {
+          "verse": 19,
+          "text": "“Llamé a mis amantes, pero ellos me decepcionaron. Mis sacerdotes y mis ancianos perecieron en la ciudad, aunque buscaron para sí comida para recobrar la vida.",
+          "heading": "ק Qof"
+        },
+        {
+          "verse": 20,
+          "text": "“Mira, oh SEÑOR, que estoy angustiada; mis entrañas hierven. Mi corazón está trastornado dentro de mí, porque me rebelé en gran manera. En la calle la espada priva de hijos; en la casa es como la muerte.",
+          "heading": "ר Resh"
+        },
+        {
+          "verse": 21,
+          "text": "“Oyen cómo gimo y no hay quien me consuele. Todos mis enemigos han oído de mi desgracia y se han alegrado de que tú lo hayas hecho. ¡Haz que llegue el día que has proclamado, y sean ellos como yo!",
+          "heading": "ש Shin"
+        },
+        {
+          "verse": 22,
+          "text": "“Venga ante tu presencia toda la maldad de ellos, y trátalos como me has tratado a mí por todas mis rebeliones. Porque mis suspiros son muchos y mi corazón está enfermo”.",
+          "heading": "ת Tav"
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "¡Cómo ha cubierto de nubes el Señor, en su ira, a la hija de Sion! Derribó del cielo a la tierra el esplendor de Israel. No se acordó del estrado de sus pies en el día de su ira.",
+          "heading": "א Álef"
+        },
+        {
+          "verse": 2,
+          "text": "Ha destruido el Señor todas las moradas de Jacob y no ha tenido compasión. En su indignación derribó las fortalezas de la hija de Judá. Las echó por tierra; ha profanado al reino y a sus príncipes.",
+          "heading": "ב Bet"
+        },
+        {
+          "verse": 3,
+          "text": "Ha cortado, en el ardor de su ira, todo el poder de Israel. Ha retirado su mano derecha ante el enemigo. Y se ha encendido contra Jacob como llamarada de fuego que devora en derredor.",
+          "heading": "ג Guímel"
+        },
+        {
+          "verse": 4,
+          "text": "Entesó cual enemigo su arco y afirmó su mano derecha. Como adversario, mató cuanto era hermoso a los ojos. En la morada de la hija de Sion derramó su enojo como fuego.",
+          "heading": "ד Dálet"
+        },
+        {
+          "verse": 5,
+          "text": "Se ha portado el Señor como enemigo; ha destruido a Israel. Ha destruido todos sus palacios; ha arruinado sus fortalezas. Ha multiplicado en la hija de Judá el lamento y la lamentación.",
+          "heading": "ה Hei"
+        },
+        {
+          "verse": 6,
+          "text": "Como a un huerto, trató con violencia a su enramada; destruyó su lugar de reunión. El SEÑOR ha hecho olvidar en Sion las solemnidades y los sábados. Y en el furor de su ira desechó al rey y al sacerdote.",
+          "heading": "ו Vav"
+        },
+        {
+          "verse": 7,
+          "text": "Ha abandonado el Señor su altar; ha menospreciado su santuario. Ha entregado en mano del enemigo los muros de sus palacios. En la casa del SEÑOR hicieron resonar su voz como en un día de fiesta solemne.",
+          "heading": "ז Zayin"
+        },
+        {
+          "verse": 8,
+          "text": "Determinó el SEÑOR destruir el muro de la hija de Sion. Extendió el cordel; no retrajo su mano de destruir. Ha envuelto en luto el antemuro y el muro; a una fueron derribados.",
+          "heading": "ח Jet"
+        },
+        {
+          "verse": 9,
+          "text": "Se hundieron sus puertas en la tierra; él destruyó y rompió sus cerrojos. Su rey y sus príncipes están entre las naciones. ¡Ya no hay ley! Tampoco sus profetas han encontrado visión de parte del SEÑOR.",
+          "heading": "ט Tet"
+        },
+        {
+          "verse": 10,
+          "text": "Se sentaron en tierra y quedaron en silencio los ancianos de la hija de Sion. Echaron polvo sobre su cabeza, y se vistieron de cilicio. Bajaron su cabeza a tierra las vírgenes de Jerusalén.",
+          "heading": "י Yod"
+        },
+        {
+          "verse": 11,
+          "text": "Se agotan mis ojos a causa de las lágrimas; mis entrañas hierven. Mi corazón se derrama por tierra a causa de la ruina de la hija de mi pueblo, mientras el niño pequeño y el que mama desfallecen en las calles de la ciudad.",
+          "heading": "כ Kaf"
+        },
+        {
+          "verse": 12,
+          "text": "A sus madres dicen: “¿Dónde están el trigo y el vino?”, mientras desfallecen como heridos en las calles de la ciudad, mientras derraman sus vidas en el regazo de sus madres.",
+          "heading": "ל Lámed"
+        },
+        {
+          "verse": 13,
+          "text": "¿A qué te compararé?. ¿A qué te haré semejante, oh hija de Jerusalén? ¿A qué te haré igual a fin de consolarte, oh virgen hija de Sion? Porque grande como el mar es tu quebranto. ¿Quién te podrá sanar?",
+          "heading": "מ Mem"
+        },
+        {
+          "verse": 14,
+          "text": "Tus profetas vieron para ti visiones vanas y sin valor. No expusieron tu pecado para así evitar tu cautividad, sino que vieron para ti visiones proféticas vanas y engañosas.",
+          "heading": "נ Nun"
+        },
+        {
+          "verse": 15,
+          "text": "Aplaudían contra ti todos los que pasaban por el camino. Silbaban y sacudían su cabeza ante la hija de Jerusalén, diciendo: “¿Es esta la ciudad de la cual decían que era perfecta en hermosura, el gozo de toda la tierra?”.",
+          "heading": "ס Sámej"
+        },
+        {
+          "verse": 16,
+          "text": "Abrían su boca contra ti todos tus enemigos. Silbaban y rechinaban los dientes diciendo: “¡La hemos destruido! Ciertamente este es el día que esperábamos; ¡lo hemos alcanzado, lo hemos visto!”.",
+          "heading": "פ Pe"
+        },
+        {
+          "verse": 17,
+          "text": "Ha hecho el SEÑOR lo que se había propuesto; ha ejecutado su palabra. Como lo había decretado desde tiempos antiguos, destruyó y no tuvo compasión. Ha hecho que el enemigo se alegre a causa de ti; ha enaltecido el poder de tus adversarios.",
+          "heading": "ע Ayin"
+        },
+        {
+          "verse": 18,
+          "text": "Clama al Señor el corazón de ellos. Oh muralla de la hija de Sion, derrama lágrimas como arroyo de día y de noche. No te des tregua ni descansen las niñas de tus ojos.",
+          "heading": "צ Tsade"
+        },
+        {
+          "verse": 19,
+          "text": "Levántate y da voces en la noche, en el comienzo de las vigilias. Derrama como agua tu corazón ante la presencia del Señor. Levanta hacia él tus manos por la vida de tus pequeñitos, que han desfallecido por el hambre en las entradas de todas las calles.",
+          "heading": "ק Qof"
+        },
+        {
+          "verse": 20,
+          "text": "Mira, oh SEÑOR, y ve a quién has tratado así: ¿Acaso las mujeres habían de comer su propio fruto, a los pequeñitos de sus tiernos desvelos? ¿Acaso el sacerdote y el profeta habían de ser muertos en el santuario del Señor?",
+          "heading": "ר Resh"
+        },
+        {
+          "verse": 21,
+          "text": "Yacen por tierra en las calles los muchachos y los ancianos. Mis vírgenes y mis jóvenes han caído a espada. Mataste en el día de tu furor; degollaste y no tuviste compasión.",
+          "heading": "ש Shin"
+        },
+        {
+          "verse": 22,
+          "text": "Has convocado asamblea como en día de fiesta solemne; temores hay por todas partes. Y en el día del furor del SEÑOR no hubo quien escapara ni quien sobreviviera. A los que cuidé y crié, mi enemigo ha exterminado.",
+          "heading": "ת Tav"
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Yo soy el hombre que ha visto aflicción bajo el látigo de su indignación.",
+          "heading": "א Álef"
+        },
+        {
+          "verse": 2,
+          "text": "Él me ha guiado y conducido en tinieblas y no en luz."
+        },
+        {
+          "verse": 3,
+          "text": "Ciertamente todo el día ha vuelto y revuelto su mano contra mí."
+        },
+        {
+          "verse": 4,
+          "text": "Ha consumido mi carne y mi piel; ha quebrantado mis huesos.",
+          "heading": "ב Bet"
+        },
+        {
+          "verse": 5,
+          "text": "Edificó contra mí; me rodeó de amargura y de duro trabajo."
+        },
+        {
+          "verse": 6,
+          "text": "En tinieblas me hizo habitar, como los muertos de antaño."
+        },
+        {
+          "verse": 7,
+          "text": "Me bloquea por todos lados, de modo que no puedo salir; ha hecho pesadas mis cadenas.",
+          "heading": "ג Guímel"
+        },
+        {
+          "verse": 8,
+          "text": "Aun cuando grito y pido auxilio cierra sus oídos a mi oración."
+        },
+        {
+          "verse": 9,
+          "text": "Ha bloqueado mis caminos con piedras labradas; ha torcido mis senderos."
+        },
+        {
+          "verse": 10,
+          "text": "Como un oso que acecha fue para mí, como un león en escondrijos.",
+          "heading": "ד Dálet"
+        },
+        {
+          "verse": 11,
+          "text": "Mis caminos torció, me rompió en pedazos y me dejó desolado."
+        },
+        {
+          "verse": 12,
+          "text": "Entesó su arco y me puso como blanco de la flecha."
+        },
+        {
+          "verse": 13,
+          "text": "Hizo penetrar en mis entrañas las flechas de su aljaba.",
+          "heading": "ה Hei"
+        },
+        {
+          "verse": 14,
+          "text": "Fui objeto de burla para todo mi pueblo; todo el día he sido su canción."
+        },
+        {
+          "verse": 15,
+          "text": "Me llenó de amarguras y me empapó con ajenjo."
+        },
+        {
+          "verse": 16,
+          "text": "Quebró mis dientes con cascajo; me pisoteó en la ceniza.",
+          "heading": "ו Vav"
+        },
+        {
+          "verse": 17,
+          "text": "Ha sido privada mi alma de la paz; me he olvidado de la felicidad."
+        },
+        {
+          "verse": 18,
+          "text": "Pensé: “Ha perecido mi fortaleza y mi esperanza en el SEÑOR”."
+        },
+        {
+          "verse": 19,
+          "text": "Acuérdate de mi aflicción y de mi desamparo, del ajenjo y de la amargura.",
+          "heading": "ז Zayin"
+        },
+        {
+          "verse": 20,
+          "text": "Lo recordará, ciertamente, mi alma y será abatida dentro de mí."
+        },
+        {
+          "verse": 21,
+          "text": "Esto haré volver a mi corazón, por lo cual tendré esperanza."
+        },
+        {
+          "verse": 22,
+          "text": "Por la bondad del SEÑOR es que no somos consumidos, porque nunca decaen sus misericordias.",
+          "heading": "ח Jet"
+        },
+        {
+          "verse": 23,
+          "text": "Nuevas son cada mañana; grande es tu fidelidad."
+        },
+        {
+          "verse": 24,
+          "text": "“El SEÑOR es mi porción”, ha dicho mi alma; “por eso, en él esperaré”."
+        },
+        {
+          "verse": 25,
+          "text": "Bueno es el SEÑOR para los que en él esperan, para el alma que lo busca.",
+          "heading": "ט Tet"
+        },
+        {
+          "verse": 26,
+          "text": "Bueno es esperar en silencio la salvación del SEÑOR."
+        },
+        {
+          "verse": 27,
+          "text": "Bueno le es al hombre llevar el yugo en su juventud."
+        },
+        {
+          "verse": 28,
+          "text": "Se sentará solo y callará, porque Dios se lo ha impuesto.",
+          "heading": "י Yod"
+        },
+        {
+          "verse": 29,
+          "text": "Pondrá su boca en el polvo, por si quizás haya esperanza."
+        },
+        {
+          "verse": 30,
+          "text": "Dará la mejilla al que lo golpea; se hartará de afrentas."
+        },
+        {
+          "verse": 31,
+          "text": "Ciertamente el Señor no desechará para siempre.",
+          "heading": "כ Kaf"
+        },
+        {
+          "verse": 32,
+          "text": "Más bien, si él aflige, también se compadecerá según la abundancia de su misericordia."
+        },
+        {
+          "verse": 33,
+          "text": "Porque no aflige ni entristece por gusto a los hijos del hombre."
+        },
+        {
+          "verse": 34,
+          "text": "El aplastar bajo los pies a todos los encarcelados de la tierra,",
+          "heading": "ל Lámed"
+        },
+        {
+          "verse": 35,
+          "text": "el apartar el derecho del hombre ante la misma presencia del Altísimo,"
+        },
+        {
+          "verse": 36,
+          "text": "el pervertir la causa del hombre, el Señor no lo aprueba."
+        },
+        {
+          "verse": 37,
+          "text": "¿Quién será aquel que diga algo y eso ocurra, sin que el Señor lo haya mandado?",
+          "heading": "מ Mem"
+        },
+        {
+          "verse": 38,
+          "text": "¿Acaso de la boca del Altísimo no salen los males y el bien?"
+        },
+        {
+          "verse": 39,
+          "text": "¿Por qué se queja el hombre, el varón que vive en el pecado?"
+        },
+        {
+          "verse": 40,
+          "text": "Examinemos nuestros caminos; investiguémoslos y volvamos al SEÑOR.",
+          "heading": "נ Nun"
+        },
+        {
+          "verse": 41,
+          "text": "Alcemos nuestro corazón en las manos hacia Dios que está en los cielos:"
+        },
+        {
+          "verse": 42,
+          "text": "“Nosotros hemos transgredido y nos hemos rebelado, y tú no perdonaste."
+        },
+        {
+          "verse": 43,
+          "text": "“Te cubriste de ira y nos perseguiste; mataste y no tuviste compasión.",
+          "heading": "ס Sámej"
+        },
+        {
+          "verse": 44,
+          "text": "Te cubriste de nube para que no pasara la oración."
+        },
+        {
+          "verse": 45,
+          "text": "Como desecho y basura, nos pusiste en medio de los pueblos."
+        },
+        {
+          "verse": 46,
+          "text": "“Abren contra nosotros su boca todos nuestros enemigos.",
+          "heading": "פ Pe"
+        },
+        {
+          "verse": 47,
+          "text": "Horror y hoyo han sido nuestra suerte, desolación y ruina."
+        },
+        {
+          "verse": 48,
+          "text": "Corrientes de agua han vertido mis ojos por la ruina de la hija de mi pueblo."
+        },
+        {
+          "verse": 49,
+          "text": "“Mis ojos vierten lágrimas y no cesan porque no hay tregua,",
+          "heading": "ע Ayin"
+        },
+        {
+          "verse": 50,
+          "text": "hasta que el SEÑOR observe y vea desde los cielos."
+        },
+        {
+          "verse": 51,
+          "text": "Mis ojos causan dolor a mi alma, debido a todas las hijas de mi ciudad."
+        },
+        {
+          "verse": 52,
+          "text": "“Ciertamente los que me odian sin motivo me cazaron como a un pájaro.",
+          "heading": "צ Tsade"
+        },
+        {
+          "verse": 53,
+          "text": "Silenciaron mi vida en la cisterna y arrojaron una piedra sobre mí."
+        },
+        {
+          "verse": 54,
+          "text": "Me cubrieron las aguas por encima de la cabeza; yo dije: ‘¡He sido eliminado!’."
+        },
+        {
+          "verse": 55,
+          "text": "“Invoqué tu nombre, oh SEÑOR, desde la profunda cisterna.",
+          "heading": "ק Qof"
+        },
+        {
+          "verse": 56,
+          "text": "Mi voz has oído: ‘¡No escondas tu oído cuando clamo por alivio!’."
+        },
+        {
+          "verse": 57,
+          "text": "Tú te has acercado el día en que te invoqué, y dijiste: ‘¡No temas!’."
+        },
+        {
+          "verse": 58,
+          "text": "“Tú has abogado, oh SEÑOR, por la causa de mi alma; has redimido mi vida.",
+          "heading": "ר Resh"
+        },
+        {
+          "verse": 59,
+          "text": "Tú has visto, oh SEÑOR, mi opresión; defiende mi causa."
+        },
+        {
+          "verse": 60,
+          "text": "Tú has visto toda la venganza de ellos, todos sus planes contra mí."
+        },
+        {
+          "verse": 61,
+          "text": "“Tú has oído, oh SEÑOR, la afrenta de ellos, todas sus maquinaciones contra mí,",
+          "heading": "ש Shin"
+        },
+        {
+          "verse": 62,
+          "text": "los dichos de los que se levantan contra mí y sus diarias murmuraciones."
+        },
+        {
+          "verse": 63,
+          "text": "Su sentarse y su levantarse observa; yo soy el objeto de su copla."
+        },
+        {
+          "verse": 64,
+          "text": "“Dales, oh SEÑOR, su retribución según la obra de sus manos.",
+          "heading": "ת Tav"
+        },
+        {
+          "verse": 65,
+          "text": "Dales endurecimiento de corazón; venga sobre ellos tu maldición."
+        },
+        {
+          "verse": 66,
+          "text": "Persíguelos, oh SEÑOR, en tu furor y destrúyelos debajo de tus cielos”."
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "¡Cómo se ha empañado el oro! ¡Cómo se ha alterado el buen oro! Las piedras del santuario están esparcidas por los cruces de todas las calles.",
+          "heading": "א Álef"
+        },
+        {
+          "verse": 2,
+          "text": "Los apreciados hijos de Sion, que eran estimados en oro fino, ¡cómo son tenidos ahora como vasijas de barro, obra de manos de alfarero!",
+          "heading": "ב Bet"
+        },
+        {
+          "verse": 3,
+          "text": "Hasta los chacales dan la teta y amamantan a sus cachorros, pero la hija de mi pueblo se ha vuelto cruel, como los avestruces del desierto.",
+          "heading": "ג Guímel"
+        },
+        {
+          "verse": 4,
+          "text": "Se pega a su paladar la lengua del niño de pecho, a causa de la sed. Los pequeñitos piden pan, y no hay quien se lo reparta.",
+          "heading": "ד Dálet"
+        },
+        {
+          "verse": 5,
+          "text": "Los que comían delicados manjares han quedado desolados en las calles. Los que fueron criados con carmesí han abrazado la basura.",
+          "heading": "ה Hei"
+        },
+        {
+          "verse": 6,
+          "text": "Es mayor la iniquidad de la hija de mi pueblo que el pecado de Sodoma, que fue trastornada en un momento sin que pusieran manos sobre ella.",
+          "heading": "ו Vav"
+        },
+        {
+          "verse": 7,
+          "text": "Eran más limpios sus príncipes que la nieve, más blancos que la leche. Sus mejillas eran sonrosadas, más que las perlas. Su talle era como el zafiro.",
+          "heading": "ז Zayin"
+        },
+        {
+          "verse": 8,
+          "text": "Más oscuros que el hollín están ahora sus semblantes; no los reconocen por las calles. Su piel está encogida sobre sus huesos, reseca como un palo.",
+          "heading": "ח Jet"
+        },
+        {
+          "verse": 9,
+          "text": "Más afortunados fueron los muertos por la espada que los muertos por el hambre. Porque estos murieron poco a poco, atravesados por falta de los productos del campo.",
+          "heading": "ט Tet"
+        },
+        {
+          "verse": 10,
+          "text": "Las manos de las mujeres compasivas cocinaron a sus propios hijos. Ellos les sirvieron de comida en medio del quebranto de la hija de mi pueblo.",
+          "heading": "י Yod"
+        },
+        {
+          "verse": 11,
+          "text": "Agotó el SEÑOR su furor; derramó el ardor de su ira. Prendió fuego en Sion, el cual devoró sus cimientos.",
+          "heading": "כ Kaf"
+        },
+        {
+          "verse": 12,
+          "text": "No creían los reyes de la tierra ni ninguno de los habitantes del mundo, que el adversario y el enemigo entrarían por las puertas de Jerusalén.",
+          "heading": "ל Lámed"
+        },
+        {
+          "verse": 13,
+          "text": "Fue por los pecados de sus profetas y por las iniquidades de sus sacerdotes, que derramaron en medio de ella la sangre de los justos.",
+          "heading": "מ Mem"
+        },
+        {
+          "verse": 14,
+          "text": "Deambulaban como ciegos por las calles y se contaminaban con sangre, de modo que nadie pudiera tocar sus vestiduras.",
+          "heading": "נ Nun"
+        },
+        {
+          "verse": 15,
+          "text": "“¡Apártense, inmundos!”, les gritaban. “¡Apártense, apártense, no toquen!”. Cuando huían y deambulaban, les decían entre las naciones: “¡No morarán más aquí!”.",
+          "heading": "ס Sámej"
+        },
+        {
+          "verse": 16,
+          "text": "La presencia del SEÑOR los ha dispersado; no los volverá a mirar. De la persona de los sacerdotes no tuvieron respeto; ni a los ancianos mostraron consideración.",
+          "heading": "פ Pe"
+        },
+        {
+          "verse": 17,
+          "text": "Todavía se consumen nuestros ojos tras la vana espera de nuestro socorro. Desde nuestro mirador miramos hacia una nación que no puede salvar.",
+          "heading": "ע Ayin"
+        },
+        {
+          "verse": 18,
+          "text": "Acecharon nuestros pasos, para que no anduviéramos por nuestras propias calles. Nuestro fin se acercó; se cumplieron nuestros días, porque había llegado nuestro fin.",
+          "heading": "צ Tsade"
+        },
+        {
+          "verse": 19,
+          "text": "Más veloces que las águilas del cielo fueron nuestros perseguidores. Sobre las montañas nos persiguieron febrilmente; en el desierto nos pusieron emboscadas.",
+          "heading": "ק Qof"
+        },
+        {
+          "verse": 20,
+          "text": "El aliento de nuestra vida, el ungido del SEÑOR, ha sido atrapado en sus fosas; aquel de quien habíamos dicho: “A su sombra viviremos entre las naciones”.",
+          "heading": "ר Resh"
+        },
+        {
+          "verse": 21,
+          "text": "Gózate y alégrate, oh hija de Edom, tú que habitas en la tierra de Uz. También a ti llegará la copa; te embriagarás y te expondrás desnuda.",
+          "heading": "ש Shin"
+        },
+        {
+          "verse": 22,
+          "text": "Se ha cumplido tu castigo, oh hija de Sion; nunca más te llevará cautiva. Pero él castigará tu iniquidad, oh hija de Edom; pondrá al descubierto tus pecados.",
+          "heading": "ת Tav"
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Acuérdate, oh SEÑOR, de lo que nos ha sucedido. Mira y ve nuestro oprobio.",
+          "heading": "Otro poema de veintidós versículos, semejante en pensamiento con los cuatro anteriores, pero sin la estructura acróstica de ellos."
+        },
+        {
+          "verse": 2,
+          "text": "Nuestra heredad ha pasado a los extraños, nuestras casas a los extranjeros."
+        },
+        {
+          "verse": 3,
+          "text": "Estamos huérfanos; no tenemos padre; nuestras madres han quedado viudas."
+        },
+        {
+          "verse": 4,
+          "text": "Nuestra agua bebemos por dinero; nuestra leña nos viene por precio."
+        },
+        {
+          "verse": 5,
+          "text": "Sobre nuestros cuellos están los que nos persiguen. Nos fatigamos y para nosotros no hay reposo."
+        },
+        {
+          "verse": 6,
+          "text": "Hacia Egipto extendimos las manos; y hacia Asiria, para saciarnos de pan."
+        },
+        {
+          "verse": 7,
+          "text": "Nuestros padres pecaron y ya no están; nosotros cargamos con su castigo."
+        },
+        {
+          "verse": 8,
+          "text": "Aun los esclavos se han enseñoreado de nosotros; no hubo quien nos librara de su mano."
+        },
+        {
+          "verse": 9,
+          "text": "Con riesgo de nuestras vidas traemos nuestro pan, ante la espada del desierto."
+        },
+        {
+          "verse": 10,
+          "text": "Nuestra piel se ha ennegrecido como un horno, a causa de los ardores del hambre."
+        },
+        {
+          "verse": 11,
+          "text": "A las mujeres violaron en Sion, y a las vírgenes en las ciudades de Judá."
+        },
+        {
+          "verse": 12,
+          "text": "Los príncipes fueron colgados de sus manos; no fue respetada la persona de los ancianos."
+        },
+        {
+          "verse": 13,
+          "text": "Los jóvenes cargaron piedras de molino; los muchachos desfallecieron bajo la carga de la leña."
+        },
+        {
+          "verse": 14,
+          "text": "Los ancianos han dejado de acudir a las puertas de la ciudad; los jóvenes han dejado sus canciones."
+        },
+        {
+          "verse": 15,
+          "text": "Ha cesado el regocijo de nuestro corazón; nuestra danza se ha convertido en duelo."
+        },
+        {
+          "verse": 16,
+          "text": "Cayó la corona de nuestra cabeza. ¡Ay de nosotros, porque hemos pecado!"
+        },
+        {
+          "verse": 17,
+          "text": "Por esto está enfermo nuestro corazón; por esto se han ensombrecido nuestros ojos."
+        },
+        {
+          "verse": 18,
+          "text": "Por el monte Sion, que ha quedado desolado, se pasean las zorras."
+        },
+        {
+          "verse": 19,
+          "text": "Pero tú, oh SEÑOR, reinarás para siempre; tu trono es de generación en generación."
+        },
+        {
+          "verse": 20,
+          "text": "¿Por qué te olvidarás de nosotros para siempre y nos dejarás a lo largo de los días?"
+        },
+        {
+          "verse": 21,
+          "text": "Haz que volvamos a ti, oh SEÑOR, y volveremos. Renueva nuestros días como en los tiempos pasados,"
+        },
+        {
+          "verse": 22,
+          "text": "aunque nos hayas desechado y te hayas airado en gran manera contra nosotros."
+        }
+      ]
+    }
+  ]
+}
