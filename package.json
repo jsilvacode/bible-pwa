@@ -1,5 +1,5 @@
 {
-  "name": "vite-temp-app",
+  "name": "bible-pwa",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "split:cba": "node scripts/split-cba-by-chapter.js"
   },
   "dependencies": {
     "idb-keyval": "6.2.1",

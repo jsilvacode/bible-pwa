@@ -1,4 +1,6 @@
 import { createContext, createElement, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { DEFAULT_VERSION, normalizeVersionId } from '../constants/bibleVersions';
+import { warmupBibleData } from '../services/bibleLoader';
 
 const SETTINGS_KEY = 'bible_settings';
 const RECENT_KEY = 'bible_recent';
@@ -18,7 +20,7 @@ const themeConfig = {
 };
 
 const defaultSettings = {
-  version: 'rva2015',
+  version: DEFAULT_VERSION,
   theme: 'light',
   tone: 'light',
   fontSize: 'md',
@@ -31,7 +33,9 @@ function getInitialSettings() {
   try {
     const saved = localStorage.getItem(SETTINGS_KEY);
     if (saved) {
-      return { ...defaultSettings, ...JSON.parse(saved) };
+      const parsed = { ...defaultSettings, ...JSON.parse(saved) };
+      parsed.version = normalizeVersionId(parsed.version);
+      return parsed;
     }
   } catch (e) {
     console.error('Error reading settings', e);
@@ -122,8 +126,24 @@ export function SettingsProvider({ children }) {
       if (Object.prototype.hasOwnProperty.call(updates, 'theme')) {
         next.theme = normalizeTheme(updates.theme);
       }
+      if (Object.prototype.hasOwnProperty.call(updates, 'version')) {
+        next.version = normalizeVersionId(updates.version);
+      }
       return next;
     });
+  }, []);
+
+  useEffect(() => {
+    if (import.meta.env.MODE === 'test') return;
+
+    warmupBibleData({
+      version: settings.version,
+      bookId: settings.lastRead?.book,
+      chapter: settings.lastRead?.chapter,
+    }).catch(() => {
+      /* prefetch is best-effort */
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- warm cache once on mount
   }, []);
 
   const addRecent = useCallback((book, chapter) => {

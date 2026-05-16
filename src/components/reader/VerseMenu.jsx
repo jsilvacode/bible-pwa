@@ -25,10 +25,7 @@ export default function VerseMenu({ verse, payload, onClose }) {
 
     const reference = `${payload.bookName || `Libro ${payload.book}`} ${payload.chapter}:${payload.verse}`;
     const cleanVerseText = String(payload.text || '').replace(/\s+/g, ' ').trim();
-    const shareUrlObj = new URL(`${window.location.origin}/share/${payload.book}/${payload.chapter}/${payload.verse}`);
-    shareUrlObj.searchParams.set('bookName', payload.bookName || `Libro ${payload.book}`);
-    shareUrlObj.searchParams.set('text', cleanVerseText.slice(0, 200));
-    const shareUrl = shareUrlObj.toString();
+    const shareUrl = `${window.location.origin}/read/${payload.book}/${payload.chapter}/${payload.verse}`;
     const text = `${reference}\n\n${cleanVerseText}`;
 
     try {

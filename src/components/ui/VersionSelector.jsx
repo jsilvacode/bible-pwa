@@ -15,20 +15,15 @@ export default function VersionSelector() {
     updateSettings({ version: e.target.value });
   };
 
-  const getLabel = (version) => {
-    if (version.id === 'kjv') return 'King James';
-    return version.short;
-  };
-
   return (
-    <select 
-      className={classes.selector} 
-      value={settings.version} 
+    <select
+      className={classes.selector}
+      value={settings.version}
       onChange={handleChange}
     >
-      {versions.filter(v => v.available).map(v => (
+      {versions.filter((v) => v.available).map((v) => (
         <option key={v.id} value={v.id}>
-          {getLabel(v)}
+          {v.short}
         </option>
       ))}
     </select>

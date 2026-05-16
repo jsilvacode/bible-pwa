@@ -61,7 +61,7 @@ export default function BottomNav() {
       {showInstallPopup && !isInstalled && (
         <div className={classes.installOverlay}>
           <div className={classes.installPopup}>
-            <h4>Instala Santa Biblia RVR60</h4>
+            <h4>Instala La Biblia</h4>
             <p>Accede rápido desde tu pantalla de inicio.</p>
             <div className={classes.installPopupActions}>
               <button type="button" onClick={handleInstall}>Instalar ahora</button>

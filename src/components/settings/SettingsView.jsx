@@ -101,14 +101,14 @@ export default function SettingsView() {
         <div className={classes.donationCard}>
           <p>Este proyecto es gratuito y sin anuncios. Tu donación ayuda a mantener los servidores y el desarrollo.</p>
           <div className={classes.donationActions}>
-            <a href={mercadoPagoUrl} target="_blank" rel="noopener" className={classes.mpBtn}>Mercado Pago</a>
-            <a href={paypalUrl} target="_blank" rel="noopener" className={classes.ppBtn}>PayPal</a>
+            <a href={mercadoPagoUrl} target="_blank" rel="noopener noreferrer" className={classes.mpBtn}>Mercado Pago</a>
+            <a href={paypalUrl} target="_blank" rel="noopener noreferrer" className={classes.ppBtn}>PayPal</a>
           </div>
         </div>
       </section>
       
       <footer className={classes.footer}>
-        <p>Santa Biblia RVR60 v2.0</p>
+        <p>La Biblia v2.0</p>
         <p>Desarrollado con ❤️ por Julio Silva</p>
       </footer>
     </div>
