@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {id:1,abbrev:"gn",slug:"genesis",name:"Génesis"},
   {id:2,abbrev:"ex",slug:"exodo",name:"Éxodo"},
   {id:3,abbrev:"lv",slug:"levitico",name:"Levítico"},
@@ -66,3 +66,4 @@ module.exports = [
   {id:65,abbrev:"jd",slug:"judas",name:"Judas"},
   {id:66,abbrev:"re",slug:"apocalipsis",name:"Apocalipsis"}
 ];
+

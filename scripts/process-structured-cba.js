@@ -37,7 +37,7 @@ function cleanRTF(rtf) {
   cleaned = cleaned.replace(/\\u(\d+)\??/g, (match, dec) => {
     try {
       return String.fromCharCode(parseInt(dec));
-    } catch (e) {
+    } catch {
       return "";
     }
   });
@@ -58,11 +58,11 @@ function cleanRTF(rtf) {
   // Note: Some markers in this source are missing the closing bracket
   cleaned = cleaned.replace(/\[\s*[A-Z0-9][A-Za-z0-9\s_]*[\s:_]\d+:\d+\s*\]?/gi, ' ');
   // Catch-all for any remaining bracketed metadata
-  cleaned = cleaned.replace(/[\[\]]/g, ' '); 
+  cleaned = cleaned.replace(/[[]]/g, ' '); 
 
   // 9. Remove "Comentario Bíblico Adventista" titles
-  cleaned = cleaned.replace(/Comentario B[i\?í]?blico Adventista/gi, ' ');
-  cleaned = cleaned.replace(/Comentario B[i\?í]?blico/gi, ' ');
+  cleaned = cleaned.replace(/Comentario B[i?í]?blico Adventista/gi, ' ');
+  cleaned = cleaned.replace(/Comentario B[i?í]?blico/gi, ' ');
 
   // 10. Clean up numeric leftovers and other artifacts
   cleaned = cleaned.replace(/\)\s*[0-9-]+\s*/g, ' ');

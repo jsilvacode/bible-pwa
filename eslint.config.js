@@ -2,20 +2,22 @@ import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
-import { defineConfig, globalIgnores } from 'eslint/config'
 
-export default defineConfig([
-  globalIgnores(['dist']),
+export default [
+  { 
+    ignores: ['dist', 'node_modules', 'public/data'] 
+  },
   {
     files: ['src/**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      ecmaVersion: 2022,
+      globals: {
+        ...globals.browser,
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
@@ -23,12 +25,17 @@ export default defineConfig([
       },
     },
     rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
     },
   },
   {
-    files: ['netlify/functions/**/*.js'],
-    extends: [js.configs.recommended],
+    files: ['scripts/**/*.js'],
     languageOptions: {
       ecmaVersion: 2022,
       globals: {
@@ -38,19 +45,8 @@ export default defineConfig([
         sourceType: 'module',
       },
     },
-  },
-  {
-    files: ['scripts/**/*.js', 'src/data/books-meta.js'],
-    extends: [js.configs.recommended],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: {
-        ...globals.node,
-        ...globals.commonjs,
-      },
-      parserOptions: {
-        sourceType: 'script',
-      },
+    rules: {
+      ...js.configs.recommended.rules,
     },
   },
   {
@@ -59,7 +55,9 @@ export default defineConfig([
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...globals.vitest,
       },
     },
-  },
-])
+  }
+]
+

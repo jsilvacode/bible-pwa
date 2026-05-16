@@ -9,7 +9,6 @@ import CbaModal from './CbaModal';
 import SkeletonChapter from './SkeletonChapter';
 import ReaderFAB from './ReaderFAB';
 import classes from './ChapterView.module.css';
-import { fetchBooksManifest } from '../../services/bibleLoader';
 import { getBookName, TOTAL_BOOKS } from '../../constants/bibleMetadata';
 
 export default function ChapterView() {
@@ -25,23 +24,12 @@ export default function ChapterView() {
   const [cbaVerse, setCbaVerse] = useState(null);
   const [showCba, setShowCba] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [bookNames, setBookNames] = useState({});
 
   const bookId_ = Number(bookId);
   const chapterNum_ = Number(chapterNum);
 
   const bibleBook = data;
   const bibleChapter = data?.chapters?.find(c => c.chapter === chapterNum_);
-
-  useEffect(() => {
-    fetchBooksManifest()
-      .then(books => {
-        const map = {};
-        books.forEach(b => { map[b.id] = b.name; });
-        setBookNames(map);
-      })
-      .catch(console.error);
-  }, []);
 
   useEffect(() => {
     if (!loading && bibleBook && bibleChapter) {
@@ -63,7 +51,7 @@ export default function ChapterView() {
         window.scrollTo(0, 0);
       }
     }
-  }, [bookId_, chapterNum_, loading, bibleBook, bibleChapter, targetVerse, addRecent]);
+  }, [bookId_, chapterNum_, loading, bibleBook, bibleChapter, targetVerse, addRecent, location.search]);
 
   useEffect(() => {
     const handleScroll = () => {
