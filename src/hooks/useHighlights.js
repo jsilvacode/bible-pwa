@@ -2,8 +2,16 @@ import { useState, useEffect } from 'react';
 import { set, del, values } from 'idb-keyval';
 import { highlightsStore } from '../services/db';
 
-function getSessionKey(version, book, chapter) {
+function getSessionKey(book, chapter) {
+  return `session_highlights_${book}_${chapter}`;
+}
+
+function getLegacySessionKey(version, book, chapter) {
   return `session_highlights_${version}_${book}_${chapter}`;
+}
+
+function getHighlightId(book, chapter, verse) {
+  return `${book}-${chapter}-${verse}`;
 }
 
 function normalizeHighlightColor(color) {
@@ -20,12 +28,18 @@ export function useHighlights(version, book, chapter) {
   useEffect(() => {
     if (!version || !book || !chapter) return;
 
-    const sessionKey = getSessionKey(version, book, chapter);
+    const sessionKey = getSessionKey(book, chapter);
+    const legacySessionKey = getLegacySessionKey(version, book, chapter);
     const fallbackMap = {};
     try {
       const raw = sessionStorage.getItem(sessionKey);
-      if (raw) {
-        const parsed = JSON.parse(raw);
+      const legacyRaw = sessionStorage.getItem(legacySessionKey);
+      const source = raw || legacyRaw;
+      if (source) {
+        if (legacyRaw && !raw) {
+          sessionStorage.setItem(sessionKey, legacyRaw);
+        }
+        const parsed = JSON.parse(source);
         Object.entries(parsed).forEach(([verse, color]) => {
           fallbackMap[verse] = normalizeHighlightColor(color);
         });
@@ -39,13 +53,16 @@ export function useHighlights(version, book, chapter) {
 
     values(highlightsStore).then(all => {
       const chapterHighlights = all.filter(h =>
-        h.version === version &&
         h.book === Number(book) &&
         h.chapter === Number(chapter)
       );
 
       const map = { ...fallbackMap };
-      chapterHighlights.forEach(h => { map[h.verse] = normalizeHighlightColor(h.color); });
+      chapterHighlights
+        .sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0))
+        .forEach((h) => {
+          map[h.verse] = normalizeHighlightColor(h.color);
+        });
       setHighlights(map);
       sessionStorage.setItem(sessionKey, JSON.stringify(map));
     }).catch((e) => {
@@ -54,7 +71,11 @@ export function useHighlights(version, book, chapter) {
   }, [version, book, chapter]);
 
   const setHighlight = async (payload, color) => {
-    const sessionKey = getSessionKey(payload.version, payload.book, payload.chapter);
+    const sessionKey = getSessionKey(payload.book, payload.chapter);
+    const newId = getHighlightId(payload.book, payload.chapter, payload.verse);
+    const legacyId = payload.version
+      ? `${payload.version}-${payload.book}-${payload.chapter}-${payload.verse}`
+      : null;
 
     if (!color) {
       setHighlights(prev => {
@@ -65,13 +86,21 @@ export function useHighlights(version, book, chapter) {
       });
 
       try {
-        await del(payload.id, highlightsStore);
+        await del(newId, highlightsStore);
+        if (legacyId) {
+          await del(legacyId, highlightsStore);
+        }
       } catch (e) {
         console.error('Error deleting highlight from IndexedDB', e);
       }
     } else {
       const normalizedColor = normalizeHighlightColor(color);
-      const data = { ...payload, color: normalizedColor, createdAt: Date.now() };
+      const data = {
+        ...payload,
+        id: newId,
+        color: normalizedColor,
+        createdAt: Date.now(),
+      };
       setHighlights(prev => {
         const next = { ...prev, [payload.verse]: normalizedColor };
         sessionStorage.setItem(sessionKey, JSON.stringify(next));
@@ -79,7 +108,10 @@ export function useHighlights(version, book, chapter) {
       });
 
       try {
-        await set(payload.id, data, highlightsStore);
+        await set(newId, data, highlightsStore);
+        if (legacyId) {
+          await del(legacyId, highlightsStore);
+        }
       } catch (e) {
         console.error('Error saving highlight to IndexedDB', e);
       }

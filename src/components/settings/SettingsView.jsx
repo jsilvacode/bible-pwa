@@ -11,8 +11,8 @@ export default function SettingsView() {
   const paypalUrl = 'https://paypal.me/jsilvacode';
 
   const themeTabs = [
-    { id: 'light', label: 'Modo Claro', theme: 'light', color: '#FAF9F6' },
-    { id: 'dark', label: 'Modo Oscuro', theme: 'dark', color: '#2B1B1B' },
+    { id: 'light', label: 'Modo Claro', theme: 'light', previewClass: classes.themePreviewLight },
+    { id: 'dark', label: 'Modo Oscuro', theme: 'dark', previewClass: classes.themePreviewDark },
   ];
 
   const handleInstall = async () => {
@@ -40,7 +40,7 @@ export default function SettingsView() {
                   className={`${classes.themeOption} ${settings.theme === tab.theme ? classes.active : ''}`}
                   onClick={() => updateSettings({ theme: tab.theme })}
                 >
-                  <div className={classes.themePreview} style={{ background: tab.color }} />
+                  <div className={`${classes.themePreview} ${tab.previewClass}`} />
                   <span>{tab.label}</span>
                 </button>
               ))}

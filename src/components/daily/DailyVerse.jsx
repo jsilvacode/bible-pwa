@@ -118,7 +118,6 @@ export default function DailyVerse({ variant = 'hero' }) {
                   `/read/${dailyRef.book}/${dailyRef.chapter}/${dailyRef.verse}?showCba=true`
                 );
               }}
-              style={{ cursor: 'pointer' }}
             >
               Leer más
             </span>

@@ -42,6 +42,26 @@
   animation: barGrow 0.8s var(--transition-smooth) both;
 }
 
+.barWrapper:nth-child(1) .bar { animation-delay: 0s; }
+.barWrapper:nth-child(2) .bar { animation-delay: 0.1s; }
+.barWrapper:nth-child(3) .bar { animation-delay: 0.2s; }
+.barWrapper:nth-child(4) .bar { animation-delay: 0.3s; }
+.barWrapper:nth-child(5) .bar { animation-delay: 0.4s; }
+.barWrapper:nth-child(6) .bar { animation-delay: 0.5s; }
+.barWrapper:nth-child(7) .bar { animation-delay: 0.6s; }
+
+.level0 { height: 4%; }
+.level1 { height: 10%; }
+.level2 { height: 20%; }
+.level3 { height: 30%; }
+.level4 { height: 40%; }
+.level5 { height: 50%; }
+.level6 { height: 60%; }
+.level7 { height: 70%; }
+.level8 { height: 80%; }
+.level9 { height: 90%; }
+.level10 { height: 100%; }
+
 .bar:hover {
   opacity: 1;
   transform: scaleX(1.1);

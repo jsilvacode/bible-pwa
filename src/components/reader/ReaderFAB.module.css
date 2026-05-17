@@ -106,6 +106,14 @@
   cursor: pointer;
 }
 
+.lightThemeBtn {
+  background: #faf9f6;
+}
+
+.darkThemeBtn {
+  background: #2b1b1b;
+}
+
 .themeBtn.active {
   border-color: var(--accent);
   transform: scale(1.1);

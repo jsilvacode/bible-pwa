@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useBible } from '../../hooks/useBible';
 import { useHighlights } from '../../hooks/useHighlights';
@@ -24,6 +24,7 @@ export default function ChapterView() {
   const [cbaVerse, setCbaVerse] = useState(null);
   const [showCba, setShowCba] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const lastChapterKeyRef = useRef('');
 
   const bookId_ = Number(bookId);
   const chapterNum_ = Number(chapterNum);
@@ -48,7 +49,11 @@ export default function ChapterView() {
           if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 500);
         return () => clearTimeout(timer);
-      } else {
+      }
+
+      const chapterKey = `${bookId_}-${chapterNum_}`;
+      if (lastChapterKeyRef.current !== chapterKey) {
+        lastChapterKeyRef.current = chapterKey;
         window.scrollTo(0, 0);
       }
     }
@@ -105,7 +110,12 @@ export default function ChapterView() {
         <SkeletonChapter />
       ) : (
         <>
-          <div className={classes.progressBar} style={{ width: `${scrollProgress}%` }} />
+          <progress
+            className={classes.progressBar}
+            max={100}
+            value={Math.max(0, Math.min(100, scrollProgress))}
+            aria-label="Progreso de lectura"
+          />
 
           <header className={classes.header}>
             <div className={classes.navLinks}>
@@ -163,7 +173,7 @@ export default function ChapterView() {
             <VerseMenu
               verse={menuVerse}
               payload={{
-                id: `${settings.version}-${bookId_}-${chapterNum_}-${menuVerse}`,
+                id: `${bookId_}-${chapterNum_}-${menuVerse}`,
                 book: bookId_,
                 chapter: chapterNum_,
                 verse: menuVerse,
@@ -176,7 +186,7 @@ export default function ChapterView() {
                 },
                 onHighlight: (color) => setHighlight(
                   {
-                    id: `${settings.version}-${bookId_}-${chapterNum_}-${menuVerse}`,
+                    id: `${bookId_}-${chapterNum_}-${menuVerse}`,
                     book: bookId_,
                     chapter: chapterNum_,
                     verse: menuVerse,

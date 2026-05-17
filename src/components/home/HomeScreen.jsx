@@ -55,7 +55,7 @@ export default function HomeScreen() {
       </div>
 
       <div className={classes.bottomSheet}>
-        <section className={classes.section} style={{ marginTop: 0 }}>
+        <section className={`${classes.section} ${classes.firstSection}`}>
           <h3 className={classes.sectionTitle}>Navegar la Biblia</h3>
           <CategoryGrid />
         </section>

@@ -74,11 +74,11 @@ export default function VerseMenu({ verse, payload, onClose }) {
           <div className={classes.colorSection}>
             <span className={classes.sectionLabel}>Resaltar con color</span>
             <div className={classes.colorGrid}>
-               <button aria-label="Limpiar color" className={classes.colorBtn} style={{ background: 'transparent', border: '1px solid var(--border)' }} onClick={() => handleHighlight(null)}>✕</button>
-               <button aria-label="Promesa" title="Promesa" className={classes.colorBtn} style={{ background: 'var(--highlight-red)' }} onClick={() => handleHighlight('red')} />
-               <button aria-label="Sabiduria" title="Sabiduria" className={classes.colorBtn} style={{ background: 'var(--highlight-gold)' }} onClick={() => handleHighlight('gold')} />
-               <button aria-label="Ensenanza" title="Ensenanza" className={classes.colorBtn} style={{ background: 'var(--highlight-blue)' }} onClick={() => handleHighlight('blue')} />
-               <button aria-label="Aplicacion" title="Aplicacion" className={classes.colorBtn} style={{ background: 'var(--highlight-green)' }} onClick={() => handleHighlight('green')} />
+               <button aria-label="Limpiar color" className={`${classes.colorBtn} ${classes.colorClear}`} onClick={() => handleHighlight(null)}>✕</button>
+               <button aria-label="Promesa" title="Promesa" className={`${classes.colorBtn} ${classes.colorRed}`} onClick={() => handleHighlight('red')} />
+               <button aria-label="Sabiduria" title="Sabiduria" className={`${classes.colorBtn} ${classes.colorGold}`} onClick={() => handleHighlight('gold')} />
+               <button aria-label="Ensenanza" title="Ensenanza" className={`${classes.colorBtn} ${classes.colorBlue}`} onClick={() => handleHighlight('blue')} />
+               <button aria-label="Aplicacion" title="Aplicacion" className={`${classes.colorBtn} ${classes.colorGreen}`} onClick={() => handleHighlight('green')} />
             </div>
           </div>
         </div>

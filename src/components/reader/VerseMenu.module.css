@@ -135,6 +135,27 @@
   color: var(--text-primary);
 }
 
+.colorClear {
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+.colorRed {
+  background: var(--highlight-red);
+}
+
+.colorGold {
+  background: var(--highlight-gold);
+}
+
+.colorBlue {
+  background: var(--highlight-blue);
+}
+
+.colorGreen {
+  background: var(--highlight-green);
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

@@ -19,6 +19,7 @@
   min-height: 100px;
   position: relative;
   overflow: hidden;
+  background-color: var(--cat-color);
 }
 
 .card::before {
@@ -32,6 +33,36 @@
   mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 0;
+}
+
+.catPentateuch {
+  --cat-color: var(--cat-pentateuch);
+  --bg-image: url('/images/categories/pentateuch.png');
+}
+
+.catHistorical {
+  --cat-color: var(--cat-historical);
+  --bg-image: url('/images/categories/historical.png');
+}
+
+.catWisdom {
+  --cat-color: var(--cat-wisdom);
+  --bg-image: url('/images/categories/wisdom.png');
+}
+
+.catProphets {
+  --cat-color: var(--cat-prophets);
+  --bg-image: url('/images/categories/prophets.png');
+}
+
+.catGospels {
+  --cat-color: var(--cat-gospels);
+  --bg-image: url('/images/categories/gospels.png');
+}
+
+.catEpistles {
+  --cat-color: var(--cat-epistles);
+  --bg-image: url('/images/categories/epistles.png');
 }
 
 [data-theme="dark"] .card::before {

@@ -32,15 +32,13 @@ export default function ReaderFAB() {
             <span className={classes.label}>Tema</span>
             <div className={classes.themes}>
               <button 
-                className={`${classes.themeBtn} ${settings.theme === 'light' ? classes.active : ''}`}
-                style={{ background: '#FAF9F6' }}
+                className={`${classes.themeBtn} ${classes.lightThemeBtn} ${settings.theme === 'light' ? classes.active : ''}`}
                 onClick={() => updateSettings({ theme: 'light' })}
                 title="Modo Claro"
                 aria-label="Claro"
               />
               <button 
-                className={`${classes.themeBtn} ${settings.theme === 'dark' ? classes.active : ''}`}
-                style={{ background: '#2B1B1B' }}
+                className={`${classes.themeBtn} ${classes.darkThemeBtn} ${settings.theme === 'dark' ? classes.active : ''}`}
                 onClick={() => updateSettings({ theme: 'dark' })}
                 title="Modo Oscuro"
                 aria-label="Oscuro"

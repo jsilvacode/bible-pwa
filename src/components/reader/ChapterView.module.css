@@ -12,9 +12,23 @@
   width: 100%;
   max-width: var(--app-max-width);
   height: 3px;
-  background: var(--accent);
   z-index: 201;
-  transition: width 0.1s ease;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+.progressBar::-webkit-progress-bar {
+  background: transparent;
+}
+
+.progressBar::-webkit-progress-value {
+  background: var(--accent);
+}
+
+.progressBar::-moz-progress-bar {
+  background: var(--accent);
 }
 
 .header {

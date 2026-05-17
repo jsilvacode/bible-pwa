@@ -93,6 +93,14 @@
   border: 1px solid var(--border);
 }
 
+.themePreviewLight {
+  background: #faf9f6;
+}
+
+.themePreviewDark {
+  background: #2b1b1b;
+}
+
 .themeOption span {
   font-family: var(--font-ui);
   font-size: 0.8rem;
