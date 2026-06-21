@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { fetchBooksManifest, loadBibleBook } from '../services/bibleLoader';
+import { searchIndex } from '../utils/searchIndex';
 
 function normalizeSearchText(value = '') {
   return String(value)
@@ -18,9 +19,7 @@ function matchesWholeTerms(verseText, query) {
     .trim()
     .split(/\s+/)
     .filter(Boolean);
-
   if (terms.length === 0) return false;
-
   return terms.every((term) => {
     const pattern = new RegExp(`(^|[^a-z0-9])${escapeRegex(term)}([^a-z0-9]|$)`, 'i');
     return pattern.test(normalizedVerse);
@@ -32,7 +31,7 @@ export function useSearch(version) {
   const [loading, setLoading] = useState(false);
   const requestIdRef = useRef(0);
 
-  const search = async (query) => {
+  const search = useCallback(async (query) => {
     const requestId = ++requestIdRef.current;
     const trimmed = query.trim();
 
@@ -48,30 +47,37 @@ export function useSearch(version) {
       const books = await fetchBooksManifest();
       let matches = [];
 
-      // Búsqueda lineal en todos los libros
       for (const book of books) {
         if (requestId !== requestIdRef.current) break;
 
         try {
-          const bookData = await loadBibleBook(version, book.id);
-          bookData.chapters.forEach(c => {
-            c.verses.forEach(v => {
-              if (matchesWholeTerms(v.text, trimmed)) {
+          // Try index-based search first
+          if (!searchIndex.has(version, book.id)) {
+            const bookData = await loadBibleBook(version, book.id);
+            searchIndex.build(version, book.id, bookData);
+          }
+
+          const indexResults = searchIndex.search(version, book.id, trimmed);
+          if (indexResults) {
+            for (const r of indexResults) {
+              // Double-check with whole-term matching for accuracy
+              if (matchesWholeTerms(r.text, trimmed)) {
                 matches.push({
                   book: book.id,
-                  bookName: bookData.name,
-                  chapter: c.chapter,
-                  verse: v.verse,
-                  text: v.text,
-                  id: `${version}-${book.id}-${c.chapter}-${v.verse}`
+                  bookName: book.name,
+                  chapter: r.chapter,
+                  verse: r.verse,
+                  text: r.text,
+                  id: `${version}-${book.id}-${r.chapter}-${r.verse}`
                 });
               }
-            });
-          });
+            }
+          }
         } catch (e) {
           console.error(`Error searching in book ${book.id}`, e);
         }
       }
+
       if (requestId === requestIdRef.current) {
         setResults(matches);
       }
@@ -81,7 +87,7 @@ export function useSearch(version) {
     if (requestId === requestIdRef.current) {
       setLoading(false);
     }
-  };
+  }, [version]);
 
   return { search, results, loading };
 }
