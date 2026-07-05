@@ -12,13 +12,14 @@ export default function AppShell() {
   const { chromeHidden, isReaderActive } = useReadingMode();
   const { showInstallPopup, isInstalled, promptInstall, dismissInstallPopup } = useInstallPrompt();
   const hideChrome = isReaderActive && chromeHidden;
+  const showFooter = location.pathname === '/' || location.pathname === '/settings';
 
   return (
     <div className={classes.appShell}>
       <TopBar hidden={hideChrome} />
       <main className={`${classes.mainContent} ${isReaderActive ? classes.readerActive : ''}`}>
         <Outlet key={location.pathname} />
-        <SiteFooter />
+        {showFooter && <SiteFooter />}
       </main>
       <BottomNav hidden={hideChrome} />
 
