@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './SearchModal.module.css';
 import { useSearch } from '../../hooks/useSearch';
@@ -9,11 +9,9 @@ import { fetchBooksManifest, loadBibleBook } from '../../services/bibleLoader';
 import { normalizeDisplayedText } from '../../utils/textNormalizer';
 import { createBookAliases, parseBibleReference } from '../../utils/bibleReference';
 
-const DEBOUNCE_MS = 350;
-
 export default function SearchModal({ isOpen, onClose }) {
   const { settings } = useSettings();
-  const { search, results, loading, progress, cancelSearch } = useSearch(settings.version);
+  const { search, results, loading, cancelSearch } = useSearch(settings.version);
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [booksById, setBooksById] = useState({});
@@ -43,18 +41,16 @@ export default function SearchModal({ isOpen, onClose }) {
     }
   }, [isOpen]);
 
-  const runReferenceOrText = useCallback(async (raw, { navigateOnReference }) => {
-    const trimmed = raw.trim();
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const trimmed = query.trim();
     if (!trimmed) {
-      cancelSearch();
-      setSearchFeedback('');
-      setHasSearched(false);
+      setSearchFeedback('Escribe una palabra o cita');
       return;
     }
 
     const reference = parseBibleReference(trimmed, bookAliasMap, booksById);
     if (reference) {
-      if (!navigateOnReference) return;
       try {
         const bookData = await loadBibleBook(settings.version, reference.bookId);
         const chapterData = bookData.chapters.find(c => c.chapter === reference.chapter);
@@ -76,36 +72,13 @@ export default function SearchModal({ isOpen, onClose }) {
     }
 
     if (trimmed.length < 3) {
-      if (navigateOnReference) setSearchFeedback('Escribe al menos 3 letras.');
+      setSearchFeedback('Escribe al menos 3 letras.');
       return;
     }
 
     setSearchFeedback('');
     setHasSearched(true);
     await search(trimmed);
-  }, [bookAliasMap, booksById, settings.version, navigate, onClose, search, cancelSearch]);
-
-  // Búsqueda automática con debounce mientras se escribe.
-  useEffect(() => {
-    if (!isOpen) return undefined;
-    const trimmed = query.trim();
-    if (trimmed.length < 3) return undefined;
-
-    const timer = setTimeout(() => {
-      runReferenceOrText(query, { navigateOnReference: false });
-    }, DEBOUNCE_MS);
-
-    return () => clearTimeout(timer);
-  }, [query, isOpen, runReferenceOrText]);
-
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const trimmed = query.trim();
-    if (!trimmed) {
-      setSearchFeedback('Escribe una palabra o cita');
-      return;
-    }
-    await runReferenceOrText(query, { navigateOnReference: true });
   };
 
   const handleReset = () => {
@@ -116,10 +89,6 @@ export default function SearchModal({ isOpen, onClose }) {
   };
 
   if (!isOpen) return null;
-
-  const progressPct = progress.total > 0
-    ? Math.round((progress.current / progress.total) * 100)
-    : 0;
 
   return (
     <div className={classes.overlay} onClick={onClose}>
@@ -167,14 +136,9 @@ export default function SearchModal({ isOpen, onClose }) {
           {searchFeedback && <p className={classes.feedback}>{searchFeedback}</p>}
 
           {loading && (
-            <div className={classes.loading}>
-              <span>Buscando… {progressPct}%</span>
-              <progress
-                className={classes.progressBar}
-                max={100}
-                value={progressPct}
-                aria-label="Progreso de búsqueda"
-              />
+            <div className={classes.loading} role="status" aria-live="polite">
+              <span className={classes.spinner} aria-hidden="true" />
+              <span>Buscando…</span>
             </div>
           )}
 

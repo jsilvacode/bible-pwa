@@ -1,6 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import classes from './ChapterView.module.css';
 import { normalizeDisplayedText } from '../../utils/textNormalizer';
+
+function hasActiveSelection() {
+  const sel = typeof window !== 'undefined' ? window.getSelection() : null;
+  return !!sel && sel.toString().trim().length > 0;
+}
 
 export default function VerseBlock({
   verse,
@@ -9,72 +14,34 @@ export default function VerseBlock({
   isHighlighted,
   highlightColor,
   onShortTap,
-  onLongTap,
   onOpenMenu,
   isTarget,
 }) {
-  const timerRef = useRef(null);
-  const touchStartRef = useRef(0);
-  const didTouchRef = useRef(false);
-
-  const handleTouchStart = () => {
-    touchStartRef.current = Date.now();
-    timerRef.current = setTimeout(() => {
-      onLongTap(verse);
-      timerRef.current = null;
-    }, 500);
-  };
-
-  const handleTouchEnd = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-      // Era un tap corto
-      const duration = Date.now() - touchStartRef.current;
-      if (duration < 500) {
-        didTouchRef.current = true;
-        onShortTap(verse);
-      }
-    }
-  };
-
-  const handleTouchMove = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
-  };
-
   const handleClick = () => {
-    if (didTouchRef.current) {
-      didTouchRef.current = false;
-      return;
-    }
+    // Si el usuario está seleccionando texto, no abrir el menú.
+    if (hasActiveSelection()) return;
     onShortTap(verse);
   };
 
   const handleDoubleClick = () => {
-    if (onOpenMenu) {
-      onOpenMenu(verse);
-    }
+    if (onOpenMenu) onOpenMenu(verse);
   };
 
   const handleContextMenu = (e) => {
+    // Con texto seleccionado, dejar el menú nativo de copiar del sistema.
+    if (hasActiveSelection()) return;
     if (!onOpenMenu) return;
     e.preventDefault();
     onOpenMenu(verse);
   };
 
   return (
-    <span 
+    <span
       className={`${classes.verseBlock} ${isSelected ? classes.selected : ''} ${isTarget ? classes.targetBlink : ''} ${isHighlighted && highlightColor ? classes[`highlight${highlightColor.charAt(0).toUpperCase()}${highlightColor.slice(1)}`] : ''}`}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      onTouchMove={handleTouchMove}
       onClick={handleClick}
       onDoubleClick={handleDoubleClick}
       onContextMenu={handleContextMenu}
-      title="Doble clic o clic derecho para acciones"
+      title="Toca para acciones · mantén presionado para seleccionar y copiar"
       id={`verse-${verse}`}
     >
       <sup className={classes.verseNum}>{verse}</sup>

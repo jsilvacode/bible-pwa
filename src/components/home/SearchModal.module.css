@@ -196,38 +196,31 @@
 
 .loading {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 10px;
   padding: 32px 20px;
+  font-size: 0.9rem;
 }
 
-.progressBar {
-  width: 80%;
-  max-width: 320px;
-  height: 6px;
-  border: none;
-  border-radius: 99px;
-  overflow: hidden;
-  background: var(--border);
-  appearance: none;
-  -webkit-appearance: none;
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
 }
 
-.progressBar::-webkit-progress-bar {
-  background: var(--border);
-  border-radius: 99px;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-.progressBar::-webkit-progress-value {
-  background: var(--accent);
-  border-radius: 99px;
-  transition: width 0.2s ease;
-}
-
-.progressBar::-moz-progress-bar {
-  background: var(--accent);
-  border-radius: 99px;
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 1.6s;
+  }
 }
 
 .results {

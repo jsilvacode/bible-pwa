@@ -10,11 +10,11 @@
 .hero {
   padding: 32px 24px;
   margin-bottom: 32px;
-  background: rgba(0, 0, 0, 0.15); /* Very subtle transparent tint */
-  border: 1px solid rgba(255, 255, 255, 0.05); /* Barely visible glint */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--abyss) 25%, transparent) 0%, color-mix(in srgb, var(--abyss) 45%, transparent) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(1.5px) saturate(1.05);
+  -webkit-backdrop-filter: blur(1.5px) saturate(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.28);
 }
 
 .hero .tag {

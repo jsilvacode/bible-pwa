@@ -16,12 +16,12 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/assets/fondo-optimized.jpg');
+  background-image: url('/assets/hero-bible.jpg');
   background-size: cover;
-  background-position: center;
-  opacity: 0.85;
-  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+  background-position: center 35%;
+  opacity: 0.95;
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 55%, rgba(0,0,0,0.1) 100%);
+  mask-image: linear-gradient(to top, rgba(0,0,0,1) 55%, rgba(0,0,0,0.1) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -30,7 +30,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, color-mix(in srgb, var(--abyss) 25%, transparent) 0%, transparent 35%);
+  background: linear-gradient(to top, color-mix(in srgb, var(--abyss) 45%, transparent) 0%, transparent 55%);
   pointer-events: none;
   z-index: 0;
 }

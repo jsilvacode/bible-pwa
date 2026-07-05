@@ -33,3 +33,26 @@ test('smoke flow: version, navigation, CBA, search', async ({ page }) => {
   await searchInput.press('Enter');
   await expect(page).toHaveURL(/\/read\/43\/3\/16/);
 });
+
+test('copiar versículo incluye cita de origen y url', async ({ page, context }) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.goto('/read/1/1');
+
+  await expect(page.getByRole('heading', { name: /Génesis 1/ })).toBeVisible();
+  await page.locator('#verse-1').waitFor();
+
+  await page.evaluate(() => {
+    const el = document.getElementById('verse-1');
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    document.execCommand('copy');
+  });
+
+  const clip = await page.evaluate(() => navigator.clipboard.readText());
+  expect(clip).toContain('Génesis 1:1');
+  expect(clip).toContain('/read/1/1/1');
+});
+

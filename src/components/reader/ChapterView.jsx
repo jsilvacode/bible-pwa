@@ -13,6 +13,7 @@ import classes from './ChapterView.module.css';
 import { fetchBooksManifest, getBookName, getTotalBooks, loadBibleBook } from '../../services/bibleLoader';
 import { validateReadRoute, validateVerseParam } from '../../utils/routeValidation';
 import { throttle } from '../../utils/throttle';
+import { buildVerseReference, buildCopyText, buildCopyHtml } from '../../utils/verseCopy';
 
 export default function ChapterView() {
   const { book: bookId, chapter: chapterNum, verse: targetVerse } = useParams();
@@ -117,6 +118,46 @@ export default function ChapterView() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [setChromeHidden]);
 
+  // Enriquece el texto copiado con la cita de origen y el enlace a la Biblia.
+  useEffect(() => {
+    if (!routeValid?.valid) return undefined;
+
+    const getVerseNumber = (node) => {
+      let el = node && node.nodeType === 3 ? node.parentElement : node;
+      while (el && el !== document.body) {
+        if (el.id && el.id.startsWith('verse-')) return Number(el.id.slice(6));
+        el = el.parentElement;
+      }
+      return null;
+    };
+
+    const handleCopy = (e) => {
+      const sel = window.getSelection();
+      if (!sel) return;
+      const selected = sel.toString().replace(/\s+/g, ' ').trim();
+      if (!selected) return;
+
+      const verses = [getVerseNumber(sel.anchorNode), getVerseNumber(sel.focusNode)]
+        .filter((v) => Number.isInteger(v));
+      if (verses.length === 0) return; // La selección no pertenece al lector.
+
+      const vStart = Math.min(...verses);
+      const vEnd = Math.max(...verses);
+      const name = bibleBook?.name || getBookName(bookId_);
+      const reference = buildVerseReference(name, chapterNum_, vStart, vEnd);
+      const url = `${window.location.origin}/read/${bookId_}/${chapterNum_}/${vStart}`;
+
+      if (e.clipboardData) {
+        e.clipboardData.setData('text/plain', buildCopyText({ reference, text: selected, url }));
+        e.clipboardData.setData('text/html', buildCopyHtml({ reference, text: selected, url }));
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('copy', handleCopy);
+    return () => document.removeEventListener('copy', handleCopy);
+  }, [routeValid, bookId_, chapterNum_, bibleBook]);
+
   const handlePrevChapter = useCallback(async () => {
     if (chapterNum_ > 1) {
       navigate(`/read/${bookId_}/${chapterNum_ - 1}`);
@@ -211,7 +252,6 @@ export default function ChapterView() {
                     highlightColor={highlights[v.verse]}
                     isTarget={Number(targetVerse) === v.verse}
                     onShortTap={handleOpenMenu}
-                    onLongTap={handleOpenMenu}
                     onOpenMenu={handleOpenMenu}
                   />
                 </React.Fragment>
