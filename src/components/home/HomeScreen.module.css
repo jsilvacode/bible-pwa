@@ -16,12 +16,10 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/assets/hero-bible.jpg');
+  background-image: url('/assets/hero.jpg');
   background-size: cover;
-  background-position: center 35%;
-  opacity: 0.95;
-  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 55%, rgba(0,0,0,0.1) 100%);
-  mask-image: linear-gradient(to top, rgba(0,0,0,1) 55%, rgba(0,0,0,0.1) 100%);
+  background-position: center;
+  opacity: 1;
   pointer-events: none;
   z-index: 0;
 }
@@ -30,7 +28,13 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, color-mix(in srgb, var(--abyss) 45%, transparent) 0%, transparent 55%);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--abyss) 66%, transparent) 0%,
+    color-mix(in srgb, var(--abyss) 24%, transparent) 26%,
+    color-mix(in srgb, var(--abyss) 16%, transparent) 52%,
+    color-mix(in srgb, var(--abyss) 72%, transparent) 100%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -138,15 +142,16 @@
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: var(--text-secondary);
-  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
   margin-bottom: 2px;
 }
 
 .greeting {
   font-family: var(--font-display);
   font-size: 1.5rem;
-  color: var(--text-primary);
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   margin: 0;
 }
 
