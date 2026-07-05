@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import TopBar from './TopBar';
 import BottomNav from './BottomNav';
+import SiteFooter from './SiteFooter';
 import { useReadingMode } from '../../hooks/useReadingMode';
 import { useInstallPrompt } from '../../hooks/useInstallPrompt';
 import classes from './AppShell.module.css';
@@ -17,6 +18,7 @@ export default function AppShell() {
       <TopBar hidden={hideChrome} />
       <main className={`${classes.mainContent} ${isReaderActive ? classes.readerActive : ''}`}>
         <Outlet key={location.pathname} />
+        <SiteFooter />
       </main>
       <BottomNav hidden={hideChrome} />
 
