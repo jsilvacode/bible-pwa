@@ -1,21 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './SearchModal.module.css';
 import { useSearch } from '../../hooks/useSearch';
 import { useSettings } from '../../hooks/useSettings';
+import { useFocusTrap } from '../../hooks/useFocusTrap';
+import { useModalDismiss } from '../../hooks/useModalDismiss';
 import { fetchBooksManifest, loadBibleBook } from '../../services/bibleLoader';
 import { normalizeDisplayedText } from '../../utils/textNormalizer';
 import { createBookAliases, parseBibleReference } from '../../utils/bibleReference';
 
+const DEBOUNCE_MS = 350;
+
 export default function SearchModal({ isOpen, onClose }) {
   const { settings } = useSettings();
-  const { search, results, loading } = useSearch(settings.version);
+  const { search, results, loading, progress, cancelSearch } = useSearch(settings.version);
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [booksById, setBooksById] = useState({});
   const [bookAliasMap, setBookAliasMap] = useState(() => new Map());
   const [searchFeedback, setSearchFeedback] = useState('');
   const [hasSearched, setHasSearched] = useState(false);
+  const modalRef = useRef(null);
+
+  useFocusTrap(modalRef, isOpen);
+  useModalDismiss(isOpen, onClose);
 
   useEffect(() => {
     fetchBooksManifest()
@@ -30,25 +38,23 @@ export default function SearchModal({ isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
       const input = document.getElementById('search-modal-input');
       if (input) input.focus();
-    } else {
-      document.body.style.overflow = '';
     }
-    return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const trimmed = query.trim();
+  const runReferenceOrText = useCallback(async (raw, { navigateOnReference }) => {
+    const trimmed = raw.trim();
     if (!trimmed) {
-      setSearchFeedback('Escribe una palabra o cita');
+      cancelSearch();
+      setSearchFeedback('');
+      setHasSearched(false);
       return;
     }
 
     const reference = parseBibleReference(trimmed, bookAliasMap, booksById);
     if (reference) {
+      if (!navigateOnReference) return;
       try {
         const bookData = await loadBibleBook(settings.version, reference.bookId);
         const chapterData = bookData.chapters.find(c => c.chapter === reference.chapter);
@@ -70,44 +76,82 @@ export default function SearchModal({ isOpen, onClose }) {
     }
 
     if (trimmed.length < 3) {
-      setSearchFeedback('Escribe al menos 3 letras.');
+      if (navigateOnReference) setSearchFeedback('Escribe al menos 3 letras.');
       return;
     }
 
     setSearchFeedback('');
     setHasSearched(true);
     await search(trimmed);
+  }, [bookAliasMap, booksById, settings.version, navigate, onClose, search, cancelSearch]);
+
+  // Búsqueda automática con debounce mientras se escribe.
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const trimmed = query.trim();
+    if (trimmed.length < 3) return undefined;
+
+    const timer = setTimeout(() => {
+      runReferenceOrText(query, { navigateOnReference: false });
+    }, DEBOUNCE_MS);
+
+    return () => clearTimeout(timer);
+  }, [query, isOpen, runReferenceOrText]);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const trimmed = query.trim();
+    if (!trimmed) {
+      setSearchFeedback('Escribe una palabra o cita');
+      return;
+    }
+    await runReferenceOrText(query, { navigateOnReference: true });
   };
 
   const handleReset = () => {
     setQuery('');
     setSearchFeedback('');
     setHasSearched(false);
-    search(''); 
+    cancelSearch();
   };
 
   if (!isOpen) return null;
 
+  const progressPct = progress.total > 0
+    ? Math.round((progress.current / progress.total) * 100)
+    : 0;
+
   return (
     <div className={classes.overlay} onClick={onClose}>
-      <div className={classes.modal} onClick={e => e.stopPropagation()}>
+      <div
+        className={classes.modal}
+        ref={modalRef}
+        onClick={e => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="search-modal-title"
+      >
         <button className={classes.closeIcon} onClick={onClose} aria-label="Cerrar">✕</button>
         <header className={classes.header}>
           <div className={classes.headerText}>
-            <h2 className={classes.title}>Buscar</h2>
+            <h2 className={classes.title} id="search-modal-title">Buscar</h2>
             <p className={classes.subtitle}>Encuentra palabras o citas bíblicas</p>
           </div>
-          
+
           <form onSubmit={handleSearch} className={classes.form}>
-            <input
-              id="search-modal-input"
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder='"mar", "juan 3", "job 1:2"'
-              className={classes.input}
-            />
-            {query && <button type="button" className={classes.clear} onClick={() => setQuery('')}>✕</button>}
+            <div className={classes.inputWrapper}>
+              <input
+                id="search-modal-input"
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder='"mar", "juan 3", "job 1:2"'
+                className={classes.input}
+                autoComplete="off"
+                aria-label="Buscar en la Biblia"
+              />
+              {query && <button type="button" className={classes.clear} onClick={handleReset} aria-label="Limpiar">✕</button>}
+            </div>
             <div className={classes.actionRow}>
               <button type="submit" className={classes.searchBtn}>
                 Buscar
@@ -121,8 +165,19 @@ export default function SearchModal({ isOpen, onClose }) {
 
         <div className={classes.content}>
           {searchFeedback && <p className={classes.feedback}>{searchFeedback}</p>}
-          {loading && <div className={classes.loading}>Buscando...</div>}
-          
+
+          {loading && (
+            <div className={classes.loading}>
+              <span>Buscando… {progressPct}%</span>
+              <progress
+                className={classes.progressBar}
+                max={100}
+                value={progressPct}
+                aria-label="Progreso de búsqueda"
+              />
+            </div>
+          )}
+
           <div className={classes.results}>
             {results.map((r) => (
               <button

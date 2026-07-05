@@ -24,7 +24,7 @@ test('smoke flow: version, navigation, CBA, search', async ({ page }) => {
   await page.locator('[id^="verse-"]').first().click();
   await page.getByRole('button', { name: /Ver Comentario \(CBA\)/i }).click();
   await expect(page.getByRole('heading', { name: 'Comentario Bíblico' })).toBeVisible();
-  await page.getByRole('button', { name: '×' }).click();
+  await page.getByRole('button', { name: 'Cerrar' }).click();
 
   await page.getByRole('link', { name: 'Inicio' }).click();
   await page.getByRole('button', { name: 'Buscar' }).click();

@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import classes from './VerseMenu.module.css';
 import { useBookmarks } from '../../hooks/useBookmarks';
+import { useToast } from '../../hooks/useToast';
+import { useFocusTrap } from '../../hooks/useFocusTrap';
+import { useModalDismiss } from '../../hooks/useModalDismiss';
 import { shareVerse } from '../../utils/shareVerse';
+import { IconCommentary, IconBookmark, IconShare } from '../ui/Icons';
 
 export default function VerseMenu({ verse, payload, onClose }) {
   const { isBookmarked, toggleBookmark } = useBookmarks();
-  const [shareMessage, setShareMessage] = useState('');
+  const { showToast } = useToast();
+  const sheetRef = useRef(null);
   const bookmarked = isBookmarked(payload?.id);
+
+  useFocusTrap(sheetRef, true);
+  useModalDismiss(true, onClose);
 
   const handleBookmark = () => {
     if (payload) {
       toggleBookmark(payload.id, payload);
+      showToast(bookmarked ? 'Marcador eliminado' : 'Marcador añadido');
     }
     onClose();
   };
@@ -33,39 +42,44 @@ export default function VerseMenu({ verse, payload, onClose }) {
     try {
       const result = await shareVerse({ title: reference, text, url: shareUrl });
       if (result === 'copied') {
-        setShareMessage('Versículo copiado al portapapeles.');
+        showToast('Versículo copiado al portapapeles.');
       }
     } catch (e) {
       console.error('Error al compartir', e);
-      setShareMessage('No fue posible compartir este versículo.');
+      showToast('No fue posible compartir este versículo.');
     }
   };
 
   return (
     <div className={classes.overlay} onClick={onClose}>
-      <div className={classes.sheet} onClick={e => e.stopPropagation()}>
+      <div
+        className={classes.sheet}
+        ref={sheetRef}
+        onClick={e => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Acciones para el versículo ${verse}`}
+      >
         <div className={classes.handle} />
-        
+
         <header className={classes.header}>
           <h3>Versículo {verse}</h3>
-          <button type="button" className={classes.closeBtn} onClick={onClose}>✕</button>
+          <button type="button" className={classes.closeBtn} onClick={onClose} aria-label="Cerrar">✕</button>
         </header>
-
-        {shareMessage && <p className={classes.shareStatus}>{shareMessage}</p>}
 
         <div className={classes.actions}>
           <button className={classes.mainAction} onClick={() => { payload?.onOpenCba?.(); onClose(); }}>
-            <span className={classes.actionIcon}>📖</span>
+            <span className={classes.actionIcon}><IconCommentary size={22} /></span>
             <span className={classes.actionLabel}>Ver Comentario (CBA)</span>
           </button>
 
           <button className={classes.mainAction} onClick={handleBookmark}>
-            <span className={classes.actionIcon}>{bookmarked ? '🔖' : '📑'}</span>
+            <span className={classes.actionIcon}><IconBookmark size={22} /></span>
             <span className={classes.actionLabel}>{bookmarked ? 'Quitar Marcador' : 'Añadir Marcador'}</span>
           </button>
-          
+
           <button className={classes.mainAction} onClick={handleShare}>
-            <span className={classes.actionIcon}>📤</span>
+            <span className={classes.actionIcon}><IconShare size={22} /></span>
             <span className={classes.actionLabel}>Compartir versículo</span>
           </button>
 

@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BIBLE_CATEGORIES } from '../../constants/bibleCategories';
 import classes from './CategoryGrid.module.css';
 
+const categoryClassMap = {
+  pentateuch: classes.catPentateuch,
+  historical: classes.catHistorical,
+  wisdom: classes.catWisdom,
+  prophets: classes.catProphets,
+  gospels: classes.catGospels,
+  epistles: classes.catEpistles,
+};
+
 export default function CategoryGrid() {
   const navigate = useNavigate();
-  const categoryClassMap = {
-    pentateuch: classes.catPentateuch,
-    historical: classes.catHistorical,
-    wisdom: classes.catWisdom,
-    prophets: classes.catProphets,
-    gospels: classes.catGospels,
-    epistles: classes.catEpistles,
-  };
 
-  const handleClick = (cat) => {
+  const handleClick = useCallback((cat) => {
     navigate('/bible', { state: { category: cat.id } });
-  };
+  }, [navigate]);
 
   return (
     <div className={classes.grid}>

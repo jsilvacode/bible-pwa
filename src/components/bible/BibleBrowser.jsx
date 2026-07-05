@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import classes from './BibleBrowser.module.css';
 import { fetchBooksManifest } from '../../services/bibleLoader';
@@ -18,7 +18,11 @@ export default function BibleBrowser() {
   const filterRange = filterCategory ? CATEGORY_RANGES[filterCategory] : null;
 
   useEffect(() => {
-    fetchBooksManifest().then(setBooks).catch(console.error);
+    let mounted = true;
+    fetchBooksManifest()
+      .then((list) => { if (mounted) setBooks(list); })
+      .catch(console.error);
+    return () => { mounted = false; };
   }, []);
 
   // If a category filter is active, auto-collapse sections not in the range
@@ -31,16 +35,16 @@ export default function BibleBrowser() {
   }, [filterRange]);
 
   // Filter books based on active category
-  const allOtBooks = books.filter(b => b.id >= 1 && b.id <= 39);
-  const allNtBooks = books.filter(b => b.id >= 40 && b.id <= 66);
+  const allOtBooks = useMemo(() => books.filter(b => b.id >= 1 && b.id <= 39), [books]);
+  const allNtBooks = useMemo(() => books.filter(b => b.id >= 40 && b.id <= 66), [books]);
 
-  const filterBooks = (list) => {
+  const filterBooks = useCallback((list) => {
     if (!filterRange) return list;
     return list.filter(b => b.id >= filterRange.min && b.id <= filterRange.max);
-  };
+  }, [filterRange]);
 
-  const otBooks = filterBooks(allOtBooks);
-  const ntBooks = filterBooks(allNtBooks);
+  const otBooks = useMemo(() => filterBooks(allOtBooks), [filterBooks, allOtBooks]);
+  const ntBooks = useMemo(() => filterBooks(allNtBooks), [filterBooks, allNtBooks]);
 
   const renderBookList = (list) => (
     <div className={classes.bookGrid}>

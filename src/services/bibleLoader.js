@@ -3,6 +3,8 @@ import { assertValidVersion } from '../constants/bibleVersions';
 let booksCache = null;
 /** @type {string[] | null} */
 let validVersionIdsCache = null;
+/** @type {Array<Record<string, unknown>> | null} */
+let versionsCache = null;
 const booksByBookCache = {};
 
 export async function fetchBooksManifest() {
@@ -19,6 +21,7 @@ export async function fetchBooksManifest() {
 }
 
 export async function fetchVersionsManifest() {
+  if (versionsCache) return versionsCache;
   try {
     const res = await fetch('/data/versions.json');
     if (!res.ok) throw new Error('Versions manifest fetch failed');
@@ -26,6 +29,7 @@ export async function fetchVersionsManifest() {
     validVersionIdsCache = versions
       .filter((v) => v.available)
       .map((v) => v.id);
+    versionsCache = versions;
     return versions;
   } catch (err) {
     console.error('Error fetching versions manifest:', err);

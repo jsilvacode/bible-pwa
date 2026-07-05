@@ -3,17 +3,24 @@ import DailyVerse from '../daily/DailyVerse';
 import CategoryGrid from './CategoryGrid';
 import ReadingStreak from './ReadingStreak';
 import SearchModal from './SearchModal';
-import { useRecentReads } from '../../hooks/useSettings';
+import { useRecentReads, useSettings } from '../../hooks/useSettings';
 import { useBookNames } from '../../hooks/useBookNames';
 import { useNavigate } from 'react-router-dom';
+import { IconSearch, IconUser, IconPlay } from '../ui/Icons';
 import classes from './HomeScreen.module.css';
 
 export default function HomeScreen() {
   const { recent } = useRecentReads();
+  const { settings } = useSettings();
   const { bookNames } = useBookNames();
   const navigate = useNavigate();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [greeting, setGreeting] = useState('');
+
+  const lastRead = settings.lastRead;
+  const lastReadLabel = lastRead?.book
+    ? `${bookNames[lastRead.book] || `Libro ${lastRead.book}`} ${lastRead.chapter}`
+    : null;
 
   useEffect(() => {
     const hour = new Date().getHours();
@@ -28,7 +35,9 @@ export default function HomeScreen() {
         <header className={classes.header}>
           <div className={classes.headerTop}>
             <div className={classes.userInfo}>
-              <div className={classes.avatar}>👤</div>
+              <div className={classes.avatar}>
+                <IconUser size={22} />
+              </div>
               <div className={classes.greetingWrap}>
                 <span className={classes.date}>
                   {new Date().toLocaleDateString('es', {
@@ -46,10 +55,24 @@ export default function HomeScreen() {
               onClick={() => setIsSearchOpen(true)}
               aria-label="Buscar"
             >
-              🔍
+              <IconSearch size={20} />
             </button>
           </div>
         </header>
+
+        {lastReadLabel && (
+          <button
+            type="button"
+            className={classes.continueBtn}
+            onClick={() => navigate(`/read/${lastRead.book}/${lastRead.chapter}`)}
+          >
+            <IconPlay size={18} className={classes.continueIcon} />
+            <span className={classes.continueText}>
+              Continuar leyendo
+              <strong>{lastReadLabel}</strong>
+            </span>
+          </button>
+        )}
 
         <DailyVerse variant="hero" />
       </div>

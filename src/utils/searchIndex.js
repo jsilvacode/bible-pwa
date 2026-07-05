@@ -6,8 +6,7 @@
  * - Makes whole-term search O(1) per word instead of O(n) per verse
  */
 
-const normalize = (v) =>
-  v.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+import { normalizeSearchText } from './searchText';
 
 export class SearchIndex {
   #maxSize;
@@ -27,7 +26,7 @@ export class SearchIndex {
       for (const verse of chapter.verses) {
         const id = { chapter: chapter.chapter, verse: verse.verse };
         verses.push({ ...id, text: verse.text });
-        const words = normalize(verse.text).split(/\s+/);
+        const words = normalizeSearchText(verse.text).split(/\s+/);
         const seen = new Set();
         for (const word of words) {
           if (!word || seen.has(word)) continue;
@@ -61,7 +60,7 @@ export class SearchIndex {
     this.#cache.set(key, entry);
 
     const { index, verses } = entry;
-    const terms = normalize(rawQuery).split(/\s+/).filter(Boolean);
+    const terms = normalizeSearchText(rawQuery).split(/\s+/).filter(Boolean);
     if (!terms.length) return [];
 
     let results = null;

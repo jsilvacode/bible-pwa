@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { loadCbaVerse } from '../../services/cbaLoader';
+import { useFocusTrap } from '../../hooks/useFocusTrap';
+import { useModalDismiss } from '../../hooks/useModalDismiss';
 import classes from './CbaModal.module.css';
 
 export default function CbaModal({ isOpen, onClose, bookId, chapter, verse, bookName }) {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
+  const modalRef = useRef(null);
+
+  useFocusTrap(modalRef, isOpen);
+  useModalDismiss(isOpen, onClose);
 
   useEffect(() => {
     if (!isOpen || !bookId || !chapter || !verse) {
@@ -39,15 +45,22 @@ export default function CbaModal({ isOpen, onClose, bookId, chapter, verse, book
 
   return (
     <div className={classes.overlay} onClick={onClose}>
-      <div className={classes.modal} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={classes.modal}
+        ref={modalRef}
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cba-modal-title"
+      >
         <div className={classes.header}>
           <div className={classes.titleGroup}>
-            <h3 className={classes.title}>Comentario Bíblico</h3>
+            <h3 className={classes.title} id="cba-modal-title">Comentario Bíblico</h3>
             <p className={classes.subtitle}>
               {bookName} {chapter}:{verse}
             </p>
           </div>
-          <button type="button" className={classes.closeBtn} onClick={onClose}>
+          <button type="button" className={classes.closeBtn} onClick={onClose} aria-label="Cerrar">
             &times;
           </button>
         </div>

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSettings } from '../../hooks/useSettings';
+import { useToast } from '../../hooks/useToast';
 import { loadBibleBook } from '../../services/bibleLoader';
 import { loadCbaVerse } from '../../services/cbaLoader';
 import { shareVerse } from '../../utils/shareVerse';
@@ -18,6 +19,7 @@ const DAILY_VERSES = [
 
 export default function DailyVerse({ variant = 'hero' }) {
   const { settings } = useSettings();
+  const { showToast } = useToast();
   const [verseText, setVerseText] = useState('');
   const [cbaQuote, setCbaQuote] = useState('');
   const [reference, setReference] = useState('');
@@ -73,7 +75,7 @@ export default function DailyVerse({ variant = 'hero' }) {
     try {
       const result = await shareVerse({ title: 'Versículo del Día', text, url });
       if (result === 'copied') {
-        alert('Copiado al portapapeles');
+        showToast('Copiado al portapapeles');
       }
     } catch (err) {
       console.error('Error sharing', err);
@@ -81,11 +83,11 @@ export default function DailyVerse({ variant = 'hero' }) {
   };
 
   const isHero = variant === 'hero';
-  const cbaPreview = cbaQuote
-    ? (cbaQuote.split('\n\n')[0].length > 350
-        ? `${cbaQuote.split('\n\n')[0].substring(0, 350)}...`
-        : cbaQuote.split('\n\n')[0])
-    : '';
+  const cbaPreview = useMemo(() => {
+    if (!cbaQuote) return '';
+    const first = cbaQuote.split('\n\n')[0];
+    return first.length > 350 ? `${first.substring(0, 350)}...` : first;
+  }, [cbaQuote]);
 
   return (
     <div className={`${classes.container} ${isHero ? classes.hero : classes.compact}`}>

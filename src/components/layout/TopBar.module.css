@@ -1,3 +1,15 @@
+.logoIconSvg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
 .topBar {
   display: flex;
   justify-content: space-between;
@@ -11,6 +23,7 @@
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border-bottom: 1px solid var(--border);
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .logo {
@@ -18,6 +31,10 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
 }
 
 .logoIcon {

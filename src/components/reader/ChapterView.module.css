@@ -69,6 +69,18 @@
   text-align: center;
 }
 
+.versionBadge {
+  align-self: center;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
 .readerMain {
   max-width: var(--max-width-reader);
   margin: 0 auto;

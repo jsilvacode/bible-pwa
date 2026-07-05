@@ -8,7 +8,11 @@ export default function VersionSelector() {
   const [versions, setVersions] = useState([]);
 
   useEffect(() => {
-    fetchVersionsManifest().then(setVersions).catch(console.error);
+    let mounted = true;
+    fetchVersionsManifest()
+      .then((list) => { if (mounted) setVersions(list); })
+      .catch(console.error);
+    return () => { mounted = false; };
   }, []);
 
   const handleChange = (e) => {

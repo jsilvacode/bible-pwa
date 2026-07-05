@@ -16,6 +16,13 @@
   z-index: 100;
   padding-bottom: env(safe-area-inset-bottom);
   box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hidden {
+  transform: translateX(-50%) translateY(100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .bottomNav a {
