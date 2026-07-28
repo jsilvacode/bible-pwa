@@ -1,7 +1,7 @@
 .container {
   min-height: 100vh;
   background: transparent;
-  padding-bottom: 120px;
+  padding-bottom: calc(72px + env(safe-area-inset-bottom));
 }
 
 .progressBar {
@@ -84,7 +84,7 @@
 .readerMain {
   max-width: var(--max-width-reader);
   margin: 0 auto;
-  padding: 38px 22px;
+  padding: 38px 22px 24px;
 }
 
 .content {
@@ -152,7 +152,7 @@
 
 @media (max-width: 480px) {
   .readerMain {
-    padding: 34px 18px;
+    padding: 34px 18px 24px;
   }
 
   .verseHeading {
