@@ -20,7 +20,7 @@ describe('verseCopy', () => {
   });
 
   it('usa un nombre por defecto si falta el libro', () => {
-    expect(buildVerseReference('', 1, 1)).toBe('La Biblia 1:1');
+    expect(buildVerseReference('', 1, 1)).toBe('Santa Biblia 1:1');
   });
 
   it('arma el texto plano con cita, texto y url', () => {

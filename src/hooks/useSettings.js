@@ -5,6 +5,7 @@ import { warmupBibleData } from '../services/bibleLoader';
 const SETTINGS_KEY = 'bible_settings';
 const RECENT_KEY = 'bible_recent';
 const LOG_KEY = 'bible_reading_log';
+const VERSION_DEFAULT_REVISION = 2;
 
 /** @typedef {"light" | "dark"} Theme */
 
@@ -23,7 +24,8 @@ const defaultSettings = {
   version: DEFAULT_VERSION,
   theme: 'light',
   fontSize: 'md',
-  lastRead: { book: 1, chapter: 1 }
+  lastRead: { book: 1, chapter: 1 },
+  versionDefaultRevision: VERSION_DEFAULT_REVISION,
 };
 
 const SettingsContext = createContext(null);
@@ -32,8 +34,16 @@ function getInitialSettings() {
   try {
     const saved = localStorage.getItem(SETTINGS_KEY);
     if (saved) {
-      const parsed = { ...defaultSettings, ...JSON.parse(saved) };
-      parsed.version = normalizeVersionId(parsed.version);
+      const savedSettings = JSON.parse(saved);
+      const parsed = { ...defaultSettings, ...savedSettings };
+      const usesPreviousDefault = (
+        Number(savedSettings.versionDefaultRevision || 0) < VERSION_DEFAULT_REVISION
+        && ['rva2015', 'rvr60'].includes(savedSettings.version)
+      );
+      parsed.version = usesPreviousDefault
+        ? DEFAULT_VERSION
+        : normalizeVersionId(parsed.version);
+      parsed.versionDefaultRevision = VERSION_DEFAULT_REVISION;
       return parsed;
     }
   } catch (e) {

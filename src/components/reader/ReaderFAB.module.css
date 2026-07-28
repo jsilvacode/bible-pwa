@@ -13,21 +13,67 @@
   pointer-events: none;
 }
 
+.dock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-surface) 88%, transparent);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  pointer-events: auto;
+  z-index: 253;
+}
+
+.action {
+  position: relative;
+  display: flex;
+}
+
 .fab {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: var(--accent);
-  color: white;
-  border: none;
   font-family: var(--font-ui);
   font-weight: 700;
   font-size: 1.2rem;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
   cursor: pointer;
-  z-index: 252;
-  transition: transform 0.3s var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s var(--transition-smooth), background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   pointer-events: auto;
+}
+
+.fab:hover {
+  transform: translateY(-2px);
+}
+
+.fab:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.searchFab {
+  background: var(--bg-surface);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+}
+
+.searchFab:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  background: var(--bg-verse-hover);
+}
+
+.settingsFab {
+  background: var(--accent);
+  color: white;
+  border: 1px solid var(--accent);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 32%, transparent);
 }
 
 .fabOpen {
@@ -35,6 +81,48 @@
   background: var(--bg-surface);
   color: var(--text-primary);
   border: 1px solid var(--border);
+}
+
+.fabOpen:hover {
+  transform: rotate(90deg) translateX(-2px);
+}
+
+.tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  transform: translate(-50%, 5px);
+  padding: 7px 10px;
+  border-radius: 9px;
+  background: var(--text-primary);
+  color: var(--bg-page);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--text-primary);
+}
+
+.action:hover .tooltip,
+.action:focus-within .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
 }
 
 .panel {
@@ -46,7 +134,7 @@
   width: 200px;
   box-shadow: var(--shadow-card-hover);
   animation: scaleIn 0.3s var(--transition-smooth);
-  z-index: 252;
+  z-index: 253;
   pointer-events: auto;
 }
 
@@ -124,6 +212,28 @@
   inset: 0;
   background: rgba(0,0,0,0.1);
   z-index: 251;
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding-right: 14px;
+  }
+
+  .dock {
+    gap: 7px;
+  }
+
+  .fab {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab,
+  .tooltip {
+    transition-duration: 0.01ms;
+  }
 }
 
 @keyframes scaleIn {

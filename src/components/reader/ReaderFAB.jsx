@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import classes from './ReaderFAB.module.css';
 import { useSettings } from '../../hooks/useSettings';
+import { useGlobalSearch } from '../../hooks/useGlobalSearch';
+import { IconSearch } from '../ui/Icons';
 
 export default function ReaderFAB() {
   const [isOpen, setIsOpen] = useState(false);
   const { settings, updateSettings } = useSettings();
+  const { openSearch } = useGlobalSearch();
 
   const handleFontSize = (delta) => {
     const sizes = ['sm', 'md', 'lg', 'xl'];
@@ -48,15 +51,37 @@ export default function ReaderFAB() {
         </div>
       )}
       
-      <button 
-        className={`${classes.fab} ${isOpen ? classes.fabOpen : ''}`} 
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Ajustes de lectura"
-      >
-        {isOpen ? '✕' : 'Aa'}
-      </button>
+      <div className={classes.dock} aria-label="Herramientas de lectura">
+        <div className={classes.action}>
+          <span className={classes.tooltip} role="tooltip">Buscar</span>
+          <button
+            type="button"
+            className={`${classes.fab} ${classes.searchFab}`}
+            onClick={() => {
+              setIsOpen(false);
+              openSearch();
+            }}
+            aria-label="Buscar"
+          >
+            <IconSearch size={22} />
+          </button>
+        </div>
 
-      {isOpen && <div className={classes.overlay} onClick={() => setIsOpen(false)} />}
+        <div className={classes.action}>
+          <span className={classes.tooltip} role="tooltip">Ajustes rápidos</span>
+          <button
+            type="button"
+            className={`${classes.fab} ${classes.settingsFab} ${isOpen ? classes.fabOpen : ''}`}
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Ajustes rápidos"
+            aria-expanded={isOpen}
+          >
+            {isOpen ? '✕' : 'Aa'}
+          </button>
+        </div>
+      </div>
+
+      {isOpen && <div className={classes.overlay} onClick={() => setIsOpen(false)} aria-hidden="true" />}
     </div>
   );
 }
