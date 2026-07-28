@@ -78,10 +78,12 @@ test('herramientas de lectura se adaptan a móvil y tablet', async ({ page }) =>
   const readerSearch = page.getByRole('button', { name: 'Buscar', exact: true });
   const quickSettings = page.getByRole('button', { name: 'Ajustes rápidos' });
 
-  await expect(dock).toHaveCSS('flex-direction', 'column');
+  await expect(dock).toHaveCSS('flex-direction', 'row');
+  await expect(dock).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect(dock).toHaveCSS('border-top-style', 'none');
   const searchBox = await readerSearch.boundingBox();
   const settingsBox = await quickSettings.boundingBox();
-  expect(searchBox?.y).toBeLessThan(settingsBox?.y ?? 0);
+  expect(searchBox?.x).toBeLessThan(settingsBox?.x ?? 0);
 
   await readerSearch.focus();
   await expect(page.getByRole('tooltip', { name: 'Buscar' })).toBeHidden();

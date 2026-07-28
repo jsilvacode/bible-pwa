@@ -18,12 +18,9 @@
   align-items: center;
   gap: 10px;
   padding: 5px;
-  border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+  border: 0;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--bg-surface) 88%, transparent);
-  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: transparent;
   pointer-events: auto;
   z-index: 253;
 }
@@ -226,7 +223,6 @@
   }
 
   .dock {
-    flex-direction: column;
     gap: 7px;
   }
 
