@@ -4,6 +4,7 @@ import { useBible } from '../../hooks/useBible';
 import { useHighlights } from '../../hooks/useHighlights';
 import { useSettings } from '../../hooks/useSettings';
 import { useReadingMode } from '../../hooks/useReadingMode';
+import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import VerseBlock from './VerseBlock';
 import VerseMenu from './VerseMenu';
 import CbaModal from './CbaModal';
@@ -20,14 +21,22 @@ export default function ChapterView() {
   const navigate = useNavigate();
   const location = useLocation();
   const { settings, addRecent, updateSettings } = useSettings();
-  const { setChromeHidden, setReaderActive } = useReadingMode();
+  const { isOpen: searchOpen } = useGlobalSearch();
+  const {
+    readerControlsIdle,
+    setReaderControlsIdle,
+    setReaderAtEnd,
+    setChromeHidden,
+    setReaderActive,
+  } = useReadingMode();
 
   const [routeValid, setRouteValid] = useState(null);
   const [menuVerse, setMenuVerse] = useState(null);
   const [cbaVerse, setCbaVerse] = useState(null);
   const [showCba, setShowCba] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [readerToolsHidden, setReaderToolsHidden] = useState(false);
+  const [chapterNavigationVisible, setChapterNavigationVisible] = useState(false);
+  const [readerSettingsOpen, setReaderSettingsOpen] = useState(false);
   const lastChapterKeyRef = useRef('');
   const lastScrollYRef = useRef(0);
   const touchStartRef = useRef(null);
@@ -45,6 +54,7 @@ export default function ChapterView() {
 
   const bibleBook = data;
   const bibleChapter = data?.chapters?.find((c) => c.chapter === chapterNum_);
+  const controlsLockedOpen = menuVerse !== null || showCba || searchOpen || readerSettingsOpen;
 
   useEffect(() => {
     setReaderActive(true);
@@ -106,6 +116,7 @@ export default function ChapterView() {
       const sh = h.scrollHeight || document.body.scrollHeight;
       const raw = (st / (sh - h.clientHeight)) * 100;
       setScrollProgress(Number.isFinite(raw) ? raw : 0);
+      setReaderAtEnd(sh - (st + h.clientHeight) <= 96);
 
       const delta = st - lastScrollYRef.current;
       if (st > 80 && delta > 8) {
@@ -117,18 +128,67 @@ export default function ChapterView() {
     }, 100);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [setChromeHidden]);
+    window.addEventListener('resize', handleScroll);
+    const resizeObserver = typeof ResizeObserver !== 'undefined'
+      ? new ResizeObserver(handleScroll)
+      : null;
+    if (resizeObserver && readerRef.current) resizeObserver.observe(readerRef.current);
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      resizeObserver?.disconnect();
+    };
+  }, [setChromeHidden, setReaderAtEnd]);
+
+  useEffect(() => {
+    let idleTimer;
+
+    const scheduleIdle = () => {
+      window.clearTimeout(idleTimer);
+      if (!controlsLockedOpen) {
+        idleTimer = window.setTimeout(() => setReaderControlsIdle(true), 3000);
+      }
+    };
+
+    const handleActivity = () => {
+      setReaderControlsIdle(false);
+      scheduleIdle();
+    };
+
+    const passiveEvents = ['scroll', 'wheel', 'pointermove', 'pointerdown', 'touchstart'];
+    passiveEvents.forEach((eventName) => {
+      window.addEventListener(eventName, handleActivity, { passive: true });
+    });
+    window.addEventListener('keydown', handleActivity);
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) handleActivity();
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    if (controlsLockedOpen) setReaderControlsIdle(false);
+    else scheduleIdle();
+
+    return () => {
+      window.clearTimeout(idleTimer);
+      passiveEvents.forEach((eventName) => {
+        window.removeEventListener(eventName, handleActivity);
+      });
+      window.removeEventListener('keydown', handleActivity);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [controlsLockedOpen, setReaderControlsIdle]);
 
   useEffect(() => {
     const chapterNavigation = chapterNavigationRef.current;
     if (loading || !chapterNavigation) return undefined;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setReaderToolsHidden(entry.isIntersecting),
+      ([entry]) => setChapterNavigationVisible(entry.isIntersecting),
       {
         root: null,
-        rootMargin: '0px 0px 110px 0px',
+        rootMargin: '0px 0px -64px 0px',
         threshold: 0.01,
       }
     );
@@ -306,7 +366,10 @@ export default function ChapterView() {
             </nav>
           </main>
 
-          <ReaderFAB hidden={readerToolsHidden} />
+          <ReaderFAB
+            hidden={readerControlsIdle || chapterNavigationVisible}
+            onExpandedChange={setReaderSettingsOpen}
+          />
 
           {menuVerse !== null && (
             <VerseMenu

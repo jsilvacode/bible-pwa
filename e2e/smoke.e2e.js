@@ -95,9 +95,20 @@ test('herramientas de lectura se adaptan a móvil y tablet', async ({ page }) =>
 
   const chapterNavigation = page.getByRole('navigation', { name: 'Navegación de capítulos' });
   const bottomNavigation = page.getByRole('navigation', { name: 'Navegación principal' });
+
+  await page.evaluate(() => window.scrollTo(0, 300));
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(300);
+  await page.waitForTimeout(3200);
+  await expect(dock).toBeHidden();
+  await expect(bottomNavigation).toHaveCSS('opacity', '0');
+
+  await page.mouse.move(120, 120);
+  await expect(dock).toBeVisible();
+  await expect(bottomNavigation).toHaveCSS('opacity', '1');
+
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   await expect(dock).toBeHidden();
-  await expect(bottomNavigation).toBeVisible();
+  await expect(bottomNavigation).toHaveCSS('opacity', '1');
 
   const chapterNavigationBox = await chapterNavigation.boundingBox();
   const bottomNavigationBox = await bottomNavigation.boundingBox();
@@ -106,7 +117,23 @@ test('herramientas de lectura se adaptan a móvil y tablet', async ({ page }) =>
   expect(footerGap).toBeGreaterThanOrEqual(20);
   expect(footerGap).toBeLessThanOrEqual(48);
 
+  await page.waitForTimeout(3200);
+  await expect(dock).toBeHidden();
+  await expect(bottomNavigation).toHaveCSS('opacity', '1');
+
   await page.evaluate(() => window.scrollTo(0, 0));
   await expect(dock).toBeVisible();
-  await expect(bottomNavigation).toBeVisible();
+  await expect(bottomNavigation).toHaveCSS('opacity', '1');
+});
+
+test('una segunda pulsación en Inicio vuelve arriba', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: /Buenas/ })).toBeVisible();
+
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+
+  await page.getByRole('link', { name: 'Inicio' }).click();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
 });

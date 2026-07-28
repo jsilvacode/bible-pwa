@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './ReaderFAB.module.css';
 import { useSettings } from '../../hooks/useSettings';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import { IconSearch } from '../ui/Icons';
 
-export default function ReaderFAB({ hidden = false }) {
+export default function ReaderFAB({ hidden = false, onExpandedChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const { settings, updateSettings } = useSettings();
   const { openSearch } = useGlobalSearch();
+
+  useEffect(() => {
+    if (!hidden || !isOpen) return;
+    setIsOpen(false);
+    onExpandedChange?.(false);
+  }, [hidden, isOpen, onExpandedChange]);
+
+  const setPanelOpen = (open) => {
+    setIsOpen(open);
+    onExpandedChange?.(open);
+  };
 
   const handleFontSize = (delta) => {
     const sizes = ['sm', 'md', 'lg', 'xl'];
@@ -61,7 +72,7 @@ export default function ReaderFAB({ hidden = false }) {
             type="button"
             className={`${classes.fab} ${classes.searchFab}`}
             onClick={() => {
-              setIsOpen(false);
+              setPanelOpen(false);
               openSearch();
             }}
             aria-label="Buscar"
@@ -75,7 +86,7 @@ export default function ReaderFAB({ hidden = false }) {
           <button
             type="button"
             className={`${classes.fab} ${classes.settingsFab} ${isOpen ? classes.fabOpen : ''}`}
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setPanelOpen(!isOpen)}
             aria-label="Ajustes rápidos"
             aria-expanded={isOpen}
           >
@@ -84,7 +95,7 @@ export default function ReaderFAB({ hidden = false }) {
         </div>
       </div>
 
-      {isOpen && <div className={classes.overlay} onClick={() => setIsOpen(false)} aria-hidden="true" />}
+      {isOpen && <div className={classes.overlay} onClick={() => setPanelOpen(false)} aria-hidden="true" />}
     </div>
   );
 }

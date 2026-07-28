@@ -11,7 +11,7 @@ import classes from './AppShell.module.css';
 
 export default function AppShell() {
   const location = useLocation();
-  const { chromeHidden, isReaderActive } = useReadingMode();
+  const { chromeHidden, readerControlsIdle, readerAtEnd, isReaderActive } = useReadingMode();
   const { showInstallPopup, isInstalled, promptInstall, dismissInstallPopup } = useInstallPrompt();
   const { isOpen, initialQuery, requestId, closeSearch } = useGlobalSearch();
   const hideChrome = isReaderActive && chromeHidden;
@@ -24,7 +24,7 @@ export default function AppShell() {
         <Outlet key={location.pathname} />
         {showFooter && <SiteFooter />}
       </main>
-      <BottomNav />
+      <BottomNav hidden={readerControlsIdle && !readerAtEnd} />
       <SearchModal
         isOpen={isOpen}
         initialQuery={initialQuery}
