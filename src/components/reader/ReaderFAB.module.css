@@ -214,12 +214,19 @@
   z-index: 251;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1024px), (hover: none), (pointer: coarse) {
+  .tooltip {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
   .wrapper {
     padding-right: 14px;
   }
 
   .dock {
+    flex-direction: column;
     gap: 7px;
   }
 
