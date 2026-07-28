@@ -68,3 +68,26 @@ test('copiar versículo incluye cita de origen y url', async ({ page, context })
   expect(clip).toContain('Génesis 1:1');
   expect(clip).toContain('/read/1/1/1');
 });
+
+test('herramientas de lectura se adaptan a móvil y tablet', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/read/43/3');
+  await expect(page.getByRole('heading', { name: /Juan 3/ })).toBeVisible();
+
+  const dock = page.getByLabel('Herramientas de lectura');
+  const readerSearch = page.getByRole('button', { name: 'Buscar', exact: true });
+  const quickSettings = page.getByRole('button', { name: 'Ajustes rápidos' });
+
+  await expect(dock).toHaveCSS('flex-direction', 'column');
+  const searchBox = await readerSearch.boundingBox();
+  const settingsBox = await quickSettings.boundingBox();
+  expect(searchBox?.y).toBeLessThan(settingsBox?.y ?? 0);
+
+  await readerSearch.focus();
+  await expect(page.getByRole('tooltip', { name: 'Buscar' })).toBeHidden();
+
+  await page.setViewportSize({ width: 820, height: 1180 });
+  await expect(dock).toHaveCSS('flex-direction', 'row');
+  await quickSettings.focus();
+  await expect(page.getByRole('tooltip', { name: 'Ajustes rápidos' })).toBeHidden();
+});
