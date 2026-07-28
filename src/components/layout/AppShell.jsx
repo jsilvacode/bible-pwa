@@ -24,7 +24,7 @@ export default function AppShell() {
         <Outlet key={location.pathname} />
         {showFooter && <SiteFooter />}
       </main>
-      <BottomNav hidden={hideChrome} />
+      <BottomNav />
       <SearchModal
         isOpen={isOpen}
         initialQuery={initialQuery}

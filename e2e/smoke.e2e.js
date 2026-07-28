@@ -92,4 +92,14 @@ test('herramientas de lectura se adaptan a móvil y tablet', async ({ page }) =>
   await expect(dock).toHaveCSS('flex-direction', 'row');
   await quickSettings.focus();
   await expect(page.getByRole('tooltip', { name: 'Ajustes rápidos' })).toBeHidden();
+
+  const chapterNavigation = page.getByRole('navigation', { name: 'Navegación de capítulos' });
+  const bottomNavigation = page.getByRole('navigation', { name: 'Navegación principal' });
+  await chapterNavigation.scrollIntoViewIfNeeded();
+  await expect(dock).toBeHidden();
+  await expect(bottomNavigation).toBeVisible();
+
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(dock).toBeVisible();
+  await expect(bottomNavigation).toBeVisible();
 });
