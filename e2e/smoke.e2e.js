@@ -95,9 +95,16 @@ test('herramientas de lectura se adaptan a móvil y tablet', async ({ page }) =>
 
   const chapterNavigation = page.getByRole('navigation', { name: 'Navegación de capítulos' });
   const bottomNavigation = page.getByRole('navigation', { name: 'Navegación principal' });
-  await chapterNavigation.scrollIntoViewIfNeeded();
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   await expect(dock).toBeHidden();
   await expect(bottomNavigation).toBeVisible();
+
+  const chapterNavigationBox = await chapterNavigation.boundingBox();
+  const bottomNavigationBox = await bottomNavigation.boundingBox();
+  const footerGap = (bottomNavigationBox?.y ?? 0)
+    - ((chapterNavigationBox?.y ?? 0) + (chapterNavigationBox?.height ?? 0));
+  expect(footerGap).toBeGreaterThanOrEqual(20);
+  expect(footerGap).toBeLessThanOrEqual(48);
 
   await page.evaluate(() => window.scrollTo(0, 0));
   await expect(dock).toBeVisible();
