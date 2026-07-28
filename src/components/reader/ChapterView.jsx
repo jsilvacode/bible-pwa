@@ -27,10 +27,12 @@ export default function ChapterView() {
   const [cbaVerse, setCbaVerse] = useState(null);
   const [showCba, setShowCba] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [readerToolsHidden, setReaderToolsHidden] = useState(false);
   const lastChapterKeyRef = useRef('');
   const lastScrollYRef = useRef(0);
   const touchStartRef = useRef(null);
   const readerRef = useRef(null);
+  const chapterNavigationRef = useRef(null);
 
   const bookId_ = routeValid?.bookId ?? Number(bookId);
   const chapterNum_ = routeValid?.chapter ?? Number(chapterNum);
@@ -117,6 +119,23 @@ export default function ChapterView() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [setChromeHidden]);
+
+  useEffect(() => {
+    const chapterNavigation = chapterNavigationRef.current;
+    if (loading || !chapterNavigation) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setReaderToolsHidden(entry.isIntersecting),
+      {
+        root: null,
+        rootMargin: '0px 0px 110px 0px',
+        threshold: 0.01,
+      }
+    );
+
+    observer.observe(chapterNavigation);
+    return () => observer.disconnect();
+  }, [loading, bookId_, chapterNum_]);
 
   // Enriquece el texto copiado con la cita de origen y el enlace a la Biblia.
   useEffect(() => {
@@ -263,7 +282,11 @@ export default function ChapterView() {
               )}
             </div>
 
-            <nav className={classes.navigation} aria-label="Navegación de capítulos">
+            <nav
+              ref={chapterNavigationRef}
+              className={classes.navigation}
+              aria-label="Navegación de capítulos"
+            >
               <button
                 type="button"
                 onClick={handlePrevChapter}
@@ -283,7 +306,7 @@ export default function ChapterView() {
             </nav>
           </main>
 
-          <ReaderFAB />
+          <ReaderFAB hidden={readerToolsHidden} />
 
           {menuVerse !== null && (
             <VerseMenu

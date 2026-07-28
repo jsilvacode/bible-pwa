@@ -4,7 +4,7 @@ import { useSettings } from '../../hooks/useSettings';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import { IconSearch } from '../ui/Icons';
 
-export default function ReaderFAB() {
+export default function ReaderFAB({ hidden = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const { settings, updateSettings } = useSettings();
   const { openSearch } = useGlobalSearch();
@@ -19,7 +19,10 @@ export default function ReaderFAB() {
   };
 
   return (
-    <div className={classes.wrapper}>
+    <div
+      className={`${classes.wrapper} ${hidden ? classes.hidden : ''}`}
+      aria-hidden={hidden || undefined}
+    >
       {isOpen && (
         <div className={classes.panel}>
           <div className={classes.section}>

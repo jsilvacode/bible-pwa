@@ -11,6 +11,15 @@
   align-items: flex-end;
   padding-right: 20px;
   pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s var(--transition-smooth);
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(16px);
 }
 
 .dock {
