@@ -1,4 +1,4 @@
-export const DEFAULT_VERSION = 'rva2015';
+export const DEFAULT_VERSION = 'nbla';
 
 /** @type {Record<string, string>} */
 export const VERSION_ALIASES = {

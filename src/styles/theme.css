@@ -14,6 +14,11 @@
   --surface-soft: #F9F8F5;
 
   --bg-page: var(--dust);
+  --page-canvas:
+    radial-gradient(ellipse at 8% 4%, color-mix(in srgb, var(--terra) 11%, transparent) 0%, transparent 38%),
+    radial-gradient(ellipse at 92% 32%, color-mix(in srgb, #d2b9ca 20%, transparent) 0%, transparent 42%),
+    radial-gradient(ellipse at 28% 94%, color-mix(in srgb, #dec996 17%, transparent) 0%, transparent 40%),
+    linear-gradient(145deg, #fbfaf8 0%, #f7efeb 42%, #f6f2f1 72%, #faf8f4 100%);
   --bg-surface: var(--surface-strong);
   --bg-verse-hover: var(--rose-ash);
   --text-primary: var(--text-light);
@@ -50,6 +55,11 @@
 
 [data-theme="light"] {
   --bg-page: var(--dust);
+  --page-canvas:
+    radial-gradient(ellipse at 8% 4%, color-mix(in srgb, var(--terra) 11%, transparent) 0%, transparent 38%),
+    radial-gradient(ellipse at 92% 32%, color-mix(in srgb, #d2b9ca 20%, transparent) 0%, transparent 42%),
+    radial-gradient(ellipse at 28% 94%, color-mix(in srgb, #dec996 17%, transparent) 0%, transparent 40%),
+    linear-gradient(145deg, #fbfaf8 0%, #f7efeb 42%, #f6f2f1 72%, #faf8f4 100%);
   --bg-surface: var(--surface-strong);
   --bg-verse-hover: var(--rose-ash);
   --text-primary: var(--text-light);
@@ -71,6 +81,11 @@
 
 [data-theme="dark"] {
   --bg-page: color-mix(in srgb, var(--noir) 90%, var(--dust));
+  --page-canvas:
+    radial-gradient(ellipse at 8% 4%, color-mix(in srgb, var(--terra) 16%, transparent) 0%, transparent 38%),
+    radial-gradient(ellipse at 92% 34%, color-mix(in srgb, #7e5974 16%, transparent) 0%, transparent 44%),
+    radial-gradient(ellipse at 30% 94%, color-mix(in srgb, #8b7049 12%, transparent) 0%, transparent 42%),
+    linear-gradient(150deg, #2d2020 0%, #261a1d 48%, #21181a 100%);
   --bg-surface: color-mix(in srgb, var(--noir) 82%, var(--dust));
   --bg-verse-hover: color-mix(in srgb, var(--noir) 72%, var(--dust));
   --text-primary: var(--text-dark);

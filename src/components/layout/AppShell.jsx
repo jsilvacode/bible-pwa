@@ -5,12 +5,15 @@ import BottomNav from './BottomNav';
 import SiteFooter from './SiteFooter';
 import { useReadingMode } from '../../hooks/useReadingMode';
 import { useInstallPrompt } from '../../hooks/useInstallPrompt';
+import { useGlobalSearch } from '../../hooks/useGlobalSearch';
+import SearchModal from '../home/SearchModal';
 import classes from './AppShell.module.css';
 
 export default function AppShell() {
   const location = useLocation();
   const { chromeHidden, isReaderActive } = useReadingMode();
   const { showInstallPopup, isInstalled, promptInstall, dismissInstallPopup } = useInstallPrompt();
+  const { isOpen, initialQuery, requestId, closeSearch } = useGlobalSearch();
   const hideChrome = isReaderActive && chromeHidden;
   const showFooter = location.pathname === '/' || location.pathname === '/settings';
 
@@ -22,11 +25,17 @@ export default function AppShell() {
         {showFooter && <SiteFooter />}
       </main>
       <BottomNav hidden={hideChrome} />
+      <SearchModal
+        isOpen={isOpen}
+        initialQuery={initialQuery}
+        requestId={requestId}
+        onClose={closeSearch}
+      />
 
       {showInstallPopup && !isInstalled && !hideChrome && (
         <div className={classes.installOverlay}>
           <div className={classes.installPopup}>
-            <h4>Instala La Biblia</h4>
+            <h4>Instala Santa Biblia</h4>
             <p>Accede rápido desde tu pantalla de inicio.</p>
             <div className={classes.installPopupActions}>
               <button type="button" onClick={promptInstall}>Instalar ahora</button>

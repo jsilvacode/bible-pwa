@@ -80,7 +80,7 @@ export default function BibleBrowser() {
   return (
     <div className={classes.container}>
       <header className={classes.header}>
-        <h1 className={classes.title}>La Biblia</h1>
+        <h1 className={classes.title}>Santa Biblia</h1>
         {filterLabel ? (
           <div className={classes.filterBadge}>
             <span>{filterLabel}</span>

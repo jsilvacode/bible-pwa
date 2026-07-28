@@ -13,6 +13,7 @@ import { HighlightsProvider } from './hooks/useHighlights';
 import { ToastProvider } from './hooks/useToast';
 import { InstallPromptProvider } from './hooks/useInstallPrompt';
 import { ReadingModeProvider } from './hooks/useReadingMode';
+import { GlobalSearchProvider } from './hooks/useGlobalSearch';
 
 function App() {
   return (
@@ -23,16 +24,18 @@ function App() {
             <InstallPromptProvider>
               <ReadingModeProvider>
                 <BrowserRouter>
-                  <Routes>
-                    <Route path="/" element={<AppShell />}>
-                      <Route index element={<HomeScreen />} />
-                      <Route path="bible" element={<BibleBrowser />} />
-                      <Route path="read/:book/:chapter/:verse?" element={<ChapterView />} />
-                      <Route path="search" element={<Navigate to="/" replace />} />
-                      <Route path="bookmarks" element={<BookmarksView />} />
-                      <Route path="settings" element={<SettingsView />} />
-                    </Route>
-                  </Routes>
+                  <GlobalSearchProvider>
+                    <Routes>
+                      <Route path="/" element={<AppShell />}>
+                        <Route index element={<HomeScreen />} />
+                        <Route path="bible" element={<BibleBrowser />} />
+                        <Route path="read/:book/:chapter/:verse?" element={<ChapterView />} />
+                        <Route path="search" element={<Navigate to="/" replace />} />
+                        <Route path="bookmarks" element={<BookmarksView />} />
+                        <Route path="settings" element={<SettingsView />} />
+                      </Route>
+                    </Routes>
+                  </GlobalSearchProvider>
                 </BrowserRouter>
               </ReadingModeProvider>
             </InstallPromptProvider>

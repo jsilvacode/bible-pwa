@@ -97,11 +97,11 @@ describe('bibleLoader', () => {
   it('resolveVersionId rejects invalid ids', async () => {
     vi.stubGlobal('fetch', vi.fn(async (url) => {
       if (url === '/data/versions.json') {
-        return makeJsonResponse([{ id: 'rva2015', available: true }]);
+        return makeJsonResponse([{ id: 'nbla', available: true }]);
       }
       throw new Error(`Unexpected URL: ${url}`);
     }));
 
-    await expect(resolveVersionIdFn('../cba')).resolves.toBe('rva2015');
+    await expect(resolveVersionIdFn('../cba')).resolves.toBe('nbla');
   });
 });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './SearchModal.module.css';
 import { useSearch } from '../../hooks/useSearch';
@@ -9,7 +9,7 @@ import { fetchBooksManifest, loadBibleBook } from '../../services/bibleLoader';
 import { normalizeDisplayedText } from '../../utils/textNormalizer';
 import { createBookAliases, parseBibleReference } from '../../utils/bibleReference';
 
-export default function SearchModal({ isOpen, onClose }) {
+export default function SearchModal({ isOpen, initialQuery = '', requestId = 0, onClose }) {
   const { settings } = useSettings();
   const { search, results, loading, cancelSearch } = useSearch(settings.version);
   const navigate = useNavigate();
@@ -19,6 +19,8 @@ export default function SearchModal({ isOpen, onClose }) {
   const [searchFeedback, setSearchFeedback] = useState('');
   const [hasSearched, setHasSearched] = useState(false);
   const modalRef = useRef(null);
+  const inputRef = useRef(null);
+  const handledRequestRef = useRef(0);
 
   useFocusTrap(modalRef, isOpen);
   useModalDismiss(isOpen, onClose);
@@ -34,16 +36,8 @@ export default function SearchModal({ isOpen, onClose }) {
       .catch(console.error);
   }, []);
 
-  useEffect(() => {
-    if (isOpen) {
-      const input = document.getElementById('search-modal-input');
-      if (input) input.focus();
-    }
-  }, [isOpen]);
-
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const trimmed = query.trim();
+  const runSearch = useCallback(async (rawQuery) => {
+    const trimmed = rawQuery.trim();
     if (!trimmed) {
       setSearchFeedback('Escribe una palabra o cita');
       return;
@@ -79,6 +73,33 @@ export default function SearchModal({ isOpen, onClose }) {
     setSearchFeedback('');
     setHasSearched(true);
     await search(trimmed);
+  }, [bookAliasMap, booksById, navigate, onClose, search, settings.version]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const resetTimer = window.setTimeout(() => {
+      cancelSearch();
+      setQuery(initialQuery);
+      setSearchFeedback('');
+      setHasSearched(false);
+      inputRef.current?.focus();
+    }, 0);
+    return () => window.clearTimeout(resetTimer);
+  }, [isOpen, initialQuery, requestId, cancelSearch]);
+
+  useEffect(() => {
+    const trimmed = initialQuery.trim();
+    if (!isOpen || !trimmed || bookAliasMap.size === 0 || handledRequestRef.current === requestId) return;
+    const autoSearchTimer = window.setTimeout(() => {
+      handledRequestRef.current = requestId;
+      runSearch(trimmed);
+    }, 0);
+    return () => window.clearTimeout(autoSearchTimer);
+  }, [isOpen, initialQuery, requestId, bookAliasMap, runSearch]);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    runSearch(query);
   };
 
   const handleReset = () => {
@@ -111,13 +132,14 @@ export default function SearchModal({ isOpen, onClose }) {
             <div className={classes.inputWrapper}>
               <input
                 id="search-modal-input"
+                ref={inputRef}
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder='"mar", "juan 3", "job 1:2"'
                 className={classes.input}
                 autoComplete="off"
-                aria-label="Buscar en la Biblia"
+                aria-label="Buscar en la Santa Biblia"
               />
               {query && <button type="button" className={classes.clear} onClick={handleReset} aria-label="Limpiar">✕</button>}
             </div>

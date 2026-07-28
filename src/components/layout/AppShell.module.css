@@ -6,7 +6,9 @@
   max-width: var(--app-max-width);
   margin: 0 auto;
   position: relative;
-  background: var(--bg-page);
+  background-color: var(--bg-page);
+  background-image: var(--page-canvas);
+  background-attachment: fixed;
 }
 
 @media (min-width: 1025px) {
@@ -22,7 +24,7 @@
   padding-bottom: calc(64px + env(safe-area-inset-bottom));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  background: var(--bg-page);
+  background: transparent;
   animation: fadeIn 0.4s ease-out;
 }
 

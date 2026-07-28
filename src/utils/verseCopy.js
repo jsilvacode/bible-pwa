@@ -22,7 +22,7 @@ export function escapeHtml(s) {
  * @returns {string}
  */
 export function buildVerseReference(bookName, chapter, verseStart, verseEnd) {
-  const book = bookName || 'La Biblia';
+  const book = bookName || 'Santa Biblia';
   if (!verseEnd || verseStart === verseEnd) {
     return `${book} ${chapter}:${verseStart}`;
   }
