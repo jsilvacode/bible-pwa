@@ -36,9 +36,8 @@ body {
   font-family: var(--font-body);
   font-size: clamp(14px, calc(16px * var(--ui-scale)), 20px);
   background-color: var(--bg-page);
-  background-image:
-    radial-gradient(circle at top, color-mix(in srgb, var(--bg-page) 82%, var(--text-inverse)) 0%, var(--bg-page) 62%),
-    radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--accent) 9%, transparent) 0%, transparent 42%);
+  background-image: var(--page-canvas);
+  background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;

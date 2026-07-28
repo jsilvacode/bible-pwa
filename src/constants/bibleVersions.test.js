@@ -6,14 +6,14 @@ describe('bibleVersions', () => {
     expect(normalizeVersionId('rvr60')).toBe('rva2015');
   });
 
-  it('falls back to rva2015 for unknown versions', () => {
-    expect(normalizeVersionId('invalid')).toBe('rva2015');
-    expect(normalizeVersionId('')).toBe('rva2015');
+  it('falls back to NBLA for unknown versions', () => {
+    expect(normalizeVersionId('invalid')).toBe('nbla');
+    expect(normalizeVersionId('')).toBe('nbla');
   });
 
   it('rejects path traversal in version id', () => {
-    expect(normalizeVersionId('../cba')).toBe('rva2015');
-    expect(normalizeVersionId('rva2015/../../etc')).toBe('rva2015');
+    expect(normalizeVersionId('../cba')).toBe('nbla');
+    expect(normalizeVersionId('rva2015/../../etc')).toBe('nbla');
   });
 
   it('keeps valid version ids', () => {

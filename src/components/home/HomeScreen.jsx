@@ -1,33 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import DailyVerse from '../daily/DailyVerse';
 import CategoryGrid from './CategoryGrid';
 import ReadingStreak from './ReadingStreak';
-import SearchModal from './SearchModal';
-import { useRecentReads, useSettings } from '../../hooks/useSettings';
+import { useRecentReads } from '../../hooks/useSettings';
 import { useBookNames } from '../../hooks/useBookNames';
+import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import { useNavigate } from 'react-router-dom';
-import { IconSearch, IconUser, IconPlay } from '../ui/Icons';
+import { IconSearch, IconUser } from '../ui/Icons';
 import classes from './HomeScreen.module.css';
 
 export default function HomeScreen() {
   const { recent } = useRecentReads();
-  const { settings } = useSettings();
   const { bookNames } = useBookNames();
+  const { openSearch } = useGlobalSearch();
   const navigate = useNavigate();
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [greeting, setGreeting] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Buenos días' : hour < 20 ? 'Buenas tardes' : 'Buenas noches';
 
-  const lastRead = settings.lastRead;
-  const lastReadLabel = lastRead?.book
-    ? `${bookNames[lastRead.book] || `Libro ${lastRead.book}`} ${lastRead.chapter}`
-    : null;
-
-  useEffect(() => {
-    const hour = new Date().getHours();
-    if (hour < 12) setGreeting('Buenos días');
-    else if (hour < 20) setGreeting('Buenas tardes');
-    else setGreeting('Buenas noches');
-  }, []);
+  const handleSearch = (event) => {
+    event.preventDefault();
+    openSearch(searchQuery.trim());
+  };
 
   return (
     <div className={classes.container}>
@@ -49,30 +43,32 @@ export default function HomeScreen() {
                 <h1 className={classes.greeting}>{greeting}</h1>
               </div>
             </div>
-            <button
-              type="button"
-              className={classes.searchTrigger}
-              onClick={() => setIsSearchOpen(true)}
-              aria-label="Buscar"
-            >
-              <IconSearch size={20} />
-            </button>
           </div>
-        </header>
 
-        {lastReadLabel && (
-          <button
-            type="button"
-            className={classes.continueBtn}
-            onClick={() => navigate(`/read/${lastRead.book}/${lastRead.chapter}`)}
-          >
-            <IconPlay size={18} className={classes.continueIcon} />
-            <span className={classes.continueText}>
-              Continuar leyendo
-              <strong>{lastReadLabel}</strong>
-            </span>
-          </button>
-        )}
+          <form className={classes.searchModule} onSubmit={handleSearch} role="search">
+            <div className={classes.searchBar}>
+              <IconSearch size={20} className={classes.searchIcon} />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Busca en la Biblia"
+                aria-label="Buscar en la Santa Biblia"
+                autoComplete="off"
+              />
+            </div>
+
+            <button type="submit" className={classes.searchSubmit} aria-label="Buscar">
+              <span>Buscar</span>
+              <span className={classes.searchArrow} aria-hidden="true">→</span>
+            </button>
+
+            <p className={classes.searchSuggestion}>
+              <span>Prueba con referencias o palabras</span>
+              <span className={classes.suggestionExample}>Ej: 1 Corintios, Juan 3:16, justificación</span>
+            </p>
+          </form>
+        </header>
 
         <DailyVerse variant="hero" />
       </div>
@@ -85,7 +81,10 @@ export default function HomeScreen() {
 
         {recent.length > 0 && (
           <section className={classes.section}>
-            <h3 className={classes.sectionTitle}>Lecturas Recientes</h3>
+            <div className={classes.sectionHeading}>
+              <h3 className={classes.sectionTitle}>Lecturas recientes</h3>
+              <p>Retoma un capítulo donde lo dejaste</p>
+            </div>
             <div className={classes.recentScroll}>
               {recent.map((r) => (
                 <button
@@ -94,9 +93,9 @@ export default function HomeScreen() {
                   className={classes.recentChip}
                   onClick={() => navigate(`/read/${r.book}/${r.chapter}`)}
                 >
-                  <span className={classes.recentRef}>
-                    {bookNames[r.book]?.slice(0, 3)}. {r.chapter}
-                  </span>
+                  <span className={classes.recentEyebrow}>Última lectura</span>
+                  <strong className={classes.recentBook}>{bookNames[r.book] || `Libro ${r.book}`}</strong>
+                  <span className={classes.recentChapter}>Capítulo {r.chapter} <span aria-hidden="true">→</span></span>
                 </button>
               ))}
             </div>
@@ -105,8 +104,6 @@ export default function HomeScreen() {
 
         <ReadingStreak />
       </div>
-
-      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </div>
   );
 }

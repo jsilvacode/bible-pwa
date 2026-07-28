@@ -27,11 +27,24 @@ test('smoke flow: version, navigation, CBA, search', async ({ page }) => {
   await page.getByRole('button', { name: 'Cerrar' }).click();
 
   await page.getByRole('link', { name: 'Inicio' }).click();
-  await page.getByRole('button', { name: 'Buscar' }).click();
-  const searchInput = page.locator('#search-modal-input');
-  await searchInput.fill('juan 3:16');
-  await searchInput.press('Enter');
+  const homeSearch = page.getByRole('searchbox', { name: 'Buscar en la Santa Biblia' });
+  await expect(homeSearch).toBeVisible();
+  await homeSearch.fill('juan 3:16');
+  await page.getByRole('button', { name: 'Buscar', exact: true }).click();
   await expect(page).toHaveURL(/\/read\/43\/3\/16/);
+
+  const readerSearch = page.getByRole('button', { name: 'Buscar', exact: true });
+  await readerSearch.focus();
+  await expect(page.getByRole('tooltip', { name: 'Buscar' })).toBeVisible();
+  await readerSearch.click();
+  await expect(page.getByRole('dialog', { name: 'Buscar' })).toBeVisible();
+  await expect(page.locator('#search-modal-input')).toBeFocused();
+  await page.getByRole('button', { name: 'Cerrar' }).click();
+
+  const quickSettings = page.getByRole('button', { name: 'Ajustes rápidos' });
+  await expect(quickSettings).toBeVisible();
+  await quickSettings.focus();
+  await expect(page.getByRole('tooltip', { name: 'Ajustes rápidos' })).toBeVisible();
 });
 
 test('copiar versículo incluye cita de origen y url', async ({ page, context }) => {
@@ -55,4 +68,3 @@ test('copiar versículo incluye cita de origen y url', async ({ page, context })
   expect(clip).toContain('Génesis 1:1');
   expect(clip).toContain('/read/1/1/1');
 });
-
