@@ -19,11 +19,33 @@
   position: sticky;
   top: 0;
   z-index: 200;
-  background: var(--glass-bg);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg-surface) 92%, transparent) 0%,
+    color-mix(in srgb, var(--bg-surface) 76%, transparent) 68%,
+    color-mix(in srgb, var(--bg-surface) 58%, transparent) 100%
+  );
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
-  border-bottom: 1px solid var(--border);
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 58%, transparent);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--text-primary) 5%, transparent);
   transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.topBar::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  height: 18px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg-surface) 28%, transparent) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .logo {

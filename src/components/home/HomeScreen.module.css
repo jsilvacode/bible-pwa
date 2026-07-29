@@ -68,10 +68,10 @@
 }
 
 .headerTop {
-  display: grid;
-  grid-template-columns: auto 1px minmax(0, 1fr);
+  display: flex;
   align-items: center;
-  gap: 22px;
+  justify-content: flex-start;
+  gap: 18px;
 }
 
 .greetingGroup {
@@ -108,20 +108,21 @@
 }
 
 .headerDivider {
+  flex: 0 0 auto;
   width: 1px;
-  height: 32px;
+  height: 28px;
   background: rgba(255, 255, 255, 0.3);
 }
 
 .date {
-  justify-self: end;
   font-family: var(--font-ui);
   font-size: 0.82rem;
   font-weight: 650;
   letter-spacing: 0.015em;
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-  text-align: right;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .greeting {
@@ -145,6 +146,7 @@
     align-self: stretch;
     text-align: left;
     font-size: 0.76rem;
+    white-space: normal;
   }
 
   .greetingGroup {
