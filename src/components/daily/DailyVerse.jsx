@@ -3,7 +3,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useSettings } from '../../hooks/useSettings';
 import { useToast } from '../../hooks/useToast';
 import { loadBibleBook } from '../../services/bibleLoader';
-import { loadCbaVerse } from '../../services/cbaLoader';
 import { shareVerse } from '../../utils/shareVerse';
 import classes from './DailyVerse.module.css';
 
@@ -17,11 +16,10 @@ const DAILY_VERSES = [
   { book: 62, chapter: 4, verse: 8 },
 ];
 
-export default function DailyVerse({ variant = 'hero' }) {
+export default function DailyVerse({ variant = 'hero', children }) {
   const { settings } = useSettings();
   const { showToast } = useToast();
   const [verseText, setVerseText] = useState('');
-  const [cbaQuote, setCbaQuote] = useState('');
   const [reference, setReference] = useState('');
   const navigate = useNavigate();
 
@@ -37,12 +35,9 @@ export default function DailyVerse({ variant = 'hero' }) {
 
     async function loadContent() {
       try {
-        const [bookData, quote] = await Promise.all([
-          loadBibleBook(settings.version, dailyRef.book, { signal: controller.signal }),
-          loadCbaVerse(dailyRef.book, dailyRef.chapter, dailyRef.verse, {
-            signal: controller.signal,
-          }),
-        ]);
+        const bookData = await loadBibleBook(settings.version, dailyRef.book, {
+          signal: controller.signal,
+        });
 
         const chapter = bookData?.chapters?.find((c) => c.chapter === dailyRef.chapter);
         const verse = chapter?.verses?.find((v) => v.verse === dailyRef.verse);
@@ -51,9 +46,6 @@ export default function DailyVerse({ variant = 'hero' }) {
         }
         if (verse?.text) {
           setVerseText(verse.text);
-        }
-        if (quote) {
-          setCbaQuote(quote);
         }
       } catch (err) {
         if (err.name !== 'AbortError') {
@@ -83,11 +75,6 @@ export default function DailyVerse({ variant = 'hero' }) {
   };
 
   const isHero = variant === 'hero';
-  const cbaPreview = useMemo(() => {
-    if (!cbaQuote) return '';
-    const first = cbaQuote.split('\n\n')[0];
-    return first.length > 350 ? `${first.substring(0, 350)}...` : first;
-  }, [cbaQuote]);
 
   return (
     <div className={`${classes.container} ${isHero ? classes.hero : classes.compact}`}>
@@ -108,24 +95,6 @@ export default function DailyVerse({ variant = 'hero' }) {
           </p>
         </div>
 
-        {isHero && cbaPreview && (
-          <div className={classes.cbaQuote}>
-            <p className={classes.cbaLabel}>COMENTARIO BÍBLICO ADVENTISTA:</p>
-            <p className={classes.cbaContent}>{cbaPreview}</p>
-            <span
-              className={classes.readMore}
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate(
-                  `/read/${dailyRef.book}/${dailyRef.chapter}/${dailyRef.verse}?showCba=true`
-                );
-              }}
-            >
-              Leer más
-            </span>
-          </div>
-        )}
-
         <div className={classes.actions}>
           <button type="button" className={classes.actionBtn} onClick={handleShare}>
             Compartir
@@ -138,6 +107,10 @@ export default function DailyVerse({ variant = 'hero' }) {
             Leer capítulo completo
           </button>
         </div>
+
+        {isHero && children && (
+          <div className={classes.heroExtension}>{children}</div>
+        )}
       </div>
     </div>
   );

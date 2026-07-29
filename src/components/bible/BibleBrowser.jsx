@@ -14,6 +14,7 @@ export default function BibleBrowser() {
 
   // Accept a category filter passed via navigation state
   const filterCategory = location.state?.category || null;
+  const testament = location.state?.testament || null;
   const filterLabel = filterCategory ? CATEGORY_LABELS[filterCategory] : null;
   const filterRange = filterCategory ? CATEGORY_RANGES[filterCategory] : null;
 
@@ -27,12 +28,19 @@ export default function BibleBrowser() {
 
   // If a category filter is active, auto-collapse sections not in the range
   useEffect(() => {
-    if (!filterRange) return;
-    const isOT = filterRange.min <= 39;
-    const isNT = filterRange.max >= 40;
-    setIsOtExpanded(isOT);
-    setIsNtExpanded(isNT);
-  }, [filterRange]);
+    if (filterRange) {
+      const isOT = filterRange.min <= 39;
+      const isNT = filterRange.max >= 40;
+      setIsOtExpanded(isOT);
+      setIsNtExpanded(isNT);
+      return;
+    }
+
+    if (testament) {
+      setIsOtExpanded(testament === 'old');
+      setIsNtExpanded(testament === 'new');
+    }
+  }, [filterRange, testament]);
 
   // Filter books based on active category
   const allOtBooks = useMemo(() => books.filter(b => b.id >= 1 && b.id <= 39), [books]);

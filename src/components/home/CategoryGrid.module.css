@@ -65,6 +65,45 @@
   --bg-image: url('/images/categories/epistles.png');
 }
 
+.testamentOld {
+  --cat-color: color-mix(in srgb, var(--cat-pentateuch) 78%, var(--bg-surface));
+  --bg-image: url('/images/categories/pentateuch.png');
+}
+
+.testamentNew {
+  --cat-color: color-mix(in srgb, var(--cat-gospels) 78%, var(--bg-surface));
+  --bg-image: url('/images/categories/gospels.png');
+}
+
+.testamentCard {
+  min-height: 112px;
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.testamentCard::before {
+  opacity: 0.28;
+}
+
+.testamentCard::after {
+  content: '→';
+  position: absolute;
+  right: 17px;
+  bottom: 14px;
+  z-index: 1;
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: rgba(26, 26, 26, 0.56);
+}
+
+.testamentIcon {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+}
+
 [data-theme="dark"] .card::before {
   opacity: 0.25;
   mix-blend-mode: overlay;
@@ -124,8 +163,28 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
+[data-theme="dark"] .testamentCard::after {
+  color: rgba(255, 255, 255, 0.62);
+}
+
 @media (min-width: 600px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .card {
+    grid-column: span 2;
+  }
+
+  .testamentCard {
+    grid-column: span 3;
+    min-height: 120px;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .testamentCard .icon {
+    margin-bottom: 0;
   }
 }

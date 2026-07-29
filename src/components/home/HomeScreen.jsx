@@ -59,31 +59,31 @@ export default function HomeScreen() {
 
         </header>
 
-        <DailyVerse variant="hero" />
+        <DailyVerse variant="hero">
+          <form className={classes.searchModule} onSubmit={handleSearch} role="search">
+            <div className={classes.searchBar}>
+              <IconSearch size={20} className={classes.searchIcon} />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Busca en la Biblia"
+                aria-label="Buscar en la Santa Biblia"
+                autoComplete="off"
+              />
+            </div>
 
-        <form className={classes.searchModule} onSubmit={handleSearch} role="search">
-          <div className={classes.searchBar}>
-            <IconSearch size={20} className={classes.searchIcon} />
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Busca en la Biblia"
-              aria-label="Buscar en la Santa Biblia"
-              autoComplete="off"
-            />
-          </div>
+            <button type="submit" className={classes.searchSubmit} aria-label="Buscar">
+              <span>Buscar</span>
+              <span className={classes.searchArrow} aria-hidden="true">→</span>
+            </button>
 
-          <button type="submit" className={classes.searchSubmit} aria-label="Buscar">
-            <span>Buscar</span>
-            <span className={classes.searchArrow} aria-hidden="true">→</span>
-          </button>
-
-          <p className={classes.searchSuggestion}>
-            <span>Prueba con referencias o palabras</span>
-            <span className={classes.suggestionExample}>Ej: 1 Corintios, Juan 3:16, justificación</span>
-          </p>
-        </form>
+            <p className={classes.searchSuggestion}>
+              <span>Prueba con referencias o palabras</span>
+              <span className={classes.suggestionExample}>Ej: 1 Corintios, Juan 3:16, justificación</span>
+            </p>
+          </form>
+        </DailyVerse>
       </div>
 
       <div className={classes.bottomSheet}>

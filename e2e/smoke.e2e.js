@@ -47,6 +47,31 @@ test('smoke flow: version, navigation, CBA, search', async ({ page }) => {
   await expect(page.getByRole('tooltip', { name: 'Ajustes rápidos' })).toBeVisible();
 });
 
+test('inicio prioriza búsqueda y acceso directo a los testamentos', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+
+  await expect(page.getByText('COMENTARIO BÍBLICO ADVENTISTA:')).toHaveCount(0);
+
+  const readChapter = page.getByRole('button', { name: 'Leer capítulo completo' });
+  const homeSearch = page.getByRole('searchbox', { name: 'Buscar en la Santa Biblia' });
+  const searchBox = await homeSearch.boundingBox();
+  const readChapterBox = await readChapter.boundingBox();
+  expect(searchBox?.y).toBeGreaterThan(
+    (readChapterBox?.y ?? 0) + (readChapterBox?.height ?? 0)
+  );
+
+  const oldTestament = page.getByRole('button', { name: /Antiguo Testamento/ });
+  const newTestament = page.getByRole('button', { name: /Nuevo Testamento/ });
+  await expect(oldTestament).toBeVisible();
+  await expect(newTestament).toBeVisible();
+
+  await newTestament.click();
+  await expect(page).toHaveURL(/\/bible$/);
+  await expect(page.getByRole('button', { name: /Nuevo Testamento Colapsar/ })).toBeVisible();
+  await expect(page.locator('button', { hasText: 'Mateo' }).first()).toBeVisible();
+});
+
 test('copiar versículo incluye cita de origen y url', async ({ page, context }) => {
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   await page.goto('/read/1/1');
