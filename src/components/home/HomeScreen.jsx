@@ -6,7 +6,7 @@ import { useRecentReads } from '../../hooks/useSettings';
 import { useBookNames } from '../../hooks/useBookNames';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import { useNavigate } from 'react-router-dom';
-import { IconSearch, IconUser } from '../ui/Icons';
+import { IconMoon, IconSearch, IconSun, IconSunrise } from '../ui/Icons';
 import classes from './HomeScreen.module.css';
 
 export default function HomeScreen() {
@@ -15,8 +15,24 @@ export default function HomeScreen() {
   const { openSearch } = useGlobalSearch();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const hour = new Date().getHours();
+  const now = new Date();
+  const hour = now.getHours();
   const greeting = hour < 12 ? 'Buenos días' : hour < 20 ? 'Buenas tardes' : 'Buenas noches';
+  const period = hour < 12 ? 'morning' : hour < 20 ? 'afternoon' : 'night';
+  const GreetingIcon = period === 'morning' ? IconSunrise : period === 'afternoon' ? IconSun : IconMoon;
+  const formattedDate = now
+    .toLocaleDateString('es-CL', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
+    .replace(',', '');
+  const dateTime = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, '0'),
+    String(now.getDate()).padStart(2, '0'),
+  ].join('-');
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -28,21 +44,17 @@ export default function HomeScreen() {
       <div className={classes.topHero}>
         <header className={classes.header}>
           <div className={classes.headerTop}>
-            <div className={classes.userInfo}>
-              <div className={classes.avatar}>
-                <IconUser size={22} />
+            <div className={classes.greetingGroup}>
+              <div className={`${classes.timeIcon} ${classes[period]}`}>
+                <GreetingIcon size={22} />
               </div>
-              <div className={classes.greetingWrap}>
-                <span className={classes.date}>
-                  {new Date().toLocaleDateString('es', {
-                    weekday: 'long',
-                    day: 'numeric',
-                    month: 'long',
-                  })}
-                </span>
-                <h1 className={classes.greeting}>{greeting}</h1>
-              </div>
+              <h1 className={classes.greeting}>{greeting}</h1>
             </div>
+
+            <span className={classes.headerDivider} aria-hidden="true" />
+            <time className={classes.date} dateTime={dateTime}>
+              {formattedDate}
+            </time>
           </div>
 
         </header>
