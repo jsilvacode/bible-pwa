@@ -130,3 +130,14 @@
   padding: 16px;
   border: 1px solid var(--border);
 }
+
+@media (max-width: 680px) {
+  .hero {
+    margin-inline: -6px;
+    padding: 28px 20px;
+  }
+
+  .verseText {
+    font-size: 1.25rem;
+  }
+}
