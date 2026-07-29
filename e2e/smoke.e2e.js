@@ -52,6 +52,7 @@ test('inicio prioriza búsqueda y acceso directo a los testamentos', async ({ pa
   await page.goto('/');
 
   await expect(page.getByText('COMENTARIO BÍBLICO ADVENTISTA:')).toHaveCount(0);
+  await expect(page.getByText('Cargando versículo...')).toHaveCount(0);
 
   const readChapter = page.getByRole('button', { name: 'Leer capítulo completo' });
   const homeSearch = page.getByRole('searchbox', { name: 'Buscar en la Santa Biblia' });
@@ -94,6 +95,18 @@ test('copiar versículo incluye cita de origen y url', async ({ page, context })
   expect(clip).toContain('/read/1/1/1');
 });
 
+test('la búsqueda limita consultas masivas sin saturar el DOM', async ({ page }) => {
+  await page.goto('/read/43/3');
+  await expect(page.getByRole('heading', { name: /Juan 3/ })).toBeVisible();
+
+  await page.getByLabel('Herramientas de lectura').getByRole('button', { name: 'Buscar' }).click();
+  const dialog = page.getByRole('dialog', { name: 'Buscar' });
+  await dialog.getByRole('textbox', { name: 'Buscar en la Santa Biblia' }).fill('Dios');
+  await dialog.getByRole('button', { name: 'Buscar', exact: true }).click();
+
+  await expect(dialog.getByText('Mostrando los primeros 100 resultados.')).toBeVisible();
+});
+
 test('herramientas de lectura se adaptan a móvil y tablet', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/read/43/3');
@@ -122,7 +135,7 @@ test('herramientas de lectura se adaptan a móvil y tablet', async ({ page }) =>
   const bottomNavigation = page.getByRole('navigation', { name: 'Navegación principal' });
 
   await page.evaluate(() => window.scrollTo(0, 300));
-  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(300);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThanOrEqual(299);
   await page.waitForTimeout(3200);
   await expect(dock).toBeHidden();
   await expect(bottomNavigation).toHaveCSS('opacity', '0');

@@ -8,7 +8,6 @@
   position: relative;
   background-color: var(--bg-page);
   background-image: var(--page-canvas);
-  background-attachment: fixed;
 }
 
 @media (min-width: 1025px) {
@@ -25,23 +24,20 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   background: transparent;
-  animation: fadeIn 0.4s ease-out;
+  animation: fadeIn 0.16s ease-out;
 }
 
 .mainContent.readerActive {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-.topBarHidden {
-  transform: translateY(-100%);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.bottomNavHidden {
-  transform: translateY(100%);
-  opacity: 0;
-  pointer-events: none;
+.routeFallback {
+  min-height: 42vh;
+  display: grid;
+  place-items: center;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
 }
 
 .installOverlay {
@@ -99,6 +95,6 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

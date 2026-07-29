@@ -1,6 +1,6 @@
 import { createContext, createElement, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { set, del, values } from 'idb-keyval';
-import { bookmarksStore } from '../services/db';
+import { bookmarksStore, legacyBookmarksStore } from '../services/db';
 
 const BookmarksContext = createContext(null);
 
@@ -20,6 +20,16 @@ export function BookmarksProvider({ children }) {
 
   useEffect(() => {
     values(bookmarksStore)
+      .then(async (current) => {
+        if (current.length > 0) return current;
+        try {
+          const legacy = await values(legacyBookmarksStore);
+          await Promise.all(legacy.map((bookmark) => set(bookmark.id, bookmark, bookmarksStore)));
+          return legacy;
+        } catch {
+          return current;
+        }
+      })
       .then((list) => {
         setBookmarks(list.sort((a, b) => b.createdAt - a.createdAt));
       })

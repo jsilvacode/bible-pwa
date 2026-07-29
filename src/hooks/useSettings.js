@@ -147,13 +147,28 @@ export function SettingsProvider({ children }) {
   useEffect(() => {
     if (import.meta.env.MODE === 'test') return;
 
-    warmupBibleData({
-      version: settings.version,
-      bookId: settings.lastRead?.book,
-      chapter: settings.lastRead?.chapter,
-    }).catch(() => {
-      /* prefetch is best-effort */
-    });
+    const warmCache = () => {
+      warmupBibleData({
+        version: settings.version,
+        bookId: settings.lastRead?.book,
+        chapter: settings.lastRead?.chapter,
+      }).catch(() => {
+        /* prefetch is best-effort */
+      });
+    };
+
+    let timerId;
+    let idleId;
+    if ('requestIdleCallback' in window) {
+      idleId = window.requestIdleCallback(warmCache, { timeout: 2500 });
+    } else {
+      timerId = window.setTimeout(warmCache, 1200);
+    }
+
+    return () => {
+      if (idleId) window.cancelIdleCallback(idleId);
+      if (timerId) window.clearTimeout(timerId);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- warm cache once on mount
   }, []);
 

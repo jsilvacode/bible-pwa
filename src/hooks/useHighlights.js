@@ -1,6 +1,6 @@
 import { createContext, createElement, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { set, del, values } from 'idb-keyval';
-import { highlightsStore } from '../services/db';
+import { highlightsStore, legacyHighlightsStore } from '../services/db';
 
 const HighlightsContext = createContext(null);
 
@@ -41,6 +41,16 @@ export function HighlightsProvider({ children }) {
 
   useEffect(() => {
     values(highlightsStore)
+      .then(async (current) => {
+        if (current.length > 0) return current;
+        try {
+          const legacy = await values(legacyHighlightsStore);
+          await Promise.all(legacy.map((highlight) => set(highlight.id, highlight, highlightsStore)));
+          return legacy;
+        } catch {
+          return current;
+        }
+      })
       .then((list) => setAllHighlights(list))
       .catch((e) => console.error('Error reading highlights from IndexedDB', e))
       .finally(() => setLoaded(true));

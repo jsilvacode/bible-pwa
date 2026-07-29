@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import TopBar from './TopBar';
 import BottomNav from './BottomNav';
@@ -6,8 +6,9 @@ import SiteFooter from './SiteFooter';
 import { useReadingMode } from '../../hooks/useReadingMode';
 import { useInstallPrompt } from '../../hooks/useInstallPrompt';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
-import SearchModal from '../home/SearchModal';
 import classes from './AppShell.module.css';
+
+const SearchModal = lazy(() => import('../home/SearchModal'));
 
 export default function AppShell() {
   const location = useLocation();
@@ -21,16 +22,22 @@ export default function AppShell() {
     <div className={classes.appShell}>
       <TopBar hidden={hideChrome} />
       <main className={`${classes.mainContent} ${isReaderActive ? classes.readerActive : ''}`}>
-        <Outlet key={location.pathname} />
+        <Suspense fallback={<div className={classes.routeFallback} role="status">Cargando…</div>}>
+          <Outlet />
+        </Suspense>
         {showFooter && <SiteFooter />}
       </main>
       <BottomNav hidden={readerControlsIdle && !readerAtEnd} />
-      <SearchModal
-        isOpen={isOpen}
-        initialQuery={initialQuery}
-        requestId={requestId}
-        onClose={closeSearch}
-      />
+      {isOpen && (
+        <Suspense fallback={null}>
+          <SearchModal
+            isOpen
+            initialQuery={initialQuery}
+            requestId={requestId}
+            onClose={closeSearch}
+          />
+        </Suspense>
+      )}
 
       {showInstallPopup && !isInstalled && !hideChrome && (
         <div className={classes.installOverlay}>

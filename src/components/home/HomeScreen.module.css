@@ -17,7 +17,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/assets/hero.jpg');
+  background-image: url('/assets/hero-768.webp');
   background-size: cover;
   background-position: center;
   opacity: 1;
@@ -49,12 +49,10 @@
   background:
     linear-gradient(
       180deg,
-      color-mix(in srgb, var(--bg-surface) 78%, transparent) 0%,
-      color-mix(in srgb, var(--bg-page) 68%, transparent) 22%,
-      color-mix(in srgb, var(--bg-page) 48%, transparent) 100%
+      color-mix(in srgb, var(--bg-surface) 96%, transparent) 0%,
+      color-mix(in srgb, var(--bg-page) 94%, transparent) 22%,
+      color-mix(in srgb, var(--bg-page) 90%, transparent) 100%
     );
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border-radius: 40px 40px 0 0;
   margin-top: -40px; /* Overlaps top section */
   position: relative;
@@ -182,8 +180,11 @@
   top: -8px;
   left: 12%;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--accent) 25%, transparent);
-  filter: blur(32px);
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--accent) 25%, transparent) 0%,
+    transparent 72%
+  );
   opacity: 0.62;
   pointer-events: none;
 }
@@ -194,14 +195,22 @@
   padding: 8px 18px;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 18px;
-  background: color-mix(in srgb, var(--abyss) 52%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--abyss) 78%, transparent),
+    color-mix(in srgb, var(--abyss) 68%, var(--accent))
+  );
   box-shadow: 0 18px 42px rgba(10, 5, 8, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 28px color-mix(in srgb, var(--accent) 14%, transparent);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
   display: flex;
   align-items: center;
   gap: 11px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+@media (min-width: 769px) {
+  .topHero::before {
+    background-image: url('/assets/hero-1600.webp');
+  }
 }
 
 .searchBar:focus-within {
@@ -301,6 +310,8 @@
 
 .section {
   margin-top: 32px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 360px;
 }
 
 .firstSection {
@@ -359,7 +370,7 @@
   border-radius: var(--radius-xl);
   cursor: pointer;
   scroll-snap-align: start;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: var(--shadow-soft);
 }
 

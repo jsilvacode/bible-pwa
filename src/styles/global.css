@@ -28,34 +28,16 @@ html, body, #root {
   height: 100%;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: var(--font-body);
   font-size: clamp(14px, calc(16px * var(--ui-scale)), 20px);
   background-color: var(--bg-page);
-  background-image: var(--page-canvas);
-  background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease, font-size 0.2s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
   position: relative;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.02;
-  background-image:
-    repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in srgb, var(--text-primary) 8%, transparent) 3px 4px),
-    repeating-linear-gradient(90deg, transparent 0 5px, color-mix(in srgb, var(--text-primary) 6%, transparent) 5px 6px);
-  z-index: 0;
 }
 
 #root {
@@ -79,13 +61,6 @@ a {
 
 ::selection {
   background: rgba(150, 42, 42, 0.3);
-}
-
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--border);
 }
 
 .skeleton {
@@ -129,42 +104,13 @@ a {
   }
 }
 
-.card {
-  border-radius: var(--radius-lg);
-  padding: 20px;
-  transition: transform 0.25s var(--transition-smooth), box-shadow 0.25s var(--transition-smooth), border-color 0.25s var(--transition-smooth);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-card);
-}
-
-.card-dark {
-  background: var(--card-bg-dark);
-  color: var(--text-dark);
-  border-color: color-mix(in srgb, var(--text-inverse) 6%, transparent);
-}
-
-.card-light {
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--card-bg-light) 88%, var(--text-inverse)) 0%, var(--card-bg-light) 100%);
-  color: var(--text-light);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
-}
-
-.badge {
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--crimson) 15%, transparent);
-  color: var(--terra);
-  font-weight: 700;
-}
-
-.readingText {
-  font-family: var(--font-reading);
-  font-size: 1.15rem;
-  line-height: 1.85;
-  letter-spacing: 0.01em;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
