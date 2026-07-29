@@ -12,23 +12,47 @@ const categoryClassMap = {
   epistles: classes.catEpistles,
 };
 
+const TESTAMENT_ENTRIES = [
+  {
+    id: 'old-testament',
+    name: 'Antiguo Testamento',
+    icon: 'AT',
+    count: '39 libros',
+    testament: 'old',
+    className: classes.testamentOld,
+  },
+  {
+    id: 'new-testament',
+    name: 'Nuevo Testamento',
+    icon: 'NT',
+    count: '27 libros',
+    testament: 'new',
+    className: classes.testamentNew,
+  },
+];
+
 export default function CategoryGrid() {
   const navigate = useNavigate();
 
   const handleClick = useCallback((cat) => {
-    navigate('/bible', { state: { category: cat.id } });
+    const state = cat.testament
+      ? { testament: cat.testament }
+      : { category: cat.id };
+    navigate('/bible', { state });
   }, [navigate]);
+
+  const entries = [...TESTAMENT_ENTRIES, ...BIBLE_CATEGORIES];
 
   return (
     <div className={classes.grid}>
-      {BIBLE_CATEGORIES.map((cat) => (
+      {entries.map((cat) => (
         <button
           key={cat.id}
           type="button"
-          className={`${classes.card} ${categoryClassMap[cat.id] || ''}`}
+          className={`${classes.card} ${cat.testament ? classes.testamentCard : ''} ${cat.className || categoryClassMap[cat.id] || ''}`}
           onClick={() => handleClick(cat)}
         >
-          <span className={classes.icon}>{cat.icon}</span>
+          <span className={`${classes.icon} ${cat.testament ? classes.testamentIcon : ''}`} aria-hidden="true">{cat.icon}</span>
           <div className={classes.info}>
             <span className={classes.name}>{cat.name}</span>
             <span className={classes.count}>{cat.count}</span>
