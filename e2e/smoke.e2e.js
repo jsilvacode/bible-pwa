@@ -129,7 +129,9 @@ test('herramientas de lectura se adaptan a móvil y tablet', async ({ page }) =>
 test('una segunda pulsación en Inicio vuelve arriba', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: /Buenas/ })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /Buenos días|Buenas (?:tardes|noches)/ })
+  ).toBeVisible();
 
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
