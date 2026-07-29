@@ -25,6 +25,8 @@ export function ToastProvider({ children }) {
   );
 }
 
+// Provider y hook comparten este módulo para conservar una única API de notificaciones.
+// eslint-disable-next-line react-refresh/only-export-components
 export function useToast() {
   const context = useContext(ToastContext);
   if (!context) {

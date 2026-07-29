@@ -229,6 +229,14 @@
   gap: 12px;
 }
 
+.resultLimit {
+  margin: 16px 0 4px;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
 .resultItem {
   background: var(--bg-surface);
   border: 1px solid var(--border);

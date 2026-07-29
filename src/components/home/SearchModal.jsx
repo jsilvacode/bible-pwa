@@ -5,13 +5,13 @@ import { useSearch } from '../../hooks/useSearch';
 import { useSettings } from '../../hooks/useSettings';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 import { useModalDismiss } from '../../hooks/useModalDismiss';
-import { fetchBooksManifest, loadBibleBook } from '../../services/bibleLoader';
+import { fetchBooksManifest } from '../../services/bibleLoader';
 import { normalizeDisplayedText } from '../../utils/textNormalizer';
 import { createBookAliases, parseBibleReference } from '../../utils/bibleReference';
 
 export default function SearchModal({ isOpen, initialQuery = '', requestId = 0, onClose }) {
   const { settings } = useSettings();
-  const { search, results, loading, cancelSearch } = useSearch(settings.version);
+  const { search, results, loading, truncated, cancelSearch } = useSearch(settings.version);
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [booksById, setBooksById] = useState({});
@@ -45,18 +45,6 @@ export default function SearchModal({ isOpen, initialQuery = '', requestId = 0, 
 
     const reference = parseBibleReference(trimmed, bookAliasMap, booksById);
     if (reference) {
-      try {
-        const bookData = await loadBibleBook(settings.version, reference.bookId);
-        const chapterData = bookData.chapters.find(c => c.chapter === reference.chapter);
-        if (!chapterData) {
-          setSearchFeedback('No existe ese capítulo.');
-          return;
-        }
-      } catch {
-        setSearchFeedback('Error validando cita.');
-        return;
-      }
-
       const target = reference.verse
         ? `/read/${reference.bookId}/${reference.chapter}/${reference.verse}`
         : `/read/${reference.bookId}/${reference.chapter}`;
@@ -73,7 +61,7 @@ export default function SearchModal({ isOpen, initialQuery = '', requestId = 0, 
     setSearchFeedback('');
     setHasSearched(true);
     await search(trimmed);
-  }, [bookAliasMap, booksById, navigate, onClose, search, settings.version]);
+  }, [bookAliasMap, booksById, navigate, onClose, search]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -182,6 +170,10 @@ export default function SearchModal({ isOpen, initialQuery = '', requestId = 0, 
               </button>
             ))}
           </div>
+
+          {!loading && truncated && (
+            <p className={classes.resultLimit}>Mostrando los primeros 100 resultados.</p>
+          )}
 
           {!loading && results.length === 0 && hasSearched && !searchFeedback && (
             <div className={classes.empty}>No se encontraron resultados para "{query}"</div>

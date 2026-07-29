@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState, useCallback } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useBible } from '../../hooks/useBible';
 import { useHighlights } from '../../hooks/useHighlights';
@@ -7,14 +7,14 @@ import { useReadingMode } from '../../hooks/useReadingMode';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import VerseBlock from './VerseBlock';
 import VerseMenu from './VerseMenu';
-import CbaModal from './CbaModal';
 import SkeletonChapter from './SkeletonChapter';
 import ReaderFAB from './ReaderFAB';
 import classes from './ChapterView.module.css';
 import { fetchBooksManifest, getBookName, getTotalBooks, loadBibleBook } from '../../services/bibleLoader';
 import { validateReadRoute, validateVerseParam } from '../../utils/routeValidation';
-import { throttle } from '../../utils/throttle';
 import { buildVerseReference, buildCopyText, buildCopyHtml } from '../../utils/verseCopy';
+
+const CbaModal = lazy(() => import('./CbaModal'));
 
 export default function ChapterView() {
   const { book: bookId, chapter: chapterNum, verse: targetVerse } = useParams();
@@ -34,7 +34,6 @@ export default function ChapterView() {
   const [menuVerse, setMenuVerse] = useState(null);
   const [cbaVerse, setCbaVerse] = useState(null);
   const [showCba, setShowCba] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [chapterNavigationVisible, setChapterNavigationVisible] = useState(false);
   const [readerSettingsOpen, setReaderSettingsOpen] = useState(false);
   const lastChapterKeyRef = useRef('');
@@ -42,6 +41,11 @@ export default function ChapterView() {
   const touchStartRef = useRef(null);
   const readerRef = useRef(null);
   const chapterNavigationRef = useRef(null);
+  const progressRef = useRef(null);
+  const scrollFrameRef = useRef(0);
+  const readerAtEndRef = useRef(null);
+  const chapterNavigationVisibleRef = useRef(false);
+  const chromeHiddenRef = useRef(false);
 
   const bookId_ = routeValid?.bookId ?? Number(bookId);
   const chapterNum_ = routeValid?.chapter ?? Number(chapterNum);
@@ -65,6 +69,18 @@ export default function ChapterView() {
   }, [setReaderActive, setChromeHidden]);
 
   useEffect(() => {
+    setRouteValid(null);
+    setMenuVerse(null);
+    setCbaVerse(null);
+    setShowCba(false);
+    setReaderSettingsOpen(false);
+    setChapterNavigationVisible(false);
+    chapterNavigationVisibleRef.current = false;
+    readerAtEndRef.current = false;
+    setReaderAtEnd(false);
+    chromeHiddenRef.current = false;
+    setChromeHidden(false);
+
     let mounted = true;
     fetchBooksManifest()
       .then((books) => {
@@ -79,7 +95,7 @@ export default function ChapterView() {
         if (mounted) navigate('/bible', { replace: true });
       });
     return () => { mounted = false; };
-  }, [bookId, chapterNum, navigate]);
+  }, [bookId, chapterNum, navigate, setChromeHidden, setReaderAtEnd]);
 
   useEffect(() => {
     if (!loading && bibleBook && bibleChapter && routeValid?.valid) {
@@ -104,45 +120,70 @@ export default function ChapterView() {
       const chapterKey = `${bookId_}-${chapterNum_}`;
       if (lastChapterKeyRef.current !== chapterKey) {
         lastChapterKeyRef.current = chapterKey;
-        window.scrollTo(0, 0);
+        lastScrollYRef.current = 0;
+        if (progressRef.current) progressRef.current.value = 0;
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       }
     }
   }, [bookId_, chapterNum_, loading, bibleBook, bibleChapter, targetVerse, addRecent, updateSettings, location.search, routeValid]);
 
   useEffect(() => {
-    const handleScroll = throttle(() => {
+    const updateScrollState = () => {
+      scrollFrameRef.current = 0;
       const h = document.documentElement;
       const st = h.scrollTop || document.body.scrollTop;
       const sh = h.scrollHeight || document.body.scrollHeight;
       const raw = (st / (sh - h.clientHeight)) * 100;
-      setScrollProgress(Number.isFinite(raw) ? raw : 0);
-      setReaderAtEnd(sh - (st + h.clientHeight) <= 96);
+      const progress = Math.max(0, Math.min(100, Number.isFinite(raw) ? raw : 0));
+      if (progressRef.current) progressRef.current.value = progress;
+
+      const atEnd = chapterNavigationVisibleRef.current || sh - (st + h.clientHeight) <= 96;
+      if (readerAtEndRef.current !== atEnd) {
+        readerAtEndRef.current = atEnd;
+        setReaderAtEnd(atEnd);
+      }
 
       const delta = st - lastScrollYRef.current;
+      let chromeShouldHide = chromeHiddenRef.current;
       if (st > 80 && delta > 8) {
-        setChromeHidden(true);
+        chromeShouldHide = true;
       } else if (delta < -8 || st < 40) {
-        setChromeHidden(false);
+        chromeShouldHide = false;
+      }
+      if (chromeHiddenRef.current !== chromeShouldHide) {
+        chromeHiddenRef.current = chromeShouldHide;
+        setChromeHidden(chromeShouldHide);
       }
       lastScrollYRef.current = st;
-    }, 100);
+    };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
+    const requestScrollUpdate = () => {
+      if (!scrollFrameRef.current) {
+        scrollFrameRef.current = window.requestAnimationFrame(updateScrollState);
+      }
+    };
+
+    window.addEventListener('scroll', requestScrollUpdate, { passive: true });
+    window.addEventListener('resize', requestScrollUpdate);
     const resizeObserver = typeof ResizeObserver !== 'undefined'
-      ? new ResizeObserver(handleScroll)
+      ? new ResizeObserver(requestScrollUpdate)
       : null;
     if (resizeObserver && readerRef.current) resizeObserver.observe(readerRef.current);
-    handleScroll();
+    requestScrollUpdate();
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('scroll', requestScrollUpdate);
+      window.removeEventListener('resize', requestScrollUpdate);
       resizeObserver?.disconnect();
+      if (scrollFrameRef.current) {
+        window.cancelAnimationFrame(scrollFrameRef.current);
+        scrollFrameRef.current = 0;
+      }
     };
-  }, [setChromeHidden, setReaderAtEnd]);
+  }, [loading, setChromeHidden, setReaderAtEnd]);
 
   useEffect(() => {
     let idleTimer;
+    let lastActivityAt = 0;
 
     const scheduleIdle = () => {
       window.clearTimeout(idleTimer);
@@ -152,11 +193,16 @@ export default function ChapterView() {
     };
 
     const handleActivity = () => {
+      const now = Date.now();
+      if (now - lastActivityAt < 180) return;
+      lastActivityAt = now;
       setReaderControlsIdle(false);
       scheduleIdle();
     };
 
-    const passiveEvents = ['scroll', 'wheel', 'pointermove', 'pointerdown', 'touchstart'];
+    const passiveEvents = ['scroll', 'pointerdown'];
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (finePointer) passiveEvents.push('pointermove');
     passiveEvents.forEach((eventName) => {
       window.addEventListener(eventName, handleActivity, { passive: true });
     });
@@ -185,7 +231,18 @@ export default function ChapterView() {
     if (loading || !chapterNavigation) return undefined;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setChapterNavigationVisible(entry.isIntersecting),
+      ([entry]) => {
+        const isVisible = entry.isIntersecting;
+        chapterNavigationVisibleRef.current = isVisible;
+        setChapterNavigationVisible(isVisible);
+        const h = document.documentElement;
+        const scrollTop = h.scrollTop || document.body.scrollTop;
+        const atEnd = isVisible || h.scrollHeight - (scrollTop + h.clientHeight) <= 96;
+        if (readerAtEndRef.current !== atEnd) {
+          readerAtEndRef.current = atEnd;
+          setReaderAtEnd(atEnd);
+        }
+      },
       {
         root: null,
         rootMargin: '0px 0px -64px 0px',
@@ -195,7 +252,7 @@ export default function ChapterView() {
 
     observer.observe(chapterNavigation);
     return () => observer.disconnect();
-  }, [loading, bookId_, chapterNum_]);
+  }, [loading, bookId_, chapterNum_, setReaderAtEnd]);
 
   // Enriquece el texto copiado con la cita de origen y el enlace a la Biblia.
   useEffect(() => {
@@ -282,8 +339,8 @@ export default function ChapterView() {
     else if (dx > 80) handlePrevChapter();
   };
 
-  const handleOpenMenu = (verseNum) => setMenuVerse(verseNum);
-  const handleCloseMenu = () => setMenuVerse(null);
+  const handleOpenMenu = useCallback((verseNum) => setMenuVerse(verseNum), []);
+  const handleCloseMenu = useCallback(() => setMenuVerse(null), []);
 
   const bookName = bibleBook?.name || getBookName(bookId_);
 
@@ -302,9 +359,10 @@ export default function ChapterView() {
       ) : (
         <>
           <progress
+            ref={progressRef}
             className={classes.progressBar}
             max={100}
-            value={Math.max(0, Math.min(100, scrollProgress))}
+            defaultValue={0}
             aria-label="Progreso de lectura"
           />
 
@@ -367,6 +425,7 @@ export default function ChapterView() {
           </main>
 
           <ReaderFAB
+            key={`${bookId_}-${chapterNum_}`}
             hidden={readerControlsIdle || chapterNavigationVisible}
             onExpandedChange={setReaderSettingsOpen}
           />
@@ -401,14 +460,18 @@ export default function ChapterView() {
             />
           )}
 
-          <CbaModal
-            isOpen={showCba}
-            onClose={() => setShowCba(false)}
-            bookId={bookId_}
-            chapter={chapterNum_}
-            verse={cbaVerse}
-            bookName={bookName}
-          />
+          {showCba && (
+            <Suspense fallback={null}>
+              <CbaModal
+                isOpen
+                onClose={() => setShowCba(false)}
+                bookId={bookId_}
+                chapter={chapterNum_}
+                verse={cbaVerse}
+                bookName={bookName}
+              />
+            </Suspense>
+          )}
         </>
       )}
     </div>

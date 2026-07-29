@@ -7,13 +7,6 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: [
-        'favicon-48x48.png',
-        'apple-touch-icon.png',
-        'pwa-192x192.png',
-        'pwa-512x512.png',
-        'pwa-maskable-512x512.png',
-      ],
       manifest: {
         name: 'Santa Biblia',
         short_name: 'Santa Biblia',
@@ -24,19 +17,19 @@ export default defineConfig({
         lang: 'es',
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: 'pwa-192x192.png?v=7',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: 'pwa-512x512.png',
+            src: 'pwa-512x512.png?v=7',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: 'pwa-maskable-512x512.png',
+            src: 'pwa-maskable-512x512.png?v=7',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
@@ -44,10 +37,10 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-        additionalManifestEntries: [
-          { url: '/data/books.json', revision: null },
-          { url: '/data/versions.json', revision: null },
+        globPatterns: [
+          '**/*.{js,css,html,webmanifest}',
+          'data/books.json',
+          'data/versions.json',
         ],
         skipWaiting: true,
         clientsClaim: true,
@@ -68,13 +61,38 @@ export default defineConfig({
             }
           },
           {
+            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-font-files-cache',
+              expiration: {
+                maxEntries: 12,
+                maxAgeSeconds: 60 * 60 * 24 * 365
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            urlPattern: /\/(?:assets|images)\/.*\.(?:webp|jpg|png)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'app-images-cache',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 30
+              }
+            }
+          },
+          {
             urlPattern: /\/data\/.*\.json$/i,
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'bible-data-cache',
               expiration: {
-                maxEntries: 600,
-                maxAgeSeconds: 60 * 60 * 24 * 30 // <30 days>
+                maxEntries: 320,
+                maxAgeSeconds: 60 * 60 * 24 * 90
               }
             }
           }

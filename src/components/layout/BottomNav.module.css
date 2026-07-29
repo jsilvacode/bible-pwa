@@ -6,9 +6,7 @@
   width: 100%;
   max-width: var(--app-max-width);
   height: calc(64px + env(safe-area-inset-bottom));
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
+  background: color-mix(in srgb, var(--bg-surface) 95%, transparent);
   border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-around;
@@ -35,7 +33,7 @@
   flex: 1;
   height: 100%;
   gap: 4px;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
   position: relative;
 }
 
@@ -73,69 +71,4 @@
   height: 3px;
   background: var(--accent);
   border-radius: 0 0 3px 3px;
-}
-
-.installOverlay {
-  position: fixed;
-  inset: 0;
-  background: var(--overlay-strong);
-  z-index: 260;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  backdrop-filter: blur(4px);
-}
-
-.installPopup {
-  width: min(420px, 100%);
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-2xl);
-  padding: 24px;
-  box-shadow: var(--shadow-card-hover);
-  animation: fadeSlideUp 0.4s var(--transition-smooth);
-}
-
-.installPopup h4 {
-  margin: 0 0 8px;
-  font-family: var(--font-display);
-  color: var(--text-primary);
-  font-size: 1.2rem;
-}
-
-.installPopup p {
-  margin: 0 0 20px;
-  font-family: var(--font-ui);
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-.installPopupActions {
-  display: flex;
-  gap: 12px;
-}
-
-.installPopupActions button {
-  flex: 1;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--bg-page);
-  color: var(--text-primary);
-  font-family: var(--font-ui);
-  font-weight: 700;
-  padding: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.installPopupActions button:first-child {
-  background: var(--accent);
-  color: white;
-  border: none;
-}
-
-.installPopupActions button:first-child:hover {
-  filter: brightness(1.1);
 }

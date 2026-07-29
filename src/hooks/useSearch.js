@@ -3,6 +3,8 @@ import { fetchBooksManifest, loadBibleBook, resolveVersionId } from '../services
 import { searchIndex } from '../utils/searchIndex';
 import { matchesWholeTerms } from '../utils/searchText';
 
+const MAX_SEARCH_RESULTS = 100;
+
 function workerSupported() {
   return typeof Worker !== 'undefined' && import.meta.env.MODE !== 'test';
 }
@@ -10,7 +12,7 @@ function workerSupported() {
 export function useSearch(version) {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState({ current: 0, total: 0 });
+  const [truncated, setTruncated] = useState(false);
   const requestIdRef = useRef(0);
   const workerRef = useRef(null);
 
@@ -32,10 +34,9 @@ export function useSearch(version) {
   }, []);
 
   // Búsqueda en el hilo principal (fallback si el worker no está disponible).
-  const searchInMainThread = useCallback(async (requestId, safeVersion, trimmed, books, onProgress) => {
+  const searchInMainThread = useCallback(async (requestId, safeVersion, trimmed, books) => {
     const matches = [];
-    setProgress({ current: 0, total: books.length });
-    onProgress?.(0, books.length);
+    let wasTruncated = false;
 
     for (let i = 0; i < books.length; i++) {
       if (requestId !== requestIdRef.current) break;
@@ -59,6 +60,10 @@ export function useSearch(version) {
                 text: r.text,
                 id: `${safeVersion}-${book.id}-${r.chapter}-${r.verse}`,
               });
+              if (matches.length >= MAX_SEARCH_RESULTS) {
+                wasTruncated = true;
+                break;
+              }
             }
           }
         }
@@ -66,34 +71,30 @@ export function useSearch(version) {
         console.error(`Error searching in book ${book.id}`, e);
       }
 
-      if (requestId === requestIdRef.current) {
-        const current = i + 1;
-        setProgress({ current, total: books.length });
-        onProgress?.(current, books.length);
-      }
+      if (wasTruncated) break;
     }
 
     if (requestId === requestIdRef.current) {
       setResults(matches);
+      setTruncated(wasTruncated);
       setLoading(false);
     }
   }, []);
 
-  const search = useCallback(async (query, options = {}) => {
+  const search = useCallback(async (query) => {
     const requestId = ++requestIdRef.current;
     const trimmed = query.trim();
-    const onProgress = options.onProgress;
 
     if (trimmed.length < 3) {
       setResults([]);
       setLoading(false);
-      setProgress({ current: 0, total: 0 });
+      setTruncated(false);
       return;
     }
 
     setLoading(true);
     setResults([]);
-    setProgress({ current: 0, total: 0 });
+    setTruncated(false);
 
     try {
       const [safeVersion, books] = await Promise.all([
@@ -109,11 +110,9 @@ export function useSearch(version) {
           const msg = event.data;
           if (!msg || msg.requestId !== requestIdRef.current) return;
 
-          if (msg.type === 'progress') {
-            setProgress({ current: msg.current, total: msg.total });
-            onProgress?.(msg.current, msg.total);
-          } else if (msg.type === 'done') {
+          if (msg.type === 'done') {
             setResults(msg.matches);
+            setTruncated(Boolean(msg.truncated));
             setLoading(false);
           } else if (msg.type === 'error') {
             console.error('Error en worker de búsqueda:', msg.message);
@@ -124,7 +123,7 @@ export function useSearch(version) {
         return;
       }
 
-      await searchInMainThread(requestId, safeVersion, trimmed, books, onProgress);
+      await searchInMainThread(requestId, safeVersion, trimmed, books);
     } catch (e) {
       console.error(e);
       if (requestId === requestIdRef.current) setLoading(false);
@@ -132,11 +131,12 @@ export function useSearch(version) {
   }, [version, searchInMainThread]);
 
   const cancelSearch = useCallback(() => {
-    requestIdRef.current += 1;
+    const requestId = ++requestIdRef.current;
+    workerRef.current?.postMessage({ type: 'cancel', requestId });
     setLoading(false);
     setResults([]);
-    setProgress({ current: 0, total: 0 });
+    setTruncated(false);
   }, []);
 
-  return { search, results, loading, progress, cancelSearch };
+  return { search, results, loading, truncated, cancelSearch };
 }

@@ -71,6 +71,30 @@ describe('bibleLoader', () => {
     );
   });
 
+  it('deduplicates concurrent manifest and book requests', async () => {
+    const fetchMock = vi.fn(async (url) => {
+      if (url === '/data/books.json') {
+        return makeJsonResponse([{ id: 1, file: '01_genesis' }]);
+      }
+      if (url === '/data/versions.json') {
+        return makeJsonResponse([{ id: 'nbla', available: true }]);
+      }
+      if (url === '/data/nbla/01_genesis.json') {
+        return makeJsonResponse({ name: 'Génesis', chapters: [] });
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const [first, second] = await Promise.all([
+      loadBibleBookFn('nbla', 1),
+      loadBibleBookFn('nbla', 1),
+    ]);
+
+    expect(first).toBe(second);
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+
   it('migrates legacy rvr60 to rva2015 when loading', async () => {
     const fetchMock = vi.fn(async (url) => {
       if (url === '/data/books.json') {

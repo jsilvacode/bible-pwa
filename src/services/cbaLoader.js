@@ -1,4 +1,5 @@
 const chapterCache = new Map();
+const MAX_CHAPTER_CACHE = 8;
 
 /**
  * @param {unknown} value
@@ -28,7 +29,10 @@ export async function loadCbaChapter(bookId, chapter, options = {}) {
   const cacheKey = `${book}_${ch}`;
 
   if (chapterCache.has(cacheKey)) {
-    return chapterCache.get(cacheKey);
+    const cached = chapterCache.get(cacheKey);
+    chapterCache.delete(cacheKey);
+    chapterCache.set(cacheKey, cached);
+    return cached;
   }
 
   const url = `/data/cba/${book}/${ch}.json`;
@@ -40,6 +44,9 @@ export async function loadCbaChapter(bookId, chapter, options = {}) {
 
   const data = await res.json();
   chapterCache.set(cacheKey, data);
+  while (chapterCache.size > MAX_CHAPTER_CACHE) {
+    chapterCache.delete(chapterCache.keys().next().value);
+  }
   return data;
 }
 

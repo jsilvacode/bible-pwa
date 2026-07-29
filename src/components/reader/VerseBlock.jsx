@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import classes from './ChapterView.module.css';
 import { normalizeDisplayedText } from '../../utils/textNormalizer';
 
@@ -7,7 +7,7 @@ function hasActiveSelection() {
   return !!sel && sel.toString().trim().length > 0;
 }
 
-export default function VerseBlock({
+function VerseBlock({
   verse,
   text,
   isSelected,
@@ -49,3 +49,5 @@ export default function VerseBlock({
     </span>
   );
 }
+
+export default memo(VerseBlock);

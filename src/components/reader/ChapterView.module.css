@@ -35,9 +35,7 @@
   position: sticky;
   top: 0;
   z-index: 200;
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
+  background: color-mix(in srgb, var(--bg-surface) 96%, transparent);
   padding: 12px 20px;
   border-bottom: 1px solid var(--border);
   display: flex;
@@ -95,7 +93,6 @@
   hyphens: auto;
   -webkit-hyphens: auto;
   word-spacing: 0.015em;
-  animation: fadeSlideUp 0.5s var(--transition-smooth);
 }
 
 .verseHeading {
@@ -119,7 +116,7 @@
   padding: 3px 2px;
   margin-right: 0.12em;
   border-radius: var(--radius-sm);
-  transition: background-color 0.2s ease, font-size 0.2s ease;
+  transition: background-color 0.2s ease;
   cursor: pointer;
   display: inline;
   -webkit-box-decoration-break: clone;
@@ -182,7 +179,7 @@
   font-weight: 700;
   color: var(--text-primary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .navBtn:disabled {

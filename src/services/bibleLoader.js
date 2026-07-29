@@ -1,40 +1,99 @@
 import { assertValidVersion } from '../constants/bibleVersions';
 
 let booksCache = null;
+let booksPromise = null;
 /** @type {string[] | null} */
 let validVersionIdsCache = null;
 /** @type {Array<Record<string, unknown>> | null} */
 let versionsCache = null;
-const booksByBookCache = {};
+let versionsPromise = null;
+const booksByBookCache = new Map();
+const bookLoadPromises = new Map();
+const MAX_BOOK_CACHE = 12;
+
+function abortError() {
+  const error = new Error('Operación cancelada');
+  error.name = 'AbortError';
+  return error;
+}
+
+function waitWithAbort(promise, signal) {
+  if (!signal) return promise;
+  if (signal.aborted) return Promise.reject(abortError());
+
+  return new Promise((resolve, reject) => {
+    const handleAbort = () => reject(abortError());
+    signal.addEventListener('abort', handleAbort, { once: true });
+    promise.then(
+      (value) => {
+        signal.removeEventListener('abort', handleAbort);
+        resolve(value);
+      },
+      (error) => {
+        signal.removeEventListener('abort', handleAbort);
+        reject(error);
+      }
+    );
+  });
+}
+
+function cacheBook(key, data) {
+  booksByBookCache.delete(key);
+  booksByBookCache.set(key, data);
+  while (booksByBookCache.size > MAX_BOOK_CACHE) {
+    booksByBookCache.delete(booksByBookCache.keys().next().value);
+  }
+}
 
 export async function fetchBooksManifest() {
   if (booksCache) return booksCache;
-  try {
-    const res = await fetch('/data/books.json');
-    if (!res.ok) throw new Error('Manifest fetch failed');
-    booksCache = await res.json();
-    return booksCache;
-  } catch (err) {
-    console.error('Error fetching books manifest:', err);
-    throw err;
+  if (!booksPromise) {
+    booksPromise = fetch('/data/books.json')
+      .then((res) => {
+        if (!res.ok) throw new Error('Manifest fetch failed');
+        return res.json();
+      })
+      .then((books) => {
+        booksCache = books;
+        return books;
+      })
+      .catch((err) => {
+        console.error('Error fetching books manifest:', err);
+        throw err;
+      });
+    booksPromise.then(
+      () => { booksPromise = null; },
+      () => { booksPromise = null; }
+    );
   }
+  return booksPromise;
 }
 
 export async function fetchVersionsManifest() {
   if (versionsCache) return versionsCache;
-  try {
-    const res = await fetch('/data/versions.json');
-    if (!res.ok) throw new Error('Versions manifest fetch failed');
-    const versions = await res.json();
-    validVersionIdsCache = versions
-      .filter((v) => v.available)
-      .map((v) => v.id);
-    versionsCache = versions;
-    return versions;
-  } catch (err) {
-    console.error('Error fetching versions manifest:', err);
-    throw err;
+  if (!versionsPromise) {
+    versionsPromise = fetch('/data/versions.json')
+      .then((res) => {
+        if (!res.ok) throw new Error('Versions manifest fetch failed');
+        return res.json();
+      })
+      .then((versions) => {
+        validVersionIdsCache = versions
+          .filter((v) => v.available)
+          .map((v) => v.id);
+        versionsCache = versions;
+        return versions;
+      })
+      .catch((err) => {
+        console.error('Error fetching versions manifest:', err);
+        throw err;
+      });
+    versionsPromise.then(
+      () => { versionsPromise = null; },
+      () => { versionsPromise = null; }
+    );
   }
+  return versionsPromise;
 }
 
 async function getValidVersionIds() {
@@ -62,24 +121,39 @@ export async function resolveVersionId(version) {
  * @param {{ signal?: AbortSignal }} [options]
  */
 export async function loadBibleBook(version, bookId, options = {}) {
-  const safeVersion = await resolveVersionId(version);
-  const cacheKey = `${safeVersion}_${bookId}`;
+  const safeVersion = await waitWithAbort(resolveVersionId(version), options.signal);
+  const normalizedBookId = Number(bookId);
+  const cacheKey = `${safeVersion}_${normalizedBookId}`;
 
-  if (booksByBookCache[cacheKey]) {
-    return booksByBookCache[cacheKey];
+  if (booksByBookCache.has(cacheKey)) {
+    const cached = booksByBookCache.get(cacheKey);
+    cacheBook(cacheKey, cached);
+    return cached;
   }
 
-  const books = await fetchBooksManifest();
-  const bookMeta = books.find((b) => b.id === Number(bookId));
-  if (!bookMeta) throw new Error('Libro no encontrado');
+  let loadPromise = bookLoadPromises.get(cacheKey);
+  if (!loadPromise) {
+    loadPromise = (async () => {
+      const books = await fetchBooksManifest();
+      const bookMeta = books.find((b) => b.id === normalizedBookId);
+      if (!bookMeta) throw new Error('Libro no encontrado');
 
-  const url = `/data/${safeVersion}/${bookMeta.file}.json`;
-  const res = await fetch(url, { signal: options.signal });
-  if (!res.ok) throw new Error(`Error cargando el libro desde ${url}`);
+      const url = `/data/${safeVersion}/${bookMeta.file}.json`;
+      const res = await fetch(url, {});
+      if (!res.ok) throw new Error(`Error cargando el libro desde ${url}`);
 
-  const data = await res.json();
-  booksByBookCache[cacheKey] = data;
-  return data;
+      const data = await res.json();
+      cacheBook(cacheKey, data);
+      return data;
+    })();
+    bookLoadPromises.set(cacheKey, loadPromise);
+    loadPromise.then(
+      () => bookLoadPromises.delete(cacheKey),
+      () => bookLoadPromises.delete(cacheKey)
+    );
+  }
+
+  return waitWithAbort(loadPromise, options.signal);
 }
 
 /**
