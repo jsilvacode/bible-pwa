@@ -6,6 +6,7 @@ const SETTINGS_KEY = 'bible_settings';
 const RECENT_KEY = 'bible_recent';
 const LOG_KEY = 'bible_reading_log';
 const VERSION_DEFAULT_REVISION = 2;
+const READING_LOG_RETENTION_DAYS = 365;
 
 /** @typedef {"light" | "dark"} Theme */
 
@@ -73,11 +74,89 @@ function getInitialRecent() {
 function getInitialLog() {
   try {
     const saved = localStorage.getItem(LOG_KEY);
-    if (saved) return JSON.parse(saved);
+    if (saved) return normalizeLog(JSON.parse(saved));
   } catch (e) {
     console.error('Error reading log', e);
   }
   return [];
+}
+
+function getLocalDateKey(date = new Date()) {
+  return [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, '0'),
+    String(date.getDate()).padStart(2, '0'),
+  ].join('-');
+}
+
+function shiftDate(date, amount) {
+  const shifted = new Date(date);
+  shifted.setDate(shifted.getDate() + amount);
+  return shifted;
+}
+
+function normalizeLog(list) {
+  if (!Array.isArray(list)) return [];
+
+  const byDate = new Map();
+  list.forEach((entry) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(entry?.date)) return;
+
+    const chapters = Array.isArray(entry.chapters)
+      ? [...new Set(entry.chapters.map(String))]
+      : [];
+    const count = Math.max(Number(entry.count) || 0, chapters.length);
+    if (count < 1) return;
+
+    byDate.set(entry.date, {
+      date: entry.date,
+      count,
+      ...(chapters.length > 0 ? { chapters } : {}),
+    });
+  });
+
+  return [...byDate.values()]
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(-READING_LOG_RETENTION_DAYS);
+}
+
+function getStreakFromDates(dates, referenceDate = new Date()) {
+  const referenceKey = getLocalDateKey(referenceDate);
+  const yesterdayKey = getLocalDateKey(shiftDate(referenceDate, -1));
+  let cursor = dates.has(referenceKey)
+    ? referenceDate
+    : dates.has(yesterdayKey)
+      ? shiftDate(referenceDate, -1)
+      : null;
+  let current = 0;
+
+  while (cursor && dates.has(getLocalDateKey(cursor))) {
+    current += 1;
+    cursor = shiftDate(cursor, -1);
+  }
+
+  return current;
+}
+
+function getBestStreak(log) {
+  const dates = new Set(log.map((entry) => entry.date));
+  let best = 0;
+
+  for (const dateKey of dates) {
+    const date = new Date(`${dateKey}T12:00:00`);
+    const previousKey = getLocalDateKey(shiftDate(date, -1));
+    if (dates.has(previousKey)) continue;
+
+    let length = 0;
+    let cursor = date;
+    while (dates.has(getLocalDateKey(cursor))) {
+      length += 1;
+      cursor = shiftDate(cursor, 1);
+    }
+    best = Math.max(best, length);
+  }
+
+  return best;
 }
 
 function normalizeRecent(list) {
@@ -128,7 +207,7 @@ export function SettingsProvider({ children }) {
   }, [recent]);
 
   useEffect(() => {
-    localStorage.setItem(LOG_KEY, JSON.stringify(log.slice(-30)));
+    localStorage.setItem(LOG_KEY, JSON.stringify(log.slice(-READING_LOG_RETENTION_DAYS)));
   }, [log]);
 
   const updateSettings = useCallback((updates) => {
@@ -174,7 +253,8 @@ export function SettingsProvider({ children }) {
 
   const addRecent = useCallback((book, chapter) => {
     const now = Date.now();
-    const date = new Date(now).toISOString().split('T')[0];
+    const date = getLocalDateKey(new Date(now));
+    const chapterKey = `${book}-${chapter}`;
     
     setRecent(prev => {
       const newEntry = { book, chapter, ts: now };
@@ -185,31 +265,51 @@ export function SettingsProvider({ children }) {
     setLog(prev => {
       const existing = prev.find(l => l.date === date);
       if (existing) {
-        return prev.map(l => l.date === date ? { ...l, count: l.count + 1 } : l);
+        const chapters = Array.isArray(existing.chapters) ? existing.chapters : [];
+        if (chapters.includes(chapterKey)) return prev;
+
+        return normalizeLog(prev.map(l => l.date === date
+          ? { ...l, count: (Number(l.count) || 0) + 1, chapters: [...chapters, chapterKey] }
+          : l));
       }
-      return [...prev, { date, count: 1 }];
+      return normalizeLog([...prev, { date, count: 1, chapters: [chapterKey] }]);
     });
   }, []);
 
   const weeklyStreak = useMemo(() => {
     const days = [];
+    const logByDate = new Map(log.map((entry) => [entry.date, entry]));
     for (let i = 6; i >= 0; i--) {
-      const d = new Date();
-      d.setDate(d.getDate() - i);
-      const ds = d.toISOString().split('T')[0];
-      const entry = log.find(l => l.date === ds);
+      const d = shiftDate(new Date(), -i);
+      const ds = getLocalDateKey(d);
+      const entry = logByDate.get(ds);
       days.push({
         date: ds,
-        dayName: d.toLocaleDateString('es', { weekday: 'short' }).charAt(0).toUpperCase(),
-        count: entry ? entry.count : 0
+        dayName: d.toLocaleDateString('es-CL', { weekday: 'short' }).replace('.', ''),
+        dayNumber: d.getDate(),
+        isToday: i === 0,
+        isRead: Boolean(entry),
+        count: entry?.count || 0,
       });
     }
     return days;
   }, [log]);
 
+  const readingSummary = useMemo(() => {
+    const dates = new Set(log.map((entry) => entry.date));
+    const todayKey = getLocalDateKey(new Date());
+
+    return {
+      currentStreak: getStreakFromDates(dates),
+      bestStreak: getBestStreak(log),
+      daysReadThisWeek: weeklyStreak.filter((day) => day.isRead).length,
+      hasReadToday: dates.has(todayKey),
+    };
+  }, [log, weeklyStreak]);
+
   const value = useMemo(
-    () => ({ settings, updateSettings, recent, addRecent, log, weeklyStreak }),
-    [settings, updateSettings, recent, addRecent, log, weeklyStreak]
+    () => ({ settings, updateSettings, recent, addRecent, log, weeklyStreak, ...readingSummary }),
+    [settings, updateSettings, recent, addRecent, log, weeklyStreak, readingSummary]
   );
   return createElement(SettingsContext.Provider, { value }, children);
 }
