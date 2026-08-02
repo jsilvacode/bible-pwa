@@ -6,8 +6,20 @@ import { useRecentReads } from '../../hooks/useSettings';
 import { useBookNames } from '../../hooks/useBookNames';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import { useNavigate } from 'react-router-dom';
-import { IconMoon, IconSearch, IconSun, IconSunrise } from '../ui/Icons';
+import { IconBook, IconChevronRight, IconMoon, IconSearch, IconSun, IconSunrise } from '../ui/Icons';
 import classes from './HomeScreen.module.css';
+
+function formatRelativeTime(timestamp) {
+  if (!timestamp) return 'Sin fecha registrada';
+
+  const elapsedSeconds = Math.round((Date.now() - timestamp) / 1000);
+  const relative = new Intl.RelativeTimeFormat('es', { numeric: 'auto' });
+
+  if (elapsedSeconds < 60) return 'Hace un momento';
+  if (elapsedSeconds < 3600) return relative.format(-Math.round(elapsedSeconds / 60), 'minute');
+  if (elapsedSeconds < 86400) return relative.format(-Math.round(elapsedSeconds / 3600), 'hour');
+  return relative.format(-Math.round(elapsedSeconds / 86400), 'day');
+}
 
 export default function HomeScreen() {
   const { recent } = useRecentReads();
@@ -92,28 +104,87 @@ export default function HomeScreen() {
           <CategoryGrid />
         </section>
 
-        {recent.length > 0 && (
-          <section className={classes.section}>
-            <div className={classes.sectionHeading}>
-              <h3 className={classes.sectionTitle}>Lecturas recientes</h3>
-              <p>Retoma un capítulo donde lo dejaste</p>
+        <section className={`${classes.section} ${classes.recentSection}`} aria-labelledby="continue-reading-title">
+          <div className={classes.sectionHeading}>
+            <div>
+              <span className={classes.sectionKicker}>Tu camino de lectura</span>
+              <h3 id="continue-reading-title" className={classes.sectionTitle}>Continúa tu camino</h3>
+              <p>Retoma una lectura y vuelve al ritmo que habías comenzado.</p>
             </div>
-            <div className={classes.recentScroll}>
-              {recent.map((r) => (
-                <button
-                  key={`${r.book}-${r.chapter}`}
-                  type="button"
-                  className={classes.recentChip}
-                  onClick={() => navigate(`/read/${r.book}/${r.chapter}`)}
-                >
-                  <span className={classes.recentEyebrow}>Última lectura</span>
-                  <strong className={classes.recentBook}>{bookNames[r.book] || `Libro ${r.book}`}</strong>
-                  <span className={classes.recentChapter}>Capítulo {r.chapter} <span aria-hidden="true">→</span></span>
-                </button>
-              ))}
+          </div>
+
+          {recent.length > 0 ? (
+            <>
+              {(() => {
+                const latest = recent[0];
+                const latestBookName = bookNames[latest.book] || `Libro ${latest.book}`;
+
+                return (
+                  <button
+                    type="button"
+                    className={classes.recentHero}
+                    onClick={() => navigate(`/read/${latest.book}/${latest.chapter}`)}
+                    aria-label={`Continuar leyendo ${latestBookName}, capítulo ${latest.chapter}`}
+                  >
+                    <span className={classes.recentHeroIcon} aria-hidden="true">
+                      <IconBook size={25} />
+                    </span>
+                    <span className={classes.recentHeroContent}>
+                      <span className={classes.recentHeroEyebrow}>Última lectura</span>
+                      <strong className={classes.recentHeroBook}>{latestBookName}</strong>
+                      <span className={classes.recentHeroChapter}>
+                        Capítulo {latest.chapter} · {formatRelativeTime(latest.ts)}
+                      </span>
+                    </span>
+                    <span className={classes.recentHeroCta}>
+                      Continuar
+                      <IconChevronRight size={18} />
+                    </span>
+                  </button>
+                );
+              })()}
+
+              {recent.length > 1 && (
+                <div className={classes.recentTrail} aria-label="Últimas lecturas">
+                  {recent.slice(1).map((r) => {
+                    const bookName = bookNames[r.book] || `Libro ${r.book}`;
+                    return (
+                      <button
+                        key={`${r.book}-${r.chapter}`}
+                        type="button"
+                        className={classes.recentItem}
+                        onClick={() => navigate(`/read/${r.book}/${r.chapter}`)}
+                        aria-label={`Abrir ${bookName}, capítulo ${r.chapter}, ${formatRelativeTime(r.ts)}`}
+                      >
+                        <span className={classes.recentItemMarker} aria-hidden="true" />
+                        <span className={classes.recentItemContent}>
+                          <strong>{bookName}</strong>
+                          <span>Capítulo {r.chapter}</span>
+                          <small>{formatRelativeTime(r.ts)}</small>
+                        </span>
+                        <IconChevronRight size={17} aria-hidden="true" />
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </>
+          ) : (
+            <div className={classes.recentEmpty}>
+              <span className={classes.recentEmptyIcon} aria-hidden="true">
+                <IconBook size={23} />
+              </span>
+              <div>
+                <strong>Tu camino comienza aquí</strong>
+                <p>Abre un capítulo y tus lecturas aparecerán en este espacio.</p>
+              </div>
+              <button type="button" className={classes.recentEmptyCta} onClick={() => navigate('/bible')}>
+                Explorar la Biblia
+                <IconChevronRight size={17} />
+              </button>
             </div>
-          </section>
-        )}
+          )}
+        </section>
 
         <ReadingStreak />
       </div>
