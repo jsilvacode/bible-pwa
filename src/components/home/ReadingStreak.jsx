@@ -1,31 +1,87 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { IconChevronRight, IconFlame } from '../ui/Icons';
 import classes from './ReadingStreak.module.css';
 import { useSettings } from '../../hooks/useSettings';
 
 export default function ReadingStreak() {
-  const { weeklyStreak } = useSettings();
-  const maxCount = Math.max(...weeklyStreak.map(d => d.count), 1);
-  const getBarLevelClass = (count) => {
-    const ratio = maxCount === 0 ? 0 : count / maxCount;
-    const bucket = Math.max(0, Math.min(10, Math.round(ratio * 10)));
-    return classes[`level${bucket}`] || classes.level0;
-  };
+  const navigate = useNavigate();
+  const {
+    settings,
+    weeklyStreak,
+    currentStreak,
+    bestStreak,
+    daysReadThisWeek,
+    hasReadToday,
+  } = useSettings();
+  const streakLabel = currentStreak === 1 ? 'día de racha' : 'días de racha';
+  const statusMessage = hasReadToday
+    ? 'Racha asegurada por hoy. Puedes volver cuando quieras.'
+    : currentStreak > 0
+      ? 'Lee hoy, aunque sea unos minutos, para mantenerla.'
+      : 'Una lectura breve hoy puede ser el comienzo de tu racha.';
+  const targetBook = settings.lastRead?.book || 1;
+  const targetChapter = settings.lastRead?.chapter || 1;
 
   return (
     <div className={classes.container}>
-      <h3 className={classes.title}>Actividad de Lectura</h3>
-      <div className={classes.chart}>
+      <div className={classes.header}>
+        <div className={classes.headingCopy}>
+          <span className={classes.eyebrow}>Tu ritmo de lectura</span>
+          <h3 className={classes.title}>Tu racha de lectura</h3>
+          <p className={classes.subtitle}>Cada día que vuelves, tu camino sigue creciendo.</p>
+        </div>
+        <div className={classes.streakMetric} aria-label={`${currentStreak} ${streakLabel}`}>
+          <IconFlame size={22} aria-hidden="true" />
+          <strong>{currentStreak}</strong>
+          <span>{streakLabel}</span>
+        </div>
+      </div>
+
+      <div className={classes.stats} aria-label="Resumen de lectura">
+        <div className={classes.stat}>
+          <strong>{daysReadThisWeek}/7</strong>
+          <span>Esta semana</span>
+        </div>
+        <div className={classes.statDivider} aria-hidden="true" />
+        <div className={classes.stat}>
+          <strong>{bestStreak}</strong>
+          <span>Mejor racha</span>
+        </div>
+      </div>
+
+      <div className={classes.week} aria-label="Actividad de los últimos siete días">
         {weeklyStreak.map((day) => (
-          <div key={day.date} className={classes.barWrapper}>
-            <div 
-              className={`${classes.bar} ${getBarLevelClass(day.count)}`}
-              title={`${day.count} capítulos`}
-            >
-              {day.count > 0 && <span className={classes.count}>{day.count}</span>}
-            </div>
-            <span className={classes.dayLabel}>{day.dayName}</span>
+          <div
+            key={day.date}
+            className={`${classes.day} ${day.isRead ? classes.dayRead : ''} ${day.isToday ? classes.dayToday : ''}`}
+            title={`${day.dayName} ${day.dayNumber}: ${day.isRead ? `${day.count} ${day.count === 1 ? 'capítulo' : 'capítulos'}` : 'sin lectura'}`}
+          >
+            <span className={classes.dayName}>{day.dayName}</span>
+            <span className={classes.dayNumber}>{day.dayNumber}</span>
+            <span className={classes.dayState} aria-hidden="true">{day.isRead ? '✓' : '·'}</span>
+            <span className={classes.srOnly}>
+              {day.isRead ? `${day.count} ${day.count === 1 ? 'capítulo leído' : 'capítulos leídos'}` : 'Sin lectura'}
+              {day.isToday ? ', hoy' : ''}
+            </span>
           </div>
         ))}
+      </div>
+
+      <div className={classes.status}>
+        <span className={`${classes.statusIcon} ${hasReadToday ? classes.statusComplete : ''}`} aria-hidden="true">
+          {hasReadToday ? '✓' : '○'}
+        </span>
+        <p>{statusMessage}</p>
+        <button
+          type="button"
+          className={classes.action}
+          aria-label={`${hasReadToday ? 'Continuar' : 'Leer ahora'} con mi lectura`}
+          onClick={() => navigate(`/read/${targetBook}/${targetChapter}`)}
+        >
+          {hasReadToday ? 'Continuar' : 'Leer ahora'}
+          <IconChevronRight size={17} />
+        </button>
       </div>
     </div>
   );
