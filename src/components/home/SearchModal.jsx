@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { IconChevronRight, IconSearch, IconX } from '../ui/Icons';
 import classes from './SearchModal.module.css';
 import { useSearch } from '../../hooks/useSearch';
 import { useSettings } from '../../hooks/useSettings';
@@ -109,41 +110,63 @@ export default function SearchModal({ isOpen, initialQuery = '', requestId = 0, 
         aria-modal="true"
         aria-labelledby="search-modal-title"
       >
-        <button className={classes.closeIcon} onClick={onClose} aria-label="Cerrar">✕</button>
         <header className={classes.header}>
-          <div className={classes.headerText}>
-            <h2 className={classes.title} id="search-modal-title">Buscar</h2>
-            <p className={classes.subtitle}>Encuentra palabras o citas bíblicas</p>
+          <div className={classes.headerTop}>
+            <div className={classes.searchBadge} aria-hidden="true">
+              <IconSearch size={20} />
+            </div>
+            <div className={classes.headerText}>
+              <span className={classes.eyebrow}>Explora las Escrituras</span>
+              <h2 className={classes.title} id="search-modal-title">Buscar en la Biblia</h2>
+              <p className={classes.subtitle}>Encuentra palabras, versículos o citas bíblicas.</p>
+            </div>
+            <button className={classes.closeIcon} onClick={onClose} aria-label="Cerrar búsqueda">
+              <IconX size={18} />
+            </button>
           </div>
 
           <form onSubmit={handleSearch} className={classes.form}>
-            <div className={classes.inputWrapper}>
+            <div className={classes.inputShell}>
+              <IconSearch size={19} className={classes.inputIcon} />
               <input
                 id="search-modal-input"
                 ref={inputRef}
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder='"mar", "juan 3", "job 1:2"'
+                placeholder="Prueba con Juan 3:16 o una palabra"
                 className={classes.input}
                 autoComplete="off"
                 aria-label="Buscar en la Santa Biblia"
               />
-              {query && <button type="button" className={classes.clear} onClick={handleReset} aria-label="Limpiar">✕</button>}
+              {query && (
+                <button type="button" className={classes.clear} onClick={handleReset} aria-label="Limpiar búsqueda">
+                  <IconX size={16} />
+                </button>
+              )}
             </div>
             <div className={classes.actionRow}>
               <button type="submit" className={classes.searchBtn}>
-                Buscar
+                <span>Buscar</span>
+                <IconChevronRight size={17} />
               </button>
-              <button type="button" className={classes.resetBtn} onClick={handleReset}>
-                Limpiar
-              </button>
+              {query && (
+                <button type="button" className={classes.resetBtn} onClick={handleReset}>
+                  Limpiar
+                </button>
+              )}
             </div>
           </form>
+          <p className={classes.searchHint}>También puedes escribir una referencia como <strong>Salmos 23</strong>.</p>
         </header>
 
         <div className={classes.content}>
-          {searchFeedback && <p className={classes.feedback}>{searchFeedback}</p>}
+          {searchFeedback && (
+            <div className={classes.feedback} role="status" aria-live="polite">
+              <span className={classes.feedbackMark} aria-hidden="true">!</span>
+              <p>{searchFeedback}</p>
+            </div>
+          )}
 
           {loading && (
             <div className={classes.loading} role="status" aria-live="polite">
@@ -152,21 +175,32 @@ export default function SearchModal({ isOpen, initialQuery = '', requestId = 0, 
             </div>
           )}
 
+          {!loading && hasSearched && results.length > 0 && (
+            <div className={classes.resultsHeading}>
+              <strong>Resultados encontrados</strong>
+              <span>{results.length}{truncated ? '+' : ''}</span>
+            </div>
+          )}
+
           <div className={classes.results}>
             {results.map((r) => (
               <button
                 key={r.id}
                 className={classes.resultItem}
+                aria-label={`Abrir ${r.bookName} ${r.chapter}:${r.verse}`}
                 onClick={() => {
                   navigate(`/read/${r.book}/${r.chapter}/${r.verse}`);
                   onClose();
                 }}
               >
-                <div className={classes.resultHeader}>
-                  <span className={classes.resultRef}>{r.bookName} {r.chapter}:{r.verse}</span>
-                  <span className={classes.versionTag}>{settings.version.toUpperCase()}</span>
+                <div className={classes.resultMain}>
+                  <div className={classes.resultHeader}>
+                    <span className={classes.resultRef}>{r.bookName} {r.chapter}:{r.verse}</span>
+                    <span className={classes.versionTag}>{settings.version.toUpperCase()}</span>
+                  </div>
+                  <p className={classes.resultText}>{normalizeDisplayedText(r.text)}</p>
                 </div>
-                <p className={classes.resultText}>{normalizeDisplayedText(r.text)}</p>
+                <IconChevronRight size={19} className={classes.resultArrow} />
               </button>
             ))}
           </div>
@@ -176,7 +210,11 @@ export default function SearchModal({ isOpen, initialQuery = '', requestId = 0, 
           )}
 
           {!loading && results.length === 0 && hasSearched && !searchFeedback && (
-            <div className={classes.empty}>No se encontraron resultados para "{query}"</div>
+            <div className={classes.empty}>
+              <span className={classes.emptyIcon} aria-hidden="true"><IconSearch size={22} /></span>
+              <strong>No encontramos resultados</strong>
+              <p>Prueba con otra palabra o una referencia distinta.</p>
+            </div>
           )}
         </div>
       </div>

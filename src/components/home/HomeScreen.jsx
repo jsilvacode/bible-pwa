@@ -100,7 +100,11 @@ export default function HomeScreen() {
 
       <div className={classes.bottomSheet}>
         <section className={`${classes.section} ${classes.firstSection}`}>
-          <h3 className={classes.sectionTitle}>Navegar la Biblia</h3>
+          <div className={classes.sectionHeading}>
+            <span className={classes.sectionKicker}>Explora las Escrituras</span>
+            <h3 className={classes.sectionTitle}>Navegar la Biblia</h3>
+            <p>Encuentra un testamento, género o colección para comenzar.</p>
+          </div>
           <CategoryGrid />
         </section>
 

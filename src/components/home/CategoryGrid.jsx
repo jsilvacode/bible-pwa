@@ -49,7 +49,8 @@ export default function CategoryGrid() {
         <button
           key={cat.id}
           type="button"
-          className={`${classes.card} ${cat.testament ? classes.testamentCard : ''} ${cat.className || categoryClassMap[cat.id] || ''}`}
+          className={`${classes.card} ${cat.testament ? classes.testamentCard : classes.categoryCard} ${cat.className || categoryClassMap[cat.id] || ''}`}
+          aria-label={`Explorar ${cat.name}, ${cat.count}`}
           onClick={() => handleClick(cat)}
         >
           <span className={`${classes.icon} ${cat.testament ? classes.testamentIcon : ''}`} aria-hidden="true">{cat.icon}</span>
@@ -57,6 +58,7 @@ export default function CategoryGrid() {
             <span className={classes.name}>{cat.name}</span>
             <span className={classes.count}>{cat.count}</span>
           </div>
+          <span className={classes.cardAction} aria-hidden="true">Explorar <span>→</span></span>
         </button>
       ))}
     </div>
