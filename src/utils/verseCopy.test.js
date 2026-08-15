@@ -3,6 +3,7 @@ import {
   buildVerseReference,
   buildCopyText,
   buildCopyHtml,
+  buildVerseShareUrl,
   escapeHtml,
 } from './verseCopy';
 
@@ -21,6 +22,10 @@ describe('verseCopy', () => {
 
   it('usa un nombre por defecto si falta el libro', () => {
     expect(buildVerseReference('', 1, 1)).toBe('Santa Biblia 1:1');
+  });
+
+  it('usa el dominio público canónico para los enlaces de versículos', () => {
+    expect(buildVerseShareUrl(43, 3, 16)).toBe('https://www.santabiblia.cloud/read/43/3/16');
   });
 
   it('arma el texto plano con cita, texto y url', () => {

@@ -4,6 +4,7 @@ import { useSettings } from '../../hooks/useSettings';
 import { useToast } from '../../hooks/useToast';
 import { loadBibleBook } from '../../services/bibleLoader';
 import { shareVerse } from '../../utils/shareVerse';
+import { buildVerseShareUrl } from '../../utils/verseCopy';
 import classes from './DailyVerse.module.css';
 
 const DAILY_VERSES = [
@@ -62,7 +63,7 @@ export default function DailyVerse({ variant = 'hero', children }) {
     e.stopPropagation();
     const refLabel = reference || `Libro ${dailyRef.book} ${dailyRef.chapter}:${dailyRef.verse}`;
     const text = verseText ? `"${verseText}" — ${refLabel}` : refLabel;
-    const url = `${window.location.origin}/read/${dailyRef.book}/${dailyRef.chapter}/${dailyRef.verse}`;
+    const url = buildVerseShareUrl(dailyRef.book, dailyRef.chapter, dailyRef.verse);
 
     try {
       const result = await shareVerse({ title: 'Versículo del Día', text, url });

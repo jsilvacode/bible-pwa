@@ -3,6 +3,21 @@
  * origen (libro capítulo:versículo) y un enlace a la Biblia.
  */
 
+// Los enlaces compartidos deben llevar siempre al dominio de producción. Así
+// funcionan aunque alguien esté navegando desde el subdominio automático de
+// Vercel y permiten a WhatsApp y redes leer los metadatos Open Graph.
+export const PUBLIC_SITE_URL = 'https://www.santabiblia.cloud';
+
+/**
+ * @param {number|string} book
+ * @param {number|string} chapter
+ * @param {number|string} verse
+ * @returns {string}
+ */
+export function buildVerseShareUrl(book, chapter, verse) {
+  return `${PUBLIC_SITE_URL}/read/${book}/${chapter}/${verse}`;
+}
+
 /**
  * @param {string} s
  * @returns {string}

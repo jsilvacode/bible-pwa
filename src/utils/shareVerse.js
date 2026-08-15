@@ -7,7 +7,9 @@ export async function shareVerse({ title, text, url }) {
 
   try {
     if (navigator.share) {
-      await navigator.share({ title, text, url });
+      // Incluir la URL dentro del texto garantiza que cada destino de la hoja
+      // de compartir la pegue como enlace y pueda generar su vista previa.
+      await navigator.share({ title, text: body });
       return 'shared';
     }
 

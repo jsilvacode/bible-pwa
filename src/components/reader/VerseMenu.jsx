@@ -5,6 +5,7 @@ import { useToast } from '../../hooks/useToast';
 import { useFocusTrap } from '../../hooks/useFocusTrap';
 import { useModalDismiss } from '../../hooks/useModalDismiss';
 import { shareVerse } from '../../utils/shareVerse';
+import { buildVerseShareUrl } from '../../utils/verseCopy';
 import { IconCommentary, IconBookmark, IconShare } from '../ui/Icons';
 
 export default function VerseMenu({ verse, payload, onClose }) {
@@ -36,7 +37,7 @@ export default function VerseMenu({ verse, payload, onClose }) {
 
     const reference = `${payload.bookName || `Libro ${payload.book}`} ${payload.chapter}:${payload.verse}`;
     const cleanVerseText = String(payload.text || '').replace(/\s+/g, ' ').trim();
-    const shareUrl = `${window.location.origin}/read/${payload.book}/${payload.chapter}/${payload.verse}`;
+    const shareUrl = buildVerseShareUrl(payload.book, payload.chapter, payload.verse);
     const text = `${reference}\n\n${cleanVerseText}`;
 
     try {

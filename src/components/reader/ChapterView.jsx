@@ -12,7 +12,7 @@ import ReaderFAB from './ReaderFAB';
 import classes from './ChapterView.module.css';
 import { fetchBooksManifest, getBookName, getTotalBooks, loadBibleBook } from '../../services/bibleLoader';
 import { validateReadRoute, validateVerseParam } from '../../utils/routeValidation';
-import { buildVerseReference, buildCopyText, buildCopyHtml } from '../../utils/verseCopy';
+import { buildVerseReference, buildCopyText, buildCopyHtml, buildVerseShareUrl } from '../../utils/verseCopy';
 
 const CbaModal = lazy(() => import('./CbaModal'));
 
@@ -281,7 +281,7 @@ export default function ChapterView() {
       const vEnd = Math.max(...verses);
       const name = bibleBook?.name || getBookName(bookId_);
       const reference = buildVerseReference(name, chapterNum_, vStart, vEnd);
-      const url = `${window.location.origin}/read/${bookId_}/${chapterNum_}/${vStart}`;
+      const url = buildVerseShareUrl(bookId_, chapterNum_, vStart);
 
       if (e.clipboardData) {
         e.clipboardData.setData('text/plain', buildCopyText({ reference, text: selected, url }));
