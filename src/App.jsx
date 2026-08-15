@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import AppShell from './components/layout/AppShell';
 
 import HomeScreen from './components/home/HomeScreen';
@@ -36,6 +37,7 @@ function App() {
                         <Route path="settings" element={<SettingsView />} />
                       </Route>
                     </Routes>
+                    <Analytics />
                   </GlobalSearchProvider>
                 </BrowserRouter>
               </ReadingModeProvider>
