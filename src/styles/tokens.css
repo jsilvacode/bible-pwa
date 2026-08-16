@@ -21,4 +21,6 @@
   --glass-blur: 12px;
   --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --focus-ring: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+  --page-gutter: clamp(20px, 4vw, 32px);
+  --section-gap: clamp(28px, 5vw, 44px);
 }

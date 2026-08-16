@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSettings } from '../../hooks/useSettings';
 import { useInstallPrompt } from '../../hooks/useInstallPrompt';
+import { EditorialPage, EditorialPanel } from '../layout/EditorialPage';
 import classes from './SettingsView.module.css';
 
 export default function SettingsView() {
@@ -19,15 +20,15 @@ export default function SettingsView() {
   };
 
   return (
-    <div className={classes.container}>
-      <header className={classes.header}>
-        <h2 className={classes.title}>Ajustes</h2>
-        <p className={classes.subtitle}>Personaliza tu experiencia de lectura</p>
-      </header>
+    <EditorialPage
+      eyebrow="Tu espacio"
+      title="Ajustes"
+      description="Personaliza la forma en que lees y vuelves a la Biblia."
+    >
 
       <section className={classes.section}>
         <h3 className={classes.sectionLabel}>Apariencia</h3>
-        <div className={classes.card}>
+        <EditorialPanel className={classes.card}>
           <div className={classes.group}>
             <label>Tema visual</label>
             <div className={classes.themeGrid}>
@@ -38,7 +39,7 @@ export default function SettingsView() {
                   className={`${classes.themeOption} ${settings.theme === tab.theme ? classes.active : ''}`}
                   onClick={() => updateSettings({ theme: tab.theme })}
                 >
-                  <div className={`${classes.themePreview} ${tab.previewClass}`} />
+                  <div className={`${classes.themePreview} ${tab.previewClass}`} aria-hidden="true" />
                   <span>{tab.label}</span>
                 </button>
               ))}
@@ -60,12 +61,12 @@ export default function SettingsView() {
               ))}
             </div>
           </div>
-        </div>
+        </EditorialPanel>
       </section>
 
       <section className={classes.section}>
         <h3 className={classes.sectionLabel}>Aplicación</h3>
-        <div className={classes.card}>
+        <EditorialPanel className={classes.card}>
           <div className={classes.group}>
             <label>Acceso rápido</label>
             <button
@@ -78,8 +79,8 @@ export default function SettingsView() {
             </button>
             {installMessage && <p className={classes.status}>{installMessage}</p>}
           </div>
-        </div>
+        </EditorialPanel>
       </section>
-    </div>
+    </EditorialPage>
   );
 }

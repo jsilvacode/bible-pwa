@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import classes from './BibleBrowser.module.css';
+import { EditorialPage, EditorialPanel } from '../layout/EditorialPage';
 import { fetchBooksManifest } from '../../services/bibleLoader';
 import { CATEGORY_LABELS, CATEGORY_RANGES } from '../../constants/bibleCategories';
 
@@ -86,43 +87,59 @@ export default function BibleBrowser() {
   );
 
   return (
-    <div className={classes.container}>
-      <header className={classes.header}>
-        <h1 className={classes.title}>Santa Biblia</h1>
-        {filterLabel ? (
-          <div className={classes.filterBadge}>
-            <span>{filterLabel}</span>
-            <button
-              className={classes.clearFilter}
-              onClick={() => navigate('/bible', { replace: true })}
-            >
-              ✕
-            </button>
-          </div>
-        ) : (
-          <p className={classes.subtitle}>Selecciona un libro y capítulo</p>
-        )}
-      </header>
+    <EditorialPage
+      eyebrow="Biblioteca"
+      title="Santa Biblia"
+      description="Elige un testamento, un libro y luego el capítulo que quieres leer."
+    >
+      {filterLabel && (
+        <div className={classes.filterBadge}>
+          <span>{filterLabel}</span>
+          <button
+            className={classes.clearFilter}
+            onClick={() => navigate('/bible', { replace: true })}
+            aria-label="Quitar filtro"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       {(otBooks.length > 0) && (
-        <section className={classes.section}>
-          <button className={classes.sectionHeader} onClick={() => setIsOtExpanded(!isOtExpanded)}>
-            <h2>Antiguo Testamento</h2>
-            <span>{isOtExpanded ? 'Colapsar' : 'Expandir'}</span>
+      <EditorialPanel as="section" className={`${classes.section} ${classes.oldTestament}`}>
+          <button
+            className={classes.sectionHeader}
+            onClick={() => setIsOtExpanded(!isOtExpanded)}
+            aria-expanded={isOtExpanded}
+          >
+            <span className={classes.sectionMark} aria-hidden="true">AT</span>
+            <span className={classes.sectionCopy}>
+              <span>{otBooks.length} libros</span>
+              <h2>Antiguo Testamento</h2>
+            </span>
+            <span className={classes.sectionAction}>{isOtExpanded ? 'Colapsar' : 'Explorar'} <b aria-hidden="true">→</b></span>
           </button>
           {isOtExpanded && renderBookList(otBooks)}
-        </section>
+        </EditorialPanel>
       )}
 
       {(ntBooks.length > 0) && (
-        <section className={classes.section}>
-          <button className={classes.sectionHeader} onClick={() => setIsNtExpanded(!isNtExpanded)}>
-            <h2>Nuevo Testamento</h2>
-            <span>{isNtExpanded ? 'Colapsar' : 'Expandir'}</span>
+      <EditorialPanel as="section" className={`${classes.section} ${classes.newTestament}`}>
+          <button
+            className={classes.sectionHeader}
+            onClick={() => setIsNtExpanded(!isNtExpanded)}
+            aria-expanded={isNtExpanded}
+          >
+            <span className={classes.sectionMark} aria-hidden="true">NT</span>
+            <span className={classes.sectionCopy}>
+              <span>{ntBooks.length} libros</span>
+              <h2>Nuevo Testamento</h2>
+            </span>
+            <span className={classes.sectionAction}>{isNtExpanded ? 'Colapsar' : 'Explorar'} <b aria-hidden="true">→</b></span>
           </button>
           {isNtExpanded && renderBookList(ntBooks)}
-        </section>
+        </EditorialPanel>
       )}
-    </div>
+    </EditorialPage>
   );
 }
