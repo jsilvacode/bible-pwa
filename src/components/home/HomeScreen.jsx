@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DailyVerse from '../daily/DailyVerse';
 import CategoryGrid from './CategoryGrid';
 import ReadingStreak from './ReadingStreak';
@@ -8,6 +8,66 @@ import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import { useNavigate } from 'react-router-dom';
 import { IconBook, IconChevronRight, IconMoon, IconSearch, IconSun, IconSunrise } from '../ui/Icons';
 import classes from './HomeScreen.module.css';
+
+const HERO_IMAGE_SRC = '/assets/hero-768.webp';
+const HERO_IMAGE_SRC_SET = '/assets/hero-768.webp 768w, /assets/hero-1600.webp 1600w';
+const HERO_IMAGE_SIZES = '(max-width: 768px) 100vw, 1024px';
+
+let heroImageDecoded = false;
+let heroImagePromise;
+
+function preloadHeroImage() {
+  if (heroImageDecoded || typeof Image === 'undefined') return Promise.resolve();
+  if (heroImagePromise) return heroImagePromise;
+
+  const image = new Image();
+  image.srcSet = HERO_IMAGE_SRC_SET;
+  image.sizes = HERO_IMAGE_SIZES;
+
+  heroImagePromise = new Promise((resolve) => {
+    const finish = () => {
+      heroImageDecoded = true;
+      resolve();
+    };
+
+    const decode = async () => {
+      try {
+        await image.decode?.();
+      } catch {
+        // A completed image can reject decode() in some browsers; it is still safe to paint.
+      }
+      finish();
+    };
+
+    image.addEventListener('load', decode, { once: true });
+    image.addEventListener('error', finish, { once: true });
+    image.src = HERO_IMAGE_SRC;
+
+    if (image.complete) decode();
+  });
+
+  return heroImagePromise;
+}
+
+function useHeroImageReady() {
+  const [isReady, setIsReady] = useState(heroImageDecoded);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    preloadHeroImage().then(() => {
+      if (isMounted) setIsReady(true);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  return isReady;
+}
+
+preloadHeroImage();
 
 function formatRelativeTime(timestamp) {
   if (!timestamp) return 'Sin fecha registrada';
@@ -27,6 +87,7 @@ export default function HomeScreen() {
   const { openSearch } = useGlobalSearch();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const isHeroImageReady = useHeroImageReady();
   const now = new Date();
   const hour = now.getHours();
   const greeting = hour < 12 ? 'Buenos días' : hour < 20 ? 'Buenas tardes' : 'Buenas noches';
@@ -56,15 +117,15 @@ export default function HomeScreen() {
 
   return (
     <div className={classes.container}>
-      <div className={classes.topHero}>
+      <div className={`${classes.topHero} ${isHeroImageReady ? classes.heroImageReady : ''}`}>
         <img
           className={classes.heroImage}
-          src="/assets/hero-768.webp"
-          srcSet="/assets/hero-768.webp 768w, /assets/hero-1600.webp 1600w"
-          sizes="(max-width: 768px) 100vw, 1024px"
+          src={HERO_IMAGE_SRC}
+          srcSet={HERO_IMAGE_SRC_SET}
+          sizes={HERO_IMAGE_SIZES}
           alt=""
           aria-hidden="true"
-          fetchpriority="high"
+          fetchPriority="high"
           decoding="async"
         />
         <header className={classes.header}>
