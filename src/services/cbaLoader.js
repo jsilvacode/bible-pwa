@@ -1,6 +1,58 @@
 const chapterCache = new Map();
 const MAX_CHAPTER_CACHE = 8;
 
+function legacyTextToBlocks(text) {
+  return text
+    .replace(/\r/g, '')
+    .split(/\n{2,}/u)
+    .map((paragraph) => paragraph.replace(/\s+/g, ' ').trim())
+    .filter(Boolean)
+    .map((paragraph) => ({ type: 'paragraph', text: paragraph }));
+}
+
+/**
+ * Allows the application to read both the original plain-text files and the
+ * structured CBA entries generated from the verified RTF source.
+ *
+ * @param {unknown} value
+ * @returns {{ blocks: Array<{ type: 'heading' | 'paragraph', text: string }>, review?: string } | null}
+ */
+export function normalizeCbaEntry(value) {
+  if (typeof value === 'string') {
+    const blocks = legacyTextToBlocks(value);
+    return blocks.length > 0 ? { blocks } : null;
+  }
+
+  if (!value || typeof value !== 'object') {
+    return null;
+  }
+
+  const sourceBlocks = Array.isArray(value.blocks) ? value.blocks : value.b;
+  if (!Array.isArray(sourceBlocks)) return null;
+
+  const blocks = sourceBlocks.map((block) => {
+    if (Array.isArray(block)) {
+      const [type, text] = block;
+      return {
+        type: type === 'h' ? 'heading' : 'paragraph',
+        text,
+      };
+    }
+    return block;
+  }).filter((block) => (
+      block
+      && (block.type === 'heading' || block.type === 'paragraph')
+      && typeof block.text === 'string'
+      && block.text.trim().length > 0
+    ));
+
+  return {
+    blocks,
+    ...(typeof value.review === 'string' ? { review: value.review } : {}),
+    ...(typeof value.r === 'string' ? { review: value.r } : {}),
+  };
+}
+
 /**
  * @param {unknown} value
  * @returns {number | null}
@@ -15,7 +67,7 @@ function sanitizeNumericId(value) {
  * @param {number | string} bookId
  * @param {number | string} chapter
  * @param {{ signal?: AbortSignal }} [options]
- * @returns {Promise<Record<string, string>>}
+ * @returns {Promise<Record<string, unknown>>}
  */
 export async function loadCbaChapter(bookId, chapter, options = {}) {
   const bookNum = sanitizeNumericId(bookId);
@@ -55,9 +107,9 @@ export async function loadCbaChapter(bookId, chapter, options = {}) {
  * @param {number | string} chapter
  * @param {number | string} verse
  * @param {{ signal?: AbortSignal }} [options]
- * @returns {Promise<string | null>}
+ * @returns {Promise<{ blocks: Array<{ type: 'heading' | 'paragraph', text: string }>, review?: string } | null>}
  */
 export async function loadCbaVerse(bookId, chapter, verse, options = {}) {
   const chapterData = await loadCbaChapter(bookId, chapter, options);
-  return chapterData[String(verse)] ?? null;
+  return normalizeCbaEntry(chapterData[String(verse)]);
 }

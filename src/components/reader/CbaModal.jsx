@@ -5,7 +5,7 @@ import { useModalDismiss } from '../../hooks/useModalDismiss';
 import classes from './CbaModal.module.css';
 
 export default function CbaModal({ isOpen, onClose, bookId, chapter, verse, bookName }) {
-  const [content, setContent] = useState('');
+  const [commentary, setCommentary] = useState(null);
   const [loading, setLoading] = useState(false);
   const modalRef = useRef(null);
 
@@ -21,15 +21,16 @@ export default function CbaModal({ isOpen, onClose, bookId, chapter, verse, book
 
     async function fetchCba() {
       setLoading(true);
+      setCommentary(null);
       try {
-        const commentary = await loadCbaVerse(bookId, chapter, verse, {
+        const entry = await loadCbaVerse(bookId, chapter, verse, {
           signal: controller.signal,
         });
-        setContent(commentary || 'No hay un comentario específico para este versículo.');
+        setCommentary(entry);
       } catch (err) {
         if (err.name === 'AbortError') return;
         console.error('Error fetching CBA', err);
-        setContent('Error al cargar el comentario.');
+        setCommentary({ review: 'load-error', blocks: [] });
       } finally {
         if (!controller.signal.aborted) {
           setLoading(false);
@@ -68,11 +69,23 @@ export default function CbaModal({ isOpen, onClose, bookId, chapter, verse, book
         <div className={classes.body}>
           {loading ? (
             <div className={classes.loading}>Cargando comentario...</div>
-          ) : (
+          ) : commentary?.blocks?.length ? (
             <div className={classes.content}>
-              {content.split('\n\n').map((para, i) => (
-                <p key={i}>{para}</p>
+              {commentary.blocks.map((block, index) => (
+                block.type === 'heading' ? (
+                  <h4 key={`${block.text}-${index}`}>{block.text}</h4>
+                ) : (
+                  <p key={`${block.text.slice(0, 40)}-${index}`}>{block.text}</p>
+                )
               ))}
+            </div>
+          ) : (
+            <div className={classes.empty} role="status">
+              {commentary?.review === 'source-unavailable'
+                ? 'Este comentario está en revisión editorial para preservar la fidelidad del texto.'
+                : commentary?.review === 'load-error'
+                  ? 'No fue posible cargar el comentario. Inténtalo nuevamente.'
+                  : 'No hay un comentario específico para este versículo.'}
             </div>
           )}
         </div>

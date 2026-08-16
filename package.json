@@ -16,7 +16,8 @@
     "preview": "vite preview",
     "audit:deps": "npm audit --audit-level=high",
     "split:bible": "node scripts/split-bible-by-chapter.js",
-    "split:cba": "node scripts/split-cba-by-chapter.js"
+    "split:cba": "node scripts/split-cba-by-chapter.js",
+    "import:cba": "node scripts/import-cba-twm.js"
   },
   "dependencies": {
     "@vercel/analytics": "2.0.1",
