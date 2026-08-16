@@ -1,12 +1,12 @@
 import { createContext, createElement, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { DEFAULT_VERSION, normalizeVersionId } from '../constants/bibleVersions';
-import { warmupBibleData } from '../services/bibleLoader';
 
 const SETTINGS_KEY = 'bible_settings';
 const RECENT_KEY = 'bible_recent';
 const LOG_KEY = 'bible_reading_log';
 const VERSION_DEFAULT_REVISION = 2;
 const READING_LOG_RETENTION_DAYS = 365;
+const MAX_RECENT_READS = 6;
 
 /** @typedef {"light" | "dark"} Theme */
 
@@ -181,7 +181,7 @@ function normalizeRecent(list) {
       ts: Number(item?.ts) || Date.now(),
     });
 
-    if (normalized.length >= 5) break;
+    if (normalized.length >= MAX_RECENT_READS) break;
   }
 
   return normalized;
@@ -221,34 +221,6 @@ export function SettingsProvider({ children }) {
       }
       return next;
     });
-  }, []);
-
-  useEffect(() => {
-    if (import.meta.env.MODE === 'test') return;
-
-    const warmCache = () => {
-      warmupBibleData({
-        version: settings.version,
-        bookId: settings.lastRead?.book,
-        chapter: settings.lastRead?.chapter,
-      }).catch(() => {
-        /* prefetch is best-effort */
-      });
-    };
-
-    let timerId;
-    let idleId;
-    if ('requestIdleCallback' in window) {
-      idleId = window.requestIdleCallback(warmCache, { timeout: 2500 });
-    } else {
-      timerId = window.setTimeout(warmCache, 1200);
-    }
-
-    return () => {
-      if (idleId) window.cancelIdleCallback(idleId);
-      if (timerId) window.clearTimeout(timerId);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- warm cache once on mount
   }, []);
 
   const addRecent = useCallback((book, chapter) => {

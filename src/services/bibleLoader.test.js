@@ -10,6 +10,7 @@ function makeJsonResponse(body, ok = true) {
 describe('bibleLoader', () => {
   let fetchBooksManifestFn;
   let loadBibleBookFn;
+  let loadBibleChapterFn;
   let resolveVersionIdFn;
 
   beforeEach(async () => {
@@ -18,6 +19,7 @@ describe('bibleLoader', () => {
     const module = await import('./bibleLoader');
     fetchBooksManifestFn = module.fetchBooksManifest;
     loadBibleBookFn = module.loadBibleBook;
+    loadBibleChapterFn = module.loadBibleChapter;
     resolveVersionIdFn = module.resolveVersionId;
   });
 
@@ -93,6 +95,34 @@ describe('bibleLoader', () => {
 
     expect(first).toBe(second);
     expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+
+  it('loads and caches only one chapter payload', async () => {
+    const fetchMock = vi.fn(async (url) => {
+      if (url === '/data/books.json') {
+        return makeJsonResponse([{ id: 1, file: '01_genesis', name: 'Génesis', chapters: 50 }]);
+      }
+      if (url === '/data/versions.json') {
+        return makeJsonResponse([{ id: 'nbla', available: true }]);
+      }
+      if (url === '/data/nbla/01_genesis/3.json') {
+        return makeJsonResponse([{ verse: 1, text: 'Y dijo Dios' }]);
+      }
+      throw new Error(`Unexpected URL: ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const first = await loadBibleChapterFn('nbla', 1, 3);
+    const second = await loadBibleChapterFn('nbla', 1, 3);
+
+    expect(first).toEqual(second);
+    expect(first.name).toBe('Génesis');
+    expect(first.chapterCount).toBe(50);
+    expect(first.chapters).toEqual([
+      { chapter: 3, verses: [{ verse: 1, text: 'Y dijo Dios' }] },
+    ]);
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(fetchMock).toHaveBeenCalledWith('/data/nbla/01_genesis/3.json', {});
   });
 
   it('migrates legacy rvr60 to rva2015 when loading', async () => {

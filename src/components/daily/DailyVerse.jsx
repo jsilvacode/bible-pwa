@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSettings } from '../../hooks/useSettings';
 import { useToast } from '../../hooks/useToast';
-import { loadBibleBook } from '../../services/bibleLoader';
+import { loadBibleChapter } from '../../services/bibleLoader';
 import { shareVerse } from '../../utils/shareVerse';
 import { buildVerseShareUrl } from '../../utils/verseCopy';
 import classes from './DailyVerse.module.css';
@@ -36,7 +36,7 @@ export default function DailyVerse({ variant = 'hero', children }) {
 
     async function loadContent() {
       try {
-        const bookData = await loadBibleBook(settings.version, dailyRef.book, {
+        const bookData = await loadBibleChapter(settings.version, dailyRef.book, dailyRef.chapter, {
           signal: controller.signal,
         });
 

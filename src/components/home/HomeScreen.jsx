@@ -45,6 +45,9 @@ export default function HomeScreen() {
     String(now.getMonth() + 1).padStart(2, '0'),
     String(now.getDate()).padStart(2, '0'),
   ].join('-');
+  const latest = recent[0];
+  const latestBookName = latest ? bookNames[latest.book] || `Libro ${latest.book}` : '';
+  const previousReads = recent.slice(1, 6);
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -54,6 +57,16 @@ export default function HomeScreen() {
   return (
     <div className={classes.container}>
       <div className={classes.topHero}>
+        <img
+          className={classes.heroImage}
+          src="/assets/hero-768.webp"
+          srcSet="/assets/hero-768.webp 768w, /assets/hero-1600.webp 1600w"
+          sizes="(max-width: 768px) 100vw, 1024px"
+          alt=""
+          aria-hidden="true"
+          fetchpriority="high"
+          decoding="async"
+        />
         <header className={classes.header}>
           <div className={classes.headerTop}>
             <div className={classes.greetingGroup}>
@@ -117,62 +130,58 @@ export default function HomeScreen() {
             </div>
           </div>
 
-          {recent.length > 0 ? (
-            <>
-              {(() => {
-                const latest = recent[0];
-                const latestBookName = bookNames[latest.book] || `Libro ${latest.book}`;
+          {latest ? (
+            <div className={classes.recentPanel}>
+              <button
+                type="button"
+                className={classes.recentHero}
+                onClick={() => navigate(`/read/${latest.book}/${latest.chapter}`)}
+                aria-label={`Continuar leyendo ${latestBookName}, capítulo ${latest.chapter}`}
+              >
+                <span className={classes.recentHeroIcon} aria-hidden="true">
+                  <IconBook size={25} />
+                </span>
+                <span className={classes.recentHeroContent}>
+                  <span className={classes.recentHeroEyebrow}>Última lectura</span>
+                  <strong className={classes.recentHeroBook}>{latestBookName}</strong>
+                  <span className={classes.recentHeroChapter}>
+                    Capítulo {latest.chapter} · {formatRelativeTime(latest.ts)}
+                  </span>
+                </span>
+                <span className={classes.recentHeroCta}>
+                  Continuar
+                  <IconChevronRight size={18} />
+                </span>
+              </button>
 
-                return (
-                  <button
-                    type="button"
-                    className={classes.recentHero}
-                    onClick={() => navigate(`/read/${latest.book}/${latest.chapter}`)}
-                    aria-label={`Continuar leyendo ${latestBookName}, capítulo ${latest.chapter}`}
-                  >
-                    <span className={classes.recentHeroIcon} aria-hidden="true">
-                      <IconBook size={25} />
-                    </span>
-                    <span className={classes.recentHeroContent}>
-                      <span className={classes.recentHeroEyebrow}>Última lectura</span>
-                      <strong className={classes.recentHeroBook}>{latestBookName}</strong>
-                      <span className={classes.recentHeroChapter}>
-                        Capítulo {latest.chapter} · {formatRelativeTime(latest.ts)}
-                      </span>
-                    </span>
-                    <span className={classes.recentHeroCta}>
-                      Continuar
-                      <IconChevronRight size={18} />
-                    </span>
-                  </button>
-                );
-              })()}
-
-              {recent.length > 1 && (
-                <div className={classes.recentTrail} aria-label="Últimas lecturas">
-                  {recent.slice(1).map((r) => {
-                    const bookName = bookNames[r.book] || `Libro ${r.book}`;
-                    return (
-                      <button
-                        key={`${r.book}-${r.chapter}`}
-                        type="button"
-                        className={classes.recentItem}
-                        onClick={() => navigate(`/read/${r.book}/${r.chapter}`)}
-                        aria-label={`Abrir ${bookName}, capítulo ${r.chapter}, ${formatRelativeTime(r.ts)}`}
-                      >
-                        <span className={classes.recentItemMarker} aria-hidden="true" />
-                        <span className={classes.recentItemContent}>
-                          <strong>{bookName}</strong>
-                          <span>Capítulo {r.chapter}</span>
-                          <small>{formatRelativeTime(r.ts)}</small>
-                        </span>
-                        <IconChevronRight size={17} aria-hidden="true" />
-                      </button>
-                    );
-                  })}
+              {previousReads.length > 0 && (
+                <div className={classes.recentHistory} aria-label="Lecturas anteriores">
+                  <h4 className={classes.recentHistoryTitle}>Lecturas anteriores</h4>
+                  <div className={classes.recentTrail}>
+                    {previousReads.map((r) => {
+                      const bookName = bookNames[r.book] || `Libro ${r.book}`;
+                      return (
+                        <button
+                          key={`${r.book}-${r.chapter}`}
+                          type="button"
+                          className={classes.recentItem}
+                          onClick={() => navigate(`/read/${r.book}/${r.chapter}`)}
+                          aria-label={`Abrir ${bookName}, capítulo ${r.chapter}, ${formatRelativeTime(r.ts)}`}
+                        >
+                          <span className={classes.recentItemMarker} aria-hidden="true" />
+                          <span className={classes.recentItemContent}>
+                            <strong>{bookName}</strong>
+                            <span>Capítulo {r.chapter}</span>
+                            <small>{formatRelativeTime(r.ts)}</small>
+                          </span>
+                          <IconChevronRight size={17} aria-hidden="true" />
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
-            </>
+            </div>
           ) : (
             <div className={classes.recentEmpty}>
               <span className={classes.recentEmptyIcon} aria-hidden="true">
