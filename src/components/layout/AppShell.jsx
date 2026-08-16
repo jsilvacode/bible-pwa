@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import TopBar from './TopBar';
 import BottomNav from './BottomNav';
@@ -17,6 +17,16 @@ export default function AppShell() {
   const { isOpen, initialQuery, requestId, closeSearch } = useGlobalSearch();
   const hideChrome = isReaderActive && chromeHidden;
   const showFooter = location.pathname === '/' || location.pathname === '/settings';
+
+  useEffect(() => {
+    if (location.pathname !== '/' || location.hash !== '#donar') return undefined;
+
+    const frameId = window.requestAnimationFrame(() => {
+      document.getElementById('donar')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [location.hash, location.pathname]);
 
   return (
     <div className={classes.appShell}>

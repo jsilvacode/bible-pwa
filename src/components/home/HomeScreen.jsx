@@ -5,8 +5,9 @@ import ReadingStreak from './ReadingStreak';
 import { useRecentReads } from '../../hooks/useSettings';
 import { useBookNames } from '../../hooks/useBookNames';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
+import { useCompactLayout } from '../../hooks/useCompactLayout';
 import { useNavigate } from 'react-router-dom';
-import { IconBook, IconChevronRight, IconMoon, IconSearch, IconSun, IconSunrise } from '../ui/Icons';
+import { IconBook, IconChevronDown, IconChevronRight, IconMoon, IconSearch, IconSun, IconSunrise } from '../ui/Icons';
 import classes from './HomeScreen.module.css';
 
 const HERO_IMAGE_SRC = '/assets/hero-768.webp';
@@ -87,7 +88,9 @@ export default function HomeScreen() {
   const { openSearch } = useGlobalSearch();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const [historyOpen, setHistoryOpen] = useState(false);
   const isHeroImageReady = useHeroImageReady();
+  const isCompactLayout = useCompactLayout();
   const now = new Date();
   const hour = now.getHours();
   const greeting = hour < 12 ? 'Buenos días' : hour < 20 ? 'Buenas tardes' : 'Buenas noches';
@@ -109,6 +112,7 @@ export default function HomeScreen() {
   const latest = recent[0];
   const latestBookName = latest ? bookNames[latest.book] || `Libro ${latest.book}` : '';
   const previousReads = recent.slice(1, 6);
+  const showPreviousReads = !isCompactLayout || historyOpen;
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -217,29 +221,48 @@ export default function HomeScreen() {
 
               {previousReads.length > 0 && (
                 <div className={classes.recentHistory} aria-label="Lecturas anteriores">
-                  <h4 className={classes.recentHistoryTitle}>Lecturas anteriores</h4>
-                  <div className={classes.recentTrail}>
-                    {previousReads.map((r) => {
-                      const bookName = bookNames[r.book] || `Libro ${r.book}`;
-                      return (
-                        <button
-                          key={`${r.book}-${r.chapter}`}
-                          type="button"
-                          className={classes.recentItem}
-                          onClick={() => navigate(`/read/${r.book}/${r.chapter}`)}
-                          aria-label={`Abrir ${bookName}, capítulo ${r.chapter}, ${formatRelativeTime(r.ts)}`}
-                        >
-                          <span className={classes.recentItemMarker} aria-hidden="true" />
-                          <span className={classes.recentItemContent}>
-                            <strong>{bookName}</strong>
-                            <span>Capítulo {r.chapter}</span>
-                            <small>{formatRelativeTime(r.ts)}</small>
-                          </span>
-                          <IconChevronRight size={17} aria-hidden="true" />
-                        </button>
-                      );
-                    })}
-                  </div>
+                  {isCompactLayout ? (
+                    <button
+                      type="button"
+                      className={`${classes.historyToggle} ${historyOpen ? classes.historyToggleOpen : ''}`}
+                      aria-expanded={historyOpen}
+                      aria-controls="recent-history-list"
+                      onClick={() => setHistoryOpen((open) => !open)}
+                    >
+                      <span>Lecturas anteriores</span>
+                      <span className={classes.historyToggleMeta}>
+                        {previousReads.length}
+                        <IconChevronDown size={16} aria-hidden="true" />
+                      </span>
+                    </button>
+                  ) : (
+                    <h4 className={classes.recentHistoryTitle}>Lecturas anteriores</h4>
+                  )}
+
+                  {showPreviousReads && (
+                    <div id="recent-history-list" className={classes.recentTrail}>
+                      {previousReads.map((r) => {
+                        const bookName = bookNames[r.book] || `Libro ${r.book}`;
+                        return (
+                          <button
+                            key={`${r.book}-${r.chapter}`}
+                            type="button"
+                            className={classes.recentItem}
+                            onClick={() => navigate(`/read/${r.book}/${r.chapter}`)}
+                            aria-label={`Abrir ${bookName}, capítulo ${r.chapter}, ${formatRelativeTime(r.ts)}`}
+                          >
+                            <span className={classes.recentItemMarker} aria-hidden="true" />
+                            <span className={classes.recentItemContent}>
+                              <strong>{bookName}</strong>
+                              <span>Capítulo {r.chapter}</span>
+                              <small>{formatRelativeTime(r.ts)}</small>
+                            </span>
+                            <IconChevronRight size={17} aria-hidden="true" />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
