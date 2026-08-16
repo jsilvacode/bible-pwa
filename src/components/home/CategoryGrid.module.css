@@ -1,9 +1,85 @@
+.explorer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  padding: 15px;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  border-radius: var(--radius-2xl);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent) 11%, transparent), transparent 30%),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent) 4%, var(--bg-surface)), color-mix(in srgb, var(--accent) 1%, var(--bg-surface)));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--bg-surface) 54%, transparent), 0 12px 28px color-mix(in srgb, var(--abyss) 5%, transparent);
+}
+
+.atlasMark {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: color-mix(in srgb, var(--accent) 76%, var(--text-secondary));
+  font-family: var(--font-ui);
+  pointer-events: none;
+}
+
+.atlasMark svg {
+  opacity: 0.78;
+}
+
+.atlasMark strong {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  line-height: 1;
+}
+
+.atlasMark span {
+  font-size: 0.55rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.groupLabel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 20px;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.64rem;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.groupLabel span {
+  max-width: calc(100% - 74px);
+}
+
+.groupLabel i {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 25%, var(--border)), transparent);
+}
+
+.collectionLabel {
+  margin-top: 16px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  margin-top: 18px;
-  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
 }
 
 .card {
@@ -24,7 +100,7 @@
   min-height: 108px;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(145deg, color-mix(in srgb, var(--card-wash) 72%, var(--bg-surface)), var(--bg-surface));
+  background: linear-gradient(145deg, color-mix(in srgb, var(--card-wash) 48%, var(--bg-surface)), var(--bg-surface));
   color: var(--text-primary);
   box-shadow: var(--shadow-soft);
 }
@@ -81,7 +157,7 @@
   grid-template-columns: auto minmax(0, 1fr) auto;
   grid-template-rows: auto;
   column-gap: 15px;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--card-wash) 78%, var(--bg-surface)), var(--bg-surface));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--card-wash) 58%, var(--bg-surface)), var(--bg-surface));
 }
 
 .testamentCard .cardAction {
@@ -138,7 +214,7 @@
 
 .name {
   font-family: var(--font-ui);
-  font-weight: 700;
+  font-weight: 760;
   font-size: 0.92rem;
   color: var(--text-primary);
   line-height: 1.2;
@@ -205,8 +281,16 @@
 @media (max-width: 599px) {
   .grid {
     gap: 10px;
+  }
+
+  .explorer {
     margin-top: 14px;
     margin-bottom: 20px;
+    padding: 13px;
+  }
+
+  .collectionLabel {
+    margin-top: 14px;
   }
 
   .card {
@@ -231,6 +315,15 @@
     height: 42px;
     font-size: 1.3rem;
   }
+
+  .name {
+    font-size: 0.9rem;
+  }
+
+  .count {
+    font-size: 0.73rem;
+    font-weight: 600;
+  }
 }
 
 @media (max-width: 420px) {
@@ -248,10 +341,10 @@
   }
 
   .name {
-    font-size: 0.84rem;
+    font-size: 0.87rem;
   }
 
   .cardAction {
-    font-size: 0.64rem;
+    font-size: 0.67rem;
   }
 }

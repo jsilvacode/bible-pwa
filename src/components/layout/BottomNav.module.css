@@ -74,11 +74,69 @@
 }
 
 .donateLink {
-  color: var(--accent) !important;
+  isolation: isolate;
+  color: #c52e36 !important;
+}
+
+.donateLink::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 4px;
+  left: 50%;
+  width: 42px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(213, 45, 54, 0.3), rgba(213, 45, 54, 0.08) 46%, transparent 72%);
+  filter: blur(1px);
+  pointer-events: none;
+  transform: translateX(-50%) scale(0.92);
+  animation: donateBeacon 2.8s ease-in-out infinite;
+}
+
+.donateLink .icon,
+.donateLink .label {
+  position: relative;
+  z-index: 1;
 }
 
 .donateLink .icon {
-  stroke-width: 2.35;
+  color: #c52e36;
+  stroke-width: 2.7;
+  filter: drop-shadow(0 3px 4px rgba(167, 29, 38, 0.26));
+}
+
+.donateLink .label {
+  color: #b4262e;
+  text-shadow: 0 1px 8px rgba(197, 46, 54, 0.14);
+}
+
+.donateLink:hover .icon {
+  transform: translateY(-2px) scale(1.12);
+}
+
+.donateLink:focus-visible {
+  outline: none;
+  border-radius: 12px;
+  box-shadow: var(--focus-ring);
+}
+
+@keyframes donateBeacon {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .donateLink::before {
+    animation: none;
+  }
 }
 
 @media (max-width: 420px) {

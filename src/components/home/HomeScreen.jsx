@@ -177,10 +177,9 @@ export default function HomeScreen() {
       </div>
 
       <div className={classes.bottomSheet}>
-        <section className={`${classes.section} ${classes.firstSection}`}>
-          <div className={classes.sectionHeading}>
-            <span className={classes.sectionKicker}>Explora las Escrituras</span>
-            <h3 className={classes.sectionTitle}>Navegar la Biblia</h3>
+        <section className={`${classes.section} ${classes.firstSection}`} aria-labelledby="explore-scriptures-title">
+          <div className={`${classes.sectionHeading} ${classes.exploreHeading}`}>
+            <h2 id="explore-scriptures-title" className={classes.sectionTitle}>Explora las Escrituras</h2>
             <p>Encuentra un testamento, género o colección para comenzar.</p>
           </div>
           <CategoryGrid />
@@ -188,11 +187,8 @@ export default function HomeScreen() {
 
         <section className={`${classes.section} ${classes.recentSection}`} aria-labelledby="continue-reading-title">
           <div className={classes.sectionHeading}>
-            <div>
-              <span className={classes.sectionKicker}>Tu camino de lectura</span>
-              <h3 id="continue-reading-title" className={classes.sectionTitle}>Continúa tu camino</h3>
-              <p>Retoma una lectura y vuelve al ritmo que habías comenzado.</p>
-            </div>
+            <h2 id="continue-reading-title" className={classes.sectionTitle}>Tu camino de lectura</h2>
+            <p>Retoma una lectura y vuelve al ritmo que habías comenzado.</p>
           </div>
 
           {latest ? (
