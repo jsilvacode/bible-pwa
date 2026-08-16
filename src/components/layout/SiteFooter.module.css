@@ -1,14 +1,14 @@
 .footer {
-  margin-top: 10px;
+  margin-top: clamp(44px, 6vw, 68px);
   padding: 0 var(--page-gutter) calc(26px + env(safe-area-inset-bottom));
 }
 
 .support {
   position: relative;
   isolation: isolate;
-  max-width: var(--max-width-reader);
+  width: min(100%, 960px);
   margin: 0 auto 27px;
-  padding: clamp(25px, 5vw, 36px);
+  padding: clamp(32px, 4vw, 44px) clamp(24px, 4vw, 38px) clamp(28px, 4vw, 38px);
   overflow: hidden;
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-2xl);
@@ -16,6 +16,10 @@
     radial-gradient(circle at 100% 8%, var(--surface-ornament), transparent 31%),
     var(--surface-panel);
   box-shadow: var(--shadow-panel), inset 0 1px 0 color-mix(in srgb, var(--bg-surface) 48%, transparent);
+}
+
+.support:focus {
+  outline: none;
 }
 
 .support::after {
@@ -166,6 +170,6 @@
 
 @media (max-width: 420px) {
   .support {
-    padding: 24px 20px;
+    padding: 30px 20px 26px;
   }
 }
