@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { startTransition, useRef, useState, useCallback, useEffect } from 'react';
 import { fetchBooksManifest, loadBibleBook, resolveVersionId } from '../services/bibleLoader';
 import { searchIndex } from '../utils/searchIndex';
 import { matchesWholeTerms } from '../utils/searchText';
@@ -75,8 +75,10 @@ export function useSearch(version) {
     }
 
     if (requestId === requestIdRef.current) {
-      setResults(matches);
-      setTruncated(wasTruncated);
+      startTransition(() => {
+        setResults(matches);
+        setTruncated(wasTruncated);
+      });
       setLoading(false);
     }
   }, []);
@@ -111,8 +113,10 @@ export function useSearch(version) {
           if (!msg || msg.requestId !== requestIdRef.current) return;
 
           if (msg.type === 'done') {
-            setResults(msg.matches);
-            setTruncated(Boolean(msg.truncated));
+            startTransition(() => {
+              setResults(msg.matches);
+              setTruncated(Boolean(msg.truncated));
+            });
             setLoading(false);
           } else if (msg.type === 'error') {
             console.error('Error en worker de búsqueda:', msg.message);

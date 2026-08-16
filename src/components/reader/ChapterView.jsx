@@ -10,11 +10,18 @@ import VerseMenu from './VerseMenu';
 import SkeletonChapter from './SkeletonChapter';
 import ReaderFAB from './ReaderFAB';
 import classes from './ChapterView.module.css';
-import { fetchBooksManifest, getBookChapterCount, getBookName, getTotalBooks } from '../../services/bibleLoader';
+import { fetchBooksManifest, getBookChapterCount, getBookName, getTotalBooks, loadBibleChapter } from '../../services/bibleLoader';
 import { validateReadRoute, validateVerseParam } from '../../utils/routeValidation';
 import { buildVerseReference, buildCopyText, buildCopyHtml, buildVerseShareUrl } from '../../utils/verseCopy';
 
 const CbaModal = lazy(() => import('./CbaModal'));
+
+function canPrefetchChapter() {
+  if (typeof navigator === 'undefined' || navigator.onLine === false) return false;
+
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  return !connection?.saveData && !['slow-2g', '2g'].includes(connection?.effectiveType);
+}
 
 export default function ChapterView() {
   const { book: bookId, chapter: chapterNum, verse: targetVerse } = useParams();
@@ -127,6 +134,34 @@ export default function ChapterView() {
       }
     }
   }, [bookId_, chapterNum_, loading, bibleBook, bibleChapter, targetVerse, addRecent, updateSettings, location.search, routeValid]);
+
+  useEffect(() => {
+    if (loading || !bibleChapter || !routeValid?.valid || !canPrefetchChapter()) return undefined;
+
+    const chapterCount = getBookChapterCount(bookId_) || bibleBook?.chapterCount || 0;
+    const totalBooks = getTotalBooks();
+    const nextTarget = chapterNum_ < chapterCount
+      ? { book: bookId_, chapter: chapterNum_ + 1 }
+      : bookId_ < totalBooks
+        ? { book: bookId_ + 1, chapter: 1 }
+        : null;
+
+    if (!nextTarget) return undefined;
+
+    const prefetch = () => {
+      loadBibleChapter(settings.version, nextTarget.book, nextTarget.chapter).catch(() => {
+        // La navegación seguirá cargando normalmente si el precalentamiento no está disponible.
+      });
+    };
+
+    if ('requestIdleCallback' in window) {
+      const idleId = window.requestIdleCallback(prefetch, { timeout: 1800 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+
+    const timeoutId = window.setTimeout(prefetch, 450);
+    return () => window.clearTimeout(timeoutId);
+  }, [bibleBook, bibleChapter, bookId_, chapterNum_, loading, routeValid, settings.version]);
 
   useEffect(() => {
     const updateScrollState = () => {
