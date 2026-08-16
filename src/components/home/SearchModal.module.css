@@ -339,6 +339,8 @@
 
 .resultItem {
   width: 100%;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 132px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
@@ -407,6 +409,14 @@
 
 .resultItem:hover .resultArrow {
   transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    background: color-mix(in srgb, var(--abyss) 82%, transparent);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 .resultLimit {
