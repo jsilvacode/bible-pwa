@@ -7,7 +7,9 @@
 
 .topHero {
   flex-shrink: 0;
-  background: var(--bg-page);
+  background:
+    radial-gradient(circle at 72% 10%, rgba(133, 92, 54, 0.6), transparent 42%),
+    linear-gradient(145deg, #583b2a 0%, #332117 53%, #1e130e 100%);
   color: var(--text-primary);
   padding: 24px 20px 80px;
   position: relative;
@@ -47,11 +49,23 @@
   object-fit: cover;
   object-position: center;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease-out;
+}
+
+.heroImageReady .heroImage {
+  opacity: 1;
 }
 
 .topHero > *:not(.heroImage) {
   position: relative;
   z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroImage {
+    transition: none;
+  }
 }
 
 .bottomSheet {
