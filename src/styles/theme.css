@@ -34,6 +34,12 @@
   --shadow-soft: 0 8px 18px color-mix(in srgb, var(--abyss) 12%, transparent);
   --shadow-card: 0 10px 24px color-mix(in srgb, var(--abyss) 16%, transparent);
   --shadow-card-hover: 0 14px 30px color-mix(in srgb, var(--abyss) 22%, transparent);
+  --surface-panel: linear-gradient(180deg, color-mix(in srgb, var(--accent) 6%, var(--bg-surface)) 0%, var(--bg-surface) 100%);
+  --surface-quiet: linear-gradient(180deg, color-mix(in srgb, var(--accent) 2%, var(--bg-surface)), var(--bg-surface));
+  --surface-ornament: color-mix(in srgb, var(--accent) 10%, transparent);
+  --border-soft: color-mix(in srgb, var(--accent) 17%, var(--border));
+  --border-emphasis: color-mix(in srgb, var(--accent) 38%, var(--border));
+  --shadow-panel: 0 18px 34px color-mix(in srgb, var(--abyss) 9%, transparent);
   --highlight-red: rgba(150, 42, 42, 0.25);
   --highlight-gold: rgba(184, 134, 61, 0.25);
   --highlight-blue: rgba(70, 90, 140, 0.25);
@@ -67,6 +73,12 @@
   --text-verse-num: var(--burgundy);
   --accent: var(--crimson);
   --border: #c8b8b1;
+  --surface-panel: linear-gradient(180deg, color-mix(in srgb, var(--accent) 6%, var(--bg-surface)) 0%, var(--bg-surface) 100%);
+  --surface-quiet: linear-gradient(180deg, color-mix(in srgb, var(--accent) 2%, var(--bg-surface)), var(--bg-surface));
+  --surface-ornament: color-mix(in srgb, var(--accent) 10%, transparent);
+  --border-soft: color-mix(in srgb, var(--accent) 17%, var(--border));
+  --border-emphasis: color-mix(in srgb, var(--accent) 38%, var(--border));
+  --shadow-panel: 0 18px 34px color-mix(in srgb, var(--abyss) 9%, transparent);
   /* Dust theme: warm pastel for hero */
   --hero-gradient: linear-gradient(135deg, #F9F3EA 0%, #E8DCC2 100%);
   --hero-text: var(--text-light);
@@ -93,6 +105,12 @@
   --text-verse-num: #d4b3a8;
   --accent: var(--terra);
   --border: #5a4a46;
+  --surface-panel: linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, var(--bg-surface)) 0%, var(--bg-surface) 100%);
+  --surface-quiet: linear-gradient(180deg, color-mix(in srgb, var(--accent) 5%, var(--bg-surface)), var(--bg-surface));
+  --surface-ornament: color-mix(in srgb, var(--accent) 15%, transparent);
+  --border-soft: color-mix(in srgb, var(--accent) 24%, var(--border));
+  --border-emphasis: color-mix(in srgb, var(--accent) 48%, var(--border));
+  --shadow-panel: 0 18px 34px color-mix(in srgb, var(--abyss) 28%, transparent);
   /* Noir theme: warm amber/sienna tones — cohesive with sepia/terra palette */
   --hero-gradient: linear-gradient(135deg, #4a3018 0%, #2a1a08 100%);
   --hero-text: #f5eded;

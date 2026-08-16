@@ -1,94 +1,171 @@
 .footer {
-  margin-top: 48px;
-  padding: 32px 20px calc(24px + env(safe-area-inset-bottom));
-  border-top: 1px solid var(--border);
-  background: var(--bg-surface);
+  margin-top: 10px;
+  padding: 0 var(--page-gutter) calc(26px + env(safe-area-inset-bottom));
 }
 
 .support {
+  position: relative;
+  isolation: isolate;
   max-width: var(--max-width-reader);
-  margin: 0 auto 28px;
+  margin: 0 auto 27px;
+  padding: clamp(25px, 5vw, 36px);
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-2xl);
+  background:
+    radial-gradient(circle at 100% 8%, var(--surface-ornament), transparent 31%),
+    var(--surface-panel);
+  box-shadow: var(--shadow-panel), inset 0 1px 0 color-mix(in srgb, var(--bg-surface) 48%, transparent);
+}
+
+.support::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  right: -72px;
+  bottom: -100px;
+  width: 208px;
+  height: 208px;
+  border: 1px solid color-mix(in srgb, var(--accent) 15%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 22px color-mix(in srgb, var(--accent) 4%, transparent), 0 0 0 44px color-mix(in srgb, var(--accent) 2%, transparent);
+}
+
+.supportEyebrow {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-family: var(--font-ui);
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.supportHeading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.supportIcon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, var(--border));
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--accent) 9%, var(--bg-surface));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 20%, transparent);
+  color: var(--accent);
 }
 
 .supportTitle {
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  letter-spacing: 0.1em;
-  margin-bottom: 12px;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.48rem, 4vw, 1.85rem);
+  letter-spacing: -0.025em;
+  line-height: 1;
 }
 
 .supportText {
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
+  max-width: 530px;
+  margin: 15px 0 21px;
   color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 16px;
+  font-family: var(--font-ui);
+  font-size: 0.91rem;
+  line-height: 1.58;
 }
 
 .donationActions {
-  display: flex;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .mpBtn,
 .ppBtn {
-  flex: 1;
-  text-align: center;
-  padding: 14px;
+  display: flex;
+  min-height: 68px;
+  padding: 13px 14px;
+  border: 1px solid color-mix(in srgb, #ffffff 26%, transparent);
   border-radius: var(--radius-lg);
-  font-family: var(--font-ui);
-  font-weight: 700;
+  color: #ffffff;
+  flex-direction: column;
+  justify-content: center;
   text-decoration: none;
-  font-size: 0.9rem;
-  color: white;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 
 .mpBtn:hover,
 .ppBtn:hover {
-  transform: translateY(-1px);
-  opacity: 0.92;
+  filter: saturate(1.06);
+  transform: translateY(-2px);
+}
+
+.mpBtn span,
+.ppBtn span {
+  font-family: var(--font-ui);
+  font-size: 0.91rem;
+  font-weight: 850;
+}
+
+.mpBtn small,
+.ppBtn small {
+  margin-top: 3px;
+  opacity: 0.83;
+  font-family: var(--font-ui);
+  font-size: 0.66rem;
+  font-weight: 600;
 }
 
 .mpBtn {
-  background: #009ee3;
+  background: linear-gradient(145deg, #19b4f2, #008acf);
+  box-shadow: 0 8px 17px rgba(0, 158, 227, 0.22);
 }
 
 .ppBtn {
-  background: #003087;
+  background: linear-gradient(145deg, #1147ad, #002778);
+  box-shadow: 0 8px 17px rgba(0, 48, 135, 0.22);
 }
 
 .copy {
   max-width: var(--max-width-reader);
   margin: 0 auto;
-  text-align: center;
+  padding-bottom: 4px;
   color: var(--text-secondary);
   font-family: var(--font-ui);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .copy p {
-  margin: 4px 0;
+  margin: 3px 0;
 }
 
 .appName {
-  font-family: var(--font-display);
-  font-weight: 700;
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .email {
   display: inline-block;
-  margin-top: 6px;
+  margin-top: 5px;
   color: var(--accent);
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
 }
 
 .email:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 420px) {
+  .support {
+    padding: 24px 20px;
+  }
 }

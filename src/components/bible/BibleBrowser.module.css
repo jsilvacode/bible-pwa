@@ -1,172 +1,264 @@
-.container {
-  padding: 24px 20px 40px;
-  max-width: var(--max-width-reader);
-  margin: 0 auto;
-}
-
-.header {
-  margin-bottom: 32px;
-}
-
-.title {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  margin-bottom: 4px;
-  color: var(--text-primary);
-}
-
-.subtitle {
-  font-family: var(--font-ui);
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-}
-
 .filterBadge {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-  border-radius: 99px;
-  padding: 6px 14px;
-  font-family: var(--font-ui);
-  font-weight: 700;
-  font-size: 0.9rem;
+  gap: 9px;
+  margin: -12px 0 20px;
+  padding: 7px 11px 7px 13px;
+  border: 1px solid var(--border-emphasis);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 9%, var(--bg-surface));
   color: var(--accent);
-  margin-top: 4px;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 800;
 }
 
 .clearFilter {
-  background: none;
-  border: none;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
   color: var(--accent);
   cursor: pointer;
-  font-size: 1rem;
-  padding: 0;
+  font-size: 0.85rem;
   line-height: 1;
 }
 
 .section {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+  padding: 8px;
 }
 
 .sectionHeader {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  background: none;
-  border: none;
-  border-bottom: 1px solid var(--border);
-  padding: 12px 0;
+  gap: 13px;
+  padding: 13px 12px;
+  border: 0;
+  border-radius: var(--radius-xl);
+  background: transparent;
+  color: var(--text-primary);
+  text-align: left;
   cursor: pointer;
-  margin-bottom: 16px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.sectionHeader h2 {
-  font-family: var(--font-ui);
-  font-size: 1.1rem;
-  font-weight: 800;
+.sectionHeader:hover {
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+
+.sectionHeader:active {
+  transform: scale(0.985);
+}
+
+.sectionHeader:focus-visible,
+.bookToggle:focus-visible,
+.chapterBtn:focus-visible,
+.clearFilter:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.sectionMark {
+  width: 47px;
+  height: 47px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+  border-radius: 15px;
+  background: color-mix(in srgb, var(--accent) 9%, var(--bg-surface));
   color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: var(--font-ui);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--bg-surface) 55%, transparent);
 }
 
-.sectionHeader span {
-  font-family: var(--font-ui);
-  font-size: 0.8rem;
-  font-weight: 600;
+.newTestament .sectionMark {
+  background: color-mix(in srgb, var(--accent) 6%, var(--bg-surface));
+}
+
+.sectionCopy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sectionCopy > span {
   color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sectionCopy h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 3vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+.sectionAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.sectionAction b {
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.sectionHeader:hover .sectionAction b {
+  transform: translateX(2px);
 }
 
 .bookGrid {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 0 4px 4px;
 }
 
 .bookCard {
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  border-radius: var(--radius-lg);
+  background: var(--surface-quiet);
+  box-shadow: 0 2px 4px color-mix(in srgb, var(--abyss) 4%, transparent);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .bookCard.expanded {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-soft);
+  border-color: var(--border-emphasis);
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--abyss) 8%, transparent);
+}
+
+.bookCard:hover {
+  transform: translateY(-1px);
 }
 
 .bookToggle {
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 14px 16px;
+  gap: 11px;
+  padding: 13px 14px;
+  border: 0;
   background: none;
-  border: none;
+  color: var(--text-primary);
   cursor: pointer;
+  text-align: left;
 }
 
 .bookAbbrev {
-  font-family: var(--font-ui);
-  font-weight: 800;
+  width: 36px;
+  min-height: 27px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
   color: var(--accent);
-  width: 40px;
-  font-size: 0.85rem;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .bookName {
+  min-width: 0;
   flex: 1;
-  text-align: left;
-  font-family: var(--font-ui);
-  font-weight: 600;
-  font-size: 1rem;
+  overflow: hidden;
   color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 0.91rem;
+  font-weight: 750;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .chevron {
-  color: var(--text-secondary);
-  font-size: 1rem;
+  color: var(--accent);
+  font-size: 0.92rem;
 }
 
 .chapterGrid {
-  padding: 8px 16px 16px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  background: var(--bg-page);
-  border-top: 1px solid var(--border);
-  animation: slideDown 0.3s var(--transition-smooth);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  padding: 12px;
+  border-top: 1px solid var(--border-soft);
+  background: color-mix(in srgb, var(--accent) 3%, var(--bg-page));
+  animation: slideDown 0.24s var(--transition-smooth);
 }
 
 .chapterBtn {
-  background: var(--bg-surface);
+  min-height: 37px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 10px 0;
-  font-family: var(--font-ui);
-  font-weight: 600;
-  font-size: 0.9rem;
+  background: var(--bg-surface);
   color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 750;
   cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .chapterBtn:hover {
-  border-color: var(--accent);
-  background: var(--bg-verse-hover);
+  border-color: var(--border-emphasis);
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-surface));
   color: var(--accent);
+  transform: translateY(-1px);
 }
 
 @keyframes slideDown {
-  from { height: 0; opacity: 0; }
-  to { height: auto; opacity: 1; }
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (min-width: 600px) {
   .chapterGrid {
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .section {
+    padding: 6px;
+  }
+
+  .sectionHeader {
+    gap: 10px;
+    padding: 12px 10px;
+  }
+
+  .sectionMark {
+    width: 43px;
+    height: 43px;
+  }
+
+  .sectionAction {
+    font-size: 0.66rem;
   }
 }

@@ -21,17 +21,24 @@ export default function AppShell() {
   useEffect(() => {
     if (location.pathname !== '/' || location.hash !== '#donar') return undefined;
 
-    const frameId = window.requestAnimationFrame(() => {
-      const donationSection = document.getElementById('donar');
-      if (!donationSection) return;
-
+    const scrollToDonationEnd = () => {
+      if (!document.getElementById('donar')) return;
       window.scrollTo({
         top: Math.max(0, document.documentElement.scrollHeight - window.innerHeight),
         behavior: 'smooth',
       });
-    });
+    };
 
-    return () => window.cancelAnimationFrame(frameId);
+    const frameId = window.requestAnimationFrame(() => {
+      scrollToDonationEnd();
+      window.requestAnimationFrame(scrollToDonationEnd);
+    });
+    const timeoutId = window.setTimeout(scrollToDonationEnd, 280);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.clearTimeout(timeoutId);
+    };
   }, [location.hash, location.pathname]);
 
   return (

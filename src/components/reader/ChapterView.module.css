@@ -35,12 +35,27 @@
   position: sticky;
   top: 0;
   z-index: 200;
-  background: color-mix(in srgb, var(--bg-surface) 96%, transparent);
+  overflow: hidden;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg-surface) 97%, transparent), color-mix(in srgb, var(--bg-surface) 91%, transparent));
   padding: 12px 20px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-soft);
+  box-shadow: 0 7px 18px color-mix(in srgb, var(--abyss) 5%, transparent);
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  right: -36px;
+  bottom: -57px;
+  width: 128px;
+  height: 128px;
+  border: 1px solid color-mix(in srgb, var(--accent) 10%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 17px color-mix(in srgb, var(--accent) 2%, transparent);
+  pointer-events: none;
 }
 
 .navLinks {
@@ -49,17 +64,28 @@
 }
 
 .backBtn {
-  background: none;
-  border: none;
+  position: relative;
+  z-index: 1;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
   color: var(--accent);
   font-family: var(--font-ui);
   font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
-  padding: 4px 0;
+  padding: 5px 9px;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.backBtn:hover {
+  border-color: var(--border-soft);
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
 }
 
 .title {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-display);
   font-size: 1.4rem;
   color: var(--text-primary);
@@ -68,21 +94,24 @@
 }
 
 .versionBadge {
+  position: relative;
+  z-index: 1;
   align-self: center;
   font-family: var(--font-ui);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-  padding: 2px 8px;
-  border-radius: 4px;
+  border: 1px solid color-mix(in srgb, var(--accent) 23%, transparent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  padding: 3px 9px;
+  border-radius: 999px;
 }
 
 .readerMain {
   max-width: var(--max-width-reader);
   margin: 0 auto;
-  padding: 38px 22px 24px;
+  padding: 42px 22px 28px;
 }
 
 .content {
@@ -164,22 +193,22 @@
 .highlightGreen { background-color: var(--highlight-green); }
 
 .navigation {
-  margin-top: 60px;
+  margin-top: 66px;
   display: flex;
   gap: 16px;
 }
 
 .navBtn {
   flex: 1;
-  background: var(--bg-surface);
-  border: 1px solid var(--border);
+  background: var(--surface-quiet);
+  border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
   padding: 16px;
   font-family: var(--font-ui);
   font-weight: 700;
   color: var(--text-primary);
   cursor: pointer;
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .navBtn:disabled {
@@ -189,6 +218,7 @@
 
 .navBtn:not(:disabled):hover {
   border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, var(--bg-surface));
   transform: translateY(-2px);
   box-shadow: var(--shadow-soft);
 }
