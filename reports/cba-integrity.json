@@ -1,0 +1,70 @@
+{
+  "source": {
+    "file": "Comentario Biblico Adventista vol. 1-7.cmt.twm",
+    "format": "SQLite/The Word RTF",
+    "language": "spa"
+  },
+  "coverage": {
+    "books": 66,
+    "sourceRecords": 25153,
+    "generatedEntries": 25137
+  },
+  "warnings": {
+    "pageArtifactsRemoved": 654,
+    "inlinePageArtifactsRemoved": 2541,
+    "parseWarnings": 10,
+    "unavailableEntries": 10
+  },
+  "reviewEntries": [
+    {
+      "at": "1/1:1",
+      "reason": "rvf-source",
+      "action": "source-unavailable"
+    },
+    {
+      "at": "1/20:2",
+      "reason": "rvf-source",
+      "action": "source-unavailable"
+    },
+    {
+      "at": "2/1:11",
+      "reason": "rvf-source",
+      "action": "source-unavailable"
+    },
+    {
+      "at": "10/1:4",
+      "reason": "rvf-source",
+      "action": "source-unavailable"
+    },
+    {
+      "at": "28/6:2",
+      "reason": "rvf-source",
+      "action": "source-unavailable"
+    },
+    {
+      "at": "40/1:5",
+      "reason": "rvf-source",
+      "action": "source-unavailable"
+    },
+    {
+      "at": "40/1:16",
+      "reason": "rvf-source",
+      "action": "source-unavailable"
+    },
+    {
+      "at": "40/24:36",
+      "reason": "rvf-source",
+      "action": "source-unavailable"
+    },
+    {
+      "at": "57/1:3",
+      "reason": "rvf-source",
+      "action": "source-unavailable"
+    },
+    {
+      "at": "66/1:11",
+      "reason": "rvf-source",
+      "action": "source-unavailable"
+    }
+  ]
+}
