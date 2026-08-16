@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BIBLE_CATEGORIES } from '../../constants/bibleCategories';
+import { IconBook } from '../ui/Icons';
 import classes from './CategoryGrid.module.css';
 
 const categoryClassMap = {
@@ -41,26 +42,46 @@ export default function CategoryGrid() {
     navigate('/bible', { state });
   }, [navigate]);
 
-  const entries = [...TESTAMENT_ENTRIES, ...BIBLE_CATEGORIES];
+  const renderCard = (cat) => (
+    <button
+      key={cat.id}
+      type="button"
+      className={`${classes.card} ${cat.testament ? classes.testamentCard : classes.categoryCard} ${cat.className || categoryClassMap[cat.id] || ''}`}
+      aria-label={`Explorar ${cat.name}, ${cat.count}`}
+      onClick={() => handleClick(cat)}
+    >
+      <span className={`${classes.icon} ${cat.testament ? classes.testamentIcon : ''}`} aria-hidden="true">{cat.icon}</span>
+      <div className={classes.info}>
+        <span className={classes.name}>{cat.name}</span>
+        <span className={classes.count}>{cat.count}</span>
+      </div>
+      <span className={classes.cardAction} aria-hidden="true">Explorar <span>→</span></span>
+    </button>
+  );
 
   return (
-    <div className={classes.grid}>
-      {entries.map((cat) => (
-        <button
-          key={cat.id}
-          type="button"
-          className={`${classes.card} ${cat.testament ? classes.testamentCard : classes.categoryCard} ${cat.className || categoryClassMap[cat.id] || ''}`}
-          aria-label={`Explorar ${cat.name}, ${cat.count}`}
-          onClick={() => handleClick(cat)}
-        >
-          <span className={`${classes.icon} ${cat.testament ? classes.testamentIcon : ''}`} aria-hidden="true">{cat.icon}</span>
-          <div className={classes.info}>
-            <span className={classes.name}>{cat.name}</span>
-            <span className={classes.count}>{cat.count}</span>
-          </div>
-          <span className={classes.cardAction} aria-hidden="true">Explorar <span>→</span></span>
-        </button>
-      ))}
+    <div className={classes.explorer}>
+      <div className={classes.atlasMark} aria-hidden="true">
+        <IconBook size={16} />
+        <strong>66</strong>
+        <span>libros</span>
+      </div>
+
+      <div className={classes.groupLabel}>
+        <span>Comienza por un testamento</span>
+        <i aria-hidden="true" />
+      </div>
+      <div className={`${classes.grid} ${classes.testamentGrid}`}>
+        {TESTAMENT_ENTRIES.map(renderCard)}
+      </div>
+
+      <div className={`${classes.groupLabel} ${classes.collectionLabel}`}>
+        <span>O explora por colección</span>
+        <i aria-hidden="true" />
+      </div>
+      <div className={`${classes.grid} ${classes.categoryGrid}`}>
+        {BIBLE_CATEGORIES.map(renderCard)}
+      </div>
     </div>
   );
 }

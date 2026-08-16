@@ -336,42 +336,52 @@
 }
 
 .sectionTitle {
-  font-family: var(--font-ui);
-  font-size: 1.1rem;
-  font-weight: 800;
+  margin: 0;
   color: var(--text-primary);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
 }
 
 .sectionHeading {
   margin-bottom: 16px;
 }
 
-.sectionKicker {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--accent);
-  font-family: var(--font-ui);
-  font-size: 0.64rem;
-  font-weight: 850;
-  letter-spacing: 0.13em;
-  line-height: 1.2;
-  text-transform: uppercase;
+.exploreHeading {
+  position: relative;
+  padding-left: 14px;
+}
+
+.exploreHeading::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  bottom: 3px;
+  left: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 18%, transparent));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 24%, transparent);
 }
 
 .sectionHeading .sectionTitle {
-  margin-bottom: 3px;
+  margin-bottom: 7px;
 }
 
 .sectionHeading p {
+  max-width: 560px;
   margin: 0;
   color: var(--text-secondary);
   font-family: var(--font-ui);
-  font-size: 0.78rem;
-  line-height: 1.45;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+/* Legacy utility retained for non-home consumers that may share these styles. */
+.sectionKicker {
+  display: none;
 }
 
 .recentSection {

@@ -31,8 +31,7 @@ export default function ReadingStreak() {
     <div className={classes.container}>
       <div className={classes.header}>
         <div className={classes.headingCopy}>
-          <span className={classes.eyebrow}>Tu ritmo de lectura</span>
-          <h3 className={classes.title}>Tu racha de lectura</h3>
+          <h2 className={classes.title}>Tu ritmo de lectura</h2>
           <p className={classes.subtitle}>Cada día que vuelves, tu camino sigue creciendo.</p>
         </div>
         <div className={classes.streakMetric} aria-label={`${currentStreak} ${streakLabel}`}>

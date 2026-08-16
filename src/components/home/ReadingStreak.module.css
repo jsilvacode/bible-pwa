@@ -40,33 +40,23 @@
   min-width: 0;
 }
 
-.eyebrow {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--accent);
-  font-family: var(--font-ui);
-  font-size: 0.64rem;
-  font-weight: 850;
-  letter-spacing: 0.13em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
 .title {
+  margin: 0;
   color: var(--text-primary);
-  font-family: var(--font-ui);
-  font-size: 1.12rem;
-  font-weight: 800;
-  line-height: 1.2;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
 }
 
 .subtitle {
   max-width: 430px;
-  margin-top: 6px;
+  margin-top: 8px;
   color: var(--text-secondary);
   font-family: var(--font-ui);
-  font-size: 0.78rem;
-  line-height: 1.45;
+  font-size: 0.82rem;
+  line-height: 1.5;
 }
 
 .streakMetric {
