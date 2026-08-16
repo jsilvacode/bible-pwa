@@ -432,6 +432,7 @@
 
 .recentHero:focus-visible,
 .recentItem:focus-visible,
+.historyToggle:focus-visible,
 .recentEmptyCta:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
@@ -515,6 +516,10 @@
   font-weight: 850;
   letter-spacing: 0.11em;
   text-transform: uppercase;
+}
+
+.historyToggle {
+  display: none;
 }
 
 .recentTrail {
@@ -640,11 +645,48 @@
   }
 
   .recentHistory {
-    padding: 0 18px 18px;
+    padding: 0 18px;
+  }
+
+  .historyToggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 15px 0;
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-ui);
+    font-size: 0.68rem;
+    font-weight: 850;
+    letter-spacing: 0.11em;
+    text-align: left;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .historyToggleMeta {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--accent);
+    letter-spacing: 0;
+  }
+
+  .historyToggleMeta svg {
+    transition: transform 0.2s ease;
+  }
+
+  .historyToggleOpen .historyToggleMeta svg {
+    transform: rotate(180deg);
   }
 
   .recentTrail {
     grid-template-columns: 1fr;
+    padding-bottom: 18px;
   }
 
   .recentHeroCta {

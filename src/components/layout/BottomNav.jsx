@@ -1,14 +1,16 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { IconHome, IconBook, IconBookmark, IconSettings } from '../ui/Icons';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { IconHome, IconBook, IconBookmark, IconHeart, IconSettings } from '../ui/Icons';
 import classes from './BottomNav.module.css';
 
 export default function BottomNav({ hidden = false }) {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleHomeClick = (event) => {
     if (location.pathname !== '/') return;
     event.preventDefault();
+    navigate('/');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -30,6 +32,10 @@ export default function BottomNav({ hidden = false }) {
         <IconBookmark className={classes.icon} />
         <span className={classes.label}>Favoritos</span>
       </NavLink>
+      <Link className={classes.donateLink} to="/#donar">
+        <IconHeart className={classes.icon} />
+        <span className={classes.label}>Donar</span>
+      </Link>
       <NavLink className={({ isActive }) => (isActive ? classes.active : '')} to="/settings">
         <IconSettings className={classes.icon} />
         <span className={classes.label}>Ajustes</span>

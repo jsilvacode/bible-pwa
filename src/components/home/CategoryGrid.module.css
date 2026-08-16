@@ -202,27 +202,49 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 599px) {
+  .grid {
+    gap: 10px;
+    margin-top: 14px;
+    margin-bottom: 20px;
+  }
+
   .card {
-    padding: 14px;
-    min-height: 112px;
+    min-height: 92px;
+    padding: 13px;
+    column-gap: 11px;
+    row-gap: 0;
     border-radius: var(--radius-xl);
   }
 
   .testamentCard {
-    min-height: 116px;
-    padding: 16px;
+    min-height: 100px;
+    padding: 14px;
   }
 
-  .testamentCard .cardAction {
-    grid-column: 2;
-    grid-row: 2;
+  .categoryCard .cardAction {
+    display: none;
   }
 
   .icon {
     width: 42px;
     height: 42px;
     font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .card {
+    min-height: 92px;
+  }
+
+  .testamentCard {
+    min-height: 100px;
+  }
+
+  .testamentCard .cardAction {
+    grid-column: 3;
+    grid-row: 1;
   }
 
   .name {

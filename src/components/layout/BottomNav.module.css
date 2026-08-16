@@ -72,3 +72,27 @@
   background: var(--accent);
   border-radius: 0 0 3px 3px;
 }
+
+.donateLink {
+  color: var(--accent) !important;
+}
+
+.donateLink .icon {
+  stroke-width: 2.35;
+}
+
+@media (max-width: 420px) {
+  .bottomNav a {
+    gap: 3px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .label {
+    font-size: 0.57rem;
+    letter-spacing: 0.025em;
+  }
+}

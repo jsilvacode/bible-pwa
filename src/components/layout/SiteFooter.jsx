@@ -8,7 +8,7 @@ const CONTACT_EMAIL = 'jsilvacode@gmail.com';
 export default function SiteFooter() {
   return (
     <footer className={classes.footer}>
-      <section className={classes.support}>
+      <section id="donar" className={classes.support} tabIndex="-1">
         <h3 className={classes.supportTitle}>Apoya el proyecto</h3>
         <p className={classes.supportText}>
           Este proyecto es gratuito y sin anuncios. Tu donación ayuda a mantener
