@@ -29,18 +29,6 @@
   box-shadow: var(--shadow-soft);
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: var(--bg-image);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: 0;
-}
-
 .card::after {
   content: '';
   position: absolute;
@@ -56,42 +44,34 @@
 
 .catPentateuch {
   --cat-color: var(--cat-pentateuch);
-  --bg-image: url('/images/categories/pentateuch.webp');
 }
 
 .catHistorical {
   --cat-color: var(--cat-historical);
-  --bg-image: url('/images/categories/historical.webp');
 }
 
 .catWisdom {
   --cat-color: var(--cat-wisdom);
-  --bg-image: url('/images/categories/wisdom.webp');
 }
 
 .catProphets {
   --cat-color: var(--cat-prophets);
-  --bg-image: url('/images/categories/prophets.webp');
 }
 
 .catGospels {
   --cat-color: var(--cat-gospels);
-  --bg-image: url('/images/categories/gospels.webp');
 }
 
 .catEpistles {
   --cat-color: var(--cat-epistles);
-  --bg-image: url('/images/categories/epistles.webp');
 }
 
 .testamentOld {
   --cat-color: var(--cat-pentateuch);
-  --bg-image: url('/images/categories/pentateuch.webp');
 }
 
 .testamentNew {
   --cat-color: var(--cat-gospels);
-  --bg-image: url('/images/categories/gospels.webp');
 }
 
 .testamentCard {
@@ -102,10 +82,6 @@
   grid-template-rows: auto;
   column-gap: 15px;
   background: linear-gradient(135deg, color-mix(in srgb, var(--card-wash) 78%, var(--bg-surface)), var(--bg-surface));
-}
-
-.testamentCard::before {
-  opacity: 0.16;
 }
 
 .testamentCard .cardAction {
@@ -119,10 +95,6 @@
   font-size: 0.72rem;
   font-weight: 850;
   letter-spacing: 0.06em;
-}
-
-[data-theme="dark"] .card::before {
-  opacity: 0.18;
 }
 
 .card > * {

@@ -44,7 +44,7 @@ describe('useRecentReads', () => {
     expect(result.current.recent[0].chapter).toBe(1);
   });
 
-  it('keeps only the latest 5 entries', () => {
+  it('keeps the latest entry plus up to 5 previous entries', () => {
     const { result } = renderHook(() => useRecentReads(), { wrapper });
 
     act(() => {
@@ -53,12 +53,12 @@ describe('useRecentReads', () => {
       }
     });
 
-    expect(result.current.recent).toHaveLength(5);
+    expect(result.current.recent).toHaveLength(6);
     expect(result.current.recent[0].book).toBe(12);
-    expect(result.current.recent[4].book).toBe(8);
+    expect(result.current.recent[5].book).toBe(7);
 
     const persisted = JSON.parse(localStorage.getItem(RECENT_KEY));
-    expect(persisted).toHaveLength(5);
+    expect(persisted).toHaveLength(6);
   });
 
   it('counts one day once while keeping unique chapters as secondary activity', () => {

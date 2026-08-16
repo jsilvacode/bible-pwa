@@ -10,7 +10,7 @@ import VerseMenu from './VerseMenu';
 import SkeletonChapter from './SkeletonChapter';
 import ReaderFAB from './ReaderFAB';
 import classes from './ChapterView.module.css';
-import { fetchBooksManifest, getBookName, getTotalBooks, loadBibleBook } from '../../services/bibleLoader';
+import { fetchBooksManifest, getBookChapterCount, getBookName, getTotalBooks } from '../../services/bibleLoader';
 import { validateReadRoute, validateVerseParam } from '../../utils/routeValidation';
 import { buildVerseReference, buildCopyText, buildCopyHtml, buildVerseShareUrl } from '../../utils/verseCopy';
 
@@ -52,7 +52,8 @@ export default function ChapterView() {
 
   const { data, loading, error } = useBible(
     routeValid?.valid ? settings.version : null,
-    routeValid?.valid ? bookId_ : null
+    routeValid?.valid ? bookId_ : null,
+    routeValid?.valid ? chapterNum_ : null
   );
   const { highlights, setHighlight } = useHighlights(settings.version, bookId_, chapterNum_);
 
@@ -294,24 +295,19 @@ export default function ChapterView() {
     return () => document.removeEventListener('copy', handleCopy);
   }, [routeValid, bookId_, chapterNum_, bibleBook]);
 
-  const handlePrevChapter = useCallback(async () => {
+  const handlePrevChapter = useCallback(() => {
     if (chapterNum_ > 1) {
       navigate(`/read/${bookId_}/${chapterNum_ - 1}`);
       return;
     }
     if (bookId_ <= 1) return;
 
-    try {
-      const prevBook = await loadBibleBook(settings.version, bookId_ - 1);
-      const lastChapter = prevBook?.chapters?.length || 1;
-      navigate(`/read/${bookId_ - 1}/${lastChapter}`);
-    } catch {
-      navigate(`/read/${bookId_ - 1}/1`);
-    }
-  }, [bookId_, chapterNum_, navigate, settings.version]);
+    const lastChapter = getBookChapterCount(bookId_ - 1) || 1;
+    navigate(`/read/${bookId_ - 1}/${lastChapter}`);
+  }, [bookId_, chapterNum_, navigate]);
 
   const handleNextChapter = useCallback(() => {
-    const totalChapters = bibleBook?.chapters?.length || 0;
+    const totalChapters = getBookChapterCount(bookId_) || bibleBook?.chapterCount || 0;
     const totalBooks = getTotalBooks();
     if (chapterNum_ < totalChapters) {
       navigate(`/read/${bookId_}/${chapterNum_ + 1}`);
@@ -416,7 +412,7 @@ export default function ChapterView() {
               <button
                 type="button"
                 onClick={handleNextChapter}
-                disabled={bookId_ === getTotalBooks() && chapterNum_ === (bibleBook?.chapters?.length || 0)}
+                disabled={bookId_ === getTotalBooks() && chapterNum_ === (getBookChapterCount(bookId_) || bibleBook?.chapterCount || 0)}
                 className={classes.navBtn}
               >
                 Siguiente

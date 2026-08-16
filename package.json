@@ -15,6 +15,7 @@
     "test:watch": "vitest",
     "preview": "vite preview",
     "audit:deps": "npm audit --audit-level=high",
+    "split:bible": "node scripts/split-bible-by-chapter.js",
     "split:cba": "node scripts/split-cba-by-chapter.js"
   },
   "dependencies": {

@@ -10,6 +10,9 @@ let versionsPromise = null;
 const booksByBookCache = new Map();
 const bookLoadPromises = new Map();
 const MAX_BOOK_CACHE = 12;
+const chaptersByChapterCache = new Map();
+const chapterLoadPromises = new Map();
+const MAX_CHAPTER_CACHE = 24;
 
 function abortError() {
   const error = new Error('Operación cancelada');
@@ -42,6 +45,14 @@ function cacheBook(key, data) {
   booksByBookCache.set(key, data);
   while (booksByBookCache.size > MAX_BOOK_CACHE) {
     booksByBookCache.delete(booksByBookCache.keys().next().value);
+  }
+}
+
+function cacheChapter(key, data) {
+  chaptersByChapterCache.delete(key);
+  chaptersByChapterCache.set(key, data);
+  while (chaptersByChapterCache.size > MAX_CHAPTER_CACHE) {
+    chaptersByChapterCache.delete(chaptersByChapterCache.keys().next().value);
   }
 }
 
@@ -139,7 +150,7 @@ export async function loadBibleBook(version, bookId, options = {}) {
       if (!bookMeta) throw new Error('Libro no encontrado');
 
       const url = `/data/${safeVersion}/${bookMeta.file}.json`;
-      const res = await fetch(url, {});
+      const res = await fetch(url, options.signal ? { signal: options.signal } : {});
       if (!res.ok) throw new Error(`Error cargando el libro desde ${url}`);
 
       const data = await res.json();
@@ -157,16 +168,77 @@ export async function loadBibleBook(version, bookId, options = {}) {
 }
 
 /**
+ * Loads only one chapter instead of the complete book payload.
+ * @param {string} version
+ * @param {string | number} bookId
+ * @param {string | number} chapter
+ * @param {{ signal?: AbortSignal }} [options]
+ */
+export async function loadBibleChapter(version, bookId, chapter, options = {}) {
+  const safeVersion = await waitWithAbort(resolveVersionId(version), options.signal);
+  const normalizedBookId = Number(bookId);
+  const normalizedChapter = Number(chapter);
+
+  if (!Number.isInteger(normalizedBookId) || normalizedBookId < 1) {
+    throw new Error('Libro no válido');
+  }
+  if (!Number.isInteger(normalizedChapter) || normalizedChapter < 1) {
+    throw new Error('Capítulo no válido');
+  }
+
+  const cacheKey = `${safeVersion}_${normalizedBookId}_${normalizedChapter}`;
+  if (chaptersByChapterCache.has(cacheKey)) {
+    const cached = chaptersByChapterCache.get(cacheKey);
+    cacheChapter(cacheKey, cached);
+    return cached;
+  }
+
+  let loadPromise = chapterLoadPromises.get(cacheKey);
+  if (!loadPromise) {
+    loadPromise = (async () => {
+      const books = await fetchBooksManifest();
+      const bookMeta = books.find((book) => book.id === normalizedBookId);
+      if (!bookMeta) throw new Error('Libro no encontrado');
+
+      const url = `/data/${safeVersion}/${bookMeta.file}/${normalizedChapter}.json`;
+      const res = await fetch(url, options.signal ? { signal: options.signal } : {});
+      if (!res.ok) throw new Error(`Error cargando el capítulo desde ${url}`);
+
+      const payload = await res.json();
+      const verses = Array.isArray(payload) ? payload : payload?.verses;
+      if (!Array.isArray(verses)) throw new Error(`Formato inválido para ${url}`);
+
+      const data = {
+        version: safeVersion,
+        book: normalizedBookId,
+        name: bookMeta.name,
+        chapterCount: Number(bookMeta.chapters) || 0,
+        chapters: [{ chapter: normalizedChapter, verses }],
+      };
+      cacheChapter(cacheKey, data);
+      return data;
+    })();
+    chapterLoadPromises.set(cacheKey, loadPromise);
+    loadPromise.then(
+      () => chapterLoadPromises.delete(cacheKey),
+      () => chapterLoadPromises.delete(cacheKey)
+    );
+  }
+
+  return waitWithAbort(loadPromise, options.signal);
+}
+
+/**
  * Prefetch manifests and optionally warm the last-read book cache.
  * @param {{ version?: string, bookId?: number, chapter?: number }} [target]
  */
 export async function warmupBibleData(target = {}) {
   const tasks = [fetchBooksManifest(), fetchVersionsManifest()];
 
-  if (target.version && target.bookId) {
+  if (target.version && target.bookId && target.chapter) {
     const version = await resolveVersionId(target.version);
     tasks.push(
-      loadBibleBook(version, target.bookId).catch(() => {
+      loadBibleChapter(version, target.bookId, target.chapter).catch(() => {
         /* prefetch is best-effort */
       })
     );
@@ -182,4 +254,9 @@ export function getBookName(bookId) {
 
 export function getTotalBooks() {
   return booksCache?.length ?? 66;
+}
+
+export function getBookChapterCount(bookId) {
+  const book = booksCache?.find((item) => item.id === Number(bookId));
+  return Number(book?.chapters) || 0;
 }

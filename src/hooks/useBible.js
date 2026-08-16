@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { loadBibleBook } from '../services/bibleLoader';
+import { loadBibleChapter } from '../services/bibleLoader';
 
-export function useBible(version, bookId) {
+export function useBible(version, bookId, chapter) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!version || !bookId) {
+    if (!version || !bookId || !chapter) {
       setData(null);
       setError(null);
       setLoading(false);
@@ -23,7 +23,7 @@ export function useBible(version, bookId) {
       setData(null);
 
       try {
-        const bookData = await loadBibleBook(version, bookId, { signal: controller.signal });
+        const bookData = await loadBibleChapter(version, bookId, chapter, { signal: controller.signal });
         if (mounted) {
           setData(bookData);
           setLoading(false);
@@ -43,7 +43,7 @@ export function useBible(version, bookId) {
       mounted = false;
       controller.abort();
     };
-  }, [version, bookId]);
+  }, [version, bookId, chapter]);
 
   return { data, loading, error };
 }
