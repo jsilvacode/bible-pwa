@@ -22,7 +22,13 @@ export default function AppShell() {
     if (location.pathname !== '/' || location.hash !== '#donar') return undefined;
 
     const frameId = window.requestAnimationFrame(() => {
-      document.getElementById('donar')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const donationSection = document.getElementById('donar');
+      if (!donationSection) return;
+
+      window.scrollTo({
+        top: Math.max(0, document.documentElement.scrollHeight - window.innerHeight),
+        behavior: 'smooth',
+      });
     });
 
     return () => window.cancelAnimationFrame(frameId);
