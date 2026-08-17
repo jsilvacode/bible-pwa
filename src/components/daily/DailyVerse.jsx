@@ -56,7 +56,7 @@ export default function DailyVerse({ variant = 'hero', children }) {
     const url = buildVerseShareUrl(dailyTheme.book, dailyTheme.chapter, dailyTheme.verse);
 
     try {
-      const result = await shareVerse({ title: 'Una palabra para hoy', text, url });
+      const result = await shareVerse({ title: 'Pan de vida', text, url });
       if (result === 'copied') {
         showToast('Copiado al portapapeles');
       }
@@ -77,14 +77,14 @@ export default function DailyVerse({ variant = 'hero', children }) {
           <div className={classes.header}>
             <span className={classes.tag}>PAN DE VIDA</span>
             <p className={classes.themePrompt}>{dailyTheme.message}</p>
-            <h2 className={classes.reference}>
-              {reference || `Libro ${dailyTheme.book} ${dailyTheme.chapter}:${dailyTheme.verse}`}
-            </h2>
           </div>
 
-          <p className={classes.verseText}>
+          <blockquote className={classes.verseText}>
             {verseText ? `"${verseText}"` : 'Cargando versículo...'}
-          </p>
+          </blockquote>
+          <cite className={classes.reference}>
+            {reference || `Libro ${dailyTheme.book} ${dailyTheme.chapter}:${dailyTheme.verse}`}
+          </cite>
         </div>
 
         <div className={classes.actions}>
