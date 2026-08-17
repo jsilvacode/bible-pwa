@@ -358,7 +358,7 @@
   margin-top: 38px;
 }
 
-.recentPanel {
+.readingJourney {
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -371,7 +371,7 @@
   filter: drop-shadow(0 12px 18px color-mix(in srgb, var(--abyss) 8%, transparent));
 }
 
-.recentPanel::after {
+.readingJourney::after {
   content: '';
   position: absolute;
   z-index: 0;
@@ -411,8 +411,6 @@
 }
 
 .recentHero:focus-visible,
-.recentItem:focus-visible,
-.historyToggle:focus-visible,
 .recentEmptyCta:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
@@ -479,115 +477,23 @@
   white-space: nowrap;
 }
 
-.recentHistory {
+.journeyDivider {
   position: relative;
   z-index: 1;
-  padding: 0 20px 20px;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 1%, transparent), transparent 78%);
-}
-
-.recentHistoryTitle {
-  margin: 0 0 12px;
-  padding-top: 17px;
-  border-top: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
-  color: var(--text-secondary);
-  font-family: var(--font-ui);
-  font-size: 0.68rem;
-  font-weight: 850;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
-.historyToggle {
-  display: none;
-}
-
-.recentTrail {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.recentItem {
-  position: relative;
-  min-width: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 15px;
-  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
-  border-radius: var(--radius-xl);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 3%, var(--bg-surface)), var(--bg-surface));
-  color: var(--text-primary);
-  text-align: left;
-  cursor: pointer;
-  box-shadow: 0 1px 2px color-mix(in srgb, var(--abyss) 4%, transparent);
-  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
-}
-
-.recentItem:hover {
-  border-color: color-mix(in srgb, var(--accent) 36%, var(--border));
-  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 7%, var(--bg-surface)), var(--bg-surface));
-  transform: translateY(-2px);
-}
-
-.recentItem > svg {
-  margin-left: auto;
-  flex-shrink: 0;
-  color: var(--accent);
-}
-
-.recentItemMarker {
-  width: 9px;
-  height: 9px;
-  flex-shrink: 0;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 10%, transparent);
-}
-
-.recentItemContent {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.recentItemContent strong {
-  overflow: hidden;
-  font-family: var(--font-display);
-  font-size: 0.98rem;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.recentItemContent span,
-.recentItemContent small {
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-}
-
-.recentItemContent span {
-  color: var(--text-secondary);
-}
-
-.recentItemContent small {
-  margin-top: 3px;
-  color: var(--accent);
-  font-weight: 700;
+  height: 1px;
+  margin: 0 20px;
+  background: color-mix(in srgb, var(--accent) 20%, var(--border));
 }
 
 .recentEmpty {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 14px;
   padding: 20px;
-  border: 1px dashed color-mix(in srgb, var(--accent) 38%, var(--border));
-  border-radius: var(--radius-2xl);
-  background: color-mix(in srgb, var(--accent) 4%, var(--bg-surface));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 2%, transparent), transparent 100%);
 }
 
 .recentEmptyIcon {
@@ -624,49 +530,8 @@
     padding: 18px;
   }
 
-  .recentHistory {
-    padding: 0 18px;
-  }
-
-  .historyToggle {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 15px 0;
-    border: 0;
-    border-top: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
-    background: transparent;
-    color: var(--text-secondary);
-    font-family: var(--font-ui);
-    font-size: 0.68rem;
-    font-weight: 850;
-    letter-spacing: 0.11em;
-    text-align: left;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-
-  .historyToggleMeta {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    color: var(--accent);
-    letter-spacing: 0;
-  }
-
-  .historyToggleMeta svg {
-    transition: transform 0.2s ease;
-  }
-
-  .historyToggleOpen .historyToggleMeta svg {
-    transform: rotate(180deg);
-  }
-
-  .recentTrail {
-    grid-template-columns: 1fr;
-    padding-bottom: 18px;
+  .journeyDivider {
+    margin-inline: 18px;
   }
 
   .recentHeroCta {

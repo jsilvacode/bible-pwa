@@ -29,6 +29,31 @@
   pointer-events: none;
 }
 
+.embedded {
+  margin-top: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  padding: 20px;
+  background: transparent;
+  box-shadow: none;
+  filter: none;
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
+}
+
+.embedded::after {
+  display: none;
+}
+
+.embedded .header {
+  justify-content: flex-end;
+}
+
+.embedded .stats {
+  margin-top: 14px;
+}
+
 .header {
   display: flex;
   align-items: flex-start;
@@ -291,6 +316,10 @@
 @media (max-width: 600px) {
   .container {
     padding: 20px;
+  }
+
+  .embedded {
+    padding: 18px;
   }
 
   .header {

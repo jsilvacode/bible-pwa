@@ -72,6 +72,7 @@
 }
 
 .verseText {
+  text-align: center;
   font-family: var(--font-reading);
   font-size: 1.55rem;
   line-height: 1.55;

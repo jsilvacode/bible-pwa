@@ -6,7 +6,7 @@ const RECENT_KEY = 'bible_recent';
 const LOG_KEY = 'bible_reading_log';
 const VERSION_DEFAULT_REVISION = 2;
 const READING_LOG_RETENTION_DAYS = 365;
-const MAX_RECENT_READS = 6;
+const MAX_RECENT_READS = 1;
 
 /** @typedef {"light" | "dark"} Theme */
 

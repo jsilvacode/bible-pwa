@@ -5,7 +5,7 @@ import classes from './ReadingStreak.module.css';
 import { useSettings } from '../../hooks/useSettings';
 import { useCompactLayout } from '../../hooks/useCompactLayout';
 
-export default function ReadingStreak() {
+export default function ReadingStreak({ embedded = false }) {
   const navigate = useNavigate();
   const [weekOpen, setWeekOpen] = useState(false);
   const isCompactLayout = useCompactLayout();
@@ -28,12 +28,14 @@ export default function ReadingStreak() {
   const showWeek = !isCompactLayout || weekOpen;
 
   return (
-    <div className={classes.container}>
+    <div className={`${classes.container} ${embedded ? classes.embedded : ''}`}>
       <div className={classes.header}>
-        <div className={classes.headingCopy}>
-          <h2 className={classes.title}>Tu ritmo de lectura</h2>
-          <p className={classes.subtitle}>Cada día que vuelves, tu camino sigue creciendo.</p>
-        </div>
+        {!embedded && (
+          <div className={classes.headingCopy}>
+            <h2 className={classes.title}>Tu ritmo de lectura</h2>
+            <p className={classes.subtitle}>Cada día que vuelves, tu camino sigue creciendo.</p>
+          </div>
+        )}
         <div className={classes.streakMetric} aria-label={`${currentStreak} ${streakLabel}`}>
           <IconFlame size={22} aria-hidden="true" />
           <strong>{currentStreak}</strong>
