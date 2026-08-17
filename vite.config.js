@@ -17,19 +17,19 @@ export default defineConfig({
         lang: 'es',
         icons: [
           {
-            src: 'pwa-192x192.png?v=7',
+            src: 'pwa-192x192.png?v=8',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: 'pwa-512x512.png?v=7',
+            src: 'pwa-512x512.png?v=8',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any'
           },
           {
-            src: 'pwa-maskable-512x512.png?v=7',
+            src: 'pwa-maskable-512x512.png?v=8',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
