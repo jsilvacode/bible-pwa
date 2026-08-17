@@ -1,3 +1,5 @@
+import { getOfflineCommentaryChapter } from './offlineLibrary';
+
 const chapterCache = new Map();
 const MAX_CHAPTER_CACHE = 8;
 
@@ -88,7 +90,8 @@ export async function loadCbaChapter(bookId, chapter, options = {}) {
   }
 
   const url = `/data/cba/${book}/${ch}.json`;
-  const res = await fetch(url, { signal: options.signal });
+  const offlineResponse = await getOfflineCommentaryChapter(bookNum, chapterNum);
+  const res = offlineResponse ?? await fetch(url, { signal: options.signal });
 
   if (!res.ok) {
     throw new Error(`Error cargando comentario CBA desde ${url}`);

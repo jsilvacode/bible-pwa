@@ -13,6 +13,7 @@ import classes from './ChapterView.module.css';
 import { fetchBooksManifest, getBookChapterCount, getBookName, getTotalBooks, loadBibleChapter } from '../../services/bibleLoader';
 import { validateReadRoute, validateVerseParam } from '../../utils/routeValidation';
 import { buildVerseReference, buildCopyText, buildCopyHtml, buildVerseShareUrl } from '../../utils/verseCopy';
+import { normalizeDisplayedText } from '../../utils/textNormalizer';
 
 const CbaModal = lazy(() => import('./CbaModal'));
 
@@ -411,7 +412,7 @@ export default function ChapterView() {
             <div className={classes.content}>
               {bibleChapter?.verses.map((v) => (
                 <React.Fragment key={v.verse}>
-                  {v.heading && <h3 className={classes.verseHeading}>{v.heading}</h3>}
+                  {v.heading && <h3 className={classes.verseHeading}>{normalizeDisplayedText(v.heading)}</h3>}
                   <VerseBlock
                     verse={v.verse}
                     text={v.text}
@@ -469,7 +470,7 @@ export default function ChapterView() {
                 book: bookId_,
                 chapter: chapterNum_,
                 verse: menuVerse,
-                text: bibleChapter?.verses.find((v) => v.verse === menuVerse)?.text || '',
+                text: normalizeDisplayedText(bibleChapter?.verses.find((v) => v.verse === menuVerse)?.text || ''),
                 bookName,
                 version: settings.version,
                 onOpenCba: () => {

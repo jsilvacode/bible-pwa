@@ -12,9 +12,11 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:offline": "playwright test --config=playwright.offline.config.js",
     "test:watch": "vitest",
     "preview": "vite preview",
     "audit:deps": "npm audit --audit-level=high",
+    "audit:bible": "node scripts/audit-bible-versions.js",
     "split:bible": "node scripts/split-bible-by-chapter.js",
     "split:cba": "node scripts/split-cba-by-chapter.js",
     "import:cba": "node scripts/import-cba-twm.js"

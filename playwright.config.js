@@ -3,6 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './e2e',
   testMatch: '**/*.e2e.js',
+  testIgnore: 'offline-installation.e2e.js',
   timeout: 60_000,
   fullyParallel: false,
   retries: 1,

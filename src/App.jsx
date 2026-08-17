@@ -10,6 +10,7 @@ import { BookmarksProvider } from './hooks/useBookmarks';
 import { HighlightsProvider } from './hooks/useHighlights';
 import { ToastProvider } from './hooks/useToast';
 import { InstallPromptProvider } from './hooks/useInstallPrompt';
+import { OfflineLibraryProvider } from './hooks/useOfflineLibrary';
 import { ReadingModeProvider } from './hooks/useReadingMode';
 import { GlobalSearchProvider } from './hooks/useGlobalSearch';
 
@@ -25,24 +26,26 @@ function App() {
         <HighlightsProvider>
           <ToastProvider>
             <InstallPromptProvider>
-              <ReadingModeProvider>
-                <BrowserRouter>
-                  <GlobalSearchProvider>
-                    <Routes>
-                      <Route path="/" element={<AppShell />}>
-                        <Route index element={<HomeScreen />} />
-                        <Route path="bible" element={<BibleBrowser />} />
-                        <Route path="read/:book/:chapter/:verse?" element={<ChapterView />} />
-                        <Route path="search" element={<Navigate to="/" replace />} />
-                        <Route path="bookmarks" element={<BookmarksView />} />
-                        <Route path="settings" element={<SettingsView />} />
-                      </Route>
-                    </Routes>
-                    <Analytics />
-                    <SpeedInsights />
-                  </GlobalSearchProvider>
-                </BrowserRouter>
-              </ReadingModeProvider>
+              <OfflineLibraryProvider>
+                <ReadingModeProvider>
+                  <BrowserRouter>
+                    <GlobalSearchProvider>
+                      <Routes>
+                        <Route path="/" element={<AppShell />}>
+                          <Route index element={<HomeScreen />} />
+                          <Route path="bible" element={<BibleBrowser />} />
+                          <Route path="read/:book/:chapter/:verse?" element={<ChapterView />} />
+                          <Route path="search" element={<Navigate to="/" replace />} />
+                          <Route path="bookmarks" element={<BookmarksView />} />
+                          <Route path="settings" element={<SettingsView />} />
+                        </Route>
+                      </Routes>
+                      <Analytics />
+                      <SpeedInsights />
+                    </GlobalSearchProvider>
+                  </BrowserRouter>
+                </ReadingModeProvider>
+              </OfflineLibraryProvider>
             </InstallPromptProvider>
           </ToastProvider>
         </HighlightsProvider>

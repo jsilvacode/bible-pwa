@@ -66,7 +66,7 @@ export default function AppShell() {
         <div className={classes.installOverlay}>
           <div className={classes.installPopup}>
             <h4>Instala Santa Biblia</h4>
-            <p>Accede rápido desde tu pantalla de inicio.</p>
+            <p>Tu lectura se preparará para acompañarte, incluso sin conexión.</p>
             <div className={classes.installPopupActions}>
               <button type="button" onClick={promptInstall}>Instalar ahora</button>
               <button type="button" onClick={dismissInstallPopup}>Ahora no</button>

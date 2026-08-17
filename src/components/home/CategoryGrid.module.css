@@ -76,7 +76,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   position: relative;
   z-index: 1;
@@ -204,6 +204,7 @@
   border-radius: 15px;
   background: color-mix(in srgb, var(--cat-color) 38%, var(--bg-surface));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: transform 0.22s var(--transition-smooth), box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
 .info {
@@ -243,6 +244,18 @@
 .cardAction span {
   font-size: 0.92rem;
   line-height: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .icon {
+    transform: translateY(-2px) rotate(-2deg);
+    border-color: color-mix(in srgb, var(--cat-color) 82%, var(--accent));
+    box-shadow: 0 9px 18px color-mix(in srgb, var(--cat-color) 16%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  }
+
+  .testamentCard:hover .cardAction span {
+    transform: translateX(3px);
+  }
 }
 
 @media (min-width: 600px) {
@@ -346,5 +359,71 @@
 
   .cardAction {
     font-size: 0.67rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .explorer {
+    padding: 10px;
+    border-radius: var(--radius-xl);
+  }
+
+  .grid {
+    gap: 8px;
+  }
+
+  .atlasMark {
+    display: none;
+  }
+
+  .groupLabel span {
+    max-width: 100%;
+  }
+
+  .groupLabel i {
+    display: none;
+  }
+
+  .card {
+    min-height: 80px;
+    padding: 10px;
+    column-gap: 8px;
+    border-radius: 17px;
+  }
+
+  .card::after {
+    display: none;
+  }
+
+  .testamentCard {
+    min-height: 88px;
+    padding: 11px;
+  }
+
+  .testamentCard .cardAction {
+    gap: 0;
+    font-size: 0;
+  }
+
+  .testamentCard .cardAction span {
+    font-size: 1.08rem;
+  }
+
+  .icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 12px;
+    font-size: 1.05rem;
+  }
+
+  .name {
+    overflow-wrap: anywhere;
+    font-size: 0.78rem;
+    line-height: 1.12;
+  }
+
+  .count {
+    font-size: 0.64rem;
+    line-height: 1.15;
   }
 }

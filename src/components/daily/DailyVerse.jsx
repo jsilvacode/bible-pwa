@@ -5,6 +5,7 @@ import { useToast } from '../../hooks/useToast';
 import { loadBibleChapter } from '../../services/bibleLoader';
 import { shareVerse } from '../../utils/shareVerse';
 import { buildVerseShareUrl } from '../../utils/verseCopy';
+import { normalizeDisplayedText } from '../../utils/textNormalizer';
 import classes from './DailyVerse.module.css';
 
 const DAILY_VERSES = [
@@ -46,7 +47,7 @@ export default function DailyVerse({ variant = 'hero', children }) {
           setReference(`${bookData.name} ${dailyRef.chapter}:${dailyRef.verse}`);
         }
         if (verse?.text) {
-          setVerseText(verse.text);
+          setVerseText(normalizeDisplayedText(verse.text));
         }
       } catch (err) {
         if (err.name !== 'AbortError') {

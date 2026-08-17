@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useBookNames } from '../../hooks/useBookNames';
 import { EditorialPage, EditorialPanel } from '../layout/EditorialPage';
 import { IconBookmark, IconChevronRight, IconX } from '../ui/Icons';
+import { normalizeDisplayedText } from '../../utils/textNormalizer';
 import classes from './BookmarksView.module.css';
 
 export default function BookmarksView() {
@@ -43,7 +44,7 @@ export default function BookmarksView() {
                   <span className={classes.version}>{b.version.toUpperCase()}</span>
                 </div>
                 {b.text ? (
-                  <p className={classes.preview}>&quot;{b.text}&quot;</p>
+                  <p className={classes.preview}>&quot;{normalizeDisplayedText(b.text)}&quot;</p>
                 ) : (
                   <p className={classes.preview}>Toca para leer el versículo...</p>
                 )}

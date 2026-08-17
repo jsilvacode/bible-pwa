@@ -102,4 +102,35 @@
 .actions {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logo:hover .logoIconSvg {
+    transform: translateY(-1px);
+    filter: drop-shadow(0 5px 8px color-mix(in srgb, var(--accent) 26%, transparent));
+  }
+
+  .logoIconSvg {
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+}
+
+@media (max-width: 340px) {
+  .topBar {
+    height: 56px;
+    padding-inline: 10px;
+  }
+
+  .logo {
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .logoText {
+    overflow: hidden;
+    font-size: 1.03rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
