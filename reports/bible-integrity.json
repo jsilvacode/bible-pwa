@@ -1,0 +1,289 @@
+{
+  "generatedAt": "2026-08-17T18:29:25.272Z",
+  "source": "public/data/{nbla,rva2015,kjv}",
+  "versions": {
+    "nbla": {
+      "books": 66,
+      "chapters": 1189,
+      "verses": 31103,
+      "headings": 2296,
+      "emptyVerses": 0,
+      "duplicateVerseNumbers": 0,
+      "nonSequentialVerses": 0,
+      "invalidUnicode": 0,
+      "sourceArtifacts": 2824,
+      "presentationNormalizations": 3247,
+      "samples": {
+        "structure": [],
+        "artifacts": [
+          {
+            "location": "01_genesis 3:15",
+            "text": "-»Pondré enemistad Entre tú y la mujer, Y entre tu simiente y su simiente; Él te herirá en la cabeza, Y tú lo herirás en el talón»."
+          },
+          {
+            "location": "01_genesis 3:18",
+            "text": "-»Espinos y cardos te producirá, Y comerás de las plantas del campo."
+          },
+          {
+            "location": "01_genesis 3:19",
+            "text": "-»Con el sudor de tu rostro Comerás el pan Hasta que vuelvas a la tierra, Porque de ella fuiste tomado; Pues polvo eres, Y al polvo volverás»."
+          },
+          {
+            "location": "01_genesis 4:24",
+            "text": "-»Si siete veces es vengado Caín, Entonces Lamec lo será setenta veces siete»."
+          },
+          {
+            "location": "01_genesis 9:6",
+            "text": "-»El que derrame sangre de hombre, Por el hombre su sangre será derramada, Porque a imagen de Dios Hizo Él al hombre."
+          },
+          {
+            "location": "01_genesis 9:7",
+            "text": "-»En cuanto a ustedes, sean fecundos y multiplíquense. Pueblen en abundancia la tierra y multiplíquense en ella»."
+          },
+          {
+            "location": "01_genesis 9:27",
+            "text": "-»Engrandezca Dios a Jafet, Y habite en las tiendas de Sem; Y sea Canaán su siervo»."
+          },
+          {
+            "location": "01_genesis 12:2",
+            "text": "-»Haré de ti una nación grande, Y te bendeciré, Engrandeceré tu nombre, Y serás bendición."
+          },
+          {
+            "location": "01_genesis 12:3",
+            "text": "-»Bendeciré a los que te bendigan, Y al que te maldiga, maldeciré. En ti serán benditas todas las familias de la tierra»."
+          },
+          {
+            "location": "01_genesis 16:12",
+            "text": "-»Él será hombre indómito como asno montés; Su mano será contra todos, Y la mano de todos contra él, Y habitará separado de todos sus hermanos»."
+          },
+          {
+            "location": "01_genesis 17:2",
+            "text": "-»Yo estableceré Mi pacto contigo, Y te multiplicaré en gran manera»."
+          },
+          {
+            "location": "01_genesis 17:5",
+            "text": "-»Y no serás llamado más Abram; Sino que tu nombre será Abraham; Porque Yo te haré padre de multitud de naciones."
+          }
+        ],
+        "normalization": [
+          {
+            "location": "01_genesis 3:15",
+            "source": "-»Pondré enemistad Entre tú y la mujer, Y entre tu simiente y su simiente; Él te herirá en la cabeza, Y tú lo herirás en el talón».",
+            "display": "«Pondré enemistad Entre tú y la mujer, Y entre tu simiente y su simiente; Él te herirá en la cabeza, Y tú lo herirás en el talón»."
+          },
+          {
+            "location": "01_genesis 3:18",
+            "source": "-»Espinos y cardos te producirá, Y comerás de las plantas del campo.",
+            "display": "«Espinos y cardos te producirá, Y comerás de las plantas del campo."
+          },
+          {
+            "location": "01_genesis 3:19",
+            "source": "-»Con el sudor de tu rostro Comerás el pan Hasta que vuelvas a la tierra, Porque de ella fuiste tomado; Pues polvo eres, Y al polvo volverás».",
+            "display": "«Con el sudor de tu rostro Comerás el pan Hasta que vuelvas a la tierra, Porque de ella fuiste tomado; Pues polvo eres, Y al polvo volverás»."
+          },
+          {
+            "location": "01_genesis 4:24",
+            "source": "-»Si siete veces es vengado Caín, Entonces Lamec lo será setenta veces siete».",
+            "display": "«Si siete veces es vengado Caín, Entonces Lamec lo será setenta veces siete»."
+          },
+          {
+            "location": "01_genesis 9:6",
+            "source": "-»El que derrame sangre de hombre, Por el hombre su sangre será derramada, Porque a imagen de Dios Hizo Él al hombre.",
+            "display": "«El que derrame sangre de hombre, Por el hombre su sangre será derramada, Porque a imagen de Dios Hizo Él al hombre."
+          },
+          {
+            "location": "01_genesis 9:7",
+            "source": "-»En cuanto a ustedes, sean fecundos y multiplíquense. Pueblen en abundancia la tierra y multiplíquense en ella».",
+            "display": "«En cuanto a ustedes, sean fecundos y multiplíquense. Pueblen en abundancia la tierra y multiplíquense en ella»."
+          },
+          {
+            "location": "01_genesis 9:27",
+            "source": "-»Engrandezca Dios a Jafet, Y habite en las tiendas de Sem; Y sea Canaán su siervo».",
+            "display": "«Engrandezca Dios a Jafet, Y habite en las tiendas de Sem; Y sea Canaán su siervo»."
+          },
+          {
+            "location": "01_genesis 12:2",
+            "source": "-»Haré de ti una nación grande, Y te bendeciré, Engrandeceré tu nombre, Y serás bendición.",
+            "display": "«Haré de ti una nación grande, Y te bendeciré, Engrandeceré tu nombre, Y serás bendición."
+          },
+          {
+            "location": "01_genesis 12:3",
+            "source": "-»Bendeciré a los que te bendigan, Y al que te maldiga, maldeciré. En ti serán benditas todas las familias de la tierra».",
+            "display": "«Bendeciré a los que te bendigan, Y al que te maldiga, maldeciré. En ti serán benditas todas las familias de la tierra»."
+          },
+          {
+            "location": "01_genesis 15:17",
+            "source": "Y sucedió que cuando el sol ya se había puesto, hubo densas tinieblas, y apareció un horno humeante y una antorcha de fuego que pasó por entre las mitades  de los animales.",
+            "display": "Y sucedió que cuando el sol ya se había puesto, hubo densas tinieblas, y apareció un horno humeante y una antorcha de fuego que pasó por entre las mitades de los animales."
+          },
+          {
+            "location": "01_genesis 16:12",
+            "source": "-»Él será hombre indómito como asno montés; Su mano será contra todos, Y la mano de todos contra él, Y habitará separado de todos sus hermanos».",
+            "display": "«Él será hombre indómito como asno montés; Su mano será contra todos, Y la mano de todos contra él, Y habitará separado de todos sus hermanos»."
+          },
+          {
+            "location": "01_genesis 17:2",
+            "source": "-»Yo estableceré Mi pacto contigo, Y te multiplicaré en gran manera».",
+            "display": "«Yo estableceré Mi pacto contigo, Y te multiplicaré en gran manera»."
+          }
+        ]
+      }
+    },
+    "rva2015": {
+      "books": 66,
+      "chapters": 1189,
+      "verses": 31098,
+      "headings": 2716,
+      "emptyVerses": 0,
+      "duplicateVerseNumbers": 0,
+      "nonSequentialVerses": 0,
+      "invalidUnicode": 0,
+      "sourceArtifacts": 0,
+      "presentationNormalizations": 149,
+      "samples": {
+        "structure": [],
+        "artifacts": [],
+        "normalization": [
+          {
+            "location": "18_job 39:19",
+            "source": "»¿Diste bravura al caballo? ¿Engalanaste de crines su cuello ? 20 ¿Lo harás brincar como a una langosta? El resoplido de su nariz es temible.",
+            "display": "»¿Diste bravura al caballo? ¿Engalanaste de crines su cuello? 20 ¿Lo harás brincar como a una langosta? El resoplido de su nariz es temible."
+          },
+          {
+            "location": "19_salmos 135:1",
+            "source": "¡Aleluya! . ¡Alaben el nombre del SEÑOR! Alábenle, oh siervos del SEÑOR,",
+            "display": "¡Aleluya!. ¡Alaben el nombre del SEÑOR! Alábenle, oh siervos del SEÑOR,"
+          },
+          {
+            "location": "20_proverbios 1:21",
+            "source": "Proclama sobre las murallas  , en las entradas de las puertas de la ciudad pronuncia sus dichos:",
+            "display": "Proclama sobre las murallas, en las entradas de las puertas de la ciudad pronuncia sus dichos:"
+          },
+          {
+            "location": "20_proverbios 2:17",
+            "source": "que abandona al compañero de su juventud y se olvida del pacto de su Dios  .",
+            "display": "que abandona al compañero de su juventud y se olvida del pacto de su Dios."
+          },
+          {
+            "location": "20_proverbios 7:23",
+            "source": "hasta que una flecha le atraviesa el hígado; como el ave que se apresura a la red y no sabe que le costará la vida  .",
+            "display": "hasta que una flecha le atraviesa el hígado; como el ave que se apresura a la red y no sabe que le costará la vida."
+          },
+          {
+            "location": "20_proverbios 8:3",
+            "source": "Junto a las puertas, ante la ciudad  , en el acceso a las entradas da voces:",
+            "display": "Junto a las puertas, ante la ciudad, en el acceso a las entradas da voces:"
+          },
+          {
+            "location": "20_proverbios 8:5",
+            "source": "Entiendan, ingenuos, la sagacidad; y ustedes, necios, dispongan  el corazón.",
+            "display": "Entiendan, ingenuos, la sagacidad; y ustedes, necios, dispongan el corazón."
+          },
+          {
+            "location": "20_proverbios 8:14",
+            "source": "Míos  son el consejo y la eficiente sabiduría; mía  es la inteligencia, y mía la valentía.",
+            "display": "Míos son el consejo y la eficiente sabiduría; mía es la inteligencia, y mía la valentía."
+          },
+          {
+            "location": "20_proverbios 8:16",
+            "source": "Por mí gobiernan los gobernantes, y los nobles juzgan  la tierra  .",
+            "display": "Por mí gobiernan los gobernantes, y los nobles juzgan la tierra."
+          },
+          {
+            "location": "20_proverbios 8:17",
+            "source": "Yo amo a los que me  aman, y me hallan los que con diligencia me buscan.",
+            "display": "Yo amo a los que me aman, y me hallan los que con diligencia me buscan."
+          },
+          {
+            "location": "20_proverbios 8:24",
+            "source": "Nací antes que existieran los océanos, antes que existiesen los manantiales cargados  de agua.",
+            "display": "Nací antes que existieran los océanos, antes que existiesen los manantiales cargados de agua."
+          },
+          {
+            "location": "20_proverbios 9:13",
+            "source": "La mujer necia es alborotadora; es libertina y no conoce la vergüenza  .",
+            "display": "La mujer necia es alborotadora; es libertina y no conoce la vergüenza."
+          }
+        ]
+      }
+    },
+    "kjv": {
+      "books": 66,
+      "chapters": 1189,
+      "verses": 31102,
+      "headings": 1357,
+      "emptyVerses": 0,
+      "duplicateVerseNumbers": 0,
+      "nonSequentialVerses": 0,
+      "invalidUnicode": 0,
+      "sourceArtifacts": 0,
+      "presentationNormalizations": 198,
+      "samples": {
+        "structure": [],
+        "artifacts": [],
+        "normalization": [
+          {
+            "location": "01_genesis 15:4",
+            "source": "And, behold, the word of the LORD  came unto him, saying, This shall not be thine heir; but he that shall come forth out of thine own bowels shall be thine heir.",
+            "display": "And, behold, the word of the LORD came unto him, saying, This shall not be thine heir; but he that shall come forth out of thine own bowels shall be thine heir."
+          },
+          {
+            "location": "01_genesis 39:3",
+            "source": "And his master saw that the LORD  was with him, and that the LORD made all that he did to prosper in his hand.",
+            "display": "And his master saw that the LORD was with him, and that the LORD made all that he did to prosper in his hand."
+          },
+          {
+            "location": "02_exodo 9:27",
+            "source": "And Pharaoh sent, and called for Moses and Aaron, and said unto them, I have sinned this time: the LORD  is righteous, and I and my people are wicked.",
+            "display": "And Pharaoh sent, and called for Moses and Aaron, and said unto them, I have sinned this time: the LORD is righteous, and I and my people are wicked."
+          },
+          {
+            "location": "02_exodo 15:2",
+            "source": "The LORD  is my strength and song, And he is become my salvation: He is my God, and I will prepare him an habitation; My father's God, and I will exalt him.",
+            "display": "The LORD is my strength and song, And he is become my salvation: He is my God, and I will prepare him an habitation; My father's God, and I will exalt him."
+          },
+          {
+            "location": "02_exodo 15:3",
+            "source": "The LORD  is a man of war: The LORD  is his name.",
+            "display": "The LORD is a man of war: The LORD is his name."
+          },
+          {
+            "location": "02_exodo 17:16",
+            "source": "for he said, Because the LORD hath sworn that the LORD  will have war with Amalek from generation to generation.",
+            "display": "for he said, Because the LORD hath sworn that the LORD will have war with Amalek from generation to generation."
+          },
+          {
+            "location": "02_exodo 18:11",
+            "source": "Now I know that the LORD  is greater than all gods: for in the thing wherein they dealt proudly he was above them.",
+            "display": "Now I know that the LORD is greater than all gods: for in the thing wherein they dealt proudly he was above them."
+          },
+          {
+            "location": "02_exodo 24:17",
+            "source": "And the sight of the glory of the LORD  was like devouring fire on the top of the mount in the eyes of the children of Israel.",
+            "display": "And the sight of the glory of the LORD was like devouring fire on the top of the mount in the eyes of the children of Israel."
+          },
+          {
+            "location": "02_exodo 40:38",
+            "source": "For the cloud of the LORD  was upon the tabernacle by day, and fire was on it by night, in the sight of all the house of Israel, throughout all their journeys.",
+            "display": "For the cloud of the LORD was upon the tabernacle by day, and fire was on it by night, in the sight of all the house of Israel, throughout all their journeys."
+          },
+          {
+            "location": "03_levitico 1:14",
+            "source": "And if the burnt sacrifice for his offering to the LORD  be of fowls, then he shall bring his offering of turtledoves, or of young pigeons.",
+            "display": "And if the burnt sacrifice for his offering to the LORD be of fowls, then he shall bring his offering of turtledoves, or of young pigeons."
+          },
+          {
+            "location": "03_levitico 3:6",
+            "source": "And if his offering for a sacrifice of peace offering unto the LORD  be of the flock; male or female, he shall offer it without blemish.",
+            "display": "And if his offering for a sacrifice of peace offering unto the LORD be of the flock; male or female, he shall offer it without blemish."
+          },
+          {
+            "location": "03_levitico 4:2",
+            "source": "Speak unto the children of Israel, saying, If a soul shall sin through ignorance against any of the commandments of the LORD  concerning things which ought not to be done, and shall do against any of them:",
+            "display": "Speak unto the children of Israel, saying, If a soul shall sin through ignorance against any of the commandments of the LORD concerning things which ought not to be done, and shall do against any of them:"
+          }
+        ]
+      }
+    }
+  }
+}

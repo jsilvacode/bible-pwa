@@ -1,4 +1,5 @@
 import { assertValidVersion } from '../constants/bibleVersions';
+import { getOfflineBibleBook, getOfflineBibleChapter } from './offlineLibrary';
 
 let booksCache = null;
 let booksPromise = null;
@@ -149,6 +150,12 @@ export async function loadBibleBook(version, bookId, options = {}) {
       const bookMeta = books.find((b) => b.id === normalizedBookId);
       if (!bookMeta) throw new Error('Libro no encontrado');
 
+      const offlineBook = await getOfflineBibleBook(safeVersion, bookMeta);
+      if (offlineBook) {
+        cacheBook(cacheKey, offlineBook);
+        return offlineBook;
+      }
+
       const url = `/data/${safeVersion}/${bookMeta.file}.json`;
       const res = await fetch(url, options.signal ? { signal: options.signal } : {});
       if (!res.ok) throw new Error(`Error cargando el libro desde ${url}`);
@@ -201,7 +208,8 @@ export async function loadBibleChapter(version, bookId, chapter, options = {}) {
       if (!bookMeta) throw new Error('Libro no encontrado');
 
       const url = `/data/${safeVersion}/${bookMeta.file}/${normalizedChapter}.json`;
-      const res = await fetch(url, options.signal ? { signal: options.signal } : {});
+      const offlineResponse = await getOfflineBibleChapter(safeVersion, bookMeta, normalizedChapter);
+      const res = offlineResponse ?? await fetch(url, options.signal ? { signal: options.signal } : {});
       if (!res.ok) throw new Error(`Error cargando el capítulo desde ${url}`);
 
       const payload = await res.json();

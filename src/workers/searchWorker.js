@@ -1,4 +1,5 @@
 import { normalizeSearchText } from '../utils/searchText';
+import { getOfflineBibleBook } from '../services/offlineLibrary';
 
 const MAX_RESULTS = 100;
 const FETCH_CONCURRENCY = 6;
@@ -23,13 +24,14 @@ async function buildCorpus(version, books) {
       const book = books[index];
 
       try {
-        const res = await fetch(`/data/${version}/${book.file}.json`);
-        if (!res.ok) {
+        const offlineBook = await getOfflineBibleBook(version, book);
+        const res = offlineBook ? null : await fetch(`/data/${version}/${book.file}.json`);
+        if (!offlineBook && !res.ok) {
           orderedBooks[index] = [];
           continue;
         }
 
-        const bookData = await res.json();
+        const bookData = offlineBook ?? await res.json();
         const verses = [];
         for (const chapter of bookData.chapters) {
           for (const verse of chapter.verses) {
