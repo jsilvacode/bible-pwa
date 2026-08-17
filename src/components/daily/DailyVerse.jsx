@@ -75,10 +75,9 @@ export default function DailyVerse({ variant = 'hero', children }) {
           onClick={() => navigate(`/read/${dailyTheme.book}/${dailyTheme.chapter}/${dailyTheme.verse}`)}
         >
           <div className={classes.header}>
-            <span className={classes.tag}>UNA PALABRA PARA HOY</span>
-            <p className={classes.themePrompt}>{dailyTheme.prompt}</p>
+            <span className={classes.tag}>PAN DE VIDA</span>
+            <p className={classes.themePrompt}>{dailyTheme.message}</p>
             <h2 className={classes.reference}>
-              <span className={classes.readPrompt}>Lee</span>{' '}
               {reference || `Libro ${dailyTheme.book} ${dailyTheme.chapter}:${dailyTheme.verse}`}
             </h2>
           </div>

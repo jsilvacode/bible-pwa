@@ -1,30 +1,24 @@
 import { describe, expect, it } from 'vitest';
 import { DAILY_THEME_VERSES, getDailyTheme } from './dailyThemes';
 
-function createStorage() {
-  const values = new Map();
-  return {
-    getItem: (key) => values.get(key) ?? null,
-    setItem: (key, value) => values.set(key, value),
-  };
-}
-
-describe('getDailyTheme', () => {
-  it('mantiene el mismo versículo durante un día', () => {
-    const storage = createStorage();
-    const date = new Date('2026-08-17T12:00:00');
-
-    expect(getDailyTheme({ date, storage })).toEqual(getDailyTheme({ date, storage }));
+describe('Pan de vida', () => {
+  it('contiene una guía editorial de 90 cápsulas distintas', () => {
+    expect(DAILY_THEME_VERSES).toHaveLength(90);
+    expect(new Set(DAILY_THEME_VERSES.map((theme) => theme.id)).size).toBe(90);
+    expect(DAILY_THEME_VERSES.every((theme) => theme.message && theme.book && theme.chapter && theme.verse)).toBe(true);
   });
 
-  it('recorre la guía completa sin repetir antes de reiniciar', () => {
-    const storage = createStorage();
-    const selection = Array.from({ length: DAILY_THEME_VERSES.length }, (_, index) => {
-      const date = new Date('2026-01-01T12:00:00');
+  it('recorre los 90 días sin repetir y vuelve a comenzar', () => {
+    const firstDay = new Date('2026-01-01T12:00:00');
+    const selection = Array.from({ length: 90 }, (_, index) => {
+      const date = new Date(firstDay);
       date.setDate(date.getDate() + index);
-      return getDailyTheme({ date, storage }).id;
+      return getDailyTheme({ date }).id;
     });
+    const nextCycle = new Date(firstDay);
+    nextCycle.setDate(nextCycle.getDate() + 90);
 
-    expect(new Set(selection).size).toBe(DAILY_THEME_VERSES.length);
+    expect(new Set(selection).size).toBe(90);
+    expect(getDailyTheme({ date: nextCycle }).id).toBe(selection[0]);
   });
 });

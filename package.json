@@ -17,6 +17,7 @@
     "preview": "vite preview",
     "audit:deps": "npm audit --audit-level=high",
     "audit:bible": "node scripts/audit-bible-versions.js",
+    "audit:daily": "node scripts/audit-daily-themes.js",
     "split:bible": "node scripts/split-bible-by-chapter.js",
     "split:cba": "node scripts/split-cba-by-chapter.js",
     "import:cba": "node scripts/import-cba-twm.js"
