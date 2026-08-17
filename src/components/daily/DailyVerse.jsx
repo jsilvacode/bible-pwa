@@ -6,17 +6,8 @@ import { loadBibleChapter } from '../../services/bibleLoader';
 import { shareVerse } from '../../utils/shareVerse';
 import { buildVerseShareUrl } from '../../utils/verseCopy';
 import { normalizeDisplayedText } from '../../utils/textNormalizer';
+import { getDailyTheme } from '../../data/dailyThemes';
 import classes from './DailyVerse.module.css';
-
-const DAILY_VERSES = [
-  { book: 1, chapter: 1, verse: 1 },
-  { book: 6, chapter: 1, verse: 9 },
-  { book: 19, chapter: 23, verse: 1 },
-  { book: 20, chapter: 3, verse: 5 },
-  { book: 23, chapter: 41, verse: 10 },
-  { book: 43, chapter: 3, verse: 16 },
-  { book: 62, chapter: 4, verse: 8 },
-];
 
 export default function DailyVerse({ variant = 'hero', children }) {
   const { settings } = useSettings();
@@ -25,26 +16,24 @@ export default function DailyVerse({ variant = 'hero', children }) {
   const [reference, setReference] = useState('');
   const navigate = useNavigate();
 
-  const dailyRef = useMemo(() => {
-    const now = new Date();
-    const seed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
-    const idx = seed % DAILY_VERSES.length;
-    return DAILY_VERSES[idx];
-  }, []);
+  const dailyTheme = useMemo(() => getDailyTheme(), []);
 
   useEffect(() => {
     const controller = new AbortController();
 
     async function loadContent() {
       try {
-        const bookData = await loadBibleChapter(settings.version, dailyRef.book, dailyRef.chapter, {
+        setVerseText('');
+        setReference('');
+
+        const bookData = await loadBibleChapter(settings.version, dailyTheme.book, dailyTheme.chapter, {
           signal: controller.signal,
         });
 
-        const chapter = bookData?.chapters?.find((c) => c.chapter === dailyRef.chapter);
-        const verse = chapter?.verses?.find((v) => v.verse === dailyRef.verse);
+        const chapter = bookData?.chapters?.find((c) => c.chapter === dailyTheme.chapter);
+        const verse = chapter?.verses?.find((v) => v.verse === dailyTheme.verse);
         if (bookData?.name) {
-          setReference(`${bookData.name} ${dailyRef.chapter}:${dailyRef.verse}`);
+          setReference(`${bookData.name} ${dailyTheme.chapter}:${dailyTheme.verse}`);
         }
         if (verse?.text) {
           setVerseText(normalizeDisplayedText(verse.text));
@@ -58,16 +47,16 @@ export default function DailyVerse({ variant = 'hero', children }) {
 
     loadContent();
     return () => controller.abort();
-  }, [settings.version, dailyRef]);
+  }, [settings.version, dailyTheme]);
 
   const handleShare = async (e) => {
     e.stopPropagation();
-    const refLabel = reference || `Libro ${dailyRef.book} ${dailyRef.chapter}:${dailyRef.verse}`;
+    const refLabel = reference || `Libro ${dailyTheme.book} ${dailyTheme.chapter}:${dailyTheme.verse}`;
     const text = verseText ? `"${verseText}" — ${refLabel}` : refLabel;
-    const url = buildVerseShareUrl(dailyRef.book, dailyRef.chapter, dailyRef.verse);
+    const url = buildVerseShareUrl(dailyTheme.book, dailyTheme.chapter, dailyTheme.verse);
 
     try {
-      const result = await shareVerse({ title: 'Versículo del Día', text, url });
+      const result = await shareVerse({ title: 'Una palabra para hoy', text, url });
       if (result === 'copied') {
         showToast('Copiado al portapapeles');
       }
@@ -83,12 +72,14 @@ export default function DailyVerse({ variant = 'hero', children }) {
       <div className={classes.content}>
         <div
           className={classes.clickableArea}
-          onClick={() => navigate(`/read/${dailyRef.book}/${dailyRef.chapter}/${dailyRef.verse}`)}
+          onClick={() => navigate(`/read/${dailyTheme.book}/${dailyTheme.chapter}/${dailyTheme.verse}`)}
         >
           <div className={classes.header}>
-            <span className={classes.tag}>VERSÍCULO DEL DÍA</span>
+            <span className={classes.tag}>UNA PALABRA PARA HOY</span>
+            <p className={classes.themePrompt}>{dailyTheme.prompt}</p>
             <h2 className={classes.reference}>
-              {reference || `Libro ${dailyRef.book} ${dailyRef.chapter}:${dailyRef.verse}`}
+              <span className={classes.readPrompt}>Lee</span>{' '}
+              {reference || `Libro ${dailyTheme.book} ${dailyTheme.chapter}:${dailyTheme.verse}`}
             </h2>
           </div>
 
@@ -104,7 +95,7 @@ export default function DailyVerse({ variant = 'hero', children }) {
           <button
             type="button"
             className={classes.readBtn}
-            onClick={() => navigate(`/read/${dailyRef.book}/${dailyRef.chapter}`)}
+            onClick={() => navigate(`/read/${dailyTheme.book}/${dailyTheme.chapter}`)}
           >
             Leer capítulo completo
           </button>
