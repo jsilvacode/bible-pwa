@@ -96,19 +96,6 @@ export default function HomeScreen() {
   const greeting = hour < 12 ? 'Buenos días' : hour < 20 ? 'Buenas tardes' : 'Buenas noches';
   const period = hour < 12 ? 'morning' : hour < 20 ? 'afternoon' : 'night';
   const GreetingIcon = period === 'morning' ? IconSunrise : period === 'afternoon' ? IconSun : IconMoon;
-  const formattedDate = now
-    .toLocaleDateString('es-CL', {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
-    .replace(',', '');
-  const dateTime = [
-    now.getFullYear(),
-    String(now.getMonth() + 1).padStart(2, '0'),
-    String(now.getDate()).padStart(2, '0'),
-  ].join('-');
   const latest = recent[0];
   const latestBookName = latest ? bookNames[latest.book] || `Libro ${latest.book}` : '';
   const previousReads = recent.slice(1, 6);
@@ -140,11 +127,6 @@ export default function HomeScreen() {
               </div>
               <h1 className={classes.greeting}>{greeting}</h1>
             </div>
-
-            <span className={classes.headerDivider} aria-hidden="true" />
-            <time className={classes.date} dateTime={dateTime}>
-              {formattedDate}
-            </time>
           </div>
 
         </header>
