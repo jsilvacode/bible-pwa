@@ -73,6 +73,29 @@ test('inicio prioriza búsqueda y acceso directo a los testamentos', async ({ pa
   await expect(page.locator('button', { hasText: 'Mateo' }).first()).toBeVisible();
 });
 
+test('el camino de lectura integra la última lectura con la racha en móvil', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.addInitScript(() => {
+    localStorage.setItem('bible_recent', JSON.stringify([
+      { book: 19, chapter: 23, ts: Date.now() },
+      { book: 41, chapter: 8, ts: Date.now() - 1_000 },
+      { book: 42, chapter: 14, ts: Date.now() - 2_000 },
+    ]));
+  });
+  await page.goto('/');
+
+  await expect(page.locator('blockquote')).toHaveCSS('text-align', 'center');
+  await expect(page.getByText('Lecturas anteriores')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /Continuar leyendo Salmos, capítulo 23/i })).toBeVisible();
+
+  const weeklyActivity = page.locator('#weekly-reading-activity');
+  const weeklyToggle = page.getByRole('button', { name: /Actividad semanal/i });
+  await expect(weeklyToggle).toBeVisible();
+  await expect(weeklyActivity).toBeHidden();
+  await weeklyToggle.click();
+  await expect(weeklyActivity).toBeVisible();
+});
+
 test('copiar versículo incluye cita de origen y url', async ({ page, context }) => {
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   await page.goto('/read/1/1');
