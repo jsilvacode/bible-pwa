@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test('smoke flow: version, navigation, CBA, search', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.getByText('VERSÍCULO DEL DÍA')).toBeVisible();
+  await expect(page.getByText('PAN DE VIDA')).toBeVisible();
 
   const versionSelect = page.locator('header select');
   await expect(versionSelect).toBeVisible();
