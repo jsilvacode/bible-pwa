@@ -128,24 +128,6 @@
   color: #e5e7ff;
 }
 
-.headerDivider {
-  flex: 0 0 auto;
-  width: 1px;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.date {
-  font-family: var(--font-ui);
-  font-size: 0.82rem;
-  font-weight: 650;
-  letter-spacing: 0.015em;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-  text-align: left;
-  white-space: nowrap;
-}
-
 .greeting {
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -162,20 +144,8 @@
     gap: 10px;
   }
 
-  .date {
-    order: 1;
-    align-self: stretch;
-    text-align: left;
-    font-size: 0.76rem;
-    white-space: normal;
-  }
-
   .greetingGroup {
-    order: 2;
-  }
-
-  .headerDivider {
-    display: none;
+    order: 1;
   }
 
   .timeIcon {
