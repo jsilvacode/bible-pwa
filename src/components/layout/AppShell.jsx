@@ -2,13 +2,13 @@ import React, { lazy, Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import TopBar from './TopBar';
 import BottomNav from './BottomNav';
-import SiteFooter from './SiteFooter';
 import { useReadingMode } from '../../hooks/useReadingMode';
 import { useInstallPrompt } from '../../hooks/useInstallPrompt';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
 import classes from './AppShell.module.css';
 
 const SearchModal = lazy(() => import('../home/SearchModal'));
+const SiteFooter = lazy(() => import('./SiteFooter'));
 
 export default function AppShell() {
   const location = useLocation();
@@ -48,7 +48,11 @@ export default function AppShell() {
         <Suspense fallback={<div className={classes.routeFallback} role="status">Cargando…</div>}>
           <Outlet />
         </Suspense>
-        {showFooter && <SiteFooter />}
+        {showFooter && (
+          <Suspense fallback={null}>
+            <SiteFooter />
+          </Suspense>
+        )}
       </main>
       <BottomNav hidden={readerControlsIdle && !readerAtEnd} />
       {isOpen && (
