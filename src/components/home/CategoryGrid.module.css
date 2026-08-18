@@ -292,6 +292,10 @@
 }
 
 @media (max-width: 599px) {
+  .groupLabel:not(.collectionLabel) i {
+    flex: 0 0 14px;
+  }
+
   .grid {
     gap: 10px;
   }

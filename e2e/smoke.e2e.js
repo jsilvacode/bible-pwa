@@ -85,6 +85,7 @@ test('el camino de lectura integra la última lectura con la racha en móvil', a
   await page.goto('/');
 
   await expect(page.locator('blockquote')).toHaveCSS('text-align', 'center');
+  await expect(page.locator('cite')).toHaveCSS('text-align', 'center');
   await expect(page.getByText('Lecturas anteriores')).toHaveCount(0);
   await expect(page.getByRole('button', { name: /Continuar leyendo Salmos, capítulo 23/i })).toBeVisible();
 
@@ -94,6 +95,10 @@ test('el camino de lectura integra la última lectura con la racha en móvil', a
   await expect(weeklyActivity).toBeHidden();
   await weeklyToggle.click();
   await expect(weeklyActivity).toBeVisible();
+
+  const summary = page.getByLabel('Resumen de lectura');
+  await expect(summary).toHaveCSS('display', 'grid');
+  await expect(summary.locator(':scope > div')).toHaveCount(3);
 });
 
 test('copiar versículo incluye cita de origen y url', async ({ page, context }) => {
