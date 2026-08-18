@@ -4,6 +4,7 @@ import { searchIndex } from '../utils/searchIndex';
 import { matchesWholeTerms } from '../utils/searchText';
 
 const MAX_SEARCH_RESULTS = 100;
+const idleProgress = { completed: 0, total: 0 };
 
 function workerSupported() {
   return typeof Worker !== 'undefined' && import.meta.env.MODE !== 'test';
@@ -13,6 +14,7 @@ export function useSearch(version) {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [truncated, setTruncated] = useState(false);
+  const [progress, setProgress] = useState(idleProgress);
   const requestIdRef = useRef(0);
   const workerRef = useRef(null);
 
@@ -91,12 +93,14 @@ export function useSearch(version) {
       setResults([]);
       setLoading(false);
       setTruncated(false);
+      setProgress(idleProgress);
       return;
     }
 
     setLoading(true);
     setResults([]);
     setTruncated(false);
+    setProgress(idleProgress);
 
     try {
       const [safeVersion, books] = await Promise.all([
@@ -112,10 +116,16 @@ export function useSearch(version) {
           const msg = event.data;
           if (!msg || msg.requestId !== requestIdRef.current) return;
 
-          if (msg.type === 'done') {
+          if (msg.type === 'progress') {
+            startTransition(() => {
+              setResults(msg.matches || []);
+              setProgress({ completed: Number(msg.completed) || 0, total: Number(msg.total) || 0 });
+            });
+          } else if (msg.type === 'done') {
             startTransition(() => {
               setResults(msg.matches);
               setTruncated(Boolean(msg.truncated));
+              setProgress({ completed: Number(msg.total) || 0, total: Number(msg.total) || 0 });
             });
             setLoading(false);
           } else if (msg.type === 'error') {
@@ -140,7 +150,8 @@ export function useSearch(version) {
     setLoading(false);
     setResults([]);
     setTruncated(false);
+    setProgress(idleProgress);
   }, []);
 
-  return { search, results, loading, truncated, cancelSearch };
+  return { search, results, loading, truncated, progress, cancelSearch };
 }

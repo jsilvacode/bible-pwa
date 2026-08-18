@@ -23,6 +23,78 @@ function canPrefetchChapter() {
   return !connection?.saveData && !['slow-2g', '2g'].includes(connection?.effectiveType);
 }
 
+function isCompactReaderViewport() {
+  return typeof window !== 'undefined'
+    && window.matchMedia?.('(max-width: 767px)').matches;
+}
+
+/**
+ * En teléfonos, preparar el siguiente capítulo debe ceder ante el lector.
+ * Se inicia sólo tras una breve pausa real y, cuando existe, durante idle time.
+ */
+function scheduleMobilePrefetch(callback) {
+  let cancelled = false;
+  let delayId = null;
+  let idleId = null;
+  const activityEvents = ['pointerdown', 'touchstart', 'scroll', 'wheel'];
+
+  const clearPending = () => {
+    if (delayId !== null) window.clearTimeout(delayId);
+    if (idleId !== null && 'cancelIdleCallback' in window) {
+      window.cancelIdleCallback(idleId);
+    }
+    delayId = null;
+    idleId = null;
+  };
+
+  const removeListeners = () => {
+    activityEvents.forEach((eventName) => window.removeEventListener(eventName, reschedule));
+    window.removeEventListener('keydown', reschedule);
+  };
+
+  const run = () => {
+    clearPending();
+    if (navigator.scheduling?.isInputPending?.({ includeContinuous: true })) {
+      schedule();
+      return;
+    }
+    removeListeners();
+    if (!cancelled) callback();
+  };
+
+  const schedule = () => {
+    clearPending();
+    if (cancelled) return;
+
+    delayId = window.setTimeout(() => {
+      delayId = null;
+      if (cancelled) return;
+
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(run, { timeout: 2600 });
+      } else {
+        delayId = window.setTimeout(run, 0);
+      }
+    }, 1600);
+  };
+
+  function reschedule() {
+    schedule();
+  }
+
+  activityEvents.forEach((eventName) => {
+    window.addEventListener(eventName, reschedule, { passive: true });
+  });
+  window.addEventListener('keydown', reschedule);
+  schedule();
+
+  return () => {
+    cancelled = true;
+    clearPending();
+    removeListeners();
+  };
+}
+
 export default function ChapterView() {
   const { book: bookId, chapter: chapterNum, verse: targetVerse } = useParams();
   const navigate = useNavigate();
@@ -151,6 +223,10 @@ export default function ChapterView() {
         // La navegación seguirá cargando normalmente si el precalentamiento no está disponible.
       });
     };
+
+    if (isCompactReaderViewport()) {
+      return scheduleMobilePrefetch(prefetch);
+    }
 
     if ('requestIdleCallback' in window) {
       const idleId = window.requestIdleCallback(prefetch, { timeout: 1800 });
