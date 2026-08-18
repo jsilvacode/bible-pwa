@@ -12,7 +12,7 @@ import { createBookAliases, parseBibleReference } from '../../utils/bibleReferen
 
 export default function SearchModal({ isOpen, initialQuery = '', requestId = 0, onClose }) {
   const { settings } = useSettings();
-  const { search, results, loading, truncated, cancelSearch } = useSearch(settings.version);
+  const { search, results, loading, truncated, progress, cancelSearch } = useSearch(settings.version);
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [booksById, setBooksById] = useState({});
@@ -171,11 +171,14 @@ export default function SearchModal({ isOpen, initialQuery = '', requestId = 0, 
           {loading && (
             <div className={classes.loading} role="status" aria-live="polite">
               <span className={classes.spinner} aria-hidden="true" />
-              <span>Buscando…</span>
+              <span>
+                Buscando…
+                {progress.total > 0 && ` ${progress.completed} de ${progress.total} libros`}
+              </span>
             </div>
           )}
 
-          {!loading && hasSearched && results.length > 0 && (
+          {hasSearched && results.length > 0 && (
             <div className={classes.resultsHeading}>
               <strong>Resultados encontrados</strong>
               <span>{results.length}{truncated ? '+' : ''}</span>
