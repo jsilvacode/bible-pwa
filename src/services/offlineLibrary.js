@@ -1,6 +1,8 @@
 const OFFLINE_CACHE_PREFIX = 'santa-biblia-library';
 const OFFLINE_LIBRARY_REVISION = 'v1';
 const DOWNLOAD_CONCURRENCY = 3;
+const BACKGROUND_DOWNLOAD_CONCURRENCY = 2;
+const BACKGROUND_YIELD_INTERVAL = 4;
 
 function canUseCacheStorage() {
   return typeof globalThis.caches !== 'undefined';
@@ -26,6 +28,11 @@ function bibleChapterUrl(version, book, chapter) {
 
 function commentaryChapterUrl(bookId, chapter) {
   return `/data/cba/${bookId}/${chapter}.json`;
+}
+
+function completionMarkerUrl(kind, id = '') {
+  const suffix = id ? `-${id}` : '';
+  return `/offline-library/${kind}${suffix}-${OFFLINE_LIBRARY_REVISION}.json`;
 }
 
 async function getBooks() {
@@ -55,20 +62,60 @@ function emitProgress(onProgress, completed, total, phase) {
   });
 }
 
-async function downloadCollection({ kind, id, urls, phase, onProgress }) {
+function waitForBackgroundYield() {
+  if (typeof window === 'undefined') return Promise.resolve();
+
+  return new Promise((resolve) => {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(resolve, { timeout: 300 });
+      return;
+    }
+    window.setTimeout(resolve, 0);
+  });
+}
+
+async function readCompletionMarker(cache, kind, id, total) {
+  const marker = await cache.match(absoluteUrl(completionMarkerUrl(kind, id)));
+  if (!marker) return false;
+
+  try {
+    const payload = await marker.json();
+    return payload?.revision === OFFLINE_LIBRARY_REVISION && payload?.total === total;
+  } catch {
+    return false;
+  }
+}
+
+async function writeCompletionMarker(cache, kind, id, total) {
+  await cache.put(
+    absoluteUrl(completionMarkerUrl(kind, id)),
+    new Response(JSON.stringify({ revision: OFFLINE_LIBRARY_REVISION, total }), {
+      headers: { 'Content-Type': 'application/json' },
+    })
+  );
+}
+
+async function downloadCollection({ kind, id, urls, phase, onProgress, background = false }) {
   const cache = await getCache(kind, id);
   if (!cache) throw new Error('Este navegador no permite preparar la biblioteca sin conexión.');
+
+  const total = urls.length;
+  if (await readCompletionMarker(cache, kind, id, total)) {
+    emitProgress(onProgress, total, total, phase);
+    return { total, downloaded: 0 };
+  }
 
   const existingEntries = await cache.keys();
   const existingPaths = new Set(existingEntries.map((entry) => requestPath(entry.url)));
   const pending = urls.filter((url) => !existingPaths.has(requestPath(absoluteUrl(url))));
-  const total = urls.length;
   let completed = total - pending.length;
   let nextIndex = 0;
 
   emitProgress(onProgress, completed, total, phase);
 
   const downloadNext = async () => {
+    let downloadedSinceYield = 0;
+
     while (nextIndex < pending.length) {
       const url = pending[nextIndex];
       nextIndex += 1;
@@ -81,12 +128,23 @@ async function downloadCollection({ kind, id, urls, phase, onProgress }) {
       await cache.put(absoluteUrl(url), response.clone());
       completed += 1;
       emitProgress(onProgress, completed, total, phase);
+
+      downloadedSinceYield += 1;
+      if (background && downloadedSinceYield >= BACKGROUND_YIELD_INTERVAL) {
+        downloadedSinceYield = 0;
+        await waitForBackgroundYield();
+      }
     }
   };
 
   await Promise.all(
-    Array.from({ length: Math.min(DOWNLOAD_CONCURRENCY, pending.length) }, downloadNext)
+    Array.from(
+      { length: Math.min(background ? BACKGROUND_DOWNLOAD_CONCURRENCY : DOWNLOAD_CONCURRENCY, pending.length) },
+      downloadNext
+    )
   );
+
+  await writeCompletionMarker(cache, kind, id, total);
 
   return { total, downloaded: pending.length };
 }
@@ -109,7 +167,7 @@ export async function requestPersistentStorage() {
  * apart from the regular browsing cache so reading remains dependable even
  * after the user has explored many other chapters.
  */
-export async function prepareBibleVersion(version, { onProgress } = {}) {
+export async function prepareBibleVersion(version, { onProgress, background = false } = {}) {
   const books = await getBooks();
   const urls = books.flatMap((book) => (
     Array.from({ length: Number(book.chapters) || 0 }, (_, index) => (
@@ -123,13 +181,14 @@ export async function prepareBibleVersion(version, { onProgress } = {}) {
     urls,
     phase: 'bible',
     onProgress,
+    background,
   });
 }
 
 /**
  * Prepares the editorial CBA chapter files once for every Bible version.
  */
-export async function prepareCommentary({ onProgress } = {}) {
+export async function prepareCommentary({ onProgress, background = false } = {}) {
   const books = await getBooks();
   const urls = books.flatMap((book) => (
     Array.from({ length: Number(book.chapters) || 0 }, (_, index) => (
@@ -142,6 +201,7 @@ export async function prepareCommentary({ onProgress } = {}) {
     urls,
     phase: 'commentary',
     onProgress,
+    background,
   });
 }
 

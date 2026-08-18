@@ -12,6 +12,68 @@ const OfflineLibraryContext = createContext(null);
 
 const idleState = { status: 'idle', progress: 0 };
 const activeTasks = new Map();
+const BACKGROUND_START_DELAY = 3500;
+
+function scheduleWhenQuiet(callback) {
+  let delayId = null;
+  let idleId = null;
+  let cancelled = false;
+  let started = false;
+  const activityEvents = ['pointerdown', 'keydown', 'touchstart'];
+
+  const clearPending = () => {
+    if (delayId !== null) window.clearTimeout(delayId);
+    if (idleId !== null) {
+      if ('cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
+      else window.clearTimeout(idleId);
+    }
+    delayId = null;
+    idleId = null;
+  };
+
+  const removeActivityListeners = () => {
+    activityEvents.forEach((eventName) => window.removeEventListener(eventName, postpone));
+    document.removeEventListener('visibilitychange', resume);
+  };
+
+  const schedule = () => {
+    clearPending();
+    if (cancelled || started || document.hidden) return;
+
+    delayId = window.setTimeout(() => {
+      if (cancelled || document.hidden) return;
+
+      const run = () => {
+        idleId = null;
+        if (cancelled || started || document.hidden) return;
+        started = true;
+        removeActivityListeners();
+        callback();
+      };
+
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(run, { timeout: 6000 });
+      } else {
+        idleId = window.setTimeout(run, 0);
+      }
+    }, BACKGROUND_START_DELAY);
+  };
+
+  const postpone = () => schedule();
+  const resume = () => {
+    if (!document.hidden) schedule();
+  };
+
+  activityEvents.forEach((eventName) => window.addEventListener(eventName, postpone, { passive: true }));
+  document.addEventListener('visibilitychange', resume);
+  schedule();
+
+  return () => {
+    cancelled = true;
+    clearPending();
+    removeActivityListeners();
+  };
+}
 
 export function OfflineLibraryProvider({ children }) {
   const { isInstalled } = useInstallPrompt();
@@ -19,7 +81,7 @@ export function OfflineLibraryProvider({ children }) {
   const [versions, setVersions] = useState({});
   const [commentary, setCommentary] = useState(idleState);
 
-  const prepareVersion = useCallback((version) => {
+  const prepareVersion = useCallback((version, { background = false } = {}) => {
     if (!isInstalled || !supportsOfflineLibrary()) {
       return Promise.resolve({ status: 'unavailable' });
     }
@@ -34,6 +96,7 @@ export function OfflineLibraryProvider({ children }) {
     }));
 
     const task = prepareBibleVersion(version, {
+      background,
       onProgress: ({ progress }) => {
         const now = Date.now();
         if (progress < 100 && now - lastPaint < 120) return;
@@ -64,7 +127,7 @@ export function OfflineLibraryProvider({ children }) {
     return task;
   }, [isInstalled]);
 
-  const prepareEditorialCommentary = useCallback(() => {
+  const prepareEditorialCommentary = useCallback(({ background = false } = {}) => {
     if (!isInstalled || !supportsOfflineLibrary()) {
       return Promise.resolve({ status: 'unavailable' });
     }
@@ -76,6 +139,7 @@ export function OfflineLibraryProvider({ children }) {
     setCommentary((current) => ({ status: 'downloading', progress: current.progress ?? 0 }));
 
     const task = prepareCommentary({
+      background,
       onProgress: ({ progress }) => {
         const now = Date.now();
         if (progress < 100 && now - lastPaint < 120) return;
@@ -101,31 +165,38 @@ export function OfflineLibraryProvider({ children }) {
     if (!isInstalled || !supportsOfflineLibrary()) return undefined;
 
     let cancelled = false;
-    const beginPreparation = () => {
+    const beginBiblePreparation = () => {
       requestPersistentStorage().catch(() => {});
 
-      prepareVersion(settings.version)
-        .then(() => (cancelled ? null : prepareEditorialCommentary()))
+      prepareVersion(settings.version, { background: true })
+        .then(() => {
+          if (cancelled) return;
+          cancelCommentaryPreparation = scheduleWhenQuiet(() => {
+            prepareEditorialCommentary({ background: true }).catch(() => {
+              // A transient connection issue simply resumes on the next app visit.
+            });
+          });
+        })
         .catch(() => {
           // A transient connection issue simply resumes on the next app visit.
         });
     };
 
-    const resumePreparation = () => beginPreparation();
+    let cancelCommentaryPreparation = () => {};
+    let cancelBiblePreparation = scheduleWhenQuiet(beginBiblePreparation);
 
-    const idleId = typeof window.requestIdleCallback === 'function'
-      ? window.requestIdleCallback(beginPreparation, { timeout: 1800 })
-      : null;
-    const timeoutId = idleId === null
-      ? window.setTimeout(beginPreparation, 700)
-      : null;
+    const resumePreparation = () => {
+      cancelBiblePreparation();
+      cancelBiblePreparation = scheduleWhenQuiet(beginBiblePreparation);
+    };
+
     window.addEventListener('online', resumePreparation);
 
     return () => {
       cancelled = true;
       window.removeEventListener('online', resumePreparation);
-      if (idleId !== null) window.cancelIdleCallback(idleId);
-      if (timeoutId !== null) window.clearTimeout(timeoutId);
+      cancelBiblePreparation();
+      cancelCommentaryPreparation();
     };
   }, [isInstalled, prepareEditorialCommentary, prepareVersion, settings.version]);
 

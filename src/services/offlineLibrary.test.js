@@ -65,6 +65,18 @@ describe('offlineLibrary', () => {
     expect(progress.at(-1)).toBe(100);
   });
 
+  it('uses its completion marker instead of rescanning a finished version on later visits', async () => {
+    await prepareBibleVersion('nbla');
+    vi.mocked(fetch).mockClear();
+
+    const progress = [];
+    await prepareBibleVersion('nbla', { onProgress: (state) => progress.push(state.progress) });
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(String(fetch.mock.calls[0][0])).toContain('/data/books.json');
+    expect(progress).toEqual([100]);
+  });
+
   it('stores the commentary separately from Bible editions', async () => {
     await prepareCommentary();
     const commentary = await getOfflineCommentaryChapter(1, 2);
