@@ -43,8 +43,8 @@ function useHeroImageReady() {
 
 /**
  * La portada es lo primero que debe responder en un teléfono. El atlas y la
- * racha se montan justo después del primer paint, antes de que el usuario
- * pueda llegar a esas secciones al desplazarse.
+ * racha se montan cuando el usuario empieza a desplazarse o cuando el hilo
+ * principal lleva un rato libre, para no competir con el primer render.
  */
 function useDeferredHomeDetails() {
   const [isReady, setIsReady] = useState(() => (
@@ -54,7 +54,6 @@ function useDeferredHomeDetails() {
   useEffect(() => {
     if (isReady) return undefined;
 
-    let frameId = 0;
     let idleId = null;
     let timeoutId = null;
     let cancelled = false;
@@ -63,19 +62,33 @@ function useDeferredHomeDetails() {
       if (!cancelled) setIsReady(true);
     };
 
-    frameId = window.requestAnimationFrame(() => {
-      if ('requestIdleCallback' in window) {
-        idleId = window.requestIdleCallback(reveal, { timeout: 700 });
-      } else {
-        timeoutId = window.setTimeout(reveal, 0);
-      }
-    });
+    const revealOnScroll = () => reveal();
+    const revealWhenIdle = () => {
+      timeoutId = window.setTimeout(() => {
+        if ('requestIdleCallback' in window) {
+          idleId = window.requestIdleCallback(reveal, { timeout: 1000 });
+        } else {
+          reveal();
+        }
+      }, 1200);
+    };
+
+    if (window.scrollY > 4) {
+      reveal();
+    } else {
+      window.addEventListener('scroll', revealOnScroll, { passive: true, once: true });
+      window.addEventListener('wheel', revealOnScroll, { passive: true, once: true });
+      window.addEventListener('touchmove', revealOnScroll, { passive: true, once: true });
+      revealWhenIdle();
+    }
 
     return () => {
       cancelled = true;
-      window.cancelAnimationFrame(frameId);
       if (idleId !== null && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
       if (timeoutId !== null) window.clearTimeout(timeoutId);
+      window.removeEventListener('scroll', revealOnScroll);
+      window.removeEventListener('wheel', revealOnScroll);
+      window.removeEventListener('touchmove', revealOnScroll);
     };
   }, [isReady]);
 

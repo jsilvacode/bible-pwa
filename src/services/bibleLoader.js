@@ -1,5 +1,5 @@
 import { assertValidVersion } from '../constants/bibleVersions';
-import { getOfflineBibleBook, getOfflineBibleChapter } from './offlineLibrary';
+import { getOfflineBibleBook, getOfflineBibleChapter } from './offlineCache';
 
 let booksCache = null;
 let booksPromise = null;
@@ -118,8 +118,10 @@ async function getValidVersionIds() {
  * @param {unknown} version
  * @returns {Promise<string>}
  */
-export async function resolveVersionId(version) {
+export async function resolveVersionId(version, { validate = true } = {}) {
   const normalized = assertValidVersion(version);
+  if (!validate) return normalized;
+
   const validIds = await getValidVersionIds();
   if (validIds.length > 0 && !validIds.includes(normalized)) {
     return assertValidVersion(null);
@@ -133,7 +135,10 @@ export async function resolveVersionId(version) {
  * @param {{ signal?: AbortSignal }} [options]
  */
 export async function loadBibleBook(version, bookId, options = {}) {
-  const safeVersion = await waitWithAbort(resolveVersionId(version), options.signal);
+  const safeVersion = await waitWithAbort(
+    resolveVersionId(version, { validate: options.validateVersion !== false }),
+    options.signal
+  );
   const normalizedBookId = Number(bookId);
   const cacheKey = `${safeVersion}_${normalizedBookId}`;
 
@@ -182,7 +187,10 @@ export async function loadBibleBook(version, bookId, options = {}) {
  * @param {{ signal?: AbortSignal }} [options]
  */
 export async function loadBibleChapter(version, bookId, chapter, options = {}) {
-  const safeVersion = await waitWithAbort(resolveVersionId(version), options.signal);
+  const safeVersion = await waitWithAbort(
+    resolveVersionId(version, { validate: options.validateVersion !== false }),
+    options.signal
+  );
   const normalizedBookId = Number(bookId);
   const normalizedChapter = Number(chapter);
 

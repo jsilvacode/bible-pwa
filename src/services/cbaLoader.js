@@ -1,4 +1,4 @@
-import { getOfflineCommentaryChapter } from './offlineLibrary';
+import { getOfflineCommentaryChapter } from './offlineCache';
 
 const chapterCache = new Map();
 const MAX_CHAPTER_CACHE = 8;

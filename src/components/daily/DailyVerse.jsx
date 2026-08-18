@@ -28,6 +28,7 @@ export default function DailyVerse({ variant = 'hero', children }) {
 
         const bookData = await loadBibleChapter(settings.version, dailyTheme.book, dailyTheme.chapter, {
           signal: controller.signal,
+          validateVersion: false,
         });
 
         const chapter = bookData?.chapters?.find((c) => c.chapter === dailyTheme.chapter);
