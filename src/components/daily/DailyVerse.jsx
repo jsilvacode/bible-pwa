@@ -76,7 +76,7 @@ export default function DailyVerse({ variant = 'hero', children }) {
         >
           <div className={classes.header}>
             <span className={classes.tag}>PAN DE VIDA</span>
-            <p className={classes.themePrompt}>{dailyTheme.message}</p>
+            <p className={classes.themePrompt}>{dailyTheme.message}...</p>
           </div>
 
           <blockquote className={classes.verseText}>
