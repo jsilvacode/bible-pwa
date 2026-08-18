@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSettings } from '../../hooks/useSettings';
-import { useOfflineLibrary } from '../../hooks/useOfflineLibrary';
+import { useOfflineVersion } from '../../hooks/useOfflineVersion';
 import { fetchVersionsManifest } from '../../services/bibleLoader';
 import { IconChevronDown } from './Icons';
 import classes from './VersionSelector.module.css';
 
 export default function VersionSelector() {
   const { settings, updateSettings } = useSettings();
-  const { isInstalled, prepareVersion, getVersionState } = useOfflineLibrary();
+  const { isInstalled, prepareVersion, getVersionState } = useOfflineVersion();
   const [versions, setVersions] = useState([]);
   const [unavailableMessage, setUnavailableMessage] = useState('');
 
