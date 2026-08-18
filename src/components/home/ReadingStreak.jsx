@@ -29,26 +29,23 @@ export default function ReadingStreak({ embedded = false }) {
 
   return (
     <div className={`${classes.container} ${embedded ? classes.embedded : ''}`}>
-      <div className={classes.header}>
-        {!embedded && (
-          <div className={classes.headingCopy}>
-            <h2 className={classes.title}>Tu ritmo de lectura</h2>
-            <p className={classes.subtitle}>Cada día que vuelves, tu camino sigue creciendo.</p>
-          </div>
-        )}
-        <div className={classes.streakMetric} aria-label={`${currentStreak} ${streakLabel}`}>
+      {!embedded && (
+        <div className={classes.headingCopy}>
+          <h2 className={classes.title}>Tu ritmo de lectura</h2>
+          <p className={classes.subtitle}>Cada día que vuelves, tu camino sigue creciendo.</p>
+        </div>
+      )}
+
+      <div className={classes.stats} aria-label="Resumen de lectura">
+        <div className={`${classes.stat} ${classes.streakMetric}`} aria-label={`${currentStreak} ${streakLabel}`}>
           <IconFlame size={22} aria-hidden="true" />
           <strong>{currentStreak}</strong>
           <span>{streakLabel}</span>
         </div>
-      </div>
-
-      <div className={classes.stats} aria-label="Resumen de lectura">
         <div className={classes.stat}>
           <strong>{daysReadThisWeek}/7</strong>
           <span>Esta semana</span>
         </div>
-        <div className={classes.statDivider} aria-hidden="true" />
         <div className={classes.stat}>
           <strong>{bestStreak}</strong>
           <span>Mejor racha</span>
