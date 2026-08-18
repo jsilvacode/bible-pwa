@@ -11,8 +11,6 @@ function VerseBlock({
   verse,
   text,
   isSelected,
-  isHighlighted,
-  highlightColor,
   onShortTap,
   onOpenMenu,
   isTarget,
@@ -37,7 +35,7 @@ function VerseBlock({
 
   return (
     <span
-      className={`${classes.verseBlock} ${isSelected ? classes.selected : ''} ${isTarget ? classes.targetBlink : ''} ${isHighlighted && highlightColor ? classes[`highlight${highlightColor.charAt(0).toUpperCase()}${highlightColor.slice(1)}`] : ''}`}
+      className={`${classes.verseBlock} ${isSelected ? classes.selected : ''} ${isTarget ? classes.targetBlink : ''}`}
       onClick={handleClick}
       onDoubleClick={handleDoubleClick}
       onContextMenu={handleContextMenu}

@@ -96,66 +96,6 @@
   color: var(--text-primary);
 }
 
-.divider {
-  height: 1px;
-  background: var(--border);
-  margin: 8px 0;
-}
-
-.colorSection {
-  margin-top: 8px;
-}
-
-.sectionLabel {
-  display: block;
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
-}
-
-.colorGrid {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.colorBtn {
-  flex: 1;
-  height: 48px;
-  border-radius: var(--radius-md);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  color: var(--text-primary);
-}
-
-.colorClear {
-  background: transparent;
-  border: 1px solid var(--border);
-}
-
-.colorRed {
-  background: var(--highlight-red);
-}
-
-.colorGold {
-  background: var(--highlight-gold);
-}
-
-.colorBlue {
-  background: var(--highlight-blue);
-}
-
-.colorGreen {
-  background: var(--highlight-green);
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

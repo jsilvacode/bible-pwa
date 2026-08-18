@@ -26,13 +26,6 @@ export default function VerseMenu({ verse, payload, onClose }) {
     onClose();
   };
 
-  const handleHighlight = (color) => {
-    if (payload?.onHighlight) {
-      payload.onHighlight(color);
-    }
-    onClose();
-  };
-
   const handleShare = async () => {
     if (!payload) return;
 
@@ -84,19 +77,6 @@ export default function VerseMenu({ verse, payload, onClose }) {
             <span className={classes.actionIcon}><IconShare size={22} /></span>
             <span className={classes.actionLabel}>Compartir versículo</span>
           </button>
-
-          <div className={classes.divider} />
-
-          <div className={classes.colorSection}>
-            <span className={classes.sectionLabel}>Resaltar con color</span>
-            <div className={classes.colorGrid}>
-               <button aria-label="Limpiar color" className={`${classes.colorBtn} ${classes.colorClear}`} onClick={() => handleHighlight(null)}>✕</button>
-               <button aria-label="Promesa" title="Promesa" className={`${classes.colorBtn} ${classes.colorRed}`} onClick={() => handleHighlight('red')} />
-               <button aria-label="Sabiduria" title="Sabiduria" className={`${classes.colorBtn} ${classes.colorGold}`} onClick={() => handleHighlight('gold')} />
-               <button aria-label="Ensenanza" title="Ensenanza" className={`${classes.colorBtn} ${classes.colorBlue}`} onClick={() => handleHighlight('blue')} />
-               <button aria-label="Aplicacion" title="Aplicacion" className={`${classes.colorBtn} ${classes.colorGreen}`} onClick={() => handleHighlight('green')} />
-            </div>
-          </div>
         </div>
       </div>
     </div>

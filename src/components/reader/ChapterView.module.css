@@ -186,12 +186,6 @@
   }
 }
 
-/* Identificadores de colores para highlights (resaltados) */
-.highlightRed { background-color: var(--highlight-red); }
-.highlightGold { background-color: var(--highlight-gold); }
-.highlightBlue { background-color: var(--highlight-blue); }
-.highlightGreen { background-color: var(--highlight-green); }
-
 .navigation {
   margin-top: 66px;
   display: flex;

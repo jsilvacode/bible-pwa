@@ -1,7 +1,6 @@
 import React, { lazy, Suspense, useEffect, useRef, useState, useCallback } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useBible } from '../../hooks/useBible';
-import { useHighlights } from '../../hooks/useHighlights';
 import { useSettings } from '../../hooks/useSettings';
 import { useReadingMode } from '../../hooks/useReadingMode';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
@@ -63,8 +62,6 @@ export default function ChapterView() {
     routeValid?.valid ? bookId_ : null,
     routeValid?.valid ? chapterNum_ : null
   );
-  const { highlights, setHighlight } = useHighlights(settings.version, bookId_, chapterNum_);
-
   const bibleBook = data;
   const bibleChapter = data?.chapters?.find((c) => c.chapter === chapterNum_);
   const controlsLockedOpen = menuVerse !== null || showCba || searchOpen || readerSettingsOpen;
@@ -417,8 +414,6 @@ export default function ChapterView() {
                     verse={v.verse}
                     text={v.text}
                     isSelected={menuVerse === v.verse}
-                    isHighlighted={!!highlights[v.verse]}
-                    highlightColor={highlights[v.verse]}
                     isTarget={Number(targetVerse) === v.verse}
                     onShortTap={handleOpenMenu}
                     onOpenMenu={handleOpenMenu}
@@ -477,16 +472,6 @@ export default function ChapterView() {
                   setCbaVerse(menuVerse);
                   setShowCba(true);
                 },
-                onHighlight: (color) => setHighlight(
-                  {
-                    id: `${bookId_}-${chapterNum_}-${menuVerse}`,
-                    book: bookId_,
-                    chapter: chapterNum_,
-                    verse: menuVerse,
-                    version: settings.version,
-                  },
-                  color
-                ),
               }}
               onClose={handleCloseMenu}
             />
