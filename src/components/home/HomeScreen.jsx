@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import DailyVerse from '../daily/DailyVerse';
-import CategoryGrid from './CategoryGrid';
-import ReadingStreak from './ReadingStreak';
 import { useRecentReads } from '../../hooks/useSettings';
 import { useBookNames } from '../../hooks/useBookNames';
 import { useGlobalSearch } from '../../hooks/useGlobalSearch';
@@ -9,65 +7,80 @@ import { useNavigate } from 'react-router-dom';
 import { IconBook, IconChevronRight, IconMoon, IconSearch, IconSun, IconSunrise } from '../ui/Icons';
 import classes from './HomeScreen.module.css';
 
+const CategoryGrid = lazy(() => import('./CategoryGrid'));
+const ReadingStreak = lazy(() => import('./ReadingStreak'));
 const HERO_IMAGE_SRC = '/assets/hero-768.webp';
 const HERO_IMAGE_SRC_SET = '/assets/hero-768.webp 768w, /assets/hero-1600.webp 1600w';
 const HERO_IMAGE_SIZES = '(max-width: 768px) 100vw, 1024px';
 
 let heroImageDecoded = false;
-let heroImagePromise;
-
-function preloadHeroImage() {
-  if (heroImageDecoded || typeof Image === 'undefined') return Promise.resolve();
-  if (heroImagePromise) return heroImagePromise;
-
-  const image = new Image();
-  image.srcSet = HERO_IMAGE_SRC_SET;
-  image.sizes = HERO_IMAGE_SIZES;
-
-  heroImagePromise = new Promise((resolve) => {
-    const finish = () => {
-      heroImageDecoded = true;
-      resolve();
-    };
-
-    const decode = async () => {
-      try {
-        await image.decode?.();
-      } catch {
-        // A completed image can reject decode() in some browsers; it is still safe to paint.
-      }
-      finish();
-    };
-
-    image.addEventListener('load', decode, { once: true });
-    image.addEventListener('error', finish, { once: true });
-    image.src = HERO_IMAGE_SRC;
-
-    if (image.complete) decode();
-  });
-
-  return heroImagePromise;
-}
 
 function useHeroImageReady() {
+  const imageRef = useRef(null);
   const [isReady, setIsReady] = useState(heroImageDecoded);
 
-  useEffect(() => {
-    let isMounted = true;
+  const revealImage = useCallback(async () => {
+    const image = imageRef.current;
+    if (!image || heroImageDecoded) return;
 
-    preloadHeroImage().then(() => {
-      if (isMounted) setIsReady(true);
+    try {
+      await image.decode?.();
+    } catch {
+      // Una imagen cargada puede rechazar decode() en algunos navegadores.
+    }
+
+    heroImageDecoded = true;
+    setIsReady(true);
+  }, []);
+
+  useEffect(() => {
+    const image = imageRef.current;
+    if (image?.complete && image.naturalWidth > 0) revealImage();
+  }, [revealImage]);
+
+  return { imageRef, isReady, revealImage };
+}
+
+/**
+ * La portada es lo primero que debe responder en un teléfono. El atlas y la
+ * racha se montan justo después del primer paint, antes de que el usuario
+ * pueda llegar a esas secciones al desplazarse.
+ */
+function useDeferredHomeDetails() {
+  const [isReady, setIsReady] = useState(() => (
+    typeof window === 'undefined' || !window.matchMedia('(max-width: 767px)').matches
+  ));
+
+  useEffect(() => {
+    if (isReady) return undefined;
+
+    let frameId = 0;
+    let idleId = null;
+    let timeoutId = null;
+    let cancelled = false;
+
+    const reveal = () => {
+      if (!cancelled) setIsReady(true);
+    };
+
+    frameId = window.requestAnimationFrame(() => {
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(reveal, { timeout: 700 });
+      } else {
+        timeoutId = window.setTimeout(reveal, 0);
+      }
     });
 
     return () => {
-      isMounted = false;
+      cancelled = true;
+      window.cancelAnimationFrame(frameId);
+      if (idleId !== null && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
+      if (timeoutId !== null) window.clearTimeout(timeoutId);
     };
-  }, []);
+  }, [isReady]);
 
   return isReady;
 }
-
-preloadHeroImage();
 
 function formatRelativeTime(timestamp) {
   if (!timestamp) return 'Sin fecha registrada';
@@ -87,7 +100,8 @@ export default function HomeScreen() {
   const { openSearch } = useGlobalSearch();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const isHeroImageReady = useHeroImageReady();
+  const { imageRef: heroImageRef, isReady: isHeroImageReady, revealImage: revealHeroImage } = useHeroImageReady();
+  const homeDetailsReady = useDeferredHomeDetails();
   const now = new Date();
   const hour = now.getHours();
   const greeting = hour < 12 ? 'Buenos días' : hour < 20 ? 'Buenas tardes' : 'Buenas noches';
@@ -105,6 +119,7 @@ export default function HomeScreen() {
     <div className={classes.container}>
       <div className={`${classes.topHero} ${isHeroImageReady ? classes.heroImageReady : ''}`}>
         <img
+          ref={heroImageRef}
           className={classes.heroImage}
           src={HERO_IMAGE_SRC}
           srcSet={HERO_IMAGE_SRC_SET}
@@ -113,6 +128,7 @@ export default function HomeScreen() {
           aria-hidden="true"
           fetchPriority="high"
           decoding="async"
+          onLoad={revealHeroImage}
         />
         <header className={classes.header}>
           <div className={classes.headerTop}>
@@ -159,7 +175,11 @@ export default function HomeScreen() {
             <h2 id="explore-scriptures-title" className={classes.sectionTitle}>Explora las Escrituras</h2>
             <p>Encuentra un testamento, género o colección para comenzar.</p>
           </div>
-          <CategoryGrid />
+          {homeDetailsReady && (
+            <Suspense fallback={null}>
+              <CategoryGrid />
+            </Suspense>
+          )}
         </section>
 
         <section className={`${classes.section} ${classes.recentSection}`} aria-labelledby="continue-reading-title">
@@ -208,7 +228,11 @@ export default function HomeScreen() {
             )}
 
             <div className={classes.journeyDivider} aria-hidden="true" />
-            <ReadingStreak embedded />
+            {homeDetailsReady && (
+              <Suspense fallback={null}>
+                <ReadingStreak embedded />
+              </Suspense>
+            )}
           </div>
         </section>
       </div>
