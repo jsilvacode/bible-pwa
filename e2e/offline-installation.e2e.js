@@ -27,9 +27,12 @@ test('una instalación prepara Biblia y comentario para una recarga sin conexió
   await expect.poll(async () => page.evaluate(async () => {
     const bible = await caches.open('santa-biblia-library-bible-nbla-v1');
     const commentary = await caches.open('santa-biblia-library-commentary-v1');
+    const countContentEntries = async (cache) => (
+      (await cache.keys()).filter((request) => new URL(request.url).pathname.startsWith('/data/')).length
+    );
     return {
-      bible: (await bible.keys()).length,
-      commentary: (await commentary.keys()).length,
+      bible: await countContentEntries(bible),
+      commentary: await countContentEntries(commentary),
     };
   }), { timeout: 120_000 }).toEqual({ bible: 1189, commentary: 1189 });
 
