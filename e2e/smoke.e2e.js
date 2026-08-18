@@ -22,6 +22,7 @@ test('smoke flow: version, navigation, CBA, search', async ({ page }) => {
   await expect(page).toHaveURL(/\/read\/1\/1/);
 
   await page.locator('[id^="verse-"]').first().click();
+  await expect(page.getByRole('button', { name: /Promesa|Sabiduria|Ensenanza|Aplicacion|Limpiar color/i })).toHaveCount(0);
   await page.getByRole('button', { name: /Ver Comentario \(CBA\)/i }).click();
   await expect(page.getByRole('heading', { name: 'Comentario Bíblico' })).toBeVisible();
   await page.getByRole('button', { name: 'Cerrar' }).click();
@@ -90,10 +91,6 @@ test('el camino de lectura integra la última lectura con la racha en móvil', a
   await expect(page.getByRole('button', { name: /Continuar leyendo Salmos, capítulo 23/i })).toBeVisible();
 
   const weeklyActivity = page.locator('#weekly-reading-activity');
-  const weeklyToggle = page.getByRole('button', { name: /Actividad semanal/i });
-  await expect(weeklyToggle).toBeVisible();
-  await expect(weeklyActivity).toBeHidden();
-  await weeklyToggle.click();
   await expect(weeklyActivity).toBeVisible();
 
   const summary = page.getByLabel('Resumen de lectura');

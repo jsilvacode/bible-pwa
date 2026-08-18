@@ -40,11 +40,6 @@
   --border-soft: color-mix(in srgb, var(--accent) 17%, var(--border));
   --border-emphasis: color-mix(in srgb, var(--accent) 38%, var(--border));
   --shadow-panel: 0 18px 34px color-mix(in srgb, var(--abyss) 9%, transparent);
-  --highlight-red: rgba(150, 42, 42, 0.25);
-  --highlight-gold: rgba(184, 134, 61, 0.25);
-  --highlight-blue: rgba(70, 90, 140, 0.25);
-  --highlight-green: rgba(60, 120, 90, 0.25);
-
   /* New UI Redesign Tokens */
   --glass-bg: color-mix(in srgb, var(--bg-surface) 78%, transparent);
   /* Hero gradient: pastel cream */
