@@ -1,6 +1,8 @@
 .footer {
   margin-top: clamp(44px, 6vw, 68px);
   padding: 0 var(--page-gutter) calc(26px + env(safe-area-inset-bottom));
+  content-visibility: auto;
+  contain-intrinsic-size: auto 380px;
 }
 
 .support {
